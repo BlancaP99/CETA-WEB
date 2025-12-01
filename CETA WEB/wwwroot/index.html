@@ -1,0 +1,155 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Inicio | Aeronáutica</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <!-- HEADER: logo + separador + menú a la izquierda con submenús -->
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="index.html" class="logo-link" aria-label="Inicio">
+                <img src="IMAGENES/LOGO_BLANCO.png" alt="Logo" class="logo" />
+            </a>
+            <div class="header-separator" aria-hidden="true"></div>
+
+            <nav class="main-nav" aria-label="Menú principal">
+                <ul class="menu">
+                    <li><a href="empresa.html">EMPRESA</a></li>
+
+                    <li class="menu">
+                        <a href="ingenieria-aeronautica.html" class="menu-parent">INGENIERÍA AERONÁUTICA</a>
+                    </li>
+
+                    <li class="menu">
+                        <a href="sistemas-no-tripulados.html" class="menu-parent">SISTEMAS NO TRIPULADOS</a>
+                    </li>
+
+                    <li><a href="certificaciones.html">CERTIFICACIONES Y CALIDAD</a></li>
+                    <li><a href="contacto.html">CONTACTO</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero-landing">
+        <h1 class="hero-title">
+            <span>YOUR VISION</span>
+            <span>OUR ENGINEERING</span>
+        </h1>
+
+        <!-- 3 TARJETAS DE SERVICIO (nueva estructura) -->
+        <div class="service-buttons">
+            <div class="service-card">
+                <img src="IMAGENES/WIREFRAME.jpg" alt="Ingeniería" />
+                <div class="service-caption">
+                    <a class="service-title" href="ingenieria-aeronautica.html">INGENIERÍA AERONÁUTICA</a>
+                    <span class="service-plus" aria-hidden="true">+</span>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <img src="IMAGENES/WIREFRAME.jpg" alt="Sistemas no tripulados" />
+                <div class="service-caption">
+                    <a class="service-title" href="sistemas-no-tripulados.html">SISTEMAS NO TRIPULADOS</a>
+                    <span class="service-plus" aria-hidden="true">+</span>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <img src="IMAGENES/WIREFRAME.jpg" alt="Distribución" />
+                <div class="service-caption">
+                    <a class="service-title" href="distribucion-productos-aeronauticos.html">CERTIFICACIONES Y CALIDAD</a>
+                    <span class="service-plus" aria-hidden="true">+</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NOVEDADES Y NOTICIAS -->
+    <section class="news-section" id="news">
+        <div class="container">
+            <h2 class="section-title">NOVEDADES Y NOTICIAS</h2>
+            <div class="news-grid">
+                <article class="news-card">
+                    <img src="IMAGENES/WIREFRAME.jpg" alt="Noticia 1" />
+                    <h3>Título de la noticia 1</h3>
+                </article>
+                <article class="news-card">
+                    <img src="IMAGENES/WIREFRAME.jpg" alt="Noticia 2" />
+                    <h3>Título de la noticia 2</h3>
+                </article>
+                <article class="news-card">
+                    <img src="IMAGENES/WIREFRAME.jpg" alt="Noticia 3" />
+                    <h3>Título de la noticia 3</h3>
+                </article>
+                <article class="news-card">
+                    <img src="IMAGENES/WIREFRAME.jpg" alt="Noticia 4" />
+                    <h3>Título de la noticia 4</h3>
+                </article>
+                <article class="news-card">
+                    <img src="IMAGENES/WIREFRAME.jpg" alt="Noticia 5" />
+                    <h3>Título de la noticia 5</h3>
+                </article>
+                <article class="news-card">
+                    <img src="IMAGENES/WIREFRAME.jpg" alt="Noticia 6" />
+                    <h3>Título de la noticia 6</h3>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="footer-grid container">
+            <div class="footer-col">
+                <h4>CETA S.A.</h4>
+                <p>Compañía Española de Técnica Aeronáutica S.A.</p>
+                <p>C/ Cañas, 7 · Nave Entresuelo<br>28043 Madrid · España</p>
+                <p><a href="mailto:ceta@ceta.aero">ceta@ceta.aero</a></p>
+                <p>Tel: +34 911 400 181 · Fax: +34 911 400 182</p>
+            </div>
+
+            <div class="footer-col footer-col--center">
+                <h4>Correo electrónico</h4>
+                <form class="newsletter-form" action="#" method="post">
+                    <input id="newsletter-email" name="email" type="email" placeholder="Tu e-mail" required />
+                    <button type="submit">ENVIAR</button>
+                </form>
+            </div>
+
+            <div class="footer-col footer-col--right">
+                <h4>Conecta</h4>
+                <div class="social-row">
+                    <a class="social-link" href="#" aria-label="LinkedIn">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <rect width="24" height="24" rx="4" fill="rgba(255,255,255,0.15)" />
+                            <path d="M7.2 8.8a1.6 1.6 0 1 0 0-3.2 1.6 1.6 0 0 0 0 3.2Zm1 2H6.2v7.4h2V10.8Zm3.2 0H9.6v7.4h2v-4.2c0-1.1.8-1.8 1.7-1.8 1 0 1.5.6 1.5 1.8v4.2h2V13c0-2.2-1.3-3.2-3.2-3.2-1.1 0-1.9.5-2.2 1.1h-.1v-0.1Z"
+                                  fill="rgba(200,230,255,0.95)" />
+                        </svg>
+                    </a>
+                </div>
+                <ul class="legal-links">
+                    <li><a href="#">CONDICIONES GENERALES DE COMPRAS</a></li>
+                    <li><a href="#">POLÍTICA DE CALIDAD</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            © <span id="year"></span> CETA · Todos los derechos reservados
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+        document.querySelector('.newsletter-form')?.addEventListener('submit', e => {
+            e.preventDefault();
+            alert('¡Gracias! Te hemos registrado con: ' + (document.getElementById('newsletter-email')?.value || 'tu e-mail'));
+        });
+    </script>
+</body>
+</html>

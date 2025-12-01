@@ -1,0 +1,417 @@
+﻿/* Fuente corporativa */
+@font-face {
+    font-family: "Eurostile";
+    src: url("FONTS/EUROSTILE.TTF") format("truetype");
+    font-display: swap;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: "Eurostile", Arial, sans-serif;
+    background: #002856;
+    color: #fff;
+    overflow-x: hidden;
+    position: relative;
+}
+
+    /* Fondo foto cockpit (40%) */
+    body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(0,30,70,.35), rgba(0,20,50,.55)), url("IMAGENES/COCKPIT.webp") center/cover no-repeat fixed;
+        opacity: .40;
+        z-index: 0;
+        pointer-events: none;
+    }
+
+.site-header, .hero-landing, .news-section, .site-footer {
+    position: relative;
+    z-index: 2;
+}
+
+/* ===== HEADER ===== */
+.site-header {
+    padding: 18px 30px 8px;
+}
+
+.header-inner {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo {
+    height: 50px;
+    display: block;
+}
+
+.header-separator {
+    width: 1px;
+    height: 36px;
+    background: rgba(255,255,255,.9);
+}
+
+.main-nav .menu {
+    list-style: none;
+    display: flex;
+    gap: 28px;
+    margin: 0;
+    padding: 0;
+}
+
+    .main-nav .menu > li {
+        position: relative;
+    }
+
+    .main-nav .menu a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 14px;
+        letter-spacing: .5px;
+        transition: color .25s;
+    }
+
+        .main-nav .menu a:hover {
+            color: #D52522;
+        }
+
+.has-submenu > .menu-parent::after {
+    content: "▾";
+    font-size: 10px;
+    margin-left: 6px;
+    opacity: .8;
+}
+
+.has-submenu::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    height: 12px;
+}
+
+.submenu {
+    position: absolute;
+    left: 0;
+    top: calc(100% + 12px);
+    min-width: 340px;
+    background: rgba(255,255,255,0.6);
+    backdrop-filter: saturate(140%) blur(4px);
+    border: 1px solid rgba(255,255,255,0.85);
+    border-radius: 10px;
+    padding: 14px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(6px);
+    transition: opacity .18s ease, transform .18s ease, visibility .18s;
+    z-index: 20;
+    pointer-events: auto;
+}
+
+.has-submenu:hover > .submenu,
+.has-submenu:focus-within > .submenu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.submenu a {
+    color: #052a4e;
+    text-decoration: none;
+    font-size: 13px;
+    padding: 8px 10px;
+    border-radius: 6px;
+    display: block;
+}
+
+    .submenu a:hover {
+        background: rgba(255,255,255,0.7);
+    }
+
+/* ===== HERO ===== */
+.hero-landing {
+    min-height: calc(100vh - 110px);
+    display: grid;
+    justify-items: center;
+    align-content: center;
+    gap: 120px;
+    padding: 20px 0 30px;
+    text-align: center;
+}
+
+.hero-title {
+    margin: 0;
+    display: grid;
+    gap: 6px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    line-height: 1.02;
+}
+
+    .hero-title span {
+        font-weight: 700;
+        font-size: clamp(22px,3.9vw,48px);
+        text-shadow: 0 2px 0 rgba(0,0,0,.12);
+        filter: drop-shadow(0 6px 18px rgba(0,0,0,.25));
+    }
+
+/* ===== TARJETAS DE SERVICIO (nueva estética) ===== */
+.service-buttons {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 28px;
+    width: min(1200px,90vw);
+}
+
+.service-card {
+    position: relative;
+    overflow: visible;
+    border-radius: 0;
+}
+
+    .service-card img {
+        width: 100%;
+        height: 320px; /* más grandes */
+        object-fit: cover;
+        display: block;
+        border-radius: 0; /* sin redondeo */
+    }
+/* fila de título + plus */
+.service-caption {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 12px;
+}
+
+.service-title {
+    color: #fff;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: .3px;
+}
+
+    .service-title:hover {
+        color: #D52522;
+    }
+/* hover en el título */
+.service-plus {
+    color: #D52522;
+    font-weight: 800;
+    font-size: 28px;
+    line-height: 1;
+}
+
+/* ===== NOVEDADES Y NOTICIAS ===== */
+.container {
+    width: min(1200px,92vw);
+    margin: 0 auto;
+}
+
+.news-section {
+    padding: 70px 0 90px;
+}
+
+.section-title {
+    margin: 0 0 26px;
+    text-align: left;
+    font-size: clamp(20px,2.6vw,30px);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #eaf3ff;
+}
+
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 22px;
+}
+
+.news-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 0; /* sin redondeo */
+    overflow: hidden;
+    transition: transform .2s, box-shadow .2s;
+}
+
+    .news-card img {
+        display: block;
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+    }
+
+    .news-card h3 {
+        margin: 12px 12px 16px;
+        font-size: 16px;
+        color: #fff;
+    }
+
+    .news-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 24px rgba(0,0,0,.25);
+    }
+
+/* ===== FOOTER ===== */
+.site-footer {
+    background: linear-gradient(180deg, rgba(0,20,50,.35), rgba(0,20,40,.6));
+    border-top: 1px solid rgba(255,255,255,.18);
+    margin-top: 40px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 2fr 1.5fr;
+    gap: 28px;
+    padding: 28px 0;
+}
+
+.footer-col h4 {
+    margin: 0 0 10px;
+    font-size: 16px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #eaf3ff;
+}
+
+.footer-col p {
+    margin: 6px 0;
+    color: rgba(255,255,255,.9);
+}
+
+.footer-col a {
+    color: #aee1ff;
+    text-decoration: none;
+}
+
+    .footer-col a:hover {
+        text-decoration: underline;
+    }
+
+.footer-col--center {
+    text-align: center;
+}
+
+.newsletter-form {
+    display: inline-flex;
+    gap: 10px;
+    align-items: stretch;
+    justify-content: center;
+    margin-top: 8px;
+}
+
+    .newsletter-form input {
+        min-width: 260px;
+        height: 42px;
+        padding: 0 12px;
+        border-radius: 8px;
+        border: 1px solid rgba(255,255,255,.35);
+        background: rgba(255,255,255,.1);
+        color: #fff;
+        outline: none;
+    }
+
+        .newsletter-form input::placeholder {
+            color: rgba(255,255,255,.75);
+        }
+
+    .newsletter-form button {
+        height: 42px;
+        padding: 0 16px;
+        border: 0;
+        border-radius: 8px;
+        background: #0b76c7;
+        color: #fff;
+        font-weight: 700;
+        letter-spacing: .5px;
+        cursor: pointer;
+    }
+
+        .newsletter-form button:hover {
+            background: #0a68b0;
+        }
+
+.footer-col--right {
+    text-align: right;
+}
+
+.social-row {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    margin: 6px 0 10px;
+}
+
+.legal-links {
+    list-style: none;
+    padding: 0;
+    margin: 8px 0 0;
+    display: grid;
+    gap: 6px;
+}
+
+    .legal-links a {
+        color: #aee1ff;
+        text-decoration: none;
+        font-size: 14px;
+    }
+
+        .legal-links a:hover {
+            text-decoration: underline;
+        }
+
+.footer-bottom {
+    text-align: center;
+    padding: 14px 0;
+    border-top: 1px solid rgba(255,255,255,.15);
+    color: rgba(255,255,255,.85);
+    font-size: 13px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 980px) {
+    .news-grid {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-col--right {
+        text-align: center;
+    }
+
+    .social-row {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 680px) {
+    .service-buttons {
+        grid-template-columns: 1fr;
+    }
+
+    .news-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .submenu {
+        min-width: 260px;
+    }
+}

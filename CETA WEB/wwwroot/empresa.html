@@ -1,0 +1,459 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Empresa | CETA</title>
+    <style>
+        /* =================== Variables & Base =================== */
+        :root {
+            --brand: #002856;
+            --accent: #D52522;
+            --ink: #ffffff;
+            --ink-soft: rgba(255,255,255,.92);
+            --link: #aee1ff;
+            --max: 1200px;
+            --fs-body: 18px;
+            --fs-h1: clamp(28px,4.4vw,50px);
+            --fs-h2: clamp(18px,2.6vw,22px);
+        }
+
+        @font-face {
+            font-family: "Eurostile";
+            src: url("FONTS/EUROSTILE.TTF") format("truetype");
+            font-display: swap;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Eurostile", Arial, sans-serif;
+            font-size: var(--fs-body);
+            line-height: 1.55;
+            background: var(--brand);
+            color: var(--ink);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+            /* Fondo foto (23.png) con ~40% */
+            body::before {
+                content: "";
+                position: fixed;
+                inset: 0;
+                background: linear-gradient(180deg, rgba(0,30,70,.32), rgba(0,20,50,.52)), url("") center/cover no-repeat fixed;
+                opacity: .40;
+                z-index: 0;
+                pointer-events: none;
+            }
+
+        .wrap {
+            position: relative;
+            z-index: 2;
+        }
+
+        .container {
+            width: min(var(--max),92vw);
+            margin: 0 auto;
+        }
+
+        /* =================== Header con submenús =================== */
+        .site-header {
+            padding: 18px 30px 8px;
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo {
+            height: 50px;
+            display: block;
+        }
+
+        .header-separator {
+            width: 1px;
+            height: 36px;
+            background: rgba(255,255,255,.9);
+        }
+
+        .main-nav .menu {
+            list-style: none;
+            display: flex;
+            gap: 28px;
+            margin: 0;
+            padding: 0;
+        }
+
+            .main-nav .menu > li {
+                position: relative;
+            }
+
+            .main-nav .menu a {
+                color: #fff;
+                text-decoration: none;
+                font-size: 14px;
+                letter-spacing: .5px;
+                transition: color .25s;
+            }
+
+                .main-nav .menu a:hover {
+                    color: var(--accent);
+                }
+
+        .has-submenu > .menu-parent::after {
+            content: "▾";
+            font-size: 10px;
+            margin-left: 6px;
+            opacity: .8;
+        }
+
+        .has-submenu::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 100%;
+            height: 12px;
+        }
+
+        .submenu {
+            position: absolute;
+            left: 0;
+            top: calc(100% + 12px);
+            min-width: 340px;
+            background: rgba(255,255,255,0.6);
+            backdrop-filter: saturate(140%) blur(4px);
+            border: 1px solid rgba(255,255,255,0.85);
+            border-radius: 10px;
+            padding: 14px;
+            display: grid;
+            gap: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(6px);
+            transition: opacity .18s ease, transform .18s ease, visibility .18s;
+            z-index: 20;
+        }
+
+        .has-submenu:hover > .submenu,
+        .has-submenu:focus-within > .submenu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .submenu a {
+            color: #052a4e;
+            text-decoration: none;
+            font-size: 15px;
+            padding: 8px 10px;
+            border-radius: 6px;
+            display: block;
+        }
+
+            .submenu a:hover {
+                background: rgba(255,255,255,0.7);
+            }
+
+        /* =================== Hero (subido para igualar landing) =================== */
+        .hero {
+            min-height: 32vh; /* ↑ más arriba que antes */
+            display: grid;
+            place-items: center;
+            text-align: center;
+            padding: 36px 0 4px; /* menos padding superior */
+        }
+
+            .hero h1 {
+                margin: 0 0 8px;
+                text-transform: uppercase;
+                letter-spacing: 3px;
+                font-size: var(--fs-h1);
+                font-weight: 800;
+                text-shadow: 0 2px 0 rgba(0,0,0,.12);
+                filter: drop-shadow(0 6px 18px rgba(0,0,0,.25));
+            }
+
+            .hero p {
+                margin: 0;
+                font-size: var(--fs-h2);
+                letter-spacing: 1px;
+                opacity: .95;
+            }
+
+        /* =================== Imagen grande + texto debajo =================== */
+        .section {
+            padding: 44px 0;
+        }
+
+        /* Imagen sola y grande */
+        .hero-media {
+            width: min(1100px,92vw);
+            margin: 0 auto 18px;
+        }
+
+            .hero-media img {
+                width: 100%;
+                height: auto;
+                display: block;
+                border-radius: 0;
+            }
+
+        /* Texto debajo, alineado a la izquierda, con “+” a la derecha */
+        .lead-copy {
+            width: min(1100px,92vw);
+            margin: 0 auto;
+            position: relative;
+            padding: 6px 0 22px;
+        }
+
+            .lead-copy p {
+                margin: 0;
+            }
+
+        .lead-plus {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            color: var(--accent);
+            font-weight: 800;
+            font-size: 34px;
+            line-height: 1;
+        }
+
+        /* =================== Footer =================== */
+        .site-footer {
+            background: linear-gradient(180deg, rgba(0,20,50,.35), rgba(0,20,40,.6));
+            border-top: 1px solid rgba(255,255,255,.18);
+            margin-top: 44px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 2fr 1.5fr;
+            gap: 28px;
+            padding: 28px 0;
+        }
+
+        .footer-col h4 {
+            margin: 0 0 10px;
+            font-size: 16px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #eaf3ff;
+        }
+
+        .footer-col p {
+            margin: 6px 0;
+            color: var(--ink-soft);
+        }
+
+        .footer-col a {
+            color: var(--link);
+            text-decoration: none;
+        }
+
+            .footer-col a:hover {
+                text-decoration: underline;
+            }
+
+        .footer-col--center {
+            text-align: center;
+        }
+
+        .newsletter-form {
+            display: inline-flex;
+            gap: 10px;
+            align-items: stretch;
+            justify-content: center;
+            margin-top: 8px;
+        }
+
+            .newsletter-form input {
+                min-width: 280px;
+                height: 44px;
+                padding: 0 12px;
+                border-radius: 8px;
+                border: 1px solid rgba(255,255,255,.35);
+                background: rgba(255,255,255,.1);
+                color: #fff;
+                outline: none;
+            }
+
+            .newsletter-form button {
+                height: 44px;
+                padding: 0 16px;
+                border: 0;
+                border-radius: 8px;
+                background: #0b76c7;
+                color: #fff;
+                font-weight: 700;
+                letter-spacing: .5px;
+                cursor: pointer;
+            }
+
+                .newsletter-form button:hover {
+                    background: #0a68b0;
+                }
+
+        .footer-col--right {
+            text-align: right;
+        }
+
+        .social-row {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+            margin: 6px 0 10px;
+        }
+
+        .legal-links {
+            list-style: none;
+            padding: 0;
+            margin: 8px 0 0;
+            display: grid;
+            gap: 6px;
+        }
+
+            .legal-links a {
+                color: var(--link);
+                text-decoration: none;
+                font-size: 14px;
+            }
+
+                .legal-links a:hover {
+                    text-decoration: underline;
+                }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 14px 0;
+            border-top: 1px solid rgba(255,255,255,.15);
+            color: rgba(255,255,255,.85);
+            font-size: 13px;
+        }
+
+        /* =================== Responsive =================== */
+        @media (max-width: 1080px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-col--right {
+                text-align: center;
+            }
+
+            .social-row {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- =================== HEADER =================== -->
+    <header class="site-header wrap">
+        <div class="header-inner">
+            <a href="index.html" class="logo-link" aria-label="Inicio">
+                <img src="IMAGENES/LOGO_BLANCO.png" alt="CETA" class="logo" />
+            </a>
+            <div class="header-separator" aria-hidden="true"></div>
+
+            <nav class="main-nav" aria-label="Menú principal">
+                <ul class="menu">
+                    <li><a href="empresa.html">EMPRESA</a></li>
+
+                    <li class="menu">
+                        <a href="ingenieria-aeronautica.html" class="menu-parent">INGENIERÍA AERONÁUTICA</a>
+                    </li>
+
+                    <li class="menu">
+                        <a href="sistemas-no-tripulados.html" class="menu-parent">SISTEMAS NO TRIPULADOS</a>
+                    </li>
+
+                    <li><a href="certificaciones.html">CERTIFICACIONES Y CALIDAD</a></li>
+                    <li><a href="contacto.html">CONTACTO</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- =================== HERO (centrado) =================== -->
+    <section class="hero wrap">
+        <div class="container">
+            <h1>EMPRESA</h1>
+            <p>COMPAÑÍA ESPAÑOLA DE TÉCNICA AERONÁUTICA S.A.</p>
+        </div>
+    </section>
+
+    <!-- =================== IMAGEN GRANDE + TEXTO DEBAJO =================== -->
+    <section class="section wrap">
+        <figure class="hero-media">
+            <img src="EMPRESA_IMG/221161.svg" alt="Fundación de CETA (1961)" />
+        </figure>
+
+        <div class="lead-copy">
+            <p>
+                El 22 de Noviembre de 1961, un grupo de socios, que se segregaron del fabricante de helicópteros
+                Aerotécnica S.A. (<a href="https://es.wikipedia.org/wiki/Aerotecnica" target="_blank" rel="noopener noreferrer" style="color:#aee1ff;">ver Aerotécnica</a>)
+                crearon la sociedad <b>Compañía Española de Técnica Aeronáutica S.A. (CETA)</b> con un capital social de diez millones
+                de pesetas, invertido en una flota de <b>16 avionetas</b> de fumigación modelo <b>PA18 “Super Cub”</b> y
+                <b>5 avionetas PA25 “Pawnee”</b>, todas ellas de la marca Piper.
+            </p>
+            <span class="lead-plus" aria-hidden="true">+</span>
+        </div>
+    </section>
+
+    <!-- =================== FOOTER =================== -->
+    <footer class="site-footer wrap">
+        <div class="footer-grid container">
+            <div class="footer-col">
+                <h4>CETA S.A.</h4>
+                <p>Compañía Española de Técnica Aeronáutica S.A.</p>
+                <p>C/ Cañas, 7 · Nave Entresuelo<br>28043 Madrid · España</p>
+                <p><a href="mailto:ceta@ceta.aero">ceta@ceta.aero</a></p>
+                <p>Tel: +34 911 400 181 · Fax: +34 911 400 182</p>
+            </div>
+
+            <div class="footer-col footer-col--center">
+                <h4>Correo electrónico</h4>
+                <form class="newsletter-form" action="#" method="post" onsubmit="event.preventDefault(); alert('¡Gracias!');">
+                    <input id="newsletter-email" name="email" type="email" placeholder="Tu e-mail" required />
+                    <button type="submit">ENVIAR</button>
+                </form>
+            </div>
+
+            <div class="footer-col footer-col--right">
+                <h4>Conecta</h4>
+                <div class="social-row">
+                    <a class="social-link" href="#" aria-label="LinkedIn" title="LinkedIn">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <rect width="24" height="24" rx="4" fill="rgba(255,255,255,0.15)" />
+                            <path d="M7.2 8.8a1.6 1.6 0 1 0 0-3.2 1.6 1.6 0 0 0 0 3.2Zm1 2H6.2v7.4h2V10.8Zm3.2 0H9.6v7.4h2v-4.2c0-1.1.8-1.8 1.7-1.8 1 0 1.5.6 1.5 1.8v4.2h2V13c0-2.2-1.3-3.2-3.2-3.2-1.1 0-1.9.5-2.2 1.1h-.1v-0.1Z"
+                                  fill="rgba(200,230,255,0.95)" />
+                        </svg>
+                    </a>
+                </div>
+                <ul class="legal-links">
+                    <li><a href="#">CONDICIONES GENERALES DE COMPRAS</a></li>
+                    <li><a href="#">POLÍTICA DE CALIDAD</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">© <span id="year"></span> CETA · Todos los derechos reservados</div>
+    </footer>
+
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
