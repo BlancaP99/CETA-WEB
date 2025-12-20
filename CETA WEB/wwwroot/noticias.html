@@ -1,0 +1,933 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Noticias | CETA</title>
+
+    <style>
+        :root {
+            --brand: #002856;
+            --accent: #D52522;
+            --ink: #ffffff;
+            --ink-soft: rgba(255,255,255,.92);
+            --link: #aee1ff;
+            --max: 1200px;
+            --fs-body: 18px;
+            --fs-h1: clamp(28px,4.4vw,50px);
+            --fs-h2: clamp(16px,2.4vw,20px);
+        }
+
+        @font-face {
+            font-family: "Eurostile";
+            src: url("FONTS/EUROSTILE.TTF") format("truetype");
+            font-display: swap;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Eurostile",Arial,sans-serif;
+            font-size: var(--fs-body);
+            line-height: 1.55;
+            background: var(--brand);
+            color: var(--ink);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+            /* ===== FONDO (unificado) ===== */
+            body::before {
+                content: "";
+                position: fixed;
+                inset: 0;
+                background: linear-gradient(180deg, rgba(0,30,70,.35), rgba(0,20,50,.55)), url("IMAGENES/COCKPIT.webp") center/cover no-repeat fixed;
+                opacity: .40;
+                z-index: 0;
+                pointer-events: none;
+            }
+
+        .wrap {
+            position: relative;
+            z-index: 2;
+        }
+
+        .container {
+            width: min(var(--max),92vw);
+            margin: 0 auto;
+        }
+
+        /* =================== HEADER (UNIFICADO + MÓVIL HAMBURGUESA) =================== */
+        .site-header {
+            padding: 18px 30px 8px;
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo {
+            height: 50px;
+            display: block;
+        }
+
+        .header-separator {
+            width: 1px;
+            height: 36px;
+            background: rgba(255,255,255,.9);
+        }
+
+        /* Botón hamburguesa (oculto en desktop) */
+        .menu-toggle {
+            display: none;
+            margin-left: auto;
+            width: 44px;
+            height: 44px;
+            border: 1px solid rgba(255,255,255,.25);
+            background: rgba(0,0,0,.28);
+            border-radius: 10px;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+            .menu-toggle .bar {
+                display: block;
+                height: 2px;
+                background: rgba(255,255,255,.9);
+                margin: 6px 0;
+            }
+
+        .main-nav .menu {
+            list-style: none;
+            display: flex;
+            gap: 28px;
+            margin: 0;
+            padding: 0;
+        }
+
+            .main-nav .menu a {
+                color: #fff;
+                text-decoration: none;
+                font-size: 14px;
+                letter-spacing: .5px;
+                transition: color .25s;
+            }
+
+                .main-nav .menu a:hover {
+                    color: var(--accent);
+                }
+
+        /* =================== HERO =================== */
+        .hero {
+            min-height: 32vh;
+            display: grid;
+            place-items: center;
+            text-align: center;
+            padding: 36px 0 8px;
+        }
+
+            .hero h1 {
+                margin: 0 0 10px;
+                text-transform: uppercase;
+                letter-spacing: 3px;
+                font-size: var(--fs-h1);
+                font-weight: 800;
+                text-shadow: 0 2px 0 rgba(0,0,0,.12);
+                filter: drop-shadow(0 6px 18px rgba(0,0,0,.25));
+            }
+
+        /* Subtítulo centrado + “panel” azul oscuro (como el resto) */
+        .hero-panel {
+            width: min(1000px,92vw);
+            margin: 0 auto;
+            padding: 16px 18px;
+            border: 1px solid rgba(255,255,255,.18);
+            border-radius: 10px;
+            background: rgba(0,0,0,.28);
+            backdrop-filter: blur(2px);
+            color: rgba(255,255,255,.95);
+            text-align: center;
+            font-size: var(--fs-h2);
+            letter-spacing: .6px;
+        }
+
+        /* ===== Separador dashed ===== */
+        .separator {
+            width: min(var(--max),92vw);
+            margin: 22px auto 18px;
+            border: 0;
+            border-top: 2px dashed rgba(255,255,255,.35);
+        }
+
+        /* =================== PANEL OSCURO PARA BUSCADOR + LISTA =================== */
+        .news-section {
+            padding: 14px 0 70px;
+        }
+
+        .news-panel {
+            width: min(var(--max),92vw);
+            margin: 0 auto;
+            padding: 16px 16px 18px;
+            border: 1px solid rgba(255,255,255,.18);
+            border-radius: 10px;
+            background: rgba(0,0,0,.28);
+            backdrop-filter: blur(2px);
+        }
+
+        /* ===== Barra de búsqueda ===== */
+        .news-tools {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .search-wrap {
+            width: min(720px,100%);
+            display: flex;
+            gap: 10px;
+            align-items: stretch;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+            .search-wrap input {
+                flex: 1;
+                min-width: 220px;
+                height: 46px;
+                padding: 0 14px;
+                border-radius: 10px;
+                border: 1px solid rgba(255,255,255,.35);
+                background: rgba(255,255,255,.10);
+                color: #fff;
+                outline: none;
+            }
+
+                .search-wrap input::placeholder {
+                    color: rgba(255,255,255,.75);
+                }
+
+            .search-wrap button {
+                height: 46px;
+                padding: 0 16px;
+                border: 0;
+                border-radius: 10px;
+                background: #0b76c7;
+                color: #fff;
+                font-weight: 800;
+                letter-spacing: .5px;
+                cursor: pointer;
+                white-space: nowrap;
+            }
+
+                .search-wrap button:hover {
+                    background: #0a68b0;
+                }
+
+        .results-meta {
+            margin: 6px 0 0;
+            text-align: center;
+            font-size: 14px;
+            color: rgba(255,255,255,.85);
+        }
+
+        /* ===== Grid de noticias (como index) ===== */
+        .news-grid {
+            margin: 16px auto 0;
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 22px;
+        }
+
+        /* cada noticia es un BOTÓN/ENLACE */
+        .news-item {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 0;
+            overflow: hidden;
+            transition: transform .2s, box-shadow .2s, border-color .2s;
+        }
+
+            .news-item:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 8px 24px rgba(0,0,0,.25);
+                border-color: rgba(255,255,255,0.22);
+            }
+
+        .news-thumb {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .news-body {
+            padding: 12px 12px 14px;
+            display: grid;
+            gap: 8px;
+        }
+
+        .news-title-row {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .news-title {
+            margin: 0;
+            font-size: 16px;
+            color: #fff;
+            letter-spacing: .3px;
+            line-height: 1.2;
+        }
+
+        .news-plus {
+            color: var(--accent);
+            font-weight: 900;
+            font-size: 24px;
+            line-height: 1;
+            margin-top: 1px;
+            flex: 0 0 auto;
+        }
+
+        .news-meta {
+            font-size: 13px;
+            color: rgba(255,255,255,.82);
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+            .news-meta .tag {
+                padding: 3px 8px;
+                border: 1px solid rgba(255,255,255,.22);
+                background: rgba(255,255,255,.06);
+                border-radius: 999px;
+            }
+
+        /* ===== Botón VER MÁS ===== */
+        .more-wrap {
+            display: flex;
+            justify-content: center;
+            margin-top: 18px;
+        }
+
+        .btn-more {
+            height: 46px;
+            padding: 0 18px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,.25);
+            background: rgba(0,0,0,.22);
+            color: #fff;
+            font-weight: 800;
+            letter-spacing: .6px;
+            cursor: pointer;
+            transition: background .2s, border-color .2s, transform .2s;
+        }
+
+            .btn-more:hover {
+                background: rgba(213,37,34,.18);
+                border-color: rgba(255,255,255,.35);
+            }
+
+            .btn-more:active {
+                transform: scale(.99);
+            }
+
+        /* =================== FOOTER (unificado) =================== */
+        .site-footer {
+            background: linear-gradient(180deg, rgba(0,20,50,.35), rgba(0,20,40,.6));
+            border-top: 1px solid rgba(255,255,255,.18);
+            margin-top: 40px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 2fr 1.5fr;
+            gap: 28px;
+            padding: 28px 0;
+            width: min(var(--max),92vw);
+            margin: 0 auto;
+        }
+
+        .footer-col h4 {
+            margin: 0 0 10px;
+            font-size: 16px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #eaf3ff;
+        }
+
+        .footer-col p {
+            margin: 6px 0;
+            color: var(--ink-soft);
+        }
+
+        .footer-col a {
+            color: var(--link);
+            text-decoration: none;
+        }
+
+            .footer-col a:hover {
+                text-decoration: underline;
+            }
+
+        .footer-col--center {
+            text-align: center;
+        }
+
+        .newsletter-form {
+            display: inline-flex;
+            gap: 10px;
+            align-items: stretch;
+            justify-content: center;
+            margin-top: 8px;
+            flex-wrap: wrap;
+        }
+
+            .newsletter-form input {
+                min-width: 280px;
+                height: 44px;
+                padding: 0 12px;
+                border-radius: 8px;
+                border: 1px solid rgba(255,255,255,.35);
+                background: rgba(255,255,255,.1);
+                color: #fff;
+                outline: none;
+            }
+
+                .newsletter-form input::placeholder {
+                    color: rgba(255,255,255,.75);
+                }
+
+            .newsletter-form button {
+                height: 44px;
+                padding: 0 16px;
+                border: 0;
+                border-radius: 8px;
+                background: #0b76c7;
+                color: #fff;
+                font-weight: 700;
+                letter-spacing: .5px;
+                cursor: pointer;
+            }
+
+                .newsletter-form button:hover {
+                    background: #0a68b0;
+                }
+
+        .footer-col--right {
+            text-align: right;
+        }
+
+        .social-row {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+            margin: 6px 0 10px;
+        }
+
+        .legal-links {
+            list-style: none;
+            padding: 0;
+            margin: 8px 0 0;
+            display: grid;
+            gap: 6px;
+        }
+
+            .legal-links a {
+                color: var(--link);
+                text-decoration: none;
+                font-size: 14px;
+            }
+
+                .legal-links a:hover {
+                    text-decoration: underline;
+                }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 14px 0;
+            border-top: 1px solid rgba(255,255,255,.15);
+            color: rgba(255,255,255,.85);
+            font-size: 13px;
+        }
+
+        /* =================== RESPONSIVE =================== */
+        @media (max-width:980px) {
+            .news-grid {
+                grid-template-columns: repeat(2,1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-col--right {
+                text-align: center;
+            }
+
+            .social-row {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width:720px) {
+            .site-header {
+                padding-inline: 16px;
+            }
+
+            /* Header móvil: logo centrado + hamburguesa */
+            .header-inner {
+                display: grid;
+                grid-template-columns: 1fr auto 1fr;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .logo-link {
+                grid-column: 2;
+                justify-self: center;
+            }
+
+            .header-separator {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: inline-block;
+                grid-column: 3;
+                justify-self: end;
+                margin-left: 0;
+            }
+
+            .main-nav {
+                grid-column: 1 / -1;
+                width: 100%;
+            }
+
+                .main-nav .menu {
+                    display: none;
+                    margin-top: 12px;
+                    padding: 12px 12px;
+                    gap: 10px;
+                    flex-direction: column;
+                    border: 1px solid rgba(255,255,255,.18);
+                    border-radius: 10px;
+                    background: rgba(0,0,0,.30);
+                    backdrop-filter: blur(2px);
+                }
+
+                    .main-nav .menu.is-open {
+                        display: flex;
+                    }
+
+                    .main-nav .menu a {
+                        display: block;
+                        width: 100%;
+                        text-align: center;
+                        padding: 10px 10px;
+                        border-radius: 8px;
+                    }
+
+                        .main-nav .menu a:hover {
+                            background: rgba(213,37,34,.18);
+                            color: #fff;
+                        }
+
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- HEADER -->
+    <header class="site-header wrap">
+        <div class="header-inner">
+            <a href="index.html" class="logo-link" aria-label="Inicio">
+                <img src="IMAGENES/LOGO_BLANCO.png" alt="CETA" class="logo" />
+            </a>
+
+            <div class="header-separator" aria-hidden="true"></div>
+
+            <!-- Botón hamburguesa (solo móvil) -->
+            <button class="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mainMenu">
+                <span class="bar" aria-hidden="true"></span>
+                <span class="bar" aria-hidden="true"></span>
+                <span class="bar" aria-hidden="true"></span>
+            </button>
+
+            <nav class="main-nav" aria-label="Menú principal">
+                <ul class="menu" id="mainMenu">
+                    <li><a href="empresa.html">EMPRESA</a></li>
+                    <li><a href="ingenieria-aeronautica.html">INGENIERÍA AERONÁUTICA</a></li>
+                    <li><a href="sistemas_no_tripulados.html">SISTEMAS NO TRIPULADOS</a></li>
+                    <li><a href="contacto.html">CONTACTO</a></li>
+                    <li><a href="noticias.html">NOTICIAS</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero wrap">
+        <div class="container">
+            <h1>NOTICIAS</h1>
+            <div class="hero-panel">Descubre lo último en la industria de Defensa.</div>
+        </div>
+    </section>
+
+    <hr class="separator" />
+
+    <!-- BUSCADOR + GRID (con panel oscuro) -->
+    <section class="news-section wrap">
+        <div class="news-panel">
+
+            <div class="news-tools">
+                <div class="search-wrap">
+                    <input id="newsSearch" type="search" placeholder="Buscar noticias (título, tags, fecha)..." autocomplete="off" />
+                    <button id="clearSearch" type="button">Limpiar</button>
+                </div>
+            </div>
+
+            <div class="results-meta" id="resultsMeta">Mostrando 6 noticias.</div>
+
+            <div class="news-grid" id="newsGrid">
+
+                <!-- NOTICIA 1 (más reciente arriba) -->
+                <a class="news-item"
+                   href="https://www.linkedin.com/posts/cetasa_circular-ceta-relojes-aviaci%C3%B3n-garmin-activity-7389586871003078656-U2P0?utm_source=share&utm_medium=member_desktop&rcm=ACoAADfSGtcB4euzogqAHM7yrKGI5Vah_62Ysyw"
+                   target="_blank" rel="noopener noreferrer"
+                   data-title="Garmin D2 Mach 2: reloj inteligente para aviación"
+                   data-tags="garmin, d2 mach 2, relojes, aviación, pilotos, mapas, amoled, salud, linterna led, garmin pilot, planesync"
+                   data-date="2025-12-17">
+                    <img class="news-thumb" src="NOTICIAS/RELOJ_GARMIN.webp" alt="Reloj Garmin D2 Mach 2" />
+                    <div class="news-body">
+                        <div class="news-title-row">
+                            <h3 class="news-title">Garmin D2 Mach 2: reloj inteligente para pilotos</h3>
+                            <span class="news-plus" aria-hidden="true">+</span>
+                        </div>
+                        <div class="news-meta">
+                            <span class="tag">2025-12-17</span>
+                            <span class="tag">Garmin</span>
+                            <span class="tag">Aviación</span>
+                            <span class="tag">Wearables</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- NOTICIA 2 -->
+                <a class="news-item"
+                   href="https://www.linkedin.com/posts/cetasa_circular-ceta-equipos-flightcell-activity-7384528602295484416-sdbN?utm_source=share&utm_medium=member_desktop&rcm=ACoAADfSGtcB4euzogqAHM7yrKGI5Vah_62Ysyw"
+                   target="_blank" rel="noopener noreferrer"
+                   data-title="Flightcell: comunicaciones satelitales, 5G e integración de misión"
+                   data-tags="flightcell, dzmx, dzmx plus, iridium, 5g, comunicaciones, voz, datos, tracking gps, wifi, bluetooth, smarthub, grabación cabina, svs, seguridad"
+                   data-date="2025-12-10">
+                    <img class="news-thumb" src="NOTICIAS/SISTEMASDZM.jpg" alt="Sistemas Flightcell DZMx" />
+                    <div class="news-body">
+                        <div class="news-title-row">
+                            <h3 class="news-title">Flightcell DZMx: conectividad satelital + 5G para aeronaves</h3>
+                            <span class="news-plus" aria-hidden="true">+</span>
+                        </div>
+                        <div class="news-meta">
+                            <span class="tag">2025-12-10</span>
+                            <span class="tag">Comunicaciones</span>
+                            <span class="tag">Satélite</span>
+                            <span class="tag">Integración</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- NOTICIA 3 -->
+                <a class="news-item"
+                   href="https://www.linkedin.com/posts/cetasa_circular-ceta-bolet%C3%ADn-de-servicio-easa-activity-7376525911208267776-J3i6?utm_source=share&utm_medium=member_desktop&rcm=ACoAADfSGtcB4euzogqAHM7yrKGI5Vah_62Ysyw"
+                   target="_blank" rel="noopener noreferrer"
+                   data-title="EASA SIB 2025-03: riesgos de baterías de litio y PEDs a bordo"
+                   data-tags="easa, sib 2025-03, baterías de litio, peds, seguridad, cabina, power banks, formación tripulación, check-in, embarque, incidentes, autoridad"
+                   data-date="2025-11-28">
+                    <img class="news-thumb" src="NOTICIAS/COCKPIT.jpg" alt="Concienciación baterías de litio a bordo" />
+                    <div class="news-body">
+                        <div class="news-title-row">
+                            <h3 class="news-title">EASA SIB 2025-03: seguridad con baterías de litio a bordo</h3>
+                            <span class="news-plus" aria-hidden="true">+</span>
+                        </div>
+                        <div class="news-meta">
+                            <span class="tag">2025-11-28</span>
+                            <span class="tag">EASA</span>
+                            <span class="tag">Seguridad</span>
+                            <span class="tag">Operaciones</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- NOTICIA 4 -->
+                <a class="news-item"
+                   href="https://www.linkedin.com/posts/cetasa_circular-ceta-garmin-12-pulgadas-txi-activity-7371452412445761536-q_nQ?utm_source=share&utm_medium=member_desktop&rcm=ACoAADfSGtcB4euzogqAHM7yrKGI5Vah_62Ysyw"
+                   target="_blank" rel="noopener noreferrer"
+                   data-title="Garmin TXi 12.1: nueva pantalla con más área y marcos más finos"
+                   data-tags="garmin, txi, 12.1, pfd, mfd, eis, mapas, cartas, terrain, obstáculos, safetaxi, cámaras, gtn xi, lpv, lnav, ils"
+                   data-date="2025-11-14">
+                    <img class="news-thumb" src="NOTICIAS/GARMIN.jpg" alt="Garmin TXi 12.1" />
+                    <div class="news-body">
+                        <div class="news-title-row">
+                            <h3 class="news-title">Garmin TXi 12.1”: más área, más visibilidad, más opciones</h3>
+                            <span class="news-plus" aria-hidden="true">+</span>
+                        </div>
+                        <div class="news-meta">
+                            <span class="tag">2025-11-14</span>
+                            <span class="tag">Aviónica</span>
+                            <span class="tag">Garmin</span>
+                            <span class="tag">Cabina</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- NOTICIA 5 -->
+                <a class="news-item"
+                   href="https://www.linkedin.com/posts/cetasa_circular-ceta-reemplazo-rn5-por-rn7-activity-7366379051776655360-Rk0j?utm_source=share&utm_medium=member_desktop&rcm=ACoAADfSGtcB4euzogqAHM7yrKGI5Vah_62Ysyw"
+                   target="_blank" rel="noopener noreferrer"
+                   data-title="HENSOLDT EuroNav 7 NextGen: reemplazo del RN5 sin soporte en 2027"
+                   data-tags="hensoldt, euron av, euron av 5, rn5, euron av 7, rn7, nextgen, obsolescencia, navegación, mapas, do-160, interfaces, usb, ethernet, remoto, wifi, 4g, lte"
+                   data-date="2025-10-30">
+                    <img class="news-thumb" src="NOTICIAS/EURONAV.jpeg" alt="HENSOLDT EuroNav 7 NextGen" />
+                    <div class="news-body">
+                        <div class="news-title-row">
+                            <h3 class="news-title">EuroNav 7 NextGen: sustitución del RN5 y planificación 2027</h3>
+                            <span class="news-plus" aria-hidden="true">+</span>
+                        </div>
+                        <div class="news-meta">
+                            <span class="tag">2025-10-30</span>
+                            <span class="tag">Navegación</span>
+                            <span class="tag">HENSOLDT</span>
+                            <span class="tag">Obsolescencia</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- NOTICIA 6 -->
+                <a class="news-item"
+                   href="https://www.linkedin.com/posts/cetasa_circular-ceta-aproximaciones-visuales-guiadasfgv-activity-7363842347811446784-E_WP?utm_source=share&utm_medium=member_desktop&rcm=ACoAADfSGtcB4euzogqAHM7yrKGI5Vah_62Ysyw"
+                   target="_blank" rel="noopener noreferrer"
+                   data-title="Aproximaciones Visuales Guiadas (FGV): guía lateral y vertical en Garmin GTN TXi"
+                   data-tags="fgv, aproximaciones visuales guiadas, garmin, hughes, gtn, txi, guía vertical, guía lateral, piloto automático, rnav g, cartas, onepak, base de datos, seguridad"
+                   data-date="2025-10-12">
+                    <img class="news-thumb" src="NOTICIAS/GUIADO.webp" alt="Aproximaciones Visuales Guiadas (FGV)" />
+                    <div class="news-body">
+                        <div class="news-title-row">
+                            <h3 class="news-title">FGV: aproximaciones visuales guiadas integradas en Garmin</h3>
+                            <span class="news-plus" aria-hidden="true">+</span>
+                        </div>
+                        <div class="news-meta">
+                            <span class="tag">2025-10-12</span>
+                            <span class="tag">Procedimientos</span>
+                            <span class="tag">Garmin</span>
+                            <span class="tag">Seguridad</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- ========== EJEMPLO PARA AÑADIR MÁS (quedarán ocultas hasta "VER MÁS") ==========
+                <a class="news-item" href="LINK" target="_blank" rel="noopener noreferrer"
+                   data-title="..."
+                   data-tags="..."
+                   data-date="YYYY-MM-DD">
+                  <img class="news-thumb" src="NOTICIAS/IMAGEN.xxx" alt="..." />
+                  <div class="news-body">
+                    <div class="news-title-row">
+                      <h3 class="news-title">Título</h3>
+                      <span class="news-plus" aria-hidden="true">+</span>
+                    </div>
+                    <div class="news-meta">
+                      <span class="tag">YYYY-MM-DD</span>
+                      <span class="tag">Tag 1</span>
+                      <span class="tag">Tag 2</span>
+                      <span class="tag">Tag 3</span>
+                    </div>
+                  </div>
+                </a>
+                =============================================================================== -->
+
+            </div>
+
+            <div class="more-wrap">
+                <button class="btn-more" id="btnMore" type="button">VER MÁS</button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="site-footer wrap">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>CETA S.A.</h4>
+                <p>Compañía Española de Técnica Aeronáutica S.A.</p>
+                <p>C/ Cañas, 7 · Nave Entresuelo<br>28043 Madrid · España</p>
+                <p><a href="mailto:ceta@ceta.aero">ceta@ceta.aero</a></p>
+                <p>Tel: +34 911 400 181 · Fax: +34 911 400 182</p>
+            </div>
+
+            <div class="footer-col footer-col--center">
+                <h4>Correo electrónico</h4>
+                <form class="newsletter-form" action="#" method="post" id="newsletterForm">
+                    <input id="newsletter-email" name="email" type="email" placeholder="Tu e-mail" required />
+                    <button type="submit">ENVIAR</button>
+                </form>
+            </div>
+
+            <div class="footer-col footer-col--right">
+                <h4>Conecta</h4>
+                <div class="social-row">
+                    <a class="social-link" href="#" aria-label="LinkedIn" title="LinkedIn">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <rect width="24" height="24" rx="4" fill="rgba(255,255,255,0.15)" />
+                            <path d="M7.2 8.8a1.6 1.6 0 1 0 0-3.2 1.6 1.6 0 0 0 0 3.2Zm1 2H6.2v7.4h2V10.8Zm3.2 0H9.6v7.4h2v-4.2c0-1.1.8-1.8 1.7-1.8 1 0 1.5.6 1.5 1.8v4.2h2V13c0-2.2-1.3-3.2-3.2-3.2-1.1 0-1.9.5-2.2 1.1h-.1v-0.1Z"
+                                  fill="rgba(200,230,255,0.95)" />
+                        </svg>
+                    </a>
+                </div>
+                <ul class="legal-links">
+                    <li><a href="#">CONDICIONES GENERALES DE COMPRAS</a></li>
+                    <li><a href="#">POLÍTICA DE CALIDAD</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            © <span id="year"></span> CETA · Todos los derechos reservados
+        </div>
+    </footer>
+
+    <script>
+        // Año footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Newsletter (placeholder)
+        document.getElementById('newsletterForm')?.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const v = document.getElementById('newsletter-email')?.value || '';
+            alert('¡Gracias! Te hemos registrado con: ' + v);
+            this.reset();
+        });
+
+        // ===== Menú móvil (hamburguesa) =====
+        const toggle = document.querySelector('.menu-toggle');
+        const menu = document.getElementById('mainMenu');
+
+        function setMenu(open) {
+            menu.classList.toggle('is-open', open);
+            toggle.setAttribute('aria-expanded', String(open));
+        }
+
+        toggle?.addEventListener('click', () => {
+            setMenu(!menu.classList.contains('is-open'));
+        });
+
+        menu?.addEventListener('click', (e) => {
+            const a = e.target.closest('a');
+            if (!a) return;
+            setMenu(false);
+        });
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 720) setMenu(false);
+        });
+
+        // ===== Buscador + "VER MÁS" (muestra 6 últimas) =====
+        const input = document.getElementById('newsSearch');
+        const clearBtn = document.getElementById('clearSearch');
+        const grid = document.getElementById('newsGrid');
+        const meta = document.getElementById('resultsMeta');
+        const btnMore = document.getElementById('btnMore');
+
+        const INITIAL_VISIBLE = 6;
+        let showAll = false;
+
+        function normalize(str) {
+            return (str || '')
+                .toString()
+                .toLowerCase()
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '');
+        }
+
+        function getItems() {
+            return Array.from(grid.querySelectorAll('.news-item'));
+        }
+
+        function applyVisibility() {
+            const q = normalize(input.value.trim());
+            const items = getItems();
+
+            // Filtrado por búsqueda
+            const matches = items.filter(a => {
+                const hay =
+                    normalize(a.dataset.title) + ' ' +
+                    normalize(a.dataset.tags) + ' ' +
+                    normalize(a.dataset.date) + ' ' +
+                    normalize(a.innerText);
+                return !q || hay.includes(q);
+            });
+
+            // Primero ocultamos todo
+            items.forEach(a => a.style.display = 'none');
+
+            // Con búsqueda activa: mostrar TODO lo que coincida (sin "ver más")
+            if (q) {
+                matches.forEach(a => a.style.display = '');
+                meta.textContent = `Resultados: ${matches.length} noticia(s) para “${input.value.trim()}”.`;
+                btnMore.style.display = 'none';
+                return;
+            }
+
+            // Sin búsqueda: mostrar solo las 6 últimas, o todas si showAll
+            const visibleNow = showAll ? matches : matches.slice(0, INITIAL_VISIBLE);
+            visibleNow.forEach(a => a.style.display = '');
+
+            meta.textContent = `Mostrando ${visibleNow.length} de ${matches.length} noticias.`;
+
+            // Botón VER MÁS solo si hay más de 6
+            if (matches.length > INITIAL_VISIBLE) {
+                btnMore.style.display = '';
+                btnMore.textContent = showAll ? 'VER MENOS' : 'VER MÁS';
+            } else {
+                btnMore.style.display = 'none';
+            }
+        }
+
+        input.addEventListener('input', () => {
+            showAll = false;
+            applyVisibility();
+        });
+
+        clearBtn.addEventListener('click', () => {
+            input.value = '';
+            showAll = false;
+            applyVisibility();
+            input.focus();
+        });
+
+        btnMore.addEventListener('click', () => {
+            showAll = !showAll;
+            applyVisibility();
+        });
+
+        // Estado inicial
+        applyVisibility();
+    </script>
+</body>
+</html>

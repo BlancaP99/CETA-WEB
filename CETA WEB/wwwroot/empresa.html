@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Empresa | CETA</title>
+
     <style>
-        /* =================== Variables & Base =================== */
         :root {
             --brand: #002856;
             --accent: #D52522;
@@ -15,7 +15,7 @@
             --max: 1200px;
             --fs-body: 18px;
             --fs-h1: clamp(28px,4.4vw,50px);
-            --fs-h2: clamp(18px,2.6vw,22px);
+            --fs-h2: clamp(16px,2.4vw,20px);
         }
 
         @font-face {
@@ -43,12 +43,12 @@
             position: relative;
         }
 
-            /* Fondo foto (23.png) con ~40% */
+            /* Fondo cockpit unificado */
             body::before {
                 content: "";
                 position: fixed;
                 inset: 0;
-                background: linear-gradient(180deg, rgba(0,30,70,.32), rgba(0,20,50,.52)), url("") center/cover no-repeat fixed;
+                background: linear-gradient(180deg, rgba(0,30,70,.35), rgba(0,20,50,.55)), url("IMAGENES/COCKPIT.webp") center/cover no-repeat fixed;
                 opacity: .40;
                 z-index: 0;
                 pointer-events: none;
@@ -64,7 +64,7 @@
             margin: 0 auto;
         }
 
-        /* =================== Header con submenús =================== */
+        /* ============ HEADER ============ */
         .site-header {
             padding: 18px 30px 8px;
         }
@@ -86,6 +86,26 @@
             background: rgba(255,255,255,.9);
         }
 
+        /* Botón hamburguesa (oculto en desktop) */
+        .menu-toggle {
+            display: none;
+            margin-left: auto;
+            width: 44px;
+            height: 44px;
+            border: 1px solid rgba(255,255,255,.25);
+            background: rgba(0,0,0,.28);
+            border-radius: 10px;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+            .menu-toggle .bar {
+                display: block;
+                height: 2px;
+                background: rgba(255,255,255,.9);
+                margin: 6px 0;
+            }
+
         .main-nav .menu {
             list-style: none;
             display: flex;
@@ -93,10 +113,6 @@
             margin: 0;
             padding: 0;
         }
-
-            .main-nav .menu > li {
-                position: relative;
-            }
 
             .main-nav .menu a {
                 color: #fff;
@@ -110,71 +126,17 @@
                     color: var(--accent);
                 }
 
-        .has-submenu > .menu-parent::after {
-            content: "▾";
-            font-size: 10px;
-            margin-left: 6px;
-            opacity: .8;
-        }
-
-        .has-submenu::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            right: 0;
-            top: 100%;
-            height: 12px;
-        }
-
-        .submenu {
-            position: absolute;
-            left: 0;
-            top: calc(100% + 12px);
-            min-width: 340px;
-            background: rgba(255,255,255,0.6);
-            backdrop-filter: saturate(140%) blur(4px);
-            border: 1px solid rgba(255,255,255,0.85);
-            border-radius: 10px;
-            padding: 14px;
+        /* ============ HERO INTERNO ============ */
+        .hero-internal {
+            min-height: 32vh;
             display: grid;
-            gap: 8px;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(6px);
-            transition: opacity .18s ease, transform .18s ease, visibility .18s;
-            z-index: 20;
-        }
-
-        .has-submenu:hover > .submenu,
-        .has-submenu:focus-within > .submenu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .submenu a {
-            color: #052a4e;
-            text-decoration: none;
-            font-size: 15px;
-            padding: 8px 10px;
-            border-radius: 6px;
-            display: block;
-        }
-
-            .submenu a:hover {
-                background: rgba(255,255,255,0.7);
-            }
-
-        /* =================== Hero (subido para igualar landing) =================== */
-        .hero {
-            min-height: 32vh; /* ↑ más arriba que antes */
-            display: grid;
-            place-items: center;
+            justify-items: center;
+            align-content: center;
             text-align: center;
-            padding: 36px 0 4px; /* menos padding superior */
+            padding: 36px 0 10px;
         }
 
-            .hero h1 {
+            .hero-internal h1 {
                 margin: 0 0 8px;
                 text-transform: uppercase;
                 letter-spacing: 3px;
@@ -184,58 +146,114 @@
                 filter: drop-shadow(0 6px 18px rgba(0,0,0,.25));
             }
 
-            .hero p {
+            .hero-internal p {
                 margin: 0;
                 font-size: var(--fs-h2);
                 letter-spacing: 1px;
                 opacity: .95;
             }
 
-        /* =================== Imagen grande + texto debajo =================== */
-        .section {
-            padding: 44px 0;
-        }
-
-        /* Imagen sola y grande */
-        .hero-media {
+        /* INTRO SVG debajo del subtítulo */
+        .intro-media {
             width: min(1100px,92vw);
-            margin: 0 auto 18px;
+            margin: 18px auto 0;
         }
 
-            .hero-media img {
+            .intro-media img {
+                width: 100%;
+                height: auto;
+                display: block;
+            }
+
+        .separator {
+            width: min(var(--max),92vw);
+            margin: 18px auto 18px;
+            border: 0;
+            border-top: 2px dashed rgba(255,255,255,.35);
+        }
+
+        /* ============ TEXTO (sin fondo extra) ============ */
+        .empresa-section {
+            padding: 10px 0 10px;
+        }
+
+        .empresa-text {
+            width: min(1100px,92vw);
+            margin: 0 auto;
+            padding: 6px 0 8px;
+        }
+
+            .empresa-text p {
+                margin: 0 0 14px;
+                text-align: left;
+                font-size: 18px;
+                line-height: 1.65;
+                color: rgba(255,255,255,.92);
+            }
+
+            .empresa-text .lead {
+                font-size: 19px;
+            }
+
+            .empresa-text .title-mini {
+                margin: 18px 0 10px;
+                text-transform: uppercase;
+                letter-spacing: 1.2px;
+                font-weight: 800;
+                color: #eaf3ff;
+                font-size: 16px;
+            }
+
+            .empresa-text ul {
+                margin: 8px 0 14px 20px;
+                padding: 0;
+                display: grid;
+                gap: 8px;
+            }
+
+            .empresa-text li {
+                color: rgba(255,255,255,.92);
+            }
+
+            .empresa-text b {
+                color: #fff;
+            }
+
+        /* ============ GALERÍA (SIN TÍTULO; AHORA CON SEPARACIÓN ENTRE FOTOS) ============ */
+        .gallery-section {
+            padding: 10px 0 60px;
+        }
+
+        .gallery {
+            width: min(1100px,92vw);
+            margin: 0 auto;
+            display: grid;
+            gap: 12px; /* <- separación entre imágenes */
+            grid-template-columns: repeat(4,1fr);
+        }
+
+        .g-item {
+            border: 0;
+            background: transparent;
+            border-radius: 0;
+            padding: 0; /* <- sin padding interno */
+            overflow: hidden;
+        }
+
+            .g-item img {
                 width: 100%;
                 height: auto;
                 display: block;
                 border-radius: 0;
             }
 
-        /* Texto debajo, alineado a la izquierda, con “+” a la derecha */
-        .lead-copy {
-            width: min(1100px,92vw);
-            margin: 0 auto;
-            position: relative;
-            padding: 6px 0 22px;
-        }
-
-            .lead-copy p {
-                margin: 0;
-            }
-
-        .lead-plus {
-            position: absolute;
-            right: 0;
-            bottom: 0;
-            color: var(--accent);
-            font-weight: 800;
-            font-size: 34px;
-            line-height: 1;
-        }
-
-        /* =================== Footer =================== */
+        /* ============ FOOTER ============ */
         .site-footer {
             background: linear-gradient(180deg, rgba(0,20,50,.35), rgba(0,20,40,.6));
             border-top: 1px solid rgba(255,255,255,.18);
             margin-top: 44px;
+            position: relative;
+            z-index: 2;
         }
 
         .footer-grid {
@@ -243,6 +261,8 @@
             grid-template-columns: 2fr 2fr 1.5fr;
             gap: 28px;
             padding: 28px 0;
+            width: min(var(--max),92vw);
+            margin: 0 auto;
         }
 
         .footer-col h4 {
@@ -280,8 +300,8 @@
         }
 
             .newsletter-form input {
-                min-width: 280px;
-                height: 44px;
+                min-width: 260px;
+                height: 42px;
                 padding: 0 12px;
                 border-radius: 8px;
                 border: 1px solid rgba(255,255,255,.35);
@@ -290,8 +310,12 @@
                 outline: none;
             }
 
+                .newsletter-form input::placeholder {
+                    color: rgba(255,255,255,.75);
+                }
+
             .newsletter-form button {
-                height: 44px;
+                height: 42px;
                 padding: 0 16px;
                 border: 0;
                 border-radius: 8px;
@@ -343,8 +367,8 @@
             font-size: 13px;
         }
 
-        /* =================== Responsive =================== */
-        @media (max-width: 1080px) {
+        /* ============ RESPONSIVE ============ */
+        @media (max-width:1100px) {
             .footer-grid {
                 grid-template-columns: 1fr;
             }
@@ -356,67 +380,272 @@
             .social-row {
                 justify-content: center;
             }
+
+            .gallery {
+                grid-template-columns: repeat(3,1fr);
+            }
+        }
+
+        @media (max-width:800px) {
+            .gallery {
+                grid-template-columns: repeat(2,1fr);
+            }
+        }
+
+        @media (max-width:720px) {
+            .site-header {
+                padding-inline: 16px;
+            }
+
+            /* Header móvil: logo centrado + hamburguesa */
+            .header-inner {
+                display: grid;
+                grid-template-columns: 1fr auto 1fr;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .logo-link {
+                grid-column: 2;
+                justify-self: center;
+            }
+
+            .header-separator {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: inline-block;
+                grid-column: 3;
+                justify-self: end;
+                margin-left: 0;
+            }
+
+            .main-nav {
+                grid-column: 1 / -1;
+                width: 100%;
+            }
+
+                .main-nav .menu {
+                    display: none;
+                    margin-top: 12px;
+                    padding: 12px 12px;
+                    gap: 10px;
+                    flex-direction: column;
+                    border: 1px solid rgba(255,255,255,.18);
+                    border-radius: 10px;
+                    background: rgba(0,0,0,.30);
+                    backdrop-filter: blur(2px);
+                }
+
+                    .main-nav .menu.is-open {
+                        display: flex;
+                    }
+
+                    .main-nav .menu a {
+                        display: block;
+                        width: 100%;
+                        text-align: center;
+                        padding: 10px 10px;
+                        border-radius: 8px;
+                    }
+
+                        .main-nav .menu a:hover {
+                            background: rgba(213,37,34,.18);
+                            color: #fff;
+                        }
+
+            .empresa-text p {
+                font-size: 16px;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
-<body>
 
-    <!-- =================== HEADER =================== -->
+<body>
+    <!-- HEADER -->
     <header class="site-header wrap">
         <div class="header-inner">
             <a href="index.html" class="logo-link" aria-label="Inicio">
                 <img src="IMAGENES/LOGO_BLANCO.png" alt="CETA" class="logo" />
             </a>
+
             <div class="header-separator" aria-hidden="true"></div>
 
+            <!-- Botón hamburguesa (solo móvil) -->
+            <button class="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mainMenu">
+                <span class="bar" aria-hidden="true"></span>
+                <span class="bar" aria-hidden="true"></span>
+                <span class="bar" aria-hidden="true"></span>
+            </button>
+
             <nav class="main-nav" aria-label="Menú principal">
-                <ul class="menu">
+                <ul class="menu" id="mainMenu">
                     <li><a href="empresa.html">EMPRESA</a></li>
-
-                    <li class="menu">
-                        <a href="ingenieria-aeronautica.html" class="menu-parent">INGENIERÍA AERONÁUTICA</a>
-                    </li>
-
-                    <li class="menu">
-                        <a href="sistemas-no-tripulados.html" class="menu-parent">SISTEMAS NO TRIPULADOS</a>
-                    </li>
-
-                    <li><a href="certificaciones.html">CERTIFICACIONES Y CALIDAD</a></li>
+                    <li><a href="ingenieria-aeronautica.html">INGENIERÍA AERONÁUTICA</a></li>
+                    <li><a href="sistemas_no_tripulados.html">SISTEMAS NO TRIPULADOS</a></li>
                     <li><a href="contacto.html">CONTACTO</a></li>
+                    <li><a href="noticias.html">NOTICIAS</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- =================== HERO (centrado) =================== -->
-    <section class="hero wrap">
+    <!-- HERO -->
+    <section class="hero-internal wrap">
         <div class="container">
             <h1>EMPRESA</h1>
             <p>COMPAÑÍA ESPAÑOLA DE TÉCNICA AERONÁUTICA S.A.</p>
+
+            <!-- INTRO.SVG grande debajo del subtítulo -->
+            <div class="intro-media">
+                <img src="EMPRESA_IMG/INTRO.svg" alt="Introducción CETA" />
+            </div>
         </div>
     </section>
 
-    <!-- =================== IMAGEN GRANDE + TEXTO DEBAJO =================== -->
-    <section class="section wrap">
-        <figure class="hero-media">
-            <img src="EMPRESA_IMG/221161.svg" alt="Fundación de CETA (1961)" />
-        </figure>
+    <hr class="separator" />
 
-        <div class="lead-copy">
-            <p>
-                El 22 de Noviembre de 1961, un grupo de socios, que se segregaron del fabricante de helicópteros
-                Aerotécnica S.A. (<a href="https://es.wikipedia.org/wiki/Aerotecnica" target="_blank" rel="noopener noreferrer" style="color:#aee1ff;">ver Aerotécnica</a>)
-                crearon la sociedad <b>Compañía Española de Técnica Aeronáutica S.A. (CETA)</b> con un capital social de diez millones
-                de pesetas, invertido en una flota de <b>16 avionetas</b> de fumigación modelo <b>PA18 “Super Cub”</b> y
-                <b>5 avionetas PA25 “Pawnee”</b>, todas ellas de la marca Piper.
+    <!-- TEXTO -->
+    <section class="empresa-section wrap">
+        <div class="empresa-text">
+            <p class="lead">
+                El objeto social de la nueva compañía se centraba en “...todo lo que se relacione o derive de la técnica aeronáutica.”
+                Con domicilio social en la calle Doctor Esquerdo de Madrid, su base de operaciones se encontraba en Córdoba, en el campo de San Jerónimo
+                (junto al yacimiento arqueológico de Medina Azahara).
             </p>
-            <span class="lead-plus" aria-hidden="true">+</span>
+
+            <p>
+                Han sido <b>60 años</b> de evolución continua, con hitos relevantes en la aviación general en España y una progresiva ampliación de
+                capacidades orientadas al soporte técnico, la disponibilidad operativa y la seguridad de la flota:
+            </p>
+
+            <div class="title-mini">Hitos (1963–años 90)</div>
+            <ul>
+                <li>
+                    <b>Primer gran centro de mantenimiento de aviación general en España:</b> en febrero de 1963, la Dirección General de Aviación Civil
+                    otorgó a CETA la <b>Ficha de Centro de Mantenimiento Aeronáutico nº 6</b>, con capacidades para reparar célula, planta de potencia,
+                    hélices, accesorios e instrumentos, y soporte a marcas como Piper, Cessna, Lycoming, Rolls Royce, Hartzell, entre otras.
+                </li>
+                <li>
+                    <b>Primer taller privado de aviónica e instrumentos en España:</b> con capacidad para reparación y soporte de sistemas de aviónica e
+                    instrumentación (King Radio, Narco, etc.).
+                </li>
+                <li>
+                    CETA fue una de las empresas españolas <b>pioneras</b> en la lucha contra plagas de insectos y en la prevención y lucha contra incendios
+                    mediante medios aéreos.
+                </li>
+                <li>
+                    <b>Primera empresa española en trabajos de fotogrametría:</b> aeronaves adaptadas para fotogrametría aérea dedicadas a cartografía a distintas escalas,
+                    incluyendo <b>restituidores</b> para la reconstrucción física a escala de la posición de los fotogramas.
+                </li>
+            </ul>
+
+            <div class="title-mini">Hitos (taxi aéreo, capacidades avanzadas y RPAS)</div>
+            <p>
+                CETA, como una de las primeras empresas en “taxi” aéreo, introdujo aeronaves a reacción (Learjet 25 y 35), llegando a disponer de una flota dedicada
+                al traslado de personas y un servicio operativo en la T2 de Barajas.
+            </p>
+            <p>
+                Otro hito relevante fue la venta de aviones para las Fuerzas Armadas españolas, así como la introducción de GPS para aviación, tanto en sistemas panelados
+                como portátiles.
+            </p>
+            <p>
+                A principios de los años 2000, CETA consiguió reunir a los mejores profesionales del sector, consolidando una estructura técnica orientada a proyectos de alta complejidad.
+            </p>
+            <p>
+                CETA fue la primera empresa española en introducir RPAS tácticos (SUAS), desplegados en 2007 en Zona de Operaciones.
+            </p>
+
+            <div class="title-mini">Presente y futuro</div>
+            <p>
+                Actualmente, CETA es una organización aprobada PART 21J por la EASA (DOA 21J.635), concentrada en servicios de consultoría e ingeniería proporcionando soluciones en:
+            </p>
+            <ul>
+                <li>Ingeniería Aeronáutica</li>
+                <li>Diseño y Certificación de Modernizaciones de Aeronaves</li>
+                <li>Sistemas de Aviónica</li>
+                <li>Sistemas de Misión</li>
+                <li>Sistemas Aéreos No Tripulados</li>
+                <li>Sistemas Terrestres No Tripulados</li>
+            </ul>
         </div>
     </section>
 
-    <!-- =================== FOOTER =================== -->
+    <hr class="separator" />
+
+    <!-- GALERÍA (sin título; con separación entre fotos) -->
+    <section class="gallery-section wrap">
+        <div class="gallery" aria-label="Galería de imágenes de empresa">
+            <div class="g-item"><img src="EMPRESA_IMG/1.png" alt="Empresa 1" /></div>
+            <div class="g-item"><img src="EMPRESA_IMG/2.png" alt="Empresa 2" /></div>
+            <div class="g-item"><img src="EMPRESA_IMG/3.png" alt="Empresa 3" /></div>
+            <div class="g-item"><img src="EMPRESA_IMG/4.png" alt="Empresa 4" /></div>
+            <div class="g-item"><img src="EMPRESA_IMG/5.png" alt="Empresa 5" /></div>
+            <div class="g-item"><img src="EMPRESA_IMG/6.png" alt="Empresa 6" /></div>
+            <div class="g-item"><img src="EMPRESA_IMG/7.png" alt="Empresa 7" /></div>
+            <div class="g-item"><img src="EMPRESA_IMG/8.png" alt="Empresa 8" /></div>
+            <div class="g-item"><img src="EMPRESA_IMG/9.png" alt="Empresa 9" /></div>
+            <div class="g-item"><img src="EMPRESA_IMG/10.png" alt="Empresa 10" /></div>
+            <div class="g-item"><img src="EMPRESA_IMG/11.png" alt="Empresa 11" /></div>
+            <div class="g-item"><img src="EMPRESA_IMG/12.png" alt="Empresa 12" /></div>
+            <div class="g-item"><img src="EMPRESA_IMG/13.png" alt="Empresa 13" /></div>
+            <div class="g-item"><img src="EMPRESA_IMG/14.png" alt="Empresa 14" /></div>
+            <div class="g-item"><img src="EMPRESA_IMG/15.png" alt="Empresa 15" /></div>
+            <div class="g-item"><img src="EMPRESA_IMG/16.png" alt="Empresa 16" /></div>
+            <div class="g-item"><img src="EMPRESA_IMG/17.png" alt="Empresa 17" /></div>
+            <div class="g-item"><img src="EMPRESA_IMG/18.png" alt="Empresa 18" /></div>
+            <div class="g-item"><img src="EMPRESA_IMG/19.png" alt="Empresa 19" /></div>
+            <div class="g-item"><img src="EMPRESA_IMG/20.png" alt="Empresa 20" /></div>
+            <div class="g-item"><img src="EMPRESA_IMG/21.png" alt="Empresa 21" /></div>
+            <div class="g-item"><img src="EMPRESA_IMG/22.png" alt="Empresa 22" /></div>
+            <div class="g-item"><img src="EMPRESA_IMG/23.png" alt="Empresa 23" /></div>
+            <div class="g-item"><img src="EMPRESA_IMG/24.png" alt="Empresa 24" /></div>
+            <div class="g-item"><img src="EMPRESA_IMG/25.png" alt="Empresa 25" /></div>
+            <div class="g-item"><img src="EMPRESA_IMG/26.png" alt="Empresa 26" /></div>
+            <div class="g-item"><img src="EMPRESA_IMG/27.png" alt="Empresa 27" /></div>
+            <div class="g-item"><img src="EMPRESA_IMG/28.png" alt="Empresa 28" /></div>
+            <div class="g-item"><img src="EMPRESA_IMG/29.png" alt="Empresa 29" /></div>
+            <div class="g-item"><img src="EMPRESA_IMG/30.png" alt="Empresa 30" /></div>
+            <div class="g-item"><img src="EMPRESA_IMG/31.png" alt="Empresa 31" /></div>
+            <div class="g-item"><img src="EMPRESA_IMG/32.png" alt="Empresa 32" /></div>
+            <div class="g-item"><img src="EMPRESA_IMG/36.png" alt="Empresa 36" /></div>
+            <div class="g-item"><img src="EMPRESA_IMG/37.png" alt="Empresa 37" /></div>
+            <div class="g-item"><img src="EMPRESA_IMG/38.png" alt="Empresa 38" /></div>
+            <div class="g-item"><img src="EMPRESA_IMG/39.png" alt="Empresa 39" /></div>
+            <div class="g-item"><img src="EMPRESA_IMG/40.png" alt="Empresa 40" /></div>
+            <div class="g-item"><img src="EMPRESA_IMG/41.png" alt="Empresa 41" /></div>
+            <div class="g-item"><img src="EMPRESA_IMG/42.png" alt="Empresa 42" /></div>
+            <div class="g-item"><img src="EMPRESA_IMG/43.png" alt="Empresa 43" /></div>
+            <div class="g-item"><img src="EMPRESA_IMG/44.png" alt="Empresa 44" /></div>
+            <div class="g-item"><img src="EMPRESA_IMG/45.png" alt="Empresa 45" /></div>
+            <div class="g-item"><img src="EMPRESA_IMG/46.png" alt="Empresa 46" /></div>
+            <div class="g-item"><img src="EMPRESA_IMG/47.png" alt="Empresa 47" /></div>
+            <div class="g-item"><img src="EMPRESA_IMG/48.png" alt="Empresa 48" /></div>
+            <div class="g-item"><img src="EMPRESA_IMG/49.png" alt="Empresa 49" /></div>
+            <div class="g-item"><img src="EMPRESA_IMG/50.png" alt="Empresa 50" /></div>
+            <div class="g-item"><img src="EMPRESA_IMG/51.png" alt="Empresa 51" /></div>
+            <div class="g-item"><img src="EMPRESA_IMG/52.png" alt="Empresa 52" /></div>
+            <div class="g-item"><img src="EMPRESA_IMG/53.png" alt="Empresa 53" /></div>
+            <div class="g-item"><img src="EMPRESA_IMG/54.png" alt="Empresa 54" /></div>
+            <div class="g-item"><img src="EMPRESA_IMG/55.png" alt="Empresa 55" /></div>
+            <div class="g-item"><img src="EMPRESA_IMG/56.png" alt="Empresa 56" /></div>
+            <div class="g-item"><img src="EMPRESA_IMG/57.png" alt="Empresa 57" /></div>
+            <div class="g-item"><img src="EMPRESA_IMG/58.png" alt="Empresa 58" /></div>
+            <div class="g-item"><img src="EMPRESA_IMG/59.png" alt="Empresa 59" /></div>
+            <div class="g-item"><img src="EMPRESA_IMG/60.png" alt="Empresa 60" /></div>
+            <div class="g-item"><img src="EMPRESA_IMG/61.png" alt="Empresa 61" /></div>
+            <div class="g-item"><img src="EMPRESA_IMG/62.png" alt="Empresa 62" /></div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
     <footer class="site-footer wrap">
-        <div class="footer-grid container">
+        <div class="footer-grid">
             <div class="footer-col">
                 <h4>CETA S.A.</h4>
                 <p>Compañía Española de Técnica Aeronáutica S.A.</p>
@@ -454,6 +683,35 @@
         <div class="footer-bottom">© <span id="year"></span> CETA · Todos los derechos reservados</div>
     </footer>
 
-    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+    <script>
+        // Año footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // ===== Menú móvil (hamburguesa) =====
+        const toggle = document.querySelector('.menu-toggle');
+        const menu = document.getElementById('mainMenu');
+
+        function setMenu(open) {
+            menu.classList.toggle('is-open', open);
+            toggle.setAttribute('aria-expanded', String(open));
+        }
+
+        toggle?.addEventListener('click', () => {
+            const isOpen = menu.classList.contains('is-open');
+            setMenu(!isOpen);
+        });
+
+        // Cierra menú al clicar un link (móvil)
+        menu?.addEventListener('click', (e) => {
+            const a = e.target.closest('a');
+            if (!a) return;
+            setMenu(false);
+        });
+
+        // Si se vuelve a desktop, resetea estado
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 720) setMenu(false);
+        });
+    </script>
 </body>
 </html>

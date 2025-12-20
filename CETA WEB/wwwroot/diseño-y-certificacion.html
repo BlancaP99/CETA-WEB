@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Diseño y Certificación | CETA</title>
+
     <style>
         /* ============ Variables & Base ============ */
         :root {
@@ -25,16 +26,16 @@
         }
 
         *, *::before, *::after {
-            box-sizing: border-box;
+            box-sizing: border-box
         }
 
         html, body {
-            height: 100%;
+            height: 100%
         }
 
         body {
             margin: 0;
-            font-family: "Eurostile", Arial, sans-serif;
+            font-family: "Eurostile",Arial,sans-serif;
             font-size: var(--fs-body);
             line-height: 1.55;
             background: var(--brand);
@@ -43,19 +44,30 @@
             position: relative;
         }
 
+            /* Fondo cockpit unificado */
+            body::before {
+                content: "";
+                position: fixed;
+                inset: 0;
+                background: linear-gradient(180deg, rgba(0,30,70,.35), rgba(0,20,50,.55)), url("IMAGENES/COCKPIT.webp") center/cover no-repeat fixed;
+                opacity: .40;
+                z-index: 0;
+                pointer-events: none;
+            }
+
         .wrap {
             position: relative;
-            z-index: 2;
+            z-index: 2
         }
 
         .container {
             width: min(var(--max),92vw);
-            margin: 0 auto;
+            margin: 0 auto
         }
 
-        /* ============ Header (SIN submenús aquí) ============ */
+        /* ============ Header (DESKTOP + MÓVIL) ============ */
         .site-header {
-            padding: 18px 30px 8px;
+            padding: 18px 30px 8px
         }
 
         .header-inner {
@@ -66,14 +78,34 @@
 
         .logo {
             height: 50px;
-            display: block;
+            display: block
         }
 
         .header-separator {
             width: 1px;
             height: 36px;
-            background: rgba(255,255,255,.9);
+            background: rgba(255,255,255,.9)
         }
+
+        /* Botón hamburguesa (solo móvil) */
+        .menu-toggle {
+            display: none;
+            margin-left: auto;
+            width: 44px;
+            height: 44px;
+            border: 1px solid rgba(255,255,255,.25);
+            background: rgba(0,0,0,.28);
+            border-radius: 10px;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+            .menu-toggle .bar {
+                display: block;
+                height: 2px;
+                background: rgba(255,255,255,.9);
+                margin: 6px 0;
+            }
 
         .main-nav .menu {
             list-style: none;
@@ -92,10 +124,10 @@
             }
 
                 .main-nav .menu a:hover {
-                    color: var(--accent);
+                    color: var(--accent)
                 }
 
-        /* ============ Hero (centrado) ============ */
+        /* ============ Hero ============ */
         .hero {
             min-height: 32vh;
             display: grid;
@@ -105,7 +137,7 @@
         }
 
             .hero h1 {
-                margin: 0 0 8px;
+                margin: 0 0 10px;
                 text-transform: uppercase;
                 letter-spacing: 3px;
                 font-size: var(--fs-h1);
@@ -118,7 +150,14 @@
                 margin: 0;
                 font-size: var(--fs-h2);
                 letter-spacing: 1px;
-                opacity: .95;
+                opacity: .98;
+                max-width: 1100px;
+            }
+
+            .hero .hero-sub {
+                margin-top: 14px;
+                font-size: 16px;
+                opacity: .92;
                 max-width: 1000px;
             }
 
@@ -130,9 +169,9 @@
             border-top: 2px dashed rgba(255,255,255,.35);
         }
 
-        /* ============ Acordeón (solo CSS con <details>) ============ */
+        /* ============ Acordeón ============ */
         .section {
-            padding: 26px 0 44px;
+            padding: 26px 0 44px
         }
 
         .accordion {
@@ -142,16 +181,15 @@
             gap: 14px;
         }
 
-        /* bloque detail */
         details {
-            background: rgba(255,255,255,.05);
-            border: 1px solid rgba(255,255,255,.12);
+            background: rgba(0,0,0,.28);
+            border: 1px solid rgba(255,255,255,.18);
             border-radius: 10px;
             padding: 0;
             overflow: hidden;
+            backdrop-filter: blur(2px);
         }
 
-        /* cabecera del acordeón */
         summary {
             list-style: none;
             cursor: pointer;
@@ -164,7 +202,7 @@
         }
 
             summary::-webkit-details-marker {
-                display: none;
+                display: none
             }
 
         .acc-title {
@@ -175,7 +213,6 @@
             text-align: left;
         }
 
-        /* “+” rojo a la derecha del título (cambia a “–” al abrir) */
         .acc-toggle {
             font-weight: 800;
             font-size: 28px;
@@ -185,32 +222,96 @@
         }
 
         details[open] .acc-toggle {
-            transform: rotate(180deg);
+            transform: rotate(180deg)
         }
-        /* sutil animación */
 
-        /* contenido */
         .acc-content {
             padding: 0 18px 18px 18px;
             margin-top: -4px;
-            border-top: 1px solid rgba(255,255,255,.12);
+            border-top: 1px solid rgba(255,255,255,.16);
             text-align: left;
+            color: rgba(255,255,255,.95);
         }
 
             .acc-content p {
-                margin: 12px 0;
+                margin: 12px 0
             }
 
             .acc-content ul {
                 margin: 10px 0 10px 20px;
-                padding: 0;
+                padding: 0
             }
 
             .acc-content li {
-                margin: 6px 0;
+                margin: 6px 0
             }
 
-        /* ============ Footer ============ */
+        .mini-title {
+            margin: 14px 0 8px;
+            font-weight: 800;
+            letter-spacing: .6px;
+            text-transform: uppercase;
+            font-size: 15px;
+            opacity: .95;
+        }
+
+        /* ============ Esquema (AVIÓNICA) ============ */
+        .schematic {
+            margin-top: 12px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,.16);
+            background: linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.55)), url("INGENIERIA/HELICOPTERO.jpg") center/cover no-repeat;
+        }
+
+        .schematic-inner {
+            display: grid;
+            grid-template-columns: 1fr 1px 1fr;
+            gap: 18px;
+            padding: 18px;
+            align-items: start;
+        }
+
+        .schematic-divider {
+            background: rgba(255,255,255,.35);
+            height: 100%
+        }
+
+        .schematic h4 {
+            margin: 0 0 10px;
+            font-size: 14px;
+            letter-spacing: .8px;
+            text-transform: uppercase;
+            opacity: .95;
+        }
+
+        .schematic ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: grid;
+            gap: 6px;
+            font-size: 15px;
+            line-height: 1.35;
+            color: rgba(255,255,255,.97);
+            text-shadow: 0 1px 0 rgba(0,0,0,.25);
+        }
+
+        /* ============ Línea capacidades (MISIÓN) ============ */
+        .capabilities {
+            margin-top: 10px;
+            padding: 12px 12px 10px;
+            border: 1px solid rgba(255,255,255,.16);
+            border-radius: 10px;
+            background: rgba(0,0,0,.22);
+            font-size: 14px;
+            line-height: 1.5;
+            letter-spacing: .4px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,.92);
+        }
+
+        /* ============ Footer (unificado) ============ */
         .site-footer {
             background: linear-gradient(180deg, rgba(0,20,50,.35), rgba(0,20,40,.6));
             border-top: 1px solid rgba(255,255,255,.18);
@@ -236,20 +337,20 @@
 
         .footer-col p {
             margin: 6px 0;
-            color: var(--ink-soft);
+            color: var(--ink-soft)
         }
 
         .footer-col a {
             color: var(--link);
-            text-decoration: none;
+            text-decoration: none
         }
 
             .footer-col a:hover {
-                text-decoration: underline;
+                text-decoration: underline
             }
 
         .footer-col--center {
-            text-align: center;
+            text-align: center
         }
 
         .newsletter-form {
@@ -271,6 +372,10 @@
                 outline: none;
             }
 
+                .newsletter-form input::placeholder {
+                    color: rgba(255,255,255,.75)
+                }
+
             .newsletter-form button {
                 height: 44px;
                 padding: 0 16px;
@@ -284,11 +389,11 @@
             }
 
                 .newsletter-form button:hover {
-                    background: #0a68b0;
+                    background: #0a68b0
                 }
 
         .footer-col--right {
-            text-align: right;
+            text-align: right
         }
 
         .social-row {
@@ -313,7 +418,7 @@
             }
 
                 .legal-links a:hover {
-                    text-decoration: underline;
+                    text-decoration: underline
                 }
 
         .footer-bottom {
@@ -325,37 +430,120 @@
         }
 
         /* ============ Responsive ============ */
-        @media (max-width: 980px) {
+        @media (max-width:980px) {
             .footer-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr
             }
 
             .footer-col--right {
-                text-align: center;
+                text-align: center
             }
 
             .social-row {
-                justify-content: center;
+                justify-content: center
+            }
+
+            .schematic-inner {
+                grid-template-columns: 1fr
+            }
+
+            .schematic-divider {
+                display: none
+            }
+        }
+
+        /* ===== Header móvil: logo centrado arriba + hamburguesa + desplegable ===== */
+        @media (max-width:720px) {
+            .site-header {
+                padding-inline: 16px
+            }
+
+            .header-inner {
+                display: grid;
+                grid-template-columns: 1fr auto 1fr;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .logo-link {
+                grid-column: 2;
+                justify-self: center;
+            }
+
+            .header-separator {
+                display: none
+            }
+
+            .menu-toggle {
+                display: inline-block;
+                grid-column: 3;
+                justify-self: end;
+                margin-left: 0;
+            }
+
+            .main-nav {
+                grid-column: 1 / -1;
+                width: 100%;
+            }
+
+                .main-nav .menu {
+                    display: none;
+                    margin-top: 12px;
+                    padding: 12px 12px;
+                    gap: 10px;
+                    flex-direction: column;
+                    border: 1px solid rgba(255,255,255,.18);
+                    border-radius: 10px;
+                    background: rgba(0,0,0,.30);
+                    backdrop-filter: blur(2px);
+                }
+
+                    .main-nav .menu.is-open {
+                        display: flex
+                    }
+
+                    .main-nav .menu a {
+                        display: block;
+                        width: 100%;
+                        text-align: center;
+                        padding: 10px 10px;
+                        border-radius: 8px;
+                    }
+
+                        .main-nav .menu a:hover {
+                            background: rgba(213,37,34,.18);
+                            color: #fff;
+                        }
+
+            .acc-title {
+                font-size: 18px
             }
         }
     </style>
 </head>
-<body>
 
-    <!-- ============ HEADER (sin submenús) ============ -->
+<body>
+    <!-- ============ HEADER (con menú móvil) ============ -->
     <header class="site-header wrap">
         <div class="header-inner">
             <a href="index.html" class="logo-link" aria-label="Inicio">
                 <img src="IMAGENES/LOGO_BLANCO.png" alt="CETA" class="logo" />
             </a>
+
             <div class="header-separator" aria-hidden="true"></div>
 
+            <!-- Botón hamburguesa (solo móvil) -->
+            <button class="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mainMenu">
+                <span class="bar" aria-hidden="true"></span>
+                <span class="bar" aria-hidden="true"></span>
+                <span class="bar" aria-hidden="true"></span>
+            </button>
+
             <nav class="main-nav" aria-label="Menú principal">
-                <ul class="menu">
+                <ul class="menu" id="mainMenu">
                     <li><a href="empresa.html">EMPRESA</a></li>
                     <li><a href="ingenieria-aeronautica.html">INGENIERÍA AERONÁUTICA</a></li>
-                    <li><a href="sistemas-no-tripulados.html">SISTEMAS NO TRIPULADOS</a></li>
-                    <li><a href="distribucion-productos-aeronauticos.html">DISTRIBUCIÓN PRODUCTOS AERONÁUTICOS</a></li>
+                    <li><a href="sistemas_no_tripulados.html">SISTEMAS NO TRIPULADOS</a></li>
                     <li><a href="contacto.html">CONTACTO</a></li>
                     <li><a href="noticias.html">NOTICIAS</a></li>
                 </ul>
@@ -367,9 +555,14 @@
     <section class="hero wrap">
         <div class="container">
             <h1>DISEÑO Y CERTIFICACIÓN</h1>
+
             <p>
-                Organización de Diseño Aprobada PART 21J EUROPEAN AVIATION SAFETY AGENCY (EASA) DOA 21J.635<br>
-                Para el diseño y certificación de cambios menores y STC a bordo de aviones y helicópteros.
+                Organización de Diseño Aprobada PART-21J (EASA) DOA 21J.635 y Organización Militar de Diseño ES.PERAM21/1389/20,
+                para el diseño y la certificación de modificaciones menores y STC a bordo de aviones y helicópteros.
+            </p>
+
+            <p class="hero-sub">
+                Compañía Española de Técnica Aeronáutica (CETA) S.A. es una empresa de ingeniería aeronáutica con más de 60 años de experiencia.
             </p>
         </div>
     </section>
@@ -380,200 +573,126 @@
     <section class="section wrap">
         <div class="accordion">
 
-            <!-- 1) INGENIERÍA DE DISEÑO E INTEGRACIÓN DE SISTEMAS -->
             <details>
                 <summary>
                     <h3 class="acc-title">INGENIERÍA DE DISEÑO E INTEGRACIÓN DE SISTEMAS</h3>
                     <span class="acc-toggle" aria-hidden="true">+</span>
                 </summary>
+
                 <div class="acc-content">
                     <p>
-                        Servicios de ingeniería de DISEÑO y CERTIFICACIÓN de Aeronavegabilidad (EASA,
-                        INTA &amp; FAA) a todo tipo de operadores, fabricantes (OEM), centros de mantenimiento (MOA/MRO)
-                        y otras organizaciones de diseño (DOA/ROD/MDOA).
+                        Servicios de ingeniería de diseño e integración de sistemas y de certificación de aeronavegabilidad (EASA y DGAM),
+                        dirigidos a todo tipo de operadores, fabricantes (OEM), organizaciones de mantenimiento (MOA/MRO) y otras organizaciones
+                        de diseño (DOA/MDOA).
                     </p>
 
                     <ul>
-                        <li>
-                            <b>Diseño y Análisis Estructural y Mecánico</b> (planos de diseño, análisis estructurales para
-                            demostración de cumplimiento con códigos de aeronavegabilidad).
-                        </li>
-                        <li><b>Integración de sistemas/ aviónica/ eléctrica</b> (esquemas eléctricos, definición de material, etc.).</li>
+                        <li><b>Diseño y análisis estructural y mecánico</b> (planos de diseño y análisis para demostrar cumplimiento con códigos de aeronavegabilidad).</li>
+                        <li><b>Integración de sistemas / aviónica / eléctrica</b> (esquemas eléctricos, definición de materiales, etc.).</li>
+                        <li><b>Plan de certificación</b>.</li>
+                        <li><b>Documentación de demostración de cumplimiento</b>.</li>
                     </ul>
 
-                    <p>
-                        <b>Proyectos LLAVE EN MANO</b> (STCs/ modificaciones menores) o <b>APOYO PARCIAL</b> al cliente.<br>
-                        Sistema de Aseguramiento del Diseño aprobado por EASA bajo DOA Subparte 21J (ref. 21J.635).
-                        Flexibilidad para la adaptación a formatos de cliente.
-                    </p>
-
-                    <p>
-                        <b>Plan de Certificación</b> (Clasificación de modificaciones de diseño; Matriz de Cumplimiento vs. FAR/CS, AMC’s,
-                        FAA ACs, Normas Militares).
-                    </p>
-
-                    <p><b>Documentación de demostración de cumplimiento:</b></p>
+                    <div class="mini-title">Documentación técnica habitual</div>
                     <ul>
-                        <li>Análisis de Peso y Centrado.</li>
-                        <li>Análisis de Seguridad (System Safety Analysis) / HIRF / Protección frente a Rayos.</li>
-                        <li>Análisis Estructural (Estático, Dinámico, Fatiga / Fractura).</li>
-                        <li>Informes de Calificación de Equipos (medioambiental, funcional E-TSO/TSO).</li>
-                        <li>Análisis de Cargas Eléctricas.</li>
-                        <li>
-                            Procedimientos y Planes de Ensayos.
-                            <ul>
-                                <li>En tierra y en vuelo. Desarrollo de pruebas funcionales, pruebas EMI/EMC, etc.</li>
-                                <li>Análisis de Riesgos de Ensayos.</li>
-                                <li>Apoyo en la realización de ensayos e Informes de Ensayo.</li>
-                            </ul>
-                        </li>
-                        <li>
-                            Documentación / Suplementos de Aeronave.
-                            <ul>
-                                <li>Suplementos al Manual de Vuelo / Mantenimiento e IAC.</li>
-                                <li>Suplemento al Manual de Cableado, Suplementos al IPC/IPB.</li>
-                                <li>Boletines de Servicio.</li>
-                            </ul>
-                        </li>
-                    </ul>
-
-                    <p><b>Implantación de Sistemas de Calidad</b> en el entorno aeronáutico.</p>
-                    <ul>
-                        <li>DOA EASA Subparte 21J.</li>
-                        <li>POA EASA Subparte 21G.</li>
-                        <li>PERAM/ EMAR.</li>
+                        <li><b>Análisis de pesos y centrado</b>.</li>
+                        <li><b>Análisis de seguridad</b> (System Safety Analysis) / <b>HIRF</b> / <b>protección frente a rayos</b>.</li>
+                        <li><b>Análisis estructural</b> (estático, dinámico, fatiga / fractura).</li>
+                        <li><b>Informes de calificación de equipos</b> (ambiental y funcional E-TSO/TSO).</li>
+                        <li><b>Análisis de carga eléctrica</b>.</li>
+                        <li><b>Procedimientos y planes de ensayo</b> (tierra y vuelo).</li>
+                        <li><b>Documentación y suplementos de aeronave</b>.</li>
                     </ul>
                 </div>
             </details>
 
-            <!-- 2) INGENIERÍA DE CERTIFICACIÓN -->
             <details>
                 <summary>
-                    <h3 class="acc-title">INGENIERÍA DE CERTIFICACIÓN</h3>
+                    <h3 class="acc-title">MODERNIZACIONES DE AVIÓNICA</h3>
                     <span class="acc-toggle" aria-hidden="true">+</span>
                 </summary>
+
                 <div class="acc-content">
                     <p>
-                        Servicios de ingeniería de DISEÑO y CERTIFICACIÓN de Aeronavegabilidad (EASA,
-                        INTA &amp; FAA) a todo tipo de operadores, fabricantes (OEM), centros de mantenimiento (MOA/MRO)
-                        y otras organizaciones de diseño (DOA/ROD/MDOA).
+                        Realizamos análisis de configuración de aeronave, evaluación de equipos de aviónica o sistemas de misión disponibles en el mercado,
+                        considerando criterios regulatorios, aprobación de aeronavegabilidad, integración en plataforma y condicionantes presupuestarios.
                     </p>
 
-                    <ul>
-                        <li>
-                            <b>Diseño y Análisis Estructural y Mecánico</b> (planos de diseño, análisis estructurales para
-                            demostración de cumplimiento con códigos de aeronavegabilidad).
-                        </li>
-                        <li><b>Integración de sistemas/ aviónica/ eléctrica</b> (esquemas eléctricos, definición de material, etc.).</li>
-                    </ul>
+                    <div class="schematic" aria-label="Esquema de capacidades y sistemas">
+                        <div class="schematic-inner">
+                            <div>
+                                <h4>Capacidades / Equipos</h4>
+                                <ul>
+                                    <li>Transpondedor Modo S / IFF</li>
+                                    <li>ADS-B (Vigilancia Dependiente Automática — Broadcast)</li>
+                                    <li>LPV (Localizer Performance with Vertical Guidance)</li>
+                                    <li>TAWS (Sistema de Alerta de Proximidad al Terreno)</li>
+                                    <li>Radar meteorológico</li>
+                                    <li>Conciencia situacional mejorada</li>
+                                </ul>
+                            </div>
 
-                    <p>
-                        <b>Proyectos LLAVE EN MANO</b> (STCs/ modificaciones menores) o <b>APOYO PARCIAL</b> al cliente.<br>
-                        Sistema de Aseguramiento del Diseño aprobado por EASA bajo DOA Subparte 21J (ref. 21J.635).
-                        Flexibilidad para la adaptación a formatos de cliente.
-                    </p>
+                            <div class="schematic-divider" aria-hidden="true"></div>
 
-                    <p>
-                        <b>Plan de Certificación</b> (Clasificación de modificaciones de diseño; Matriz de Cumplimiento vs. FAR/CS, AMC’s,
-                        FAA ACs, Normas Militares).
-                    </p>
-
-                    <p><b>Documentación de demostración de cumplimiento:</b></p>
-                    <ul>
-                        <li>Análisis de Peso y Centrado.</li>
-                        <li>Análisis de Seguridad (System Safety Analysis) / HIRF / Protección frente a Rayos.</li>
-                        <li>Análisis Estructural (Estático, Dinámico, Fatiga / Fractura).</li>
-                        <li>Informes de Calificación de Equipos (medioambiental, funcional E-TSO/TSO).</li>
-                        <li>Análisis de Cargas Eléctricas.</li>
-                        <li>
-                            Procedimientos y Planes de Ensayos.
-                            <ul>
-                                <li>En tierra y en vuelo. Desarrollo de pruebas funcionales, pruebas EMI/EMC, etc.</li>
-                                <li>Análisis de Riesgos de Ensayos.</li>
-                                <li>Apoyo en la realización de ensayos e Informes de Ensayo.</li>
-                            </ul>
-                        </li>
-                        <li>
-                            Documentación / Suplementos de Aeronave.
-                            <ul>
-                                <li>Suplementos al Manual de Vuelo / Mantenimiento e IAC.</li>
-                                <li>Suplemento al Manual de Cableado, Suplementos al IPC/IPB.</li>
-                                <li>Boletines de Servicio.</li>
-                            </ul>
-                        </li>
-                    </ul>
-
-                    <p><b>Implantación de Sistemas de Calidad</b> en el entorno aeronáutico.</p>
-                    <ul>
-                        <li>DOA EASA Subparte 21J.</li>
-                        <li>POA EASA Subparte 21G.</li>
-                        <li>PERAM/ EMAR.</li>
-                    </ul>
+                            <div>
+                                <h4>Áreas de modernización</h4>
+                                <ul>
+                                    <li>Sistemas integrados</li>
+                                    <li>Comunicaciones / Navegación</li>
+                                    <li>Control de vuelo</li>
+                                    <li>Sistemas de audio digital</li>
+                                    <li>Identificación</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </details>
 
-            <!-- 3) CONSULTORÍA Y FORMACIÓN -->
             <details>
                 <summary>
-                    <h3 class="acc-title">CONSULTORÍA Y FORMACIÓN</h3>
+                    <h3 class="acc-title">SISTEMAS DE MISIÓN</h3>
                     <span class="acc-toggle" aria-hidden="true">+</span>
                 </summary>
+
                 <div class="acc-content">
                     <p>
-                        Servicios de ingeniería de DISEÑO y CERTIFICACIÓN de Aeronavegabilidad (EASA,
-                        INTA &amp; FAA) a todo tipo de operadores, fabricantes (OEM), centros de mantenimiento (MOA/MRO)
-                        y otras organizaciones de diseño (DOA/ROD/MDOA).
+                        Prestamos servicios de <b>ingeniería aeronáutica</b> para la integración de todo tipo de Sistemas de Misión
+                        en aeronaves de ala fija y ala rotatoria.
                     </p>
 
-                    <ul>
-                        <li>
-                            <b>Diseño y Análisis Estructural y Mecánico</b> (planos de diseño, análisis estructurales para
-                            demostración de cumplimiento con códigos de aeronavegabilidad).
-                        </li>
-                        <li><b>Integración de sistemas/ aviónica/ eléctrica</b> (esquemas eléctricos, definición de material, etc.).</li>
-                    </ul>
+                    <div class="capabilities">
+                        INTELIGENCIA, VIGILANCIA Y RECONOCIMIENTO (ISR) ·
+                        TRANSMISIÓN DE DATOS E IMAGEN ·
+                        SISTEMAS ELECTRO-ÓPTICOS ·
+                        COMUNICACIONES TÁCTICAS ·
+                        PROTECCIÓN BALÍSTICA ·
+                        GUERRA ELECTRÓNICA ·
+                        EVACUACIÓN / MEDICALIZACIÓN ·
+                        OPERACIONES CSAR (BÚSQUEDA Y RESCATE EN COMBATE)
+                    </div>
+                </div>
+            </details>
 
+            <details>
+                <summary>
+                    <h3 class="acc-title">EQUIPO DE DISEÑO Y CERTIFICACIÓN</h3>
+                    <span class="acc-toggle" aria-hidden="true">+</span>
+                </summary>
+
+                <div class="acc-content">
                     <p>
-                        <b>Proyectos LLAVE EN MANO</b> (STCs/ modificaciones menores) o <b>APOYO PARCIAL</b> al cliente.<br>
-                        Sistema de Aseguramiento del Diseño aprobado por EASA bajo DOA Subparte 21J (ref. 21J.635).
-                        Flexibilidad para la adaptación a formatos de cliente.
+                        El equipo de Diseño y Certificación de CETA está formado por profesionales especializados, orientados a garantizar
+                        la seguridad, la eficacia operativa y el cumplimiento normativo de la plataforma. Áreas principales:
                     </p>
 
-                    <p>
-                        <b>Plan de Certificación</b> (Clasificación de modificaciones de diseño; Matriz de Cumplimiento vs. FAR/CS, AMC’s,
-                        FAA ACs, Normas Militares).
-                    </p>
-
-                    <p><b>Documentación de demostración de cumplimiento:</b></p>
                     <ul>
-                        <li>Análisis de Peso y Centrado.</li>
-                        <li>Análisis de Seguridad (System Safety Analysis) / HIRF / Protección frente a Rayos.</li>
-                        <li>Análisis Estructural (Estático, Dinámico, Fatiga / Fractura).</li>
-                        <li>Informes de Calificación de Equipos (medioambiental, funcional E-TSO/TSO).</li>
-                        <li>Análisis de Cargas Eléctricas.</li>
-                        <li>
-                            Procedimientos y Planes de Ensayos.
-                            <ul>
-                                <li>En tierra y en vuelo. Desarrollo de pruebas funcionales, pruebas EMI/EMC, etc.</li>
-                                <li>Análisis de Riesgos de Ensayos.</li>
-                                <li>Apoyo en la realización de ensayos e Informes de Ensayo.</li>
-                            </ul>
-                        </li>
-                        <li>
-                            Documentación / Suplementos de Aeronave.
-                            <ul>
-                                <li>Suplementos al Manual de Vuelo / Mantenimiento e IAC.</li>
-                                <li>Suplemento al Manual de Cableado, Suplementos al IPC/IPB.</li>
-                                <li>Boletines de Servicio.</li>
-                            </ul>
-                        </li>
-                    </ul>
-
-                    <p><b>Implantación de Sistemas de Calidad</b> en el entorno aeronáutico.</p>
-                    <ul>
-                        <li>DOA EASA Subparte 21J.</li>
-                        <li>POA EASA Subparte 21G.</li>
-                        <li>PERAM/ EMAR.</li>
+                        <li><b>Oficina de Aeronavegabilidad</b></li>
+                        <li><b>CVEs de Aviónica / Eléctrico</b></li>
+                        <li><b>CVEs de Factores Humanos</b></li>
+                        <li><b>CVEs de Estructuras</b></li>
+                        <li><b>Ingenieros de Sistemas</b></li>
+                        <li><b>Ingenieros Mecánicos</b></li>
                     </ul>
                 </div>
             </details>
@@ -621,6 +740,36 @@
         <div class="footer-bottom">© <span id="year"></span> CETA · Todos los derechos reservados</div>
     </footer>
 
-    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+    <script>
+        // Año footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // ===== Menú móvil (hamburguesa) =====
+        const toggle = document.querySelector('.menu-toggle');
+        const menu = document.getElementById('mainMenu');
+
+        function setMenu(open) {
+            menu.classList.toggle('is-open', open);
+            toggle.setAttribute('aria-expanded', String(open));
+        }
+
+        toggle?.addEventListener('click', () => {
+            const isOpen = menu.classList.contains('is-open');
+            setMenu(!isOpen);
+        });
+
+        // Cierra menú al hacer click en un link (móvil)
+        menu?.addEventListener('click', (e) => {
+            const a = e.target.closest('a');
+            if (!a) return;
+            setMenu(false);
+        });
+
+        // Si se vuelve a desktop, resetea estado
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 720) setMenu(false);
+        });
+    </script>
 </body>
 </html>
+
