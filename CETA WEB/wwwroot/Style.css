@@ -1,6 +1,6 @@
-﻿/* style.css (completo: panel oscuro SOLO para 3 opciones + header móvil + sección noticias tipo “noticias.html” + botón VER TODAS) */
+﻿/* style.css (completo: panel oscuro SOLO para 2 opciones + header móvil + sección noticias tipo “noticias.html” + botón VIEW ALL) */
 
-/* Fuente corporativa */
+/* Corporate font */
 @font-face {
     font-family: "Eurostile";
     src: url("FONTS/EUROSTILE.TTF") format("truetype");
@@ -24,7 +24,7 @@ body {
     position: relative;
 }
 
-    /* Fondo foto cockpit (40%) */
+    /* Cockpit background photo (40%) */
     body::before {
         content: "";
         position: fixed;
@@ -62,7 +62,7 @@ body {
     background: rgba(255,255,255,.9);
 }
 
-/* Botón hamburguesa (oculto en desktop) */
+/* Hamburger button (hidden on desktop) */
 .menu-toggle {
     display: none;
     margin-left: auto;
@@ -137,7 +137,7 @@ body {
         filter: drop-shadow(0 6px 18px rgba(0,0,0,.25));
     }
 
-/* ===== PANEL OSCURO SOLO PARA LAS 3 OPCIONES ===== */
+/* ===== DARK PANEL ONLY FOR THE 2 OPTIONS ===== */
 .services-panel {
     width: min(1900px, 90vw);
     margin: 0 auto;
@@ -148,10 +148,10 @@ body {
     backdrop-filter: blur(2px);
 }
 
-/* ===== TARJETAS DE SERVICIO ===== */
+/* ===== SERVICE CARDS ===== */
 .service-buttons {
     display: grid;
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns: repeat(2,1fr);
     gap: 28px;
     width: 100%;
 }
@@ -163,7 +163,7 @@ body {
     border: 0;
 }
 
-/* contenedor SOLO de la foto */
+/* image-only container */
 .service-media {
     position: relative;
     overflow: hidden;
@@ -177,7 +177,7 @@ body {
         border-radius: 0;
     }
 
-    /* overlay rojo SOLO sobre la foto */
+    /* red overlay ONLY over the image */
     .service-media::after {
         content: "";
         position: absolute;
@@ -192,7 +192,7 @@ body {
     opacity: 1;
 }
 
-/* caption debajo */
+/* caption below */
 .service-caption {
     display: flex;
     align-items: center;
@@ -219,7 +219,7 @@ body {
     line-height: 1;
 }
 
-/* ===== NOVEDADES Y NOTICIAS (index) ===== */
+/* ===== UPDATES & NEWS (index) ===== */
 .container {
     width: min(1200px,92vw);
     margin: 0 auto;
@@ -238,7 +238,7 @@ body {
     color: #eaf3ff;
 }
 
-/* Cards tipo noticias.html (clickables + plus + tags) */
+/* Cards like noticias.html (clickable + plus + tags) */
 .news-grid {
     width: 100%;
     margin: 0;
@@ -481,7 +481,7 @@ body {
 }
 
 @media (max-width:720px) {
-    /* Header móvil: logo centrado arriba + hamburguesa */
+    /* Mobile header: logo centered + hamburger */
     .site-header {
         padding-inline: 16px;
     }
@@ -509,7 +509,7 @@ body {
         margin-left: 0;
     }
 
-    /* Menú en desplegable */
+    /* Dropdown menu */
     .main-nav {
         grid-column: 1 / -1;
         width: 100%;
@@ -544,7 +544,7 @@ body {
                     color: #fff;
                 }
 
-    /* Hero / tarjetas */
+    /* Hero / cards */
     .service-buttons {
         grid-template-columns: 1fr;
     }

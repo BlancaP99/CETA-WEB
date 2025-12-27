@@ -1,9 +1,9 @@
 ﻿<!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Noticias | CETA</title>
+    <title>News | CETA</title>
 
     <style>
         :root {
@@ -43,7 +43,7 @@
             position: relative;
         }
 
-            /* ===== FONDO (unificado) ===== */
+            /* ===== BACKGROUND (unified) ===== */
             body::before {
                 content: "";
                 position: fixed;
@@ -64,7 +64,7 @@
             margin: 0 auto;
         }
 
-        /* =================== HEADER (UNIFICADO + MÓVIL HAMBURGUESA) =================== */
+        /* =================== HEADER (UNIFIED + MOBILE HAMBURGER) =================== */
         .site-header {
             padding: 18px 30px 8px;
         }
@@ -86,7 +86,7 @@
             background: rgba(255,255,255,.9);
         }
 
-        /* Botón hamburguesa (oculto en desktop) */
+        /* Hamburger button (hidden on desktop) */
         .menu-toggle {
             display: none;
             margin-left: auto;
@@ -145,7 +145,7 @@
                 filter: drop-shadow(0 6px 18px rgba(0,0,0,.25));
             }
 
-        /* Subtítulo centrado + “panel” azul oscuro (como el resto) */
+        /* Centered subtitle + dark blue panel */
         .hero-panel {
             width: min(1000px,92vw);
             margin: 0 auto;
@@ -160,7 +160,7 @@
             letter-spacing: .6px;
         }
 
-        /* ===== Separador dashed ===== */
+        /* ===== Dashed separator ===== */
         .separator {
             width: min(var(--max),92vw);
             margin: 22px auto 18px;
@@ -168,7 +168,7 @@
             border-top: 2px dashed rgba(255,255,255,.35);
         }
 
-        /* =================== PANEL OSCURO PARA BUSCADOR + LISTA =================== */
+        /* =================== DARK PANEL FOR SEARCH + GRID =================== */
         .news-section {
             padding: 14px 0 70px;
         }
@@ -183,7 +183,7 @@
             backdrop-filter: blur(2px);
         }
 
-        /* ===== Barra de búsqueda ===== */
+        /* ===== Search bar ===== */
         .news-tools {
             display: flex;
             justify-content: center;
@@ -239,7 +239,7 @@
             color: rgba(255,255,255,.85);
         }
 
-        /* ===== Grid de noticias (como index) ===== */
+        /* ===== News grid (same as index) ===== */
         .news-grid {
             margin: 16px auto 0;
             display: grid;
@@ -247,7 +247,6 @@
             gap: 22px;
         }
 
-        /* cada noticia es un BOTÓN/ENLACE */
         .news-item {
             display: block;
             text-decoration: none;
@@ -317,7 +316,7 @@
                 border-radius: 999px;
             }
 
-        /* ===== Botón VER MÁS ===== */
+        /* ===== SHOW MORE button ===== */
         .more-wrap {
             display: flex;
             justify-content: center;
@@ -346,7 +345,7 @@
                 transform: scale(.99);
             }
 
-        /* =================== FOOTER (unificado) =================== */
+        /* =================== FOOTER (unified) =================== */
         .site-footer {
             background: linear-gradient(180deg, rgba(0,20,50,.35), rgba(0,20,40,.6));
             border-top: 1px solid rgba(255,255,255,.18);
@@ -489,7 +488,7 @@
                 padding-inline: 16px;
             }
 
-            /* Header móvil: logo centrado + hamburguesa */
+            /* Mobile header: centered logo + hamburger */
             .header-inner {
                 display: grid;
                 grid-template-columns: 1fr auto 1fr;
@@ -558,26 +557,25 @@
     <!-- HEADER -->
     <header class="site-header wrap">
         <div class="header-inner">
-            <a href="index.html" class="logo-link" aria-label="Inicio">
+            <a href="index.html" class="logo-link" aria-label="Home">
                 <img src="IMAGENES/LOGO_BLANCO.png" alt="CETA" class="logo" />
             </a>
 
             <div class="header-separator" aria-hidden="true"></div>
 
-            <!-- Botón hamburguesa (solo móvil) -->
-            <button class="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mainMenu">
+            <!-- Hamburger button (mobile only) -->
+            <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mainMenu">
                 <span class="bar" aria-hidden="true"></span>
                 <span class="bar" aria-hidden="true"></span>
                 <span class="bar" aria-hidden="true"></span>
             </button>
 
-            <nav class="main-nav" aria-label="Menú principal">
+            <nav class="main-nav" aria-label="Primary menu">
                 <ul class="menu" id="mainMenu">
-                    <li><a href="empresa.html">EMPRESA</a></li>
-                    <li><a href="ingenieria-aeronautica.html">INGENIERÍA AERONÁUTICA</a></li>
-                    <li><a href="sistemas_no_tripulados.html">SISTEMAS NO TRIPULADOS</a></li>
-                    <li><a href="contacto.html">CONTACTO</a></li>
-                    <li><a href="noticias.html">NOTICIAS</a></li>
+                    <li><a href="empresa.html">COMPANY</a></li>
+                    <li><a href="ingenieria-aeronautica.html">AERONAUTICAL DESIGN &amp; ENGINEERING</a></li>
+                    <li><a href="contacto.html">CONTACT</a></li>
+                    <li><a href="noticias.html">NEWS</a></li>
                 </ul>
             </nav>
         </div>
@@ -586,169 +584,169 @@
     <!-- HERO -->
     <section class="hero wrap">
         <div class="container">
-            <h1>NOTICIAS</h1>
-            <div class="hero-panel">Descubre lo último en la industria de Defensa.</div>
+            <h1>NEWS</h1>
+            <div class="hero-panel">Latest updates across the defence and aerospace domain.</div>
         </div>
     </section>
 
     <hr class="separator" />
 
-    <!-- BUSCADOR + GRID (con panel oscuro) -->
+    <!-- SEARCH + GRID (dark panel) -->
     <section class="news-section wrap">
         <div class="news-panel">
 
             <div class="news-tools">
                 <div class="search-wrap">
-                    <input id="newsSearch" type="search" placeholder="Buscar noticias (título, tags, fecha)..." autocomplete="off" />
-                    <button id="clearSearch" type="button">Limpiar</button>
+                    <input id="newsSearch" type="search" placeholder="Search news (title, tags, date)..." autocomplete="off" />
+                    <button id="clearSearch" type="button">Clear</button>
                 </div>
             </div>
 
-            <div class="results-meta" id="resultsMeta">Mostrando 6 noticias.</div>
+            <div class="results-meta" id="resultsMeta">Displaying 6 news items.</div>
 
             <div class="news-grid" id="newsGrid">
 
-                <!-- NOTICIA 1 (más reciente arriba) -->
+                <!-- NEWS 1 (most recent first) -->
                 <a class="news-item"
                    href="https://www.linkedin.com/posts/cetasa_circular-ceta-relojes-aviaci%C3%B3n-garmin-activity-7389586871003078656-U2P0?utm_source=share&utm_medium=member_desktop&rcm=ACoAADfSGtcB4euzogqAHM7yrKGI5Vah_62Ysyw"
                    target="_blank" rel="noopener noreferrer"
-                   data-title="Garmin D2 Mach 2: reloj inteligente para aviación"
-                   data-tags="garmin, d2 mach 2, relojes, aviación, pilotos, mapas, amoled, salud, linterna led, garmin pilot, planesync"
+                   data-title="Garmin D2 Mach 2: aviation-grade smart watch"
+                   data-tags="garmin, d2 mach 2, watch, aviation, pilots, maps, amoled, health, led flashlight, garmin pilot, planesync"
                    data-date="2025-12-17">
-                    <img class="news-thumb" src="NOTICIAS/RELOJ_GARMIN.webp" alt="Reloj Garmin D2 Mach 2" />
+                    <img class="news-thumb" src="NOTICIAS/RELOJ_GARMIN.webp" alt="Garmin D2 Mach 2 Watch" />
                     <div class="news-body">
                         <div class="news-title-row">
-                            <h3 class="news-title">Garmin D2 Mach 2: reloj inteligente para pilotos</h3>
+                            <h3 class="news-title">Garmin D2 Mach 2: aviation-grade smart watch for pilots</h3>
                             <span class="news-plus" aria-hidden="true">+</span>
                         </div>
                         <div class="news-meta">
                             <span class="tag">2025-12-17</span>
                             <span class="tag">Garmin</span>
-                            <span class="tag">Aviación</span>
+                            <span class="tag">Aviation</span>
                             <span class="tag">Wearables</span>
                         </div>
                     </div>
                 </a>
 
-                <!-- NOTICIA 2 -->
+                <!-- NEWS 2 -->
                 <a class="news-item"
                    href="https://www.linkedin.com/posts/cetasa_circular-ceta-equipos-flightcell-activity-7384528602295484416-sdbN?utm_source=share&utm_medium=member_desktop&rcm=ACoAADfSGtcB4euzogqAHM7yrKGI5Vah_62Ysyw"
                    target="_blank" rel="noopener noreferrer"
-                   data-title="Flightcell: comunicaciones satelitales, 5G e integración de misión"
-                   data-tags="flightcell, dzmx, dzmx plus, iridium, 5g, comunicaciones, voz, datos, tracking gps, wifi, bluetooth, smarthub, grabación cabina, svs, seguridad"
+                   data-title="Flightcell: satellite communications, 5G and mission integration"
+                   data-tags="flightcell, dzmx, dzmx plus, iridium, 5g, communications, voice, data, gps tracking, wifi, bluetooth, smarthub, cockpit recording, svs, security"
                    data-date="2025-12-10">
-                    <img class="news-thumb" src="NOTICIAS/SISTEMASDZM.jpg" alt="Sistemas Flightcell DZMx" />
+                    <img class="news-thumb" src="NOTICIAS/SISTEMASDZM.jpg" alt="Flightcell DZMx Systems" />
                     <div class="news-body">
                         <div class="news-title-row">
-                            <h3 class="news-title">Flightcell DZMx: conectividad satelital + 5G para aeronaves</h3>
+                            <h3 class="news-title">Flightcell DZMx: satellite connectivity + 5G for aircraft</h3>
                             <span class="news-plus" aria-hidden="true">+</span>
                         </div>
                         <div class="news-meta">
                             <span class="tag">2025-12-10</span>
-                            <span class="tag">Comunicaciones</span>
-                            <span class="tag">Satélite</span>
-                            <span class="tag">Integración</span>
+                            <span class="tag">Comms</span>
+                            <span class="tag">Satellite</span>
+                            <span class="tag">Integration</span>
                         </div>
                     </div>
                 </a>
 
-                <!-- NOTICIA 3 -->
+                <!-- NEWS 3 -->
                 <a class="news-item"
                    href="https://www.linkedin.com/posts/cetasa_circular-ceta-bolet%C3%ADn-de-servicio-easa-activity-7376525911208267776-J3i6?utm_source=share&utm_medium=member_desktop&rcm=ACoAADfSGtcB4euzogqAHM7yrKGI5Vah_62Ysyw"
                    target="_blank" rel="noopener noreferrer"
-                   data-title="EASA SIB 2025-03: riesgos de baterías de litio y PEDs a bordo"
-                   data-tags="easa, sib 2025-03, baterías de litio, peds, seguridad, cabina, power banks, formación tripulación, check-in, embarque, incidentes, autoridad"
+                   data-title="EASA SIB 2025-03: lithium battery and PED risks on board"
+                   data-tags="easa, sib 2025-03, lithium batteries, peds, safety, cabin, power banks, crew training, check-in, boarding, incidents, authority"
                    data-date="2025-11-28">
-                    <img class="news-thumb" src="NOTICIAS/COCKPIT.jpg" alt="Concienciación baterías de litio a bordo" />
+                    <img class="news-thumb" src="NOTICIAS/COCKPIT.jpg" alt="Lithium batteries awareness on board" />
                     <div class="news-body">
                         <div class="news-title-row">
-                            <h3 class="news-title">EASA SIB 2025-03: seguridad con baterías de litio a bordo</h3>
+                            <h3 class="news-title">EASA SIB 2025-03: lithium battery safety on board</h3>
                             <span class="news-plus" aria-hidden="true">+</span>
                         </div>
                         <div class="news-meta">
                             <span class="tag">2025-11-28</span>
                             <span class="tag">EASA</span>
-                            <span class="tag">Seguridad</span>
-                            <span class="tag">Operaciones</span>
+                            <span class="tag">Safety</span>
+                            <span class="tag">Operations</span>
                         </div>
                     </div>
                 </a>
 
-                <!-- NOTICIA 4 -->
+                <!-- NEWS 4 -->
                 <a class="news-item"
                    href="https://www.linkedin.com/posts/cetasa_circular-ceta-garmin-12-pulgadas-txi-activity-7371452412445761536-q_nQ?utm_source=share&utm_medium=member_desktop&rcm=ACoAADfSGtcB4euzogqAHM7yrKGI5Vah_62Ysyw"
                    target="_blank" rel="noopener noreferrer"
-                   data-title="Garmin TXi 12.1: nueva pantalla con más área y marcos más finos"
-                   data-tags="garmin, txi, 12.1, pfd, mfd, eis, mapas, cartas, terrain, obstáculos, safetaxi, cámaras, gtn xi, lpv, lnav, ils"
+                   data-title="Garmin TXi 12.1: larger display area with thinner bezels"
+                   data-tags="garmin, txi, 12.1, pfd, mfd, eis, maps, charts, terrain, obstacles, safetaxi, cameras, gtn xi, lpv, lnav, ils"
                    data-date="2025-11-14">
                     <img class="news-thumb" src="NOTICIAS/GARMIN.jpg" alt="Garmin TXi 12.1" />
                     <div class="news-body">
                         <div class="news-title-row">
-                            <h3 class="news-title">Garmin TXi 12.1”: más área, más visibilidad, más opciones</h3>
+                            <h3 class="news-title">Garmin TXi 12.1”: more area, more visibility, more options</h3>
                             <span class="news-plus" aria-hidden="true">+</span>
                         </div>
                         <div class="news-meta">
                             <span class="tag">2025-11-14</span>
-                            <span class="tag">Aviónica</span>
+                            <span class="tag">Avionics</span>
                             <span class="tag">Garmin</span>
-                            <span class="tag">Cabina</span>
+                            <span class="tag">Cockpit</span>
                         </div>
                     </div>
                 </a>
 
-                <!-- NOTICIA 5 -->
+                <!-- NEWS 5 -->
                 <a class="news-item"
                    href="https://www.linkedin.com/posts/cetasa_circular-ceta-reemplazo-rn5-por-rn7-activity-7366379051776655360-Rk0j?utm_source=share&utm_medium=member_desktop&rcm=ACoAADfSGtcB4euzogqAHM7yrKGI5Vah_62Ysyw"
                    target="_blank" rel="noopener noreferrer"
-                   data-title="HENSOLDT EuroNav 7 NextGen: reemplazo del RN5 sin soporte en 2027"
-                   data-tags="hensoldt, euron av, euron av 5, rn5, euron av 7, rn7, nextgen, obsolescencia, navegación, mapas, do-160, interfaces, usb, ethernet, remoto, wifi, 4g, lte"
+                   data-title="HENSOLDT EuroNav 7 NextGen: RN5 replacement ahead of 2027 end-of-support"
+                   data-tags="hensoldt, euron av, euron av 5, rn5, euron av 7, rn7, nextgen, obsolescence, navigation, maps, do-160, interfaces, usb, ethernet, remote, wifi, 4g, lte"
                    data-date="2025-10-30">
                     <img class="news-thumb" src="NOTICIAS/EURONAV.jpeg" alt="HENSOLDT EuroNav 7 NextGen" />
                     <div class="news-body">
                         <div class="news-title-row">
-                            <h3 class="news-title">EuroNav 7 NextGen: sustitución del RN5 y planificación 2027</h3>
+                            <h3 class="news-title">EuroNav 7 NextGen: RN5 replacement planning for 2027</h3>
                             <span class="news-plus" aria-hidden="true">+</span>
                         </div>
                         <div class="news-meta">
                             <span class="tag">2025-10-30</span>
-                            <span class="tag">Navegación</span>
+                            <span class="tag">Navigation</span>
                             <span class="tag">HENSOLDT</span>
-                            <span class="tag">Obsolescencia</span>
+                            <span class="tag">Obsolescence</span>
                         </div>
                     </div>
                 </a>
 
-                <!-- NOTICIA 6 -->
+                <!-- NEWS 6 -->
                 <a class="news-item"
                    href="https://www.linkedin.com/posts/cetasa_circular-ceta-aproximaciones-visuales-guiadasfgv-activity-7363842347811446784-E_WP?utm_source=share&utm_medium=member_desktop&rcm=ACoAADfSGtcB4euzogqAHM7yrKGI5Vah_62Ysyw"
                    target="_blank" rel="noopener noreferrer"
-                   data-title="Aproximaciones Visuales Guiadas (FGV): guía lateral y vertical en Garmin GTN TXi"
-                   data-tags="fgv, aproximaciones visuales guiadas, garmin, hughes, gtn, txi, guía vertical, guía lateral, piloto automático, rnav g, cartas, onepak, base de datos, seguridad"
+                   data-title="Guided Visual Approaches (FGV): lateral and vertical guidance in Garmin GTN/TXi"
+                   data-tags="fgv, guided visual approaches, garmin, hughes, gtn, txi, vertical guidance, lateral guidance, autopilot, rnav g, charts, onepak, database, safety"
                    data-date="2025-10-12">
-                    <img class="news-thumb" src="NOTICIAS/GUIADO.webp" alt="Aproximaciones Visuales Guiadas (FGV)" />
+                    <img class="news-thumb" src="NOTICIAS/GUIADO.webp" alt="Guided Visual Approaches (FGV)" />
                     <div class="news-body">
                         <div class="news-title-row">
-                            <h3 class="news-title">FGV: aproximaciones visuales guiadas integradas en Garmin</h3>
+                            <h3 class="news-title">FGV: guided visual approaches integrated in Garmin</h3>
                             <span class="news-plus" aria-hidden="true">+</span>
                         </div>
                         <div class="news-meta">
                             <span class="tag">2025-10-12</span>
-                            <span class="tag">Procedimientos</span>
+                            <span class="tag">Procedures</span>
                             <span class="tag">Garmin</span>
-                            <span class="tag">Seguridad</span>
+                            <span class="tag">Safety</span>
                         </div>
                     </div>
                 </a>
 
-                <!-- ========== EJEMPLO PARA AÑADIR MÁS (quedarán ocultas hasta "VER MÁS") ==========
+                <!-- ========== TEMPLATE TO ADD MORE (hidden until "SHOW MORE") ==========
                 <a class="news-item" href="LINK" target="_blank" rel="noopener noreferrer"
                    data-title="..."
                    data-tags="..."
                    data-date="YYYY-MM-DD">
-                  <img class="news-thumb" src="NOTICIAS/IMAGEN.xxx" alt="..." />
+                  <img class="news-thumb" src="NOTICIAS/IMAGE.xxx" alt="..." />
                   <div class="news-body">
                     <div class="news-title-row">
-                      <h3 class="news-title">Título</h3>
+                      <h3 class="news-title">Title</h3>
                       <span class="news-plus" aria-hidden="true">+</span>
                     </div>
                     <div class="news-meta">
@@ -759,12 +757,11 @@
                     </div>
                   </div>
                 </a>
-                =============================================================================== -->
-
+                ===================================================================== -->
             </div>
 
             <div class="more-wrap">
-                <button class="btn-more" id="btnMore" type="button">VER MÁS</button>
+                <button class="btn-more" id="btnMore" type="button">SHOW MORE</button>
             </div>
 
         </div>
@@ -775,22 +772,22 @@
         <div class="footer-grid">
             <div class="footer-col">
                 <h4>CETA S.A.</h4>
-                <p>Compañía Española de Técnica Aeronáutica S.A.</p>
-                <p>C/ Cañas, 7 · Nave Entresuelo<br>28043 Madrid · España</p>
+                <p>Spanish Aeronautical Technical Company S.A.</p>
+                <p>C/ Cañas, 7 · Mezzanine Unit<br>28043 Madrid · Spain</p>
                 <p><a href="mailto:ceta@ceta.aero">ceta@ceta.aero</a></p>
                 <p>Tel: +34 911 400 181 · Fax: +34 911 400 182</p>
             </div>
 
             <div class="footer-col footer-col--center">
-                <h4>Correo electrónico</h4>
+                <h4>Email</h4>
                 <form class="newsletter-form" action="#" method="post" id="newsletterForm">
-                    <input id="newsletter-email" name="email" type="email" placeholder="Tu e-mail" required />
-                    <button type="submit">ENVIAR</button>
+                    <input id="newsletter-email" name="email" type="email" placeholder="Your email" required />
+                    <button type="submit">SEND</button>
                 </form>
             </div>
 
             <div class="footer-col footer-col--right">
-                <h4>Conecta</h4>
+                <h4>Connect</h4>
                 <div class="social-row">
                     <a class="social-link" href="#" aria-label="LinkedIn" title="LinkedIn">
                         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -801,30 +798,30 @@
                     </a>
                 </div>
                 <ul class="legal-links">
-                    <li><a href="#">CONDICIONES GENERALES DE COMPRAS</a></li>
-                    <li><a href="#">POLÍTICA DE CALIDAD</a></li>
+                    <li><a href="#">GENERAL TERMS OF PURCHASE</a></li>
+                    <li><a href="#">QUALITY POLICY</a></li>
                 </ul>
             </div>
         </div>
 
         <div class="footer-bottom">
-            © <span id="year"></span> CETA · Todos los derechos reservados
+            © <span id="year"></span> CETA · All rights reserved
         </div>
     </footer>
 
     <script>
-        // Año footer
+        // Footer year
         document.getElementById('year').textContent = new Date().getFullYear();
 
         // Newsletter (placeholder)
         document.getElementById('newsletterForm')?.addEventListener('submit', function (e) {
             e.preventDefault();
             const v = document.getElementById('newsletter-email')?.value || '';
-            alert('¡Gracias! Te hemos registrado con: ' + v);
+            alert('Thank you. You have been registered with: ' + v);
             this.reset();
         });
 
-        // ===== Menú móvil (hamburguesa) =====
+        // ===== Mobile menu (hamburger) =====
         const toggle = document.querySelector('.menu-toggle');
         const menu = document.getElementById('mainMenu');
 
@@ -847,7 +844,7 @@
             if (window.innerWidth > 720) setMenu(false);
         });
 
-        // ===== Buscador + "VER MÁS" (muestra 6 últimas) =====
+        // ===== Search + "SHOW MORE" (shows latest 6) =====
         const input = document.getElementById('newsSearch');
         const clearBtn = document.getElementById('clearSearch');
         const grid = document.getElementById('newsGrid');
@@ -873,7 +870,6 @@
             const q = normalize(input.value.trim());
             const items = getItems();
 
-            // Filtrado por búsqueda
             const matches = items.filter(a => {
                 const hay =
                     normalize(a.dataset.title) + ' ' +
@@ -883,27 +879,25 @@
                 return !q || hay.includes(q);
             });
 
-            // Primero ocultamos todo
             items.forEach(a => a.style.display = 'none');
 
-            // Con búsqueda activa: mostrar TODO lo que coincida (sin "ver más")
+            // With active search: show all matches (no "show more")
             if (q) {
                 matches.forEach(a => a.style.display = '');
-                meta.textContent = `Resultados: ${matches.length} noticia(s) para “${input.value.trim()}”.`;
+                meta.textContent = `Results: ${matches.length} item(s) for “${input.value.trim()}”.`;
                 btnMore.style.display = 'none';
                 return;
             }
 
-            // Sin búsqueda: mostrar solo las 6 últimas, o todas si showAll
+            // Without search: show 6 latest, or all if showAll
             const visibleNow = showAll ? matches : matches.slice(0, INITIAL_VISIBLE);
             visibleNow.forEach(a => a.style.display = '');
 
-            meta.textContent = `Mostrando ${visibleNow.length} de ${matches.length} noticias.`;
+            meta.textContent = `Displaying ${visibleNow.length} of ${matches.length} news items.`;
 
-            // Botón VER MÁS solo si hay más de 6
             if (matches.length > INITIAL_VISIBLE) {
                 btnMore.style.display = '';
-                btnMore.textContent = showAll ? 'VER MENOS' : 'VER MÁS';
+                btnMore.textContent = showAll ? 'SHOW LESS' : 'SHOW MORE';
             } else {
                 btnMore.style.display = 'none';
             }
@@ -926,8 +920,9 @@
             applyVisibility();
         });
 
-        // Estado inicial
+        // Initial state
         applyVisibility();
     </script>
 </body>
 </html>
+

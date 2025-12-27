@@ -1,36 +1,35 @@
-﻿<!-- index.html (completo: sección de noticias con las 6 reales + botón VER TODAS a noticias.html) -->
+﻿<!-- index.html (completo: sección de noticias con las 6 reales + botón VIEW ALL a noticias.html) -->
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Inicio | Aeronáutica</title>
+    <title>Home | Aeronautics</title>
     <link rel="stylesheet" href="Style.css" />
 </head>
 <body>
-    <!-- HEADER: logo + separador + menú -->
+    <!-- HEADER: logo + separator + menu -->
     <header class="site-header">
         <div class="header-inner">
-            <a href="index.html" class="logo-link" aria-label="Inicio">
+            <a href="index.html" class="logo-link" aria-label="Home">
                 <img src="IMAGENES/LOGO_BLANCO.png" alt="Logo" class="logo" />
             </a>
 
             <div class="header-separator" aria-hidden="true"></div>
 
-            <!-- Botón hamburguesa (solo móvil) -->
-            <button class="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mainMenu">
+            <!-- Hamburger button (mobile only) -->
+            <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mainMenu">
                 <span class="bar" aria-hidden="true"></span>
                 <span class="bar" aria-hidden="true"></span>
                 <span class="bar" aria-hidden="true"></span>
             </button>
 
-            <nav class="main-nav" aria-label="Menú principal">
+            <nav class="main-nav" aria-label="Primary menu">
                 <ul class="menu" id="mainMenu">
-                    <li><a href="empresa.html">EMPRESA</a></li>
-                    <li><a href="ingenieria-aeronautica.html">INGENIERÍA AERONÁUTICA</a></li>
-                    <li><a href="sistemas_no_tripulados.html">SISTEMAS NO TRIPULADOS</a></li>
-                    <li><a href="contacto.html">CONTACTO</a></li>
-                    <li><a href="noticias.html">NOTICIAS</a></li>
+                    <li><a href="empresa.html">COMPANY</a></li>
+                    <li><a href="ingenieria-aeronautica.html">AERONAUTICAL DESIGN &amp; ENGINEERING</a></li>
+                    <li><a href="contacto.html">CONTACT</a></li>
+                    <li><a href="noticias.html">NEWS</a></li>
                 </ul>
             </nav>
         </div>
@@ -39,39 +38,29 @@
     <!-- HERO -->
     <section class="hero-landing">
         <h1 class="hero-title">
-            <span>TU VISIÓN</span>
-            <span>NUESTRA INGENIERÍA</span>
+            <span>YOUR VISION</span>
+            <span>OUR ENGINEERING</span>
         </h1>
 
-        <!-- PANEL OSCURO SOLO PARA LAS 3 OPCIONES -->
+        <!-- DARK PANEL ONLY FOR THE 2 OPTIONS -->
         <div class="services-panel">
             <div class="service-buttons">
                 <a class="service-card" href="empresa.html">
                     <div class="service-media">
-                        <img src="INDEX/empresa.png" alt="Empresa" />
+                        <img src="INDEX/empresa.png" alt="Company" />
                     </div>
                     <div class="service-caption">
-                        <span class="service-title">EMPRESA</span>
+                        <span class="service-title">COMPANY</span>
                         <span class="service-plus" aria-hidden="true">+</span>
                     </div>
                 </a>
 
                 <a class="service-card" href="ingenieria-aeronautica.html">
                     <div class="service-media">
-                        <img src="INDEX/ingenieria.jpg" alt="Ingeniería Aeronáutica" />
+                        <img src="INDEX/ingenieria.jpg" alt="Aeronautical Design &amp; Engineering" />
                     </div>
                     <div class="service-caption">
-                        <span class="service-title">INGENIERÍA AERONÁUTICA</span>
-                        <span class="service-plus" aria-hidden="true">+</span>
-                    </div>
-                </a>
-
-                <a class="service-card" href="sistemas_no_tripulados.html">
-                    <div class="service-media">
-                        <img src="INDEX/dron.png" alt="Sistemas no tripulados" />
-                    </div>
-                    <div class="service-caption">
-                        <span class="service-title">SISTEMAS NO TRIPULADOS</span>
+                        <span class="service-title">AERONAUTICAL DESIGN &amp; ENGINEERING</span>
                         <span class="service-plus" aria-hidden="true">+</span>
                     </div>
                 </a>
@@ -79,148 +68,148 @@
         </div>
     </section>
 
-    <!-- NOVEDADES Y NOTICIAS (en modo index: sin buscador, solo grid + links + tags) -->
+    <!-- UPDATES & NEWS (index mode: no search, grid only + links + tags) -->
     <section class="news-section" id="news">
         <div class="container">
-            <h2 class="section-title">NOVEDADES Y NOTICIAS</h2>
+            <h2 class="section-title">UPDATES &amp; NEWS</h2>
 
             <div class="news-grid">
-                <!-- NOTICIA 1 -->
+                <!-- NEWS 1 -->
                 <a class="news-item"
                    href="https://www.linkedin.com/posts/cetasa_circular-ceta-relojes-aviaci%C3%B3n-garmin-activity-7389586871003078656-U2P0?utm_source=share&utm_medium=member_desktop&rcm=ACoAADfSGtcB4euzogqAHM7yrKGI5Vah_62Ysyw"
                    target="_blank" rel="noopener noreferrer"
-                   aria-label="Abrir noticia: Garmin D2 Mach 2"
-                   data-title="Garmin D2 Mach 2: reloj inteligente para aviación"
-                   data-tags="garmin,reloj,aviación,pilotos,mapas,amloed,planesync"
+                   aria-label="Open news: Garmin D2 Mach 2"
+                   data-title="Garmin D2 Mach 2: aviation smart watch"
+                   data-tags="garmin,watch,aviation,pilots,maps,amloed,planesync"
                    data-date="2025-12-17">
                     <img class="news-thumb" src="NOTICIAS/RELOJ_GARMIN.webp" alt="Garmin D2 Mach 2" />
                     <div class="news-body">
                         <div class="news-title-row">
-                            <h3 class="news-title">Garmin D2 Mach 2: reloj inteligente para aviación</h3>
+                            <h3 class="news-title">Garmin D2 Mach 2: Aviation Smartwatch</h3>
                             <span class="news-plus" aria-hidden="true">+</span>
                         </div>
                         <div class="news-meta">
                             <span class="tag">Garmin</span>
-                            <span class="tag">Aviación</span>
+                            <span class="tag">Aviation</span>
                             <span class="tag">Wearables</span>
                         </div>
                     </div>
                 </a>
 
-                <!-- NOTICIA 2 -->
+                <!-- NEWS 2 -->
                 <a class="news-item"
                    href="https://www.linkedin.com/posts/cetasa_circular-ceta-equipos-flightcell-activity-7384528602295484416-sdbN?utm_source=share&utm_medium=member_desktop&rcm=ACoAADfSGtcB4euzogqAHM7yrKGI5Vah_62Ysyw"
                    target="_blank" rel="noopener noreferrer"
-                   aria-label="Abrir noticia: Flightcell comunicaciones seguras"
-                   data-title="Flightcell: comunicaciones seguras y conectividad global"
-                   data-tags="flightcell,iridium,5g,helicópteros,aviones,conectividad,smartHUB,svs"
+                   aria-label="Open news: Flightcell secure communications"
+                   data-title="Flightcell: secure communications and global connectivity"
+                   data-tags="flightcell,iridium,5g,helicopters,aircraft,connectivity,smartHUB,svs"
                    data-date="2025-12-10">
-                    <img class="news-thumb" src="NOTICIAS/SISTEMASDZM.jpg" alt="Sistemas Flightcell DZMx / DZMx Plus" />
+                    <img class="news-thumb" src="NOTICIAS/SISTEMASDZM.jpg" alt="Flightcell DZMx / DZMx Plus systems" />
                     <div class="news-body">
                         <div class="news-title-row">
-                            <h3 class="news-title">Flightcell: comunicaciones seguras y conectividad global</h3>
+                            <h3 class="news-title">Flightcell: Secure Communications &amp; Global Connectivity</h3>
                             <span class="news-plus" aria-hidden="true">+</span>
                         </div>
                         <div class="news-meta">
-                            <span class="tag">Comunicaciones</span>
+                            <span class="tag">Comms</span>
                             <span class="tag">Iridium / 5G</span>
-                            <span class="tag">Integración</span>
+                            <span class="tag">Integration</span>
                         </div>
                     </div>
                 </a>
 
-                <!-- NOTICIA 3 -->
+                <!-- NEWS 3 -->
                 <a class="news-item"
                    href="https://www.linkedin.com/posts/cetasa_circular-ceta-bolet%C3%ADn-de-servicio-easa-activity-7376525911208267776-J3i6?utm_source=share&utm_medium=member_desktop&rcm=ACoAADfSGtcB4euzogqAHM7yrKGI5Vah_62Ysyw"
                    target="_blank" rel="noopener noreferrer"
-                   aria-label="Abrir noticia: EASA SIB 2025-03 baterías de litio"
-                   data-title="EASA SIB 2025-03: riesgos de baterías de litio a bordo"
-                   data-tags="easa,sib,seguridad,baterías de litio,peds,cabina,tripulación"
+                   aria-label="Open news: EASA SIB 2025-03 lithium batteries"
+                   data-title="EASA SIB 2025-03: lithium battery risks on board"
+                   data-tags="easa,sib,safety,lithium batteries,peds,cabin,crew"
                    data-date="2025-11-28">
-                    <img class="news-thumb" src="NOTICIAS/COCKPIT.jpg" alt="Concienciación sobre baterías de litio a bordo" />
+                    <img class="news-thumb" src="NOTICIAS/COCKPIT.jpg" alt="Lithium battery onboard awareness" />
                     <div class="news-body">
                         <div class="news-title-row">
-                            <h3 class="news-title">EASA SIB 2025-03: riesgos de baterías de litio a bordo</h3>
+                            <h3 class="news-title">EASA SIB 2025-03: Onboard Lithium Battery Hazards</h3>
                             <span class="news-plus" aria-hidden="true">+</span>
                         </div>
                         <div class="news-meta">
-                            <span class="tag">Seguridad</span>
+                            <span class="tag">Safety</span>
                             <span class="tag">EASA</span>
-                            <span class="tag">Cabina</span>
+                            <span class="tag">Cabin</span>
                         </div>
                     </div>
                 </a>
 
-                <!-- NOTICIA 4 -->
+                <!-- NEWS 4 -->
                 <a class="news-item"
                    href="https://www.linkedin.com/posts/cetasa_circular-ceta-garmin-12-pulgadas-txi-activity-7371452412445761536-q_nQ?utm_source=share&utm_medium=member_desktop&rcm=ACoAADfSGtcB4euzogqAHM7yrKGI5Vah_62Ysyw"
                    target="_blank" rel="noopener noreferrer"
-                   aria-label="Abrir noticia: Garmin TXi 12.1"
-                   data-title="Garmin TXi 12.1: nueva pantalla con mayor área y versatilidad"
-                   data-tags="garmin,txi,pfd,mfd,eis,cartas,terreno,safetaxi"
+                   aria-label="Open news: Garmin TXi 12.1"
+                   data-title="Garmin TXi 12.1: new display with increased area and versatility"
+                   data-tags="garmin,txi,pfd,mfd,eis,charts,terrain,safetaxi"
                    data-date="2025-11-14">
-                    <img class="news-thumb" src="NOTICIAS/GARMIN.jpg" alt="Garmin TXi 12.1 pulgadas" />
+                    <img class="news-thumb" src="NOTICIAS/GARMIN.jpg" alt="Garmin TXi 12.1-inch" />
                     <div class="news-body">
                         <div class="news-title-row">
-                            <h3 class="news-title">Garmin TXi 12.1: nueva pantalla con mayor versatilidad</h3>
+                            <h3 class="news-title">Garmin TXi 12.1: New Display with Increased Versatility</h3>
                             <span class="news-plus" aria-hidden="true">+</span>
                         </div>
                         <div class="news-meta">
-                            <span class="tag">Aviónica</span>
+                            <span class="tag">Avionics</span>
                             <span class="tag">Garmin</span>
-                            <span class="tag">Pantallas</span>
+                            <span class="tag">Displays</span>
                         </div>
                     </div>
                 </a>
 
-                <!-- NOTICIA 5 -->
+                <!-- NEWS 5 -->
                 <a class="news-item"
                    href="https://www.linkedin.com/posts/cetasa_circular-ceta-reemplazo-rn5-por-rn7-activity-7366379051776655360-Rk0j?utm_source=share&utm_medium=member_desktop&rcm=ACoAADfSGtcB4euzogqAHM7yrKGI5Vah_62Ysyw"
                    target="_blank" rel="noopener noreferrer"
-                   aria-label="Abrir noticia: EuroNav RN7 NextGen"
-                   data-title="EuroNav RN7 NextGen: reemplazo del RN5 antes de 2027"
-                   data-tags="hensoldt,euronav,rn5,rn7,navegación,obsolescencia,do-160"
+                   aria-label="Open news: EuroNav RN7 NextGen"
+                   data-title="EuroNav RN7 NextGen: RN5 replacement before 2027"
+                   data-tags="hensoldt,euronav,rn5,rn7,navigation,obsolescence,do-160"
                    data-date="2025-10-30">
                     <img class="news-thumb" src="NOTICIAS/EURONAV.jpeg" alt="HENSOLDT EuroNav RN7 NextGen" />
                     <div class="news-body">
                         <div class="news-title-row">
-                            <h3 class="news-title">EuroNav RN7 NextGen: reemplazo del RN5 antes de 2027</h3>
+                            <h3 class="news-title">EuroNav RN7 NextGen: RN5 Replacement Before 2027</h3>
                             <span class="news-plus" aria-hidden="true">+</span>
                         </div>
                         <div class="news-meta">
                             <span class="tag">HENSOLDT</span>
-                            <span class="tag">Navegación</span>
-                            <span class="tag">Modernización</span>
+                            <span class="tag">Navigation</span>
+                            <span class="tag">Modernization</span>
                         </div>
                     </div>
                 </a>
 
-                <!-- NOTICIA 6 -->
+                <!-- NEWS 6 -->
                 <a class="news-item"
                    href="https://www.linkedin.com/posts/cetasa_circular-ceta-aproximaciones-visuales-guiadasfgv-activity-7363842347811446784-E_WP?utm_source=share&utm_medium=member_desktop&rcm=ACoAADfSGtcB4euzogqAHM7yrKGI5Vah_62Ysyw"
                    target="_blank" rel="noopener noreferrer"
-                   aria-label="Abrir noticia: Aproximaciones visuales guiadas FGV"
-                   data-title="Aproximaciones visuales guiadas (FGV) integradas en Garmin"
-                   data-tags="garmin,hughes,fgv,aproximaciones,gtx,txi,autopiloto,procedimientos"
+                   aria-label="Open news: Guided visual approaches FGV"
+                   data-title="Guided Visual Approaches (FGV) integrated in Garmin"
+                   data-tags="garmin,hughes,fgv,approaches,gtx,txi,autopilot,procedures"
                    data-date="2025-10-12">
-                    <img class="news-thumb" src="NOTICIAS/GUIADO.webp" alt="Aproximaciones visuales guiadas (FGV)" />
+                    <img class="news-thumb" src="NOTICIAS/GUIADO.webp" alt="Guided Visual Approaches (FGV)" />
                     <div class="news-body">
                         <div class="news-title-row">
-                            <h3 class="news-title">Aproximaciones visuales guiadas (FGV) integradas en Garmin</h3>
+                            <h3 class="news-title">Guided Visual Approaches (FGV) Integrated in Garmin</h3>
                             <span class="news-plus" aria-hidden="true">+</span>
                         </div>
                         <div class="news-meta">
-                            <span class="tag">Procedimientos</span>
+                            <span class="tag">Procedures</span>
                             <span class="tag">Garmin</span>
-                            <span class="tag">Seguridad</span>
+                            <span class="tag">Safety</span>
                         </div>
                     </div>
                 </a>
             </div>
 
-            <!-- CTA: VER TODAS -->
+            <!-- CTA: VIEW ALL -->
             <div class="news-cta">
-                <a class="btn-primary" href="noticias.html" aria-label="Ver todas las noticias">VER TODAS</a>
+                <a class="btn-primary" href="noticias.html" aria-label="View all news">VIEW ALL</a>
             </div>
         </div>
     </section>
@@ -230,22 +219,22 @@
         <div class="footer-grid container">
             <div class="footer-col">
                 <h4>CETA S.A.</h4>
-                <p>Compañía Española de Técnica Aeronáutica S.A.</p>
-                <p>C/ Cañas, 7 · Nave Entresuelo<br />28043 Madrid · España</p>
+                <p>Spanish Aeronautical Technical Company S.A.</p>
+                <p>C/ Cañas, 7 · Mezzanine Unit<br />28043 Madrid · Spain</p>
                 <p><a href="mailto:ceta@ceta.aero">ceta@ceta.aero</a></p>
                 <p>Tel: +34 911 400 181 · Fax: +34 911 400 182</p>
             </div>
 
             <div class="footer-col footer-col--center">
-                <h4>Correo electrónico</h4>
+                <h4>Email</h4>
                 <form class="newsletter-form" action="#" method="post">
-                    <input id="newsletter-email" name="email" type="email" placeholder="Tu e-mail" required />
-                    <button type="submit">ENVIAR</button>
+                    <input id="newsletter-email" name="email" type="email" placeholder="Your email" required />
+                    <button type="submit">SEND</button>
                 </form>
             </div>
 
             <div class="footer-col footer-col--right">
-                <h4>Conecta</h4>
+                <h4>Connect</h4>
                 <div class="social-row">
                     <a class="social-link" href="#" aria-label="LinkedIn">
                         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -256,13 +245,13 @@
                     </a>
                 </div>
                 <ul class="legal-links">
-                    <li><a href="#">CONDICIONES GENERALES DE COMPRAS</a></li>
-                    <li><a href="#">POLÍTICA DE CALIDAD</a></li>
+                    <li><a href="#">GENERAL TERMS OF PURCHASE</a></li>
+                    <li><a href="#">QUALITY POLICY</a></li>
                 </ul>
             </div>
         </div>
 
-        <div class="footer-bottom">© <span id="year"></span> CETA · Todos los derechos reservados</div>
+        <div class="footer-bottom">© <span id="year"></span> CETA · All rights reserved</div>
     </footer>
 
     <script>
@@ -270,10 +259,10 @@
 
         document.querySelector('.newsletter-form')?.addEventListener('submit', e => {
             e.preventDefault();
-            alert('¡Gracias! Te hemos registrado con: ' + (document.getElementById('newsletter-email')?.value || 'tu e-mail'));
+            alert('Thank you. You have been registered with: ' + (document.getElementById('newsletter-email')?.value || 'your email'));
         });
 
-        // ===== Menú móvil (hamburguesa) =====
+        // ===== Mobile menu (hamburger) =====
         const toggle = document.querySelector('.menu-toggle');
         const menu = document.getElementById('mainMenu');
 
@@ -287,17 +276,18 @@
             setMenu(!isOpen);
         });
 
-        // Cierra menú al hacer click en un link (móvil)
+        // Close menu when clicking a link (mobile)
         menu?.addEventListener('click', (e) => {
             const a = e.target.closest('a');
             if (!a) return;
             setMenu(false);
         });
 
-        // Si se vuelve a desktop, resetea estado
+        // If back to desktop, reset state
         window.addEventListener('resize', () => {
             if (window.innerWidth > 720) setMenu(false);
         });
     </script>
 </body>
 </html>
+
