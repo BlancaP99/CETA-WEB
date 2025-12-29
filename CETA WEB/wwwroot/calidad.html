@@ -33,7 +33,7 @@
 
         body {
             margin: 0;
-            font-family: "Eurostile",Arial,sans-serif;
+            font-family: "Eurostile", Arial, sans-serif;
             font-size: var(--fs-body);
             line-height: 1.55;
             background: var(--brand);
@@ -42,7 +42,6 @@
             position: relative;
         }
 
-            /* Unified cockpit background */
             body::before {
                 content: "";
                 position: fixed;
@@ -63,7 +62,7 @@
             margin: 0 auto;
         }
 
-        /* =================== HEADER (UNIFIED + MOBILE HAMBURGER) =================== */
+        /* =================== HEADER =================== */
         .site-header {
             padding: 18px 30px 8px;
         }
@@ -143,7 +142,20 @@
                 filter: drop-shadow(0 6px 18px rgba(0,0,0,.25));
             }
 
-        /* ===== Dashed separator ===== */
+        .hero-sub {
+            width: min(var(--max), 92vw);
+            margin: 14px auto 0;
+            padding: 14px 16px;
+            border: 1px solid rgba(255,255,255,.18);
+            background: rgba(0,0,0,.22);
+            backdrop-filter: blur(2px);
+            color: rgba(255,255,255,.92);
+            border-radius: 10px;
+            font-size: 16px;
+            line-height: 1.55;
+            letter-spacing: .2px;
+        }
+
         .separator {
             width: min(var(--max),92vw);
             margin: 18px auto 18px;
@@ -151,37 +163,39 @@
             border-top: 2px dashed rgba(255,255,255,.35);
         }
 
-        /* =================== CERTIFICATES GRID =================== */
+        /* =================== CERTIFICATES =================== */
         .certs-section {
             padding: 10px 0 70px;
         }
 
+        /* CHANGED: centered row and smaller cards */
         .certs-row {
             width: min(var(--max),92vw);
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 12px;
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
         }
 
+        /* CHANGED: “half size” */
         .cert {
+            width: min(520px, 44vw);
             background: rgba(255,255,255,.06);
             border: 1px solid rgba(255,255,255,.12);
-            overflow: hidden;
             border-radius: 0;
-            padding: 10px; /* mini margin between image and card border */
+            padding: 10px;
         }
 
-            /* CHANGED: no crop */
             .cert img {
                 width: 100%;
-                height: 360px; /* can be “bigger” */
-                object-fit: contain; /* key: shows full certificate */
+                height: 340px;
+                object-fit: contain;
                 display: block;
                 background: rgba(0,0,0,.22);
             }
 
-        /* =================== FOOTER (UNIFIED) =================== */
+        /* =================== FOOTER =================== */
         .site-footer {
             background: linear-gradient(180deg, rgba(0,20,50,.35), rgba(0,20,40,.6));
             border-top: 1px solid rgba(255,255,255,.18);
@@ -302,10 +316,6 @@
 
         /* =================== RESPONSIVE =================== */
         @media (max-width:1100px) {
-            .cert img {
-                height: 340px;
-            }
-
             .footer-grid {
                 grid-template-columns: 1fr;
             }
@@ -316,16 +326,6 @@
 
             .social-row {
                 justify-content: center;
-            }
-        }
-
-        @media (max-width:980px) {
-            .certs-row {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .cert img {
-                height: 380px;
             }
         }
 
@@ -391,14 +391,14 @@
                             color: #fff;
                         }
 
-            .certs-row {
-                grid-template-columns: 1fr;
+            /* CHANGED: full width on mobile, centered */
+            .cert {
+                width: min(520px, 92vw);
             }
 
-            .cert img {
-                height: 460px;
-            }
-            /* larger on mobile, still no crop */
+                .cert img {
+                    height: 520px;
+                }
         }
     </style>
 </head>
@@ -422,7 +422,7 @@
             <nav class="main-nav" aria-label="Primary menu">
                 <ul class="menu" id="mainMenu">
                     <li><a href="empresa.html">COMPANY</a></li>
-                    <li><a href="ingenieria-aeronautica.html">AERONAUTICAL DESIGN &amp; ENGINEERING</a></li>
+                    <li><a href="ingenieria-aeronautica.html">AEROSPACE ENGINEERING SERVICES</a></li>
                     <li><a href="contacto.html">CONTACT</a></li>
                     <li><a href="noticias.html">NEWS</a></li>
                 </ul>
@@ -435,17 +435,19 @@
         <div class="container">
             <h1>DESIGN ORGANIZATION CERTIFICATES</h1>
         </div>
+
+        <div class="hero-sub">
+            COMPAÑÍA ESPAÑOLA DE TÉCNICA AERONÁUTICA has Quality Assurance Systems certified according to ISO9001 and EN9120.
+        </div>
     </section>
 
     <hr class="separator" />
 
-    <!-- CERTIFICATES (4 in one row) -->
+    <!-- CERTIFICATES -->
     <section class="certs-section wrap">
         <div class="certs-row" aria-label="Certificates gallery">
-            <div class="cert"><img src="CERTIFICATES/1.jpeg" alt="Certificate 1" /></div>
-            <div class="cert"><img src="CERTIFICATES/2.jpeg" alt="Certificate 2" /></div>
-            <div class="cert"><img src="CERTIFICATES/3.jpeg" alt="Certificate 3" /></div>
-            <div class="cert"><img src="CERTIFICATES/4.jpeg" alt="Certificate 4" /></div>
+            <div class="cert"><img src="CERTIFICATES/ISO1.jpeg" alt="ISO Certificate 1" /></div>
+            <div class="cert"><img src="CERTIFICATES/ISO2.jpeg" alt="ISO Certificate 2" /></div>
         </div>
     </section>
 
@@ -454,8 +456,8 @@
         <div class="footer-grid">
             <div class="footer-col">
                 <h4>CETA S.A.</h4>
-                <p>Spanish Aeronautical Technical Company S.A.</p>
-                <p>C/ Cañas, 7 · Mezzanine Unit<br>28043 Madrid · Spain</p>
+                <p>Compañía Española de Técnica Aeronáutica S.A.</p>
+                <p>C/ Cañas, 7 · Nave Entresuelo<br>28043 Madrid · Spain</p>
                 <p><a href="mailto:ceta@ceta.aero">ceta@ceta.aero</a></p>
                 <p>Tel: +34 911 400 181 · Fax: +34 911 400 182</p>
             </div>
@@ -479,10 +481,7 @@
                         </svg>
                     </a>
                 </div>
-                <ul class="legal-links">
-                    <li><a href="#">GENERAL TERMS OF PURCHASE</a></li>
-                    <li><a href="#">QUALITY POLICY</a></li>
-                </ul>
+                <ul class="legal-links"></ul>
             </div>
         </div>
 
@@ -492,10 +491,8 @@
     </footer>
 
     <script>
-        // Footer year
         document.getElementById('year').textContent = new Date().getFullYear();
 
-        // Mobile menu
         const toggle = document.querySelector('.menu-toggle');
         const menu = document.getElementById('mainMenu');
 

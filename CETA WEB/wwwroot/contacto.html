@@ -1,9 +1,10 @@
 ﻿<!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Contacto | CETA</title>
+    <title>Contact | CETA</title>
+
     <style>
         :root {
             --brand: #002856;
@@ -42,7 +43,7 @@
             position: relative;
         }
 
-            /* Fondo cockpit unificado */
+            /* Unified cockpit background */
             body::before {
                 content: "";
                 position: fixed;
@@ -63,7 +64,7 @@
             margin: 0 auto
         }
 
-        /* ============ HEADER (DESKTOP + MÓVIL) ============ */
+        /* =================== HEADER (UNIFIED + MOBILE HAMBURGER) =================== */
         .site-header {
             padding: 18px 30px 8px
         }
@@ -85,7 +86,6 @@
             background: rgba(255,255,255,.9);
         }
 
-        /* Botón hamburguesa (solo móvil) */
         .menu-toggle {
             display: none;
             margin-left: auto;
@@ -125,7 +125,7 @@
                     color: var(--accent)
                 }
 
-        /* ============ HERO ============ */
+        /* =================== HERO =================== */
         .hero {
             min-height: 28vh;
             display: grid;
@@ -144,6 +144,20 @@
                 filter: drop-shadow(0 6px 18px rgba(0,0,0,.25));
             }
 
+        .hero-panel {
+            width: min(760px,92vw);
+            margin: 12px auto 0;
+            padding: 14px 16px;
+            border: 1px solid rgba(255,255,255,.18);
+            border-radius: 10px;
+            background: rgba(0,0,0,.22);
+            backdrop-filter: blur(2px);
+            color: rgba(255,255,255,.95);
+            text-align: center;
+            font-size: var(--fs-h2);
+            letter-spacing: .6px;
+        }
+
         .separator {
             width: min(var(--max),92vw);
             margin: 14px auto 18px;
@@ -151,7 +165,7 @@
             border-top: 2px dashed rgba(255,255,255,.35);
         }
 
-        /* ============ CONTACT FORM ============ */
+        /* =================== CONTACT FORM =================== */
         .section {
             padding: 10px 0 54px
         }
@@ -260,7 +274,7 @@
             color: rgba(255,255,255,.82);
         }
 
-        /* ============ FOOTER (unificado) ============ */
+        /* =================== FOOTER (UNIFIED) =================== */
         .site-footer {
             background: linear-gradient(180deg, rgba(0,20,50,.35), rgba(0,20,40,.6));
             border-top: 1px solid rgba(255,255,255,.18);
@@ -308,6 +322,7 @@
             align-items: stretch;
             justify-content: center;
             margin-top: 8px;
+            flex-wrap: wrap;
         }
 
             .newsletter-form input {
@@ -320,6 +335,10 @@
                 color: #fff;
                 outline: none;
             }
+
+                .newsletter-form input::placeholder {
+                    color: rgba(255,255,255,.75)
+                }
 
             .newsletter-form button {
                 height: 44px;
@@ -374,7 +393,7 @@
             font-size: 13px;
         }
 
-        /* ============ Responsive ============ */
+        /* =================== RESPONSIVE =================== */
         @media (max-width:1100px) {
             .footer-grid {
                 grid-template-columns: 1fr
@@ -389,7 +408,6 @@
             }
         }
 
-        /* ===== Header móvil: logo centrado arriba + hamburguesa + desplegable ===== */
         @media (max-width:720px) {
             .site-header {
                 padding-inline: 16px
@@ -404,7 +422,7 @@
 
             .logo-link {
                 grid-column: 2;
-                justify-self: center;
+                justify-self: center
             }
 
             .header-separator {
@@ -420,7 +438,7 @@
 
             .main-nav {
                 grid-column: 1 / -1;
-                width: 100%;
+                width: 100%
             }
 
                 .main-nav .menu {
@@ -464,115 +482,115 @@
 </head>
 
 <body>
-    <!-- ============ HEADER ============ -->
+    <!-- HEADER -->
     <header class="site-header wrap">
         <div class="header-inner">
-            <a href="index.html" class="logo-link" aria-label="Inicio">
+            <a href="index.html" class="logo-link" aria-label="Home">
                 <img src="IMAGENES/LOGO_BLANCO.png" alt="CETA" class="logo" />
             </a>
 
             <div class="header-separator" aria-hidden="true"></div>
 
-            <!-- Botón hamburguesa (solo móvil) -->
-            <button class="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mainMenu">
+            <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mainMenu">
                 <span class="bar" aria-hidden="true"></span>
                 <span class="bar" aria-hidden="true"></span>
                 <span class="bar" aria-hidden="true"></span>
             </button>
 
-            <nav class="main-nav" aria-label="Menú principal">
+            <!-- MENU (EN, correct set) -->
+            <nav class="main-nav" aria-label="Primary menu">
                 <ul class="menu" id="mainMenu">
-                    <li><a href="empresa.html">EMPRESA</a></li>
-                    <li><a href="ingenieria-aeronautica.html">INGENIERÍA AERONÁUTICA</a></li>
-                    <li><a href="sistemas_no_tripulados.html">SISTEMAS NO TRIPULADOS</a></li>
-                    <li><a href="contacto.html">CONTACTO</a></li>
-                    <li><a href="noticias.html">NOTICIAS</a></li>
+                    <li><a href="empresa.html">COMPANY</a></li>
+                    <li><a href="ingenieria-aeronautica.html">AEROSPACE ENGINEERING SERVICES</a></li>
+                    <li><a href="contacto.html">CONTACT</a></li>
+                    <li><a href="noticias.html">NEWS</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- ============ HERO ============ -->
+    <!-- HERO -->
     <section class="hero wrap">
         <div class="container">
-            <h1>CONTACTO</h1>
+            <h1>CONTACT</h1>
+            <div class="hero-panel">Send us a message and we will get back to you as soon as possible.</div>
         </div>
     </section>
 
     <hr class="separator" />
 
-    <!-- ============ FORMULARIO ============ -->
+    <!-- FORM -->
     <section class="section wrap">
         <div class="contact-wrap">
             <div class="contact-card">
-                <form action="#" method="post" onsubmit="event.preventDefault(); alert('Mensaje enviado.');">
+                <form action="#" method="post" onsubmit="event.preventDefault(); alert('Message sent.');">
                     <div class="form-grid">
 
                         <div class="two-col">
                             <div class="field">
-                                <label for="nombre">Nombre</label>
-                                <input id="nombre" name="nombre" type="text" placeholder="Tu nombre" required />
+                                <label for="name">Name</label>
+                                <input id="name" name="name" type="text" placeholder="Your name" required />
                             </div>
                             <div class="field">
                                 <label for="email">Email</label>
-                                <input id="email" name="email" type="email" placeholder="tuemail@dominio.com" required />
+                                <input id="email" name="email" type="email" placeholder="you@domain.com" required />
                             </div>
                         </div>
 
                         <div class="two-col">
                             <div class="field">
-                                <label for="telefono">Teléfono</label>
-                                <input id="telefono" name="telefono" type="tel" placeholder="+34 ..." />
+                                <label for="phone">Phone</label>
+                                <input id="phone" name="phone" type="tel" placeholder="+34 ..." />
                             </div>
                             <div class="field">
-                                <label for="empresa">Empresa</label>
-                                <input id="empresa" name="empresa" type="text" placeholder="Nombre de empresa" />
+                                <label for="company">Company</label>
+                                <input id="company" name="company" type="text" placeholder="Company name" />
                             </div>
                         </div>
 
                         <div class="field">
-                            <label for="asunto">Asunto</label>
-                            <input id="asunto" name="asunto" type="text" placeholder="Escribe el asunto" required />
+                            <label for="subject">Subject</label>
+                            <input id="subject" name="subject" type="text" placeholder="Write the subject" required />
                         </div>
 
                         <div class="field">
-                            <label for="mensaje">Mensaje</label>
-                            <textarea id="mensaje" name="mensaje" placeholder="Cuéntanos en qué podemos ayudarte" required></textarea>
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" placeholder="Tell us how we can help" required></textarea>
                         </div>
 
                         <div class="actions">
-                            <button class="btn" type="submit">ENVIAR</button>
+                            <button class="btn" type="submit">SEND</button>
                         </div>
 
                     </div>
                 </form>
 
-                <p class="note">Responderemos lo antes posible.</p>
+                <p class="note">We will reply as soon as possible.</p>
             </div>
         </div>
     </section>
 
-    <!-- ============ FOOTER ============ -->
+    <!-- FOOTER -->
     <footer class="site-footer wrap">
         <div class="footer-grid">
             <div class="footer-col">
                 <h4>CETA S.A.</h4>
                 <p>Compañía Española de Técnica Aeronáutica S.A.</p>
-                <p>C/ Cañas, 7 · Nave Entresuelo<br>28043 Madrid · España</p>
+                <p>C/ Cañas, 7 · Nave Entresuelo<br>28043 Madrid · Spain</p>
                 <p><a href="mailto:ceta@ceta.aero">ceta@ceta.aero</a></p>
                 <p>Tel: +34 911 400 181 · Fax: +34 911 400 182</p>
             </div>
 
             <div class="footer-col footer-col--center">
-                <h4>Correo electrónico</h4>
-                <form class="newsletter-form" action="#" method="post" onsubmit="event.preventDefault(); alert('¡Gracias!');">
-                    <input id="newsletter-email" name="email" type="email" placeholder="Tu e-mail" required />
-                    <button type="submit">ENVIAR</button>
+                <h4>Email</h4>
+                <form class="newsletter-form" action="#" method="post" onsubmit="event.preventDefault(); alert('Thank you.'); this.reset();">
+                    <input id="newsletter-email" name="email" type="email" placeholder="Your email" required />
+                    <button type="submit">SEND</button>
                 </form>
             </div>
 
             <div class="footer-col footer-col--right">
-                <h4>Conecta</h4>
+                <h4>Connect</h4>
                 <div class="social-row">
                     <a class="social-link" href="#" aria-label="LinkedIn" title="LinkedIn">
                         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -583,19 +601,21 @@
                     </a>
                 </div>
                 <ul class="legal-links">
-                    <li><a href="#">CONDICIONES GENERALES DE COMPRAS</a></li>
-                    <li><a href="#">POLÍTICA DE CALIDAD</a></li>
+                    
                 </ul>
             </div>
         </div>
 
-        <div class="footer-bottom">© <span id="year"></span> CETA · Todos los derechos reservados</div>
+        <div class="footer-bottom">
+            © <span id="year"></span> CETA · All rights reserved
+        </div>
     </footer>
 
     <script>
+        // Footer year
         document.getElementById('year').textContent = new Date().getFullYear();
 
-        // ===== Menú móvil (hamburguesa) =====
+        // Mobile menu
         const toggle = document.querySelector('.menu-toggle');
         const menu = document.getElementById('mainMenu');
 
@@ -605,18 +625,15 @@
         }
 
         toggle?.addEventListener('click', () => {
-            const isOpen = menu.classList.contains('is-open');
-            setMenu(!isOpen);
+            setMenu(!menu.classList.contains('is-open'));
         });
 
-        // Cierra menú al hacer click en un link (móvil)
         menu?.addEventListener('click', (e) => {
             const a = e.target.closest('a');
             if (!a) return;
             setMenu(false);
         });
 
-        // Si se vuelve a desktop, resetea estado
         window.addEventListener('resize', () => {
             if (window.innerWidth > 720) setMenu(false);
         });
