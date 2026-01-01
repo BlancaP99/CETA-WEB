@@ -25,16 +25,16 @@
         }
 
         *, *::before, *::after {
-            box-sizing: border-box;
+            box-sizing: border-box
         }
 
         html, body {
-            height: 100%;
+            height: 100%
         }
 
         body {
             margin: 0;
-            font-family: "Eurostile", Arial, sans-serif;
+            font-family: "Eurostile",Arial,sans-serif;
             font-size: var(--fs-body);
             line-height: 1.55;
             background: var(--brand);
@@ -43,7 +43,6 @@
             position: relative;
         }
 
-            /* Unified cockpit background */
             body::before {
                 content: "";
                 position: fixed;
@@ -56,17 +55,17 @@
 
         .wrap {
             position: relative;
-            z-index: 2;
+            z-index: 2
         }
 
         .container {
             width: min(var(--max),92vw);
-            margin: 0 auto;
+            margin: 0 auto
         }
 
         /* ============ HEADER ============ */
         .site-header {
-            padding: 18px 30px 8px;
+            padding: 18px 30px 8px
         }
 
         .header-inner {
@@ -77,7 +76,7 @@
 
         .logo {
             height: 50px;
-            display: block;
+            display: block
         }
 
         .header-separator {
@@ -86,7 +85,6 @@
             background: rgba(255,255,255,.9);
         }
 
-        /* Hamburger button (hidden on desktop) */
         .menu-toggle {
             display: none;
             margin-left: auto;
@@ -123,7 +121,7 @@
             }
 
                 .main-nav .menu a:hover {
-                    color: var(--accent);
+                    color: var(--accent)
                 }
 
         /* ============ INTERNAL HERO ============ */
@@ -153,7 +151,6 @@
                 opacity: .95;
             }
 
-        /* INTRO SVG under subtitle */
         .intro-media {
             width: min(1100px,92vw);
             margin: 18px auto 0;
@@ -162,7 +159,7 @@
             .intro-media img {
                 width: 100%;
                 height: auto;
-                display: block;
+                display: block
             }
 
         .separator {
@@ -172,9 +169,9 @@
             border-top: 2px dashed rgba(255,255,255,.35);
         }
 
-        /* ============ TEXT (no extra background) ============ */
+        /* ============ INTRO TEXT ============ */
         .empresa-section {
-            padding: 10px 0 10px;
+            padding: 10px 0 10px
         }
 
         .empresa-text {
@@ -192,36 +189,193 @@
             }
 
             .empresa-text .lead {
-                font-size: 19px;
+                font-size: 19px
             }
 
-            .empresa-text .title-mini {
-                margin: 18px 0 10px;
-                text-transform: uppercase;
-                letter-spacing: 1.2px;
-                font-weight: 800;
-                color: #eaf3ff;
-                font-size: 16px;
+        /* ============ KEY MILESTONES TITLE (BIGGER) ============ */
+        .km-title {
+            width: min(1100px,92vw);
+            margin: 10px auto 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 900;
+            color: #eaf3ff;
+            font-size: clamp(18px,2.4vw,28px);
+        }
+
+        /* ============ FULL-WIDTH TIMELINE (STACKED) ============ */
+        .timeline-wrap {
+            width: 100%;
+            margin: 0;
+            padding: 0 0 22px;
+        }
+
+        .timeline {
+            width: min(1200px,92vw);
+            margin: 0 auto;
+            display: grid;
+            gap: 16px;
+        }
+
+        .t-item {
+            width: 100%;
+            border: 1px solid rgba(255,255,255,.16);
+            background: rgba(0,0,0,.28);
+            backdrop-filter: blur(2px);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .t-row {
+            display: grid;
+            grid-template-columns: 180px 1fr 520px;
+            align-items: stretch;
+            gap: 0;
+        }
+
+        .t-item:nth-child(even) .t-row {
+            grid-template-columns: 520px 1fr 180px;
+        }
+
+        .t-year {
+            display: grid;
+            place-items: center;
+            padding: 18px 12px;
+            background: rgba(255,255,255,.06);
+            border-right: 1px solid rgba(255,255,255,.14);
+        }
+
+        .t-item:nth-child(even) .t-year {
+            border-right: 0;
+            border-left: 1px solid rgba(255,255,255,.14);
+        }
+
+        .t-year .big {
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #eaf3ff;
+            font-size: clamp(22px,3.2vw,44px);
+            line-height: 1;
+        }
+
+            /* force lowercase small “s” when needed */
+            .t-year .big .s-lower {
+                text-transform: none;
+                font-size: .55em;
+                font-weight: 900;
+                letter-spacing: 0;
+                vertical-align: baseline;
             }
 
-            .empresa-text ul {
-                margin: 8px 0 14px 20px;
-                padding: 0;
+        .t-body {
+            padding: 18px 18px 16px;
+            display: grid;
+            gap: 10px;
+            align-content: start;
+        }
+
+        .t-h {
+            margin: 0;
+            font-size: 16px;
+            font-weight: 900;
+            letter-spacing: .8px;
+            text-transform: uppercase;
+            line-height: 1.25;
+            color: #ffffff;
+        }
+
+        .t-p {
+            margin: 0;
+            color: rgba(255,255,255,.92);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .t-media {
+            padding: 14px;
+            background: rgba(0,0,0,.16);
+            border-left: 1px solid rgba(255,255,255,.14);
+            display: grid;
+            align-content: start;
+        }
+
+        .t-item:nth-child(even) .t-media {
+            border-left: 0;
+            border-right: 1px solid rgba(255,255,255,.14);
+        }
+
+        /* ======================================================
+           SAME SIZE IMAGES ALWAYS (ALL SECTIONS, ALL COUNTS)
+           Fix: enforce a consistent tile height/size everywhere
+           ====================================================== */
+        .t-photos {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        /* IMPORTANT: keep SAME height across every milestone */
+        :root {
+            --tile-h: 200px; /* unified size (increase/decrease here) */
+        }
+
+        .t-photos img {
+            width: 100%;
+            height: var(--tile-h);
+            object-fit: contain;
+            display: block;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,.14);
+            background: rgba(0,0,0,.22);
+            padding: 8px;
+        }
+
+        /* when there are many images, use 3 columns but SAME height */
+        .t-photos.many {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        /* ============ PRESENT & FUTURE ============ */
+        .pf-title {
+            width: min(1100px,92vw);
+            margin: 22px auto 10px;
+            text-transform: uppercase;
+            letter-spacing: 1.8px;
+            font-weight: 900;
+            color: #eaf3ff;
+            font-size: clamp(17px,2.1vw,24px);
+        }
+
+        .pf-card {
+            width: min(1100px,92vw);
+            margin: 0 auto 8px;
+            border: 1px solid rgba(255,255,255,.16);
+            background: rgba(0,0,0,.22);
+            backdrop-filter: blur(2px);
+            border-radius: 12px;
+            padding: 16px 16px 14px;
+        }
+
+            .pf-card p {
+                margin: 0 0 12px;
+                color: rgba(255,255,255,.92);
+                font-size: 15px;
+                line-height: 1.65;
+            }
+
+            .pf-card ul {
+                margin: 0;
+                padding-left: 18px;
                 display: grid;
                 gap: 8px;
-            }
-
-            .empresa-text li {
                 color: rgba(255,255,255,.92);
+                font-size: 15px;
             }
 
-            .empresa-text b {
-                color: #fff;
-            }
-
-        /* ============ GALLERY (no title; spacing between images) ============ */
+        /* ============ REMAINING GALLERY ============ */
         .gallery-section {
-            padding: 10px 0 60px;
+            padding: 12px 0 60px
         }
 
         .gallery {
@@ -233,18 +387,21 @@
         }
 
         .g-item {
-            border: 0;
             background: transparent;
-            border-radius: 0;
             padding: 0;
-            overflow: hidden;
+            overflow: hidden
         }
 
+            /* keep same tile sizing as timeline for harmony */
             .g-item img {
                 width: 100%;
-                height: auto;
+                height: var(--tile-h);
+                object-fit: contain;
                 display: block;
-                border-radius: 0;
+                border-radius: 10px;
+                border: 1px solid rgba(255,255,255,.14);
+                background: rgba(0,0,0,.22);
+                padding: 8px;
             }
 
         /* ============ FOOTER ============ */
@@ -275,20 +432,20 @@
 
         .footer-col p {
             margin: 6px 0;
-            color: var(--ink-soft);
+            color: var(--ink-soft)
         }
 
         .footer-col a {
             color: var(--link);
-            text-decoration: none;
+            text-decoration: none
         }
 
             .footer-col a:hover {
-                text-decoration: underline;
+                text-decoration: underline
             }
 
         .footer-col--center {
-            text-align: center;
+            text-align: center
         }
 
         .newsletter-form {
@@ -311,7 +468,7 @@
             }
 
                 .newsletter-form input::placeholder {
-                    color: rgba(255,255,255,.75);
+                    color: rgba(255,255,255,.75)
                 }
 
             .newsletter-form button {
@@ -327,11 +484,11 @@
             }
 
                 .newsletter-form button:hover {
-                    background: #0a68b0;
+                    background: #0a68b0
                 }
 
         .footer-col--right {
-            text-align: right;
+            text-align: right
         }
 
         .social-row {
@@ -356,7 +513,7 @@
             }
 
                 .legal-links a:hover {
-                    text-decoration: underline;
+                    text-decoration: underline
                 }
 
         .footer-bottom {
@@ -370,34 +527,84 @@
         /* ============ RESPONSIVE ============ */
         @media (max-width:1100px) {
             .footer-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr
             }
 
             .footer-col--right {
-                text-align: center;
+                text-align: center
             }
 
             .social-row {
-                justify-content: center;
+                justify-content: center
             }
 
             .gallery {
-                grid-template-columns: repeat(3,1fr);
+                grid-template-columns: repeat(3,1fr)
             }
+        }
+
+        @media (max-width:1020px) {
+            .t-row {
+                grid-template-columns: 150px 1fr 420px
+            }
+
+            .t-item:nth-child(even) .t-row {
+                grid-template-columns: 420px 1fr 150px
+            }
+        }
+
+        @media (max-width:860px) {
+            .t-row {
+                grid-template-columns: 1fr
+            }
+
+            .t-item:nth-child(even) .t-row {
+                grid-template-columns: 1fr
+            }
+
+            .t-year {
+                border-right: 0;
+                border-left: 0;
+                border-bottom: 1px solid rgba(255,255,255,.14);
+                padding: 14px 12px;
+            }
+
+            .t-item:nth-child(even) .t-year {
+                border-left: 0;
+                border-right: 0;
+            }
+
+            .t-media {
+                border-left: 0;
+                border-right: 0;
+                border-top: 1px solid rgba(255,255,255,.14);
+            }
+
+            .t-item:nth-child(even) .t-media {
+                border-right: 0;
+                border-left: 0;
+            }
+
+            .t-photos {
+                grid-template-columns: repeat(2,1fr)
+            }
+
+                .t-photos.many {
+                    grid-template-columns: repeat(2,1fr)
+                }
         }
 
         @media (max-width:800px) {
             .gallery {
-                grid-template-columns: repeat(2,1fr);
+                grid-template-columns: repeat(2,1fr)
             }
         }
 
         @media (max-width:720px) {
             .site-header {
-                padding-inline: 16px;
+                padding-inline: 16px
             }
 
-            /* Mobile header: centered logo + hamburger */
             .header-inner {
                 display: grid;
                 grid-template-columns: 1fr auto 1fr;
@@ -407,11 +614,11 @@
 
             .logo-link {
                 grid-column: 2;
-                justify-self: center;
+                justify-self: center
             }
 
             .header-separator {
-                display: none;
+                display: none
             }
 
             .menu-toggle {
@@ -423,7 +630,7 @@
 
             .main-nav {
                 grid-column: 1 / -1;
-                width: 100%;
+                width: 100%
             }
 
                 .main-nav .menu {
@@ -439,7 +646,7 @@
                 }
 
                     .main-nav .menu.is-open {
-                        display: flex;
+                        display: flex
                     }
 
                     .main-nav .menu a {
@@ -456,11 +663,11 @@
                         }
 
             .empresa-text p {
-                font-size: 16px;
+                font-size: 16px
             }
 
             .gallery {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr
             }
         }
     </style>
@@ -476,7 +683,6 @@
 
             <div class="header-separator" aria-hidden="true"></div>
 
-            <!-- Hamburger button (mobile only) -->
             <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mainMenu">
                 <span class="bar" aria-hidden="true"></span>
                 <span class="bar" aria-hidden="true"></span>
@@ -485,7 +691,7 @@
 
             <nav class="main-nav" aria-label="Primary menu">
                 <ul class="menu" id="mainMenu">
-                    <li><a href="empresa.html">COMPANY</a></li>
+                    <li><a href="empresa.html">WHO WE ARE</a></li>
                     <li><a href="ingenieria-aeronautica.html">AEROSPACE ENGINEERING SERVICES</a></li>
                     <li><a href="contacto.html">CONTACT</a></li>
                     <li><a href="noticias.html">NEWS</a></li>
@@ -500,7 +706,6 @@
             <h1>COMPANY</h1>
             <p>COMPAÑÍA ESPAÑOLA DE TÉCNICA AERONÁUTICA S.A.</p>
 
-            <!-- INTRO.SVG large under subtitle -->
             <div class="intro-media">
                 <img src="EMPRESA_IMG/INTRO.svg" alt="CETA Introduction" />
             </div>
@@ -509,120 +714,213 @@
 
     <hr class="separator" />
 
-    <!-- TEXT -->
+    <!-- INTRO TEXT -->
     <section class="empresa-section wrap">
         <div class="empresa-text">
             <p class="lead">
-                The company’s corporate purpose was focused on “...everything related to, or derived from, aeronautical engineering.”
-                Headquartered on Doctor Esquerdo Street in Madrid, its operational base was located in Córdoba, at the San Jerónimo airfield
-                (adjacent to the archaeological site of Medina Azahara).
+                Founded in 1961 as Compañía Española de Técnica Aeronáutica S.A., CETA was created to pioneer in everything related to or derived from aeronautical technology. From its headquarters in Madrid, the company operated a fleet of 16 aircraft based at San Jerónimo airfield in Córdoba, establishing itself early as a key player in Spanish aviation.
             </p>
 
             <p>
-                Over <b>60 years</b> of continuous evolution, CETA has achieved key milestones in General Aviation in Spain and progressively expanded
+                Over <b>60 years</b> of continuous innovation, CETA has achieved key milestones in Spanish Aviation and progressively expanded
                 its capabilities to provide technical support, operational availability, and fleet safety:
             </p>
+        </div>
+    </section>
 
-            <div class="title-mini">Key Milestones (1963–1990s)</div>
+    <!-- KEY MILESTONES -->
+    <section class="timeline-wrap wrap" aria-label="Key milestones timeline">
+        <div class="km-title">KEY MILESTONES</div>
+
+        <div class="timeline">
+            <!-- 1 -->
+            <article class="t-item">
+                <div class="t-row">
+                    <div class="t-year"><div class="big">1963</div></div>
+
+                    <div class="t-body">
+                        <h3 class="t-h">Aeronautical Maintenance Centre Certificate No. 6</h3>
+                        <p class="t-p">
+                            In February 1963, the General Directorate of Civil Aviation issued Aeronautical Maintenance Centre Certificate No. 6 to CETA, authorising the overhaul of airframes, engines, propellers, accessories, and instruments. These capabilities supported aircraft and systems from leading manufacturers such as Piper, Cessna, Lycoming, Rolls-Royce, Hartzell, among others.
+                        </p>
+                    </div>
+
+                    <div class="t-media">
+                        <div class="t-photos" aria-label="Milestone photos 1-4">
+                            <img src="EMPRESA_IMG/1.png" alt="Company 1" />
+                            <img src="EMPRESA_IMG/2.png" alt="Company 2" />
+                            <img src="EMPRESA_IMG/3.png" alt="Company 3" />
+                            <img src="EMPRESA_IMG/4.png" alt="Company 4" />
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 2 -->
+            <article class="t-item">
+                <div class="t-row">
+                    <div class="t-media">
+                        <div class="t-photos" aria-label="Milestone photos 5-8">
+                            <img src="EMPRESA_IMG/5.png" alt="Company 5" />
+                            <img src="EMPRESA_IMG/6.png" alt="Company 6" />
+                            <img src="EMPRESA_IMG/7.png" alt="Company 7" />
+                            <img src="EMPRESA_IMG/8.png" alt="Company 8" />
+                        </div>
+                    </div>
+
+                    <div class="t-body">
+                        <h3 class="t-h">Spain’s first private avionics and instruments workshop</h3>
+                        <p class="t-p">
+                            Providing maintenance and support for avionics and instrumentation systems (King Radio, Narco, etc.).
+                        </p>
+                    </div>
+
+                    <div class="t-year">
+                        <div class="big">1960<span class="s-lower">s</span></div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 3 -->
+            <article class="t-item">
+                <div class="t-row">
+                    <div class="t-year">
+                        <div class="big">1970<span class="s-lower">s</span></div>
+                    </div>
+
+                    <div class="t-body">
+                        <h3 class="t-h">Aerial operations leadership</h3>
+                        <p class="t-p">
+                            CETA establishes itself as leading company in aerial pest control, aerial fire prevention and fire suppression.
+                        </p>
+                    </div>
+
+                    <div class="t-media">
+                        <div class="t-photos" aria-label="Milestone photos 9,10">
+                            <img src="EMPRESA_IMG/9.png" alt="Company 9" />
+                            <img src="EMPRESA_IMG/10.png" alt="Company 10" />
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 4 (MERGED 80-90s) -->
+            <article class="t-item">
+                <div class="t-row">
+                    <div class="t-media">
+                        <div class="t-photos many" aria-label="Milestone photos 11,14,13,16,15,17,18,19,20,21,22,23,24,25">
+                            <img src="EMPRESA_IMG/11.png" alt="Company 11" />
+                            <img src="EMPRESA_IMG/14.png" alt="Company 14" />
+                            <img src="EMPRESA_IMG/13.png" alt="Company 13" />
+                            <img src="EMPRESA_IMG/16.png" alt="Company 16" />
+                            <img src="EMPRESA_IMG/15.png" alt="Company 15" />
+                            <img src="EMPRESA_IMG/17.png" alt="Company 17" />
+                            <img src="EMPRESA_IMG/18.png" alt="Company 18" />
+                            <img src="EMPRESA_IMG/19.png" alt="Company 19" />
+                            <img src="EMPRESA_IMG/20.png" alt="Company 20" />
+                            <img src="EMPRESA_IMG/21.png" alt="Company 21" />
+                            <img src="EMPRESA_IMG/22.png" alt="Company 22" />
+                            <img src="EMPRESA_IMG/23.png" alt="Company 23" />
+                            <img src="EMPRESA_IMG/24.png" alt="Company 24" />
+                            <img src="EMPRESA_IMG/25.png" alt="Company 25" />
+                        </div>
+                    </div>
+
+                    <div class="t-body">
+                        <h3 class="t-h">Photogrammetry, Air Taxi, and Aviation GPS</h3>
+                        <p class="t-p">
+                            CETA installs Spain’s first private aerial photogrammetry equipment, modifying aircraft for photogrammetric and multiscale mapping missions, including plotting and restitution systems for accurate reconstruction of photographic data at physical scale.
+                        </p>
+                        <p class="t-p" style="margin-top:8px;">
+                            As one of Spain’s earliest air-taxi operators, CETA introduced the first business jets (Learjet 25 and 35) by operating a dedicated passenger-transport fleet and service point in Barajas Terminal 2.
+                        </p>
+                        <p class="t-p" style="margin-top:8px;">
+                            Another major milestone was the supply of aircraft to the Spanish Armed Forces, as well as the introduction of aviation GPS solutions, both panel-mounted and portable.
+                        </p>
+                    </div>
+
+                    <div class="t-year">
+                        <div class="big">80–90<span class="s-lower">s</span></div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 5 -->
+            <article class="t-item">
+                <div class="t-row">
+                    <div class="t-year"><div class="big">2000<span class="s-lower">s</span></div></div>
+
+                    <div class="t-body">
+                        <h3 class="t-h">High-performance technical structure</h3>
+                        <p class="t-p">
+                            In the early 2000s, CETA consolidated a high-performance technical structure by bringing together leading industry professionals, enabling the delivery of high-complexity programmes.
+                        </p>
+                    </div>
+
+                    <div class="t-media">
+                        <div class="t-photos many" aria-label="Milestone photos 27-32,36-40,42">
+                            <img src="EMPRESA_IMG/27.png" alt="Company 27" />
+                            <img src="EMPRESA_IMG/28.png" alt="Company 28" />
+                            <img src="EMPRESA_IMG/29.png" alt="Company 29" />
+                            <img src="EMPRESA_IMG/30.png" alt="Company 30" />
+                            <img src="EMPRESA_IMG/31.png" alt="Company 31" />
+                            <img src="EMPRESA_IMG/32.png" alt="Company 32" />
+                            <img src="EMPRESA_IMG/36.png" alt="Company 36" />
+                            <img src="EMPRESA_IMG/37.png" alt="Company 37" />
+                            <img src="EMPRESA_IMG/38.png" alt="Company 38" />
+                            <img src="EMPRESA_IMG/39.png" alt="Company 39" />
+                            <img src="EMPRESA_IMG/40.png" alt="Company 40" />
+                            <img src="EMPRESA_IMG/42.png" alt="Company 42" />
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 6 -->
+            <article class="t-item">
+                <div class="t-row">
+                    <div class="t-media">
+                        <div class="t-photos" aria-label="Milestone photos 41,43,44,45">
+                            <img src="EMPRESA_IMG/41.png" alt="Company 41" />
+                            <img src="EMPRESA_IMG/43.png" alt="Company 43" />
+                            <img src="EMPRESA_IMG/44.png" alt="Company 44" />
+                            <img src="EMPRESA_IMG/45.png" alt="Company 45" />
+                        </div>
+                    </div>
+
+                    <div class="t-body">
+                        <h3 class="t-h">First Spanish tactical RPAS (SUAS) deployment</h3>
+                        <p class="t-p">
+                            CETA was the first Spanish company to introduce tactical RPAS (SUAS), deployed in 2007 to an operational theatre.
+                        </p>
+                    </div>
+
+                    <div class="t-year"><div class="big">2007</div></div>
+                </div>
+            </article>
+        </div>
+
+        <!-- PRESENT & FUTURE -->
+        <div class="pf-title">PRESENT AND FUTURE</div>
+        <div class="pf-card">
+            <p>
+                Today, CETA is an EASA-approved PART 21J Design Organisation (DOA 21J.635), focused on aeronautical consultancy and engineering services delivering solutions for:
+            </p>
             <ul>
-                <li>
-                    <b>Spain’s first major General Aviation maintenance centre:</b> In February 1963, the Directorate General of Civil Aviation granted CETA
-                    <b>Aeronautical Maintenance Centre Certificate No. 6</b>, with capability to overhaul airframes, powerplants, propellers, accessories and instruments,
-                    supporting brands such as Piper, Cessna, Lycoming, Rolls-Royce, Hartzell, among others.
-                </li>
-                <li>
-                    <b>Spain’s first private avionics and instruments workshop:</b> providing maintenance and support for avionics and instrumentation systems
-                    (King Radio, Narco, etc.).
-                </li>
-                <li>
-                    CETA was one of the Spanish <b>pioneering</b> companies in aerial pest control and in aerial fire prevention and suppression operations.
-                </li>
-                <li>
-                    <b>Spain’s first private aerial photogrammetry operator:</b> aircraft modified for aerial photogrammetry and mapping at multiple scales,
-                    including <b>plotting/restitution systems</b> for physical scale reconstruction of photogram positions.
-                </li>
-            </ul>
-
-            <div class="title-mini">Key Milestones (Air Taxi, Advanced Capabilities &amp; RPAS)</div>
-            <p>
-                As one of Spain’s earliest air-taxi operators, CETA introduced business jets (Learjet 25 and 35), operating a dedicated passenger-transport fleet
-                and an operational service point in Barajas Terminal 2.
-            </p>
-            <p>
-                Another major milestone was the supply of aircraft to the Spanish Armed Forces, as well as the introduction of aviation GPS solutions,
-                both panel-mounted and portable.
-            </p>
-            <p>
-                In the early 2000s, CETA consolidated a high-performance technical structure by bringing together leading industry professionals,
-                enabling the delivery of high-complexity programmes.
-            </p>
-            <p>
-                CETA was the first Spanish company to introduce tactical RPAS (SUAS), deployed in 2007 to an operational theatre.
-            </p>
-
-            <div class="title-mini">Present and Future</div>
-            <p>
-                Today, CETA is an EASA-approved PART 21J Design Organisation (DOA 21J.635), focused on consultancy and engineering services delivering solutions in:
-            </p>
-            <ul>
-                <li>Aeronautical Engineering</li>
-                <li>Aircraft Modernisation Design and Certification</li>
+                <li>Aeronautical Design</li>
+                <li>Aircraft Upgrade and Certification</li>
                 <li>Avionics Systems</li>
                 <li>Mission Systems</li>
                 <li>Unmanned Aerial Systems</li>
-                <li>Unmanned Ground Systems</li>
             </ul>
         </div>
     </section>
 
     <hr class="separator" />
 
-    <!-- GALLERY (no title; spacing between photos) -->
-    <section class="gallery-section wrap">
-        <div class="gallery" aria-label="Company image gallery">
-            <div class="g-item"><img src="EMPRESA_IMG/1.png" alt="Company 1" /></div>
-            <div class="g-item"><img src="EMPRESA_IMG/2.png" alt="Company 2" /></div>
-            <div class="g-item"><img src="EMPRESA_IMG/3.png" alt="Company 3" /></div>
-            <div class="g-item"><img src="EMPRESA_IMG/4.png" alt="Company 4" /></div>
-            <div class="g-item"><img src="EMPRESA_IMG/5.png" alt="Company 5" /></div>
-            <div class="g-item"><img src="EMPRESA_IMG/6.png" alt="Company 6" /></div>
-            <div class="g-item"><img src="EMPRESA_IMG/7.png" alt="Company 7" /></div>
-            <div class="g-item"><img src="EMPRESA_IMG/8.png" alt="Company 8" /></div>
-            <div class="g-item"><img src="EMPRESA_IMG/9.png" alt="Company 9" /></div>
-            <div class="g-item"><img src="EMPRESA_IMG/10.png" alt="Company 10" /></div>
-            <div class="g-item"><img src="EMPRESA_IMG/11.png" alt="Company 11" /></div>
-            <div class="g-item"><img src="EMPRESA_IMG/12.png" alt="Company 12" /></div>
-            <div class="g-item"><img src="EMPRESA_IMG/13.png" alt="Company 13" /></div>
-            <div class="g-item"><img src="EMPRESA_IMG/14.png" alt="Company 14" /></div>
-            <div class="g-item"><img src="EMPRESA_IMG/15.png" alt="Company 15" /></div>
-            <div class="g-item"><img src="EMPRESA_IMG/16.png" alt="Company 16" /></div>
-            <div class="g-item"><img src="EMPRESA_IMG/17.png" alt="Company 17" /></div>
-            <div class="g-item"><img src="EMPRESA_IMG/18.png" alt="Company 18" /></div>
-            <div class="g-item"><img src="EMPRESA_IMG/19.png" alt="Company 19" /></div>
-            <div class="g-item"><img src="EMPRESA_IMG/20.png" alt="Company 20" /></div>
-            <div class="g-item"><img src="EMPRESA_IMG/21.png" alt="Company 21" /></div>
-            <div class="g-item"><img src="EMPRESA_IMG/22.png" alt="Company 22" /></div>
-            <div class="g-item"><img src="EMPRESA_IMG/23.png" alt="Company 23" /></div>
-            <div class="g-item"><img src="EMPRESA_IMG/24.png" alt="Company 24" /></div>
-            <div class="g-item"><img src="EMPRESA_IMG/25.png" alt="Company 25" /></div>
-            <div class="g-item"><img src="EMPRESA_IMG/26.png" alt="Company 26" /></div>
-            <div class="g-item"><img src="EMPRESA_IMG/27.png" alt="Company 27" /></div>
-            <div class="g-item"><img src="EMPRESA_IMG/28.png" alt="Company 28" /></div>
-            <div class="g-item"><img src="EMPRESA_IMG/29.png" alt="Company 29" /></div>
-            <div class="g-item"><img src="EMPRESA_IMG/30.png" alt="Company 30" /></div>
-            <div class="g-item"><img src="EMPRESA_IMG/31.png" alt="Company 31" /></div>
-            <div class="g-item"><img src="EMPRESA_IMG/32.png" alt="Company 32" /></div>
-            <div class="g-item"><img src="EMPRESA_IMG/36.png" alt="Company 36" /></div>
-            <div class="g-item"><img src="EMPRESA_IMG/37.png" alt="Company 37" /></div>
-            <div class="g-item"><img src="EMPRESA_IMG/38.png" alt="Company 38" /></div>
-            <div class="g-item"><img src="EMPRESA_IMG/39.png" alt="Company 39" /></div>
-            <div class="g-item"><img src="EMPRESA_IMG/40.png" alt="Company 40" /></div>
-            <div class="g-item"><img src="EMPRESA_IMG/41.png" alt="Company 41" /></div>
-            <div class="g-item"><img src="EMPRESA_IMG/42.png" alt="Company 42" /></div>
-            <div class="g-item"><img src="EMPRESA_IMG/43.png" alt="Company 43" /></div>
-            <div class="g-item"><img src="EMPRESA_IMG/44.png" alt="Company 44" /></div>
-            <div class="g-item"><img src="EMPRESA_IMG/45.png" alt="Company 45" /></div>
-            <div class="g-item"><img src="EMPRESA_IMG/46.png" alt="Company 46" /></div>
+    <!-- REMAINING IMAGES -->
+    <section class="gallery-section wrap" aria-label="Additional company image gallery">
+        <div class="gallery">
             <div class="g-item"><img src="EMPRESA_IMG/47.png" alt="Company 47" /></div>
             <div class="g-item"><img src="EMPRESA_IMG/48.png" alt="Company 48" /></div>
             <div class="g-item"><img src="EMPRESA_IMG/49.png" alt="Company 49" /></div>
@@ -672,9 +970,10 @@
                         </svg>
                     </a>
                 </div>
-                <ul class="legal-links">
-                  
-                </ul>
+                <ul class="legal-links"></ul>
+                <a href="politica-de-calidad.html">QUALITY POLICY</a>
+                <a href="condiciones-generales-de-compra.html">GENERAL PURCHASING CONDITIONS</a>
+                <a href="politica-de-cookies.html">COOKIE POLICY</a>
             </div>
         </div>
 
@@ -685,7 +984,7 @@
         // Footer year
         document.getElementById('year').textContent = new Date().getFullYear();
 
-        // ===== Mobile menu (hamburger) =====
+        // Mobile menu
         const toggle = document.querySelector('.menu-toggle');
         const menu = document.getElementById('mainMenu');
 
@@ -699,14 +998,12 @@
             setMenu(!isOpen);
         });
 
-        // Close menu when clicking a link (mobile)
         menu?.addEventListener('click', (e) => {
             const a = e.target.closest('a');
             if (!a) return;
             setMenu(false);
         });
 
-        // If back to desktop, reset state
         window.addEventListener('resize', () => {
             if (window.innerWidth > 720) setMenu(false);
         });

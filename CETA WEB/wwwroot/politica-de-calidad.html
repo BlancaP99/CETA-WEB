@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Design Organization Certificates | CETA</title>
+    <title>Quality Policy | CETA</title>
 
     <style>
         :root {
@@ -15,6 +15,7 @@
             --max: 1200px;
             --fs-body: 18px;
             --fs-h1: clamp(28px,4.4vw,50px);
+            --fs-h2: clamp(16px,2.4vw,20px);
         }
 
         @font-face {
@@ -42,6 +43,7 @@
             position: relative;
         }
 
+            /* Unified cockpit background */
             body::before {
                 content: "";
                 position: fixed;
@@ -142,20 +144,6 @@
                 filter: drop-shadow(0 6px 18px rgba(0,0,0,.25));
             }
 
-        .hero-sub {
-            width: min(var(--max), 92vw);
-            margin: 14px auto 0;
-            padding: 14px 16px;
-            border: 1px solid rgba(255,255,255,.18);
-            background: rgba(0,0,0,.22);
-            backdrop-filter: blur(2px);
-            color: rgba(255,255,255,.92);
-            border-radius: 10px;
-            font-size: 16px;
-            line-height: 1.55;
-            letter-spacing: .2px;
-        }
-
         .separator {
             width: min(var(--max),92vw);
             margin: 18px auto 18px;
@@ -163,37 +151,48 @@
             border-top: 2px dashed rgba(255,255,255,.35);
         }
 
-        /* =================== CERTIFICATES =================== */
-        .certs-section {
-            padding: 10px 0 70px;
+        /* =================== CONTENT =================== */
+        .policy-section {
+            padding: 6px 0 64px;
         }
 
-        /* CHANGED: centered row and smaller cards */
-        .certs-row {
-            width: min(var(--max),92vw);
+        .policy-card {
+            width: min(980px,92vw);
             margin: 0 auto;
-            display: flex;
-            justify-content: center;
-            gap: 16px;
-            flex-wrap: wrap;
+            background: rgba(0,0,0,.28);
+            border: 1px solid rgba(255,255,255,.18);
+            border-radius: 12px;
+            padding: 22px 18px;
+            backdrop-filter: blur(2px);
         }
 
-        /* CHANGED: “half size” */
-        .cert {
-            width: min(520px, 44vw);
-            background: rgba(255,255,255,.06);
-            border: 1px solid rgba(255,255,255,.12);
-            border-radius: 0;
-            padding: 10px;
+        .policy-title {
+            margin: 0 0 14px;
+            text-transform: uppercase;
+            letter-spacing: 1.6px;
+            font-weight: 900;
+            color: #eaf3ff;
+            font-size: clamp(18px, 2.2vw, 26px);
+            text-align: left;
         }
 
-            .cert img {
-                width: 100%;
-                height: 340px;
-                object-fit: contain;
-                display: block;
-                background: rgba(0,0,0,.22);
-            }
+        .policy-card p {
+            margin: 0 0 14px;
+            color: rgba(255,255,255,.92);
+            font-size: 16px;
+            line-height: 1.7;
+            text-align: left;
+        }
+
+        .signature {
+            margin-top: 18px;
+            padding-top: 14px;
+            border-top: 1px solid rgba(255,255,255,.18);
+            font-weight: 800;
+            letter-spacing: .6px;
+            text-transform: uppercase;
+            color: #ffffff;
+        }
 
         /* =================== FOOTER =================== */
         .site-footer {
@@ -391,13 +390,12 @@
                             color: #fff;
                         }
 
-            /* CHANGED: full width on mobile, centered */
-            .cert {
-                width: min(520px, 92vw);
+            .policy-card {
+                padding: 18px 14px;
             }
 
-                .cert img {
-                    height: 520px;
+                .policy-card p {
+                    font-size: 15px;
                 }
         }
     </style>
@@ -433,21 +431,50 @@
     <!-- HERO -->
     <section class="hero wrap">
         <div class="container">
-            <h1>DESIGN ORGANIZATION CERTIFICATES</h1>
-        </div>
-
-        <div class="hero-sub">
-            COMPAÑÍA ESPAÑOLA DE TÉCNICA AERONÁUTICA has Quality Assurance Systems certified according to ISO9001 and EN9120.
+            <h1>QUALITY POLICY</h1>
         </div>
     </section>
 
     <hr class="separator" />
 
-    <!-- CERTIFICATES -->
-    <section class="certs-section wrap">
-        <div class="certs-row" aria-label="Certificates gallery">
-            <div class="cert"><img src="CERTIFICATES/ISO1.jpeg" alt="ISO Certificate 1" /></div>
-            <div class="cert"><img src="CERTIFICATES/ISO2.jpeg" alt="ISO Certificate 2" /></div>
+    <!-- CONTENT -->
+    <section class="policy-section wrap">
+        <div class="policy-card">
+            <h2 class="policy-title">Policy and Quality Objectives</h2>
+
+            <p>
+                Compañía Española de Técnica Aeronáutica, S.A. (CETA), recognizing the importance of boosting its operations in the marketing and promotion of defense and security aeronautical brands, products, and services, as well as the management of the support service for the life cycle of aeronautical equipment, is committed to ensuring maximum quality in all its activities. This commitment is reflected in the establishment of this quality policy, as well as the company's quality objectives.
+            </p>
+
+            <p>
+                CETA's Quality Policy is defined as our unwavering commitment to excellence and integrity in all our relationships with customers and suppliers.
+            </p>
+
+            <p>
+                We work focused on fulfilling the contractual requirements agreed with our customers and suppliers by strictly following procedures, the Quality Manual, quality standards, and any other applicable documents. We understand that this is a shared responsibility among all our staff.
+            </p>
+
+            <p>
+                CETA is committed to providing a responsible, integral, flexible, and agile service that meets the diverse needs of the aeronautical and defense market.
+            </p>
+
+            <p>
+                All CETA personnel understand and embrace the company's quality policy, as well as the importance of committing to and complying with customer requirements, as well as legal and regulatory requirements. Our approach is based on teamwork, info&#8203;rmation flow, internal communication, and continuous training.
+            </p>
+
+            <p>
+                We recognize the importance of being involved in all processes of the quality system to drive continuous improvement in our processes and the quality of our services.
+            </p>
+
+            <p>
+                To achieve all this, the General Management commits to providing the necessary resources and means to implement this policy and ensure that it is known, understood, and applied at all levels of the organization and by all stakeholders.
+            </p>
+
+            <p>
+                We consider quality as a strategic element in our organization. Aware of this, one of our fundamental objectives is to raise awareness and motivate our professionals about the importance of establishing and developing a quality system. We also commit to implementing, maintaining, and continuously improving our processes and ensuring the full satisfaction of our customers, ensuring that our services meet their expectations and requirements, all based on the UNE-EN 9120:2018 standard.
+            </p>
+
+            <div class="signature">General Manager</div>
         </div>
     </section>
 
@@ -472,6 +499,7 @@
 
             <div class="footer-col footer-col--right">
                 <h4>Connect</h4>
+
                 <div class="social-row">
                     <a class="social-link" href="#" aria-label="LinkedIn" title="LinkedIn">
                         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -481,10 +509,12 @@
                         </svg>
                     </a>
                 </div>
-                <ul class="legal-links"></ul>
-                <a href="politica-de-calidad.html">QUALITY POLICY</a>
-               <a href="condiciones-generales-de-compra.html">GENERAL PURCHASING CONDITIONS</a>
-                <a href="politica-de-cookies.html">COOKIE POLICY</a>
+
+                <ul class="legal-links">
+                    <a href="politica-de-calidad.html">QUALITY POLICY</a>
+                    <a href="condiciones-generales-de-compra.html">GENERAL PURCHASING CONDITIONS</a>
+                    <a href="politica-de-cookies.html">COOKIE POLICY</a>
+                </ul>
             </div>
         </div>
 
@@ -494,29 +524,29 @@
     </footer>
 
     <script>
-        document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-        const toggle = document.querySelector('.menu-toggle');
-        const menu = document.getElementById('mainMenu');
+    const toggle = document.querySelector('.menu-toggle');
+    const menu = document.getElementById('mainMenu');
 
-        function setMenu(open) {
-            menu.classList.toggle('is-open', open);
-            toggle.setAttribute('aria-expanded', String(open));
-        }
+    function setMenu(open) {
+      menu.classList.toggle('is-open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+    }
 
-        toggle?.addEventListener('click', () => {
-            setMenu(!menu.classList.contains('is-open'));
-        });
+    toggle?.addEventListener('click', () => {
+      setMenu(!menu.classList.contains('is-open'));
+    });
 
-        menu?.addEventListener('click', (e) => {
-            const a = e.target.closest('a');
-            if (!a) return;
-            setMenu(false);
-        });
+    menu?.addEventListener('click', (e) => {
+      const a = e.target.closest('a');
+      if (!a) return;
+      setMenu(false);
+    });
 
-        window.addEventListener('resize', () => {
-            if (window.innerWidth > 720) setMenu(false);
-        });
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 720) setMenu(false);
+    });
     </script>
 </body>
 </html>

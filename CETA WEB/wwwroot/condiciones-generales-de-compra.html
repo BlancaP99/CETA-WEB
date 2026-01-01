@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Design Organization Certificates | CETA</title>
+    <title>General Purchasing Conditions | CETA</title>
 
     <style>
         :root {
@@ -15,6 +15,7 @@
             --max: 1200px;
             --fs-body: 18px;
             --fs-h1: clamp(28px,4.4vw,50px);
+            --fs-h2: clamp(16px,2.4vw,20px);
         }
 
         @font-face {
@@ -42,6 +43,7 @@
             position: relative;
         }
 
+            /* Unified cockpit background */
             body::before {
                 content: "";
                 position: fixed;
@@ -142,20 +144,6 @@
                 filter: drop-shadow(0 6px 18px rgba(0,0,0,.25));
             }
 
-        .hero-sub {
-            width: min(var(--max), 92vw);
-            margin: 14px auto 0;
-            padding: 14px 16px;
-            border: 1px solid rgba(255,255,255,.18);
-            background: rgba(0,0,0,.22);
-            backdrop-filter: blur(2px);
-            color: rgba(255,255,255,.92);
-            border-radius: 10px;
-            font-size: 16px;
-            line-height: 1.55;
-            letter-spacing: .2px;
-        }
-
         .separator {
             width: min(var(--max),92vw);
             margin: 18px auto 18px;
@@ -163,37 +151,92 @@
             border-top: 2px dashed rgba(255,255,255,.35);
         }
 
-        /* =================== CERTIFICATES =================== */
-        .certs-section {
-            padding: 10px 0 70px;
+        /* =================== CONTENT =================== */
+        .gpc-section {
+            padding: 6px 0 64px;
         }
 
-        /* CHANGED: centered row and smaller cards */
-        .certs-row {
-            width: min(var(--max),92vw);
+        .gpc-card {
+            width: min(980px,92vw);
             margin: 0 auto;
-            display: flex;
-            justify-content: center;
-            gap: 16px;
-            flex-wrap: wrap;
+            background: rgba(0,0,0,.28);
+            border: 1px solid rgba(255,255,255,.18);
+            border-radius: 12px;
+            padding: 22px 18px;
+            backdrop-filter: blur(2px);
         }
 
-        /* CHANGED: “half size” */
-        .cert {
-            width: min(520px, 44vw);
-            background: rgba(255,255,255,.06);
-            border: 1px solid rgba(255,255,255,.12);
-            border-radius: 0;
-            padding: 10px;
+        .gpc-title {
+            margin: 0 0 14px;
+            text-transform: uppercase;
+            letter-spacing: 1.6px;
+            font-weight: 900;
+            color: #eaf3ff;
+            font-size: clamp(18px, 2.2vw, 26px);
+            text-align: left;
         }
 
-            .cert img {
-                width: 100%;
-                height: 340px;
-                object-fit: contain;
-                display: block;
-                background: rgba(0,0,0,.22);
+        .section-block {
+            padding: 14px 0;
+            border-top: 1px solid rgba(255,255,255,.12);
+        }
+
+            .section-block:first-of-type {
+                border-top: 0;
+                padding-top: 0;
             }
+
+        .sec-head {
+            display: flex;
+            gap: 10px;
+            align-items: baseline;
+            flex-wrap: wrap;
+            margin: 0 0 10px;
+        }
+
+        .sec-num {
+            font-weight: 900;
+            letter-spacing: .8px;
+            color: #fff;
+            text-transform: uppercase;
+            font-size: 14px;
+            opacity: .95;
+            background: rgba(255,255,255,.10);
+            border: 1px solid rgba(255,255,255,.14);
+            padding: 6px 10px;
+            border-radius: 999px;
+        }
+
+        .sec-title {
+            margin: 0;
+            font-size: 18px;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: #ffffff;
+            font-weight: 900;
+        }
+
+        .gpc-card p {
+            margin: 0 0 10px;
+            color: rgba(255,255,255,.92);
+            font-size: 16px;
+            line-height: 1.7;
+            text-align: left;
+        }
+
+        .gpc-card ul {
+            margin: 8px 0 0 18px;
+            padding: 0;
+            display: grid;
+            gap: 8px;
+            color: rgba(255,255,255,.92);
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        .gpc-card li {
+            margin: 0;
+        }
 
         /* =================== FOOTER =================== */
         .site-footer {
@@ -391,14 +434,17 @@
                             color: #fff;
                         }
 
-            /* CHANGED: full width on mobile, centered */
-            .cert {
-                width: min(520px, 92vw);
+            .gpc-card {
+                padding: 18px 14px;
             }
 
-                .cert img {
-                    height: 520px;
+                .gpc-card p, .gpc-card ul {
+                    font-size: 15px;
                 }
+
+            .sec-title {
+                font-size: 16px;
+            }
         }
     </style>
 </head>
@@ -433,21 +479,126 @@
     <!-- HERO -->
     <section class="hero wrap">
         <div class="container">
-            <h1>DESIGN ORGANIZATION CERTIFICATES</h1>
-        </div>
-
-        <div class="hero-sub">
-            COMPAÑÍA ESPAÑOLA DE TÉCNICA AERONÁUTICA has Quality Assurance Systems certified according to ISO9001 and EN9120.
+            <h1>GENERAL PURCHASING CONDITIONS</h1>
         </div>
     </section>
 
     <hr class="separator" />
 
-    <!-- CERTIFICATES -->
-    <section class="certs-section wrap">
-        <div class="certs-row" aria-label="Certificates gallery">
-            <div class="cert"><img src="CERTIFICATES/ISO1.jpeg" alt="ISO Certificate 1" /></div>
-            <div class="cert"><img src="CERTIFICATES/ISO2.jpeg" alt="ISO Certificate 2" /></div>
+    <!-- CONTENT -->
+    <section class="gpc-section wrap">
+        <div class="gpc-card">
+            <h2 class="gpc-title">General Purchasing Conditions</h2>
+
+            <div class="section-block">
+                <div class="sec-head">
+                    <span class="sec-num">1</span>
+                    <h3 class="sec-title">Delivery Terms</h3>
+                </div>
+
+                <p>
+                    Delivery shall be carried out in the terms expressly set out in each order. In case of breach of the delivery term, COMPAÑÍA ESPAÑOLA DE TÉCNICA AERONÁUTICA S.A., hereby CETA reserves itself the following rights at its discretion:
+                </p>
+                <ul>
+                    <li>
+                        Consider the order to be final, applying to the Supplier the penalties in respect of the sum for the material to be delivered, in the same amount that the end‐customer could apply to CETA because of the delay produced.
+                    </li>
+                    <li>
+                        Consider the order as cancelled, requiring only CETA´s written notice to the effect.
+                    </li>
+                </ul>
+            </div>
+
+            <div class="section-block">
+                <div class="sec-head">
+                    <span class="sec-num">2</span>
+                    <h3 class="sec-title">Receiving</h3>
+                </div>
+                <p>No materials will be accepted without being accompanied by a delivery note.</p>
+            </div>
+
+            <div class="section-block">
+                <div class="sec-head">
+                    <span class="sec-num">3</span>
+                    <h3 class="sec-title">Returns and Rejections</h3>
+                </div>
+                <p>
+                    CETA shall assume no liability for materials supplied in excess of those set out in its reference order, even though they may have been accepted in its stores, reserving itself the right to return said amounts at Supplier´s expenses. Likewise, goods rejected by CETA´s Quality Control, shall be returned with the freight of the Supplier, which shall be bound to replace it within 20 days, freight paid, unless instructions on the contrary are received. CETA shall have 30 days, excepting causes of Forces Majeure, for the verification of the material by reception Control, and for the issue of the acceptance or rejection note.
+                </p>
+            </div>
+
+            <div class="section-block">
+                <div class="sec-head">
+                    <span class="sec-num">4</span>
+                    <h3 class="sec-title">Transport and Packing</h3>
+                </div>
+                <p>
+                    Transport insurance and packing of the goods shall be at Supplier´s expense, no charge will be accepted under this title unless expressly so agreed. Should the case be that of a freight shipment, then the forwarder to be used shall be the one designated by CETA and indicated in the purchasing order.
+                </p>
+            </div>
+
+            <div class="section-block">
+                <div class="sec-head">
+                    <span class="sec-num">5</span>
+                    <h3 class="sec-title">Invoicing</h3>
+                </div>
+                <p>
+                    Invoices will be issued and sent to CETA. Invoices shall state CETA´s purchase order number, item and number of units being invoiced of each ítem.
+                </p>
+            </div>
+
+            <div class="section-block">
+                <div class="sec-head">
+                    <span class="sec-num">6</span>
+                    <h3 class="sec-title">Payment Terms</h3>
+                </div>
+                <p>Unless otherwise stated payment will be made check at 60 days from invoice.</p>
+            </div>
+
+            <div class="section-block">
+                <div class="sec-head">
+                    <span class="sec-num">7</span>
+                    <h3 class="sec-title">Warranty / Civil Responsability</h3>
+                </div>
+                <p>
+                    Supplier shall indemnity and hold CETA safe and harmless in respect of any claims which may arise due to a defect supply as well as for breaches of patents, trademarks or utility models and shall, at its own expense, defend any litigation arising therefrom, provided that the products do not fulfill to the characteristics corresponding to the reference provided.
+                </p>
+            </div>
+
+            <div class="section-block">
+                <div class="sec-head">
+                    <span class="sec-num">8</span>
+                    <h3 class="sec-title">Order Acknowledgments</h3>
+                </div>
+                <p>
+                    Supplier will confirm to CETA the PO receipt. Acceptance of this purchase order means the acceptance of this General Purchasing Conditions in its entirety. CETA accepts no other terms or conditions which are in conflict with those set out in this purchasing orders unless so specified in writing.
+                </p>
+            </div>
+
+            <div class="section-block">
+                <div class="sec-head">
+                    <span class="sec-num">9</span>
+                    <h3 class="sec-title">Quality Assurance Requirements</h3>
+                </div>
+
+                <p>
+                    The following GENERAL requirements will be applicable plus one of the below SPECIFIC requirements which will be indicated in the purchase order.
+                </p>
+
+                <ul>
+                    <li>The goods to be delivered will always be brand new except when something different is mentioned in the order.</li>
+                    <li>When the items to be delivered have usage limitations such as life limited materials, Supplier will provide CETA with the manufacture date and life time limit date as well as information relevant to the applicable specifications’ requirements. New material will have upon arrival in CETA a remaining life time at least 90% as a minimum.</li>
+                    <li>If that items being delivered were trial, test or inspection equipment, Supplier will provide CETA with a Calibration Certificate, internationally traceable including data such as Reference, type, serial number, acceptance procedure, last calibration date and next calibration recommended date.</li>
+                    <li>CETA being a Supplier of military contracts, obliges the Supplier to give access to its installations and their subcontractors to the Quality Assurance Official Inspection, either civil and military, as well as the Quality representative of the end user of the aircrafts involved in their products.</li>
+                    <li>All supplies of aeronautical items or materials subject to airborne able standards will be delivered along with its certificate of conformity with the manufacturer of official distributor´s applicable standards or assured traceability from manufacturer to CETA.</li>
+                    <li>If EASA Form 1 is required, if will be delivered under EASA regulations, other documentation may be accepted as FAA 8130‐3, unless an exception indicated on the Purchase Order.</li>
+                    <li>Supplier must have a system to treat any part suspect to be unapproved. These parts must be segregated immediately and notification to CETA must be sent, in case this part is under investigation of being counterfeited.</li>
+                    <li>Supplier must inform about any Non‐Conformity or change of the Order as well as any major change on its processes, products or services. Additionally, Supplier must inform about any change on the location of its facilities.</li>
+                    <li>Supplier must assure that any employee of the organization as well as any personnel that participate in the realization of their product or service must aware of their contribution to Quality and Safety.</li>
+                    <li>All the clauses included in this General Purchasing Terms should be transferred to any subcontractor of the Supplier.</li>
+                    <li>The supplier must assure that all the documentation related to the product (Certificates of Conformance, EASA Form One, etc.) must be kept as records for, at least, 10 years.</li>
+                </ul>
+            </div>
         </div>
     </section>
 
@@ -472,6 +623,7 @@
 
             <div class="footer-col footer-col--right">
                 <h4>Connect</h4>
+
                 <div class="social-row">
                     <a class="social-link" href="#" aria-label="LinkedIn" title="LinkedIn">
                         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -481,10 +633,12 @@
                         </svg>
                     </a>
                 </div>
-                <ul class="legal-links"></ul>
-                <a href="politica-de-calidad.html">QUALITY POLICY</a>
-               <a href="condiciones-generales-de-compra.html">GENERAL PURCHASING CONDITIONS</a>
-                <a href="politica-de-cookies.html">COOKIE POLICY</a>
+
+                <ul class="legal-links">
+                   <a href="politica-de-calidad.html">QUALITY POLICY</a>
+                    <a href="condiciones-generales-de-compra.html">GENERAL PURCHASING CONDITIONS</a>
+                    <a href="politica-de-cookies.html">COOKIE POLICY</a>
+                </ul>
             </div>
         </div>
 
@@ -494,29 +648,29 @@
     </footer>
 
     <script>
-        document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-        const toggle = document.querySelector('.menu-toggle');
-        const menu = document.getElementById('mainMenu');
+    const toggle = document.querySelector('.menu-toggle');
+    const menu = document.getElementById('mainMenu');
 
-        function setMenu(open) {
-            menu.classList.toggle('is-open', open);
-            toggle.setAttribute('aria-expanded', String(open));
-        }
+    function setMenu(open) {
+      menu.classList.toggle('is-open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+    }
 
-        toggle?.addEventListener('click', () => {
-            setMenu(!menu.classList.contains('is-open'));
-        });
+    toggle?.addEventListener('click', () => {
+      setMenu(!menu.classList.contains('is-open'));
+    });
 
-        menu?.addEventListener('click', (e) => {
-            const a = e.target.closest('a');
-            if (!a) return;
-            setMenu(false);
-        });
+    menu?.addEventListener('click', (e) => {
+      const a = e.target.closest('a');
+      if (!a) return;
+      setMenu(false);
+    });
 
-        window.addEventListener('resize', () => {
-            if (window.innerWidth > 720) setMenu(false);
-        });
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 720) setMenu(false);
+    });
     </script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Design Organization Certificates | CETA</title>
+    <title>Cookie Policy | CETA</title>
 
     <style>
         :root {
@@ -15,6 +15,7 @@
             --max: 1200px;
             --fs-body: 18px;
             --fs-h1: clamp(28px,4.4vw,50px);
+            --fs-h2: clamp(16px,2.4vw,20px);
         }
 
         @font-face {
@@ -42,7 +43,6 @@
             position: relative;
         }
 
-            /* Unified cockpit background */
             body::before {
                 content: "";
                 position: fixed;
@@ -63,7 +63,7 @@
             margin: 0 auto;
         }
 
-        /* =================== HEADER (UNIFIED + MOBILE HAMBURGER) =================== */
+        /* =================== HEADER =================== */
         .site-header {
             padding: 18px 30px 8px;
         }
@@ -143,7 +143,6 @@
                 filter: drop-shadow(0 6px 18px rgba(0,0,0,.25));
             }
 
-        /* ===== Dashed separator ===== */
         .separator {
             width: min(var(--max),92vw);
             margin: 18px auto 18px;
@@ -151,37 +150,120 @@
             border-top: 2px dashed rgba(255,255,255,.35);
         }
 
-        /* =================== CERTIFICATES GRID =================== */
-        .certs-section {
-            padding: 10px 0 70px;
+        /* =================== CONTENT =================== */
+        .policy-section {
+            padding: 6px 0 64px;
         }
 
-        .certs-row {
-            width: min(var(--max),92vw);
+        .policy-card {
+            width: min(1100px,92vw);
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 12px;
+            background: rgba(0,0,0,.28);
+            border: 1px solid rgba(255,255,255,.18);
+            border-radius: 12px;
+            padding: 22px 18px;
+            backdrop-filter: blur(2px);
         }
 
-        .cert {
-            background: rgba(255,255,255,.06);
-            border: 1px solid rgba(255,255,255,.12);
-            overflow: hidden;
-            border-radius: 0;
-            padding: 10px; /* mini margin between image and card border */
-        }
-
-            /* CHANGED: no crop */
-            .cert img {
-                width: 100%;
-                height: 360px; /* can be “bigger” */
-                object-fit: contain; /* key: shows full certificate */
-                display: block;
-                background: rgba(0,0,0,.22);
+            .policy-card h2 {
+                margin: 0 0 14px;
+                text-transform: uppercase;
+                letter-spacing: 1.6px;
+                font-weight: 900;
+                color: #eaf3ff;
+                font-size: clamp(18px,2.2vw,26px);
+                text-align: left;
             }
 
-        /* =================== FOOTER (UNIFIED) =================== */
+            .policy-card p {
+                margin: 0 0 12px;
+                color: rgba(255,255,255,.92);
+                font-size: 16px;
+                line-height: 1.7;
+                text-align: left;
+            }
+
+        /* Table */
+        .table-wrap {
+            margin-top: 14px;
+            border: 1px solid rgba(255,255,255,.18);
+            background: rgba(255,255,255,.06);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 820px;
+        }
+
+        thead th {
+            text-align: left;
+            font-size: 13px;
+            letter-spacing: .9px;
+            text-transform: uppercase;
+            color: #eaf3ff;
+            padding: 14px 14px;
+            background: rgba(0,0,0,.28);
+            border-bottom: 1px solid rgba(255,255,255,.16);
+        }
+
+        tbody td {
+            vertical-align: top;
+            padding: 14px 14px;
+            border-bottom: 1px solid rgba(255,255,255,.12);
+            color: rgba(255,255,255,.92);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: 0;
+        }
+
+        .cookie-cat {
+            font-weight: 900;
+            letter-spacing: .4px;
+            text-transform: uppercase;
+            font-size: 13px;
+            color: #fff;
+        }
+
+        .cookie-meta {
+            margin-top: 6px;
+            font-size: 12px;
+            color: rgba(255,255,255,.78);
+            letter-spacing: .2px;
+        }
+
+        .examples {
+            display: grid;
+            gap: 6px;
+            margin: 0;
+            padding-left: 18px;
+        }
+
+            .examples li {
+                margin: 0;
+                color: rgba(255,255,255,.92);
+            }
+
+        .note {
+            margin-top: 14px;
+            padding-top: 14px;
+            border-top: 1px solid rgba(255,255,255,.12);
+            color: rgba(255,255,255,.90);
+            font-size: 15px;
+        }
+
+        /* Table scroll on small screens */
+        .table-scroll {
+            overflow: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* =================== FOOTER =================== */
         .site-footer {
             background: linear-gradient(180deg, rgba(0,20,50,.35), rgba(0,20,40,.6));
             border-top: 1px solid rgba(255,255,255,.18);
@@ -302,10 +384,6 @@
 
         /* =================== RESPONSIVE =================== */
         @media (max-width:1100px) {
-            .cert img {
-                height: 340px;
-            }
-
             .footer-grid {
                 grid-template-columns: 1fr;
             }
@@ -316,16 +394,6 @@
 
             .social-row {
                 justify-content: center;
-            }
-        }
-
-        @media (max-width:980px) {
-            .certs-row {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .cert img {
-                height: 380px;
             }
         }
 
@@ -391,14 +459,17 @@
                             color: #fff;
                         }
 
-            .certs-row {
-                grid-template-columns: 1fr;
+            .policy-card {
+                padding: 18px 14px;
             }
 
-            .cert img {
-                height: 460px;
+                .policy-card p {
+                    font-size: 15px;
+                }
+
+            table {
+                min-width: 760px;
             }
-            /* larger on mobile, still no crop */
         }
     </style>
 </head>
@@ -433,19 +504,146 @@
     <!-- HERO -->
     <section class="hero wrap">
         <div class="container">
-            <h1>DESIGN ORGANIZATION CERTIFICATES</h1>
+            <h1>COOKIE POLICY</h1>
         </div>
     </section>
 
     <hr class="separator" />
 
-    <!-- CERTIFICATES (4 in one row) -->
-    <section class="certs-section wrap">
-        <div class="certs-row" aria-label="Certificates gallery">
-            <div class="cert"><img src="CERTIFICATES/1.jpeg" alt="Certificate 1" /></div>
-            <div class="cert"><img src="CERTIFICATES/2.jpeg" alt="Certificate 2" /></div>
-            <div class="cert"><img src="CERTIFICATES/3.jpeg" alt="Certificate 3" /></div>
-            <div class="cert"><img src="CERTIFICATES/4.jpeg" alt="Certificate 4" /></div>
+    <!-- CONTENT -->
+    <section class="policy-section wrap">
+        <div class="policy-card">
+            <h2>Cookie Policy</h2>
+
+            <p>
+                Las cookies son pequeños fragmentos de texto enviados por nuestros servidores a su ordenador o dispositivo cuando accede a nuestros servicios. Se almacenan en su navegador y posteriormente se envían de vuelta a nuestros servidores para que podamos proporcionar contenido contextual. Sin cookies, usar la web sería una experiencia mucho más frustrante. Las utilizamos para apoyar sus actividades en nuestro sitio web. Por ejemplo, tu sesión (para que no tengas que volver a iniciar sesión) o tu carrito de compras.
+            </p>
+
+            <p>
+                Las cookies también se utilizan para ayudarnos a entender sus preferencias según la actividad anterior o actual en nuestro sitio web (las páginas que tiene visitada), su idioma y país, lo que nos permite proporcionarle mejores servicios. También utilizamos cookies para ayudarnos a compilar datos agregados sobre el tráfico del sitio y la interacción del sitio para que podamos ofrecer mejores experiencias y herramientas en el futuro.
+            </p>
+
+            <p style="margin-top:18px;">
+                Here is an overview of the cookies that may be stored on your device when you visit our website:
+            </p>
+
+            <div class="table-wrap">
+                <div class="table-scroll" aria-label="Cookies table (scrollable on mobile)">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Category of Cookie</th>
+                                <th>Purpose</th>
+                                <th>Examples</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="cookie-cat">Session &amp; Security</div>
+                                    <div class="cookie-meta">(essential)</div>
+                                </td>
+                                <td>
+                                    Authenticate users, protect user data and allow the website to deliver the services users expects, such as maintaining the content of their cart, or allowing file uploads.
+                                    <br><br>
+                                    The website will not work properly if you reject or discard those cookies.
+                                </td>
+                                <td>
+                                    <ul class="examples">
+                                        <li>session_id (Odoo)</li>
+                                    </ul>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <div class="cookie-cat">Preferences</div>
+                                    <div class="cookie-meta">(essential)</div>
+                                </td>
+                                <td>
+                                    Remember information about the preferred look or behavior of the website, such as your preferred language or region.
+                                    <br><br>
+                                    Your experience may be degraded if you discard those cookies, but the website will still work.
+                                </td>
+                                <td>
+                                    <ul class="examples">
+                                        <li>frontend_lang (Odoo)</li>
+                                    </ul>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <div class="cookie-cat">Interaction History</div>
+                                    <div class="cookie-meta">(optional)</div>
+                                </td>
+                                <td>
+                                    Used to collect information about your interactions with the website, the pages you've seen, and any specific marketing campaign that brought you to the website.
+                                    <br><br>
+                                    We may not be able to provide the best service to you if you reject those cookies, but the website will work.
+                                </td>
+                                <td>
+                                    <ul class="examples">
+                                        <li>im_livechat_previous_operator_pid (Odoo)</li>
+                                        <li>utm_campaign (Odoo)</li>
+                                        <li>utm_source (Odoo)</li>
+                                        <li>utm_medium (Odoo)</li>
+                                    </ul>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <div class="cookie-cat">Advertising &amp; Marketing</div>
+                                    <div class="cookie-meta">(optional)</div>
+                                </td>
+                                <td>
+                                    Used to make advertising more engaging to users and more valuable to publishers and advertisers, such as providing more relevant ads when you visit other websites that display ads or to improve reporting on ad campaign performance.
+                                    <br><br>
+                                    Note that some third-party services may install additional cookies on your browser in order to identify you.
+                                    <br><br>
+                                    You may opt-out of a third-party's use of cookies by visiting the Network Advertising Initiative opt-out page. The website will still work if you reject or discard those cookies.
+                                </td>
+                                <td>
+                                    <ul class="examples">
+                                        <li>__gads (Google)</li>
+                                        <li>__gac (Google)</li>
+                                    </ul>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <div class="cookie-cat">Analytics</div>
+                                    <div class="cookie-meta">(optional)</div>
+                                </td>
+                                <td>
+                                    Understand how visitors engage with our website, via Google Analytics. Learn more about Analytics cookies and privacy information.
+                                    <br><br>
+                                    The website will still work if you reject or discard those cookies.
+                                </td>
+                                <td>
+                                    <ul class="examples">
+                                        <li>_ga (Google)</li>
+                                        <li>_gat (Google)</li>
+                                        <li>_gid (Google)</li>
+                                        <li>_gac_* (Google)</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="note">
+                <p>
+                    You can choose to have your computer warn you each time a cookie is being sent, or you can choose to turn off all cookies. Each browser is a little different, so look at your browser's Help menu to learn the correct way to modify your cookies.
+                </p>
+                <p style="margin:0;">
+                    We do not currently support Do Not Track signals, as there is no industry standard for compliance.
+                </p>
+            </div>
         </div>
     </section>
 
@@ -462,7 +660,8 @@
 
             <div class="footer-col footer-col--center">
                 <h4>Email</h4>
-                <form class="newsletter-form" action="#" method="post" id="newsletterForm" onsubmit="event.preventDefault(); alert('Thank you.'); this.reset();">
+                <form class="newsletter-form" action="#" method="post" id="newsletterForm"
+                      onsubmit="event.preventDefault(); alert('Thank you.'); this.reset();">
                     <input id="newsletter-email" name="email" type="email" placeholder="Your email" required />
                     <button type="submit">SEND</button>
                 </form>
@@ -470,6 +669,7 @@
 
             <div class="footer-col footer-col--right">
                 <h4>Connect</h4>
+
                 <div class="social-row">
                     <a class="social-link" href="#" aria-label="LinkedIn" title="LinkedIn">
                         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -479,10 +679,11 @@
                         </svg>
                     </a>
                 </div>
+
                 <ul class="legal-links">
                     <a href="politica-de-calidad.html">QUALITY POLICY</a>
                     <a href="condiciones-generales-de-compra.html">GENERAL PURCHASING CONDITIONS</a>
-                    <a href="politica-de-cookies.html">COOKIE POLICY</a>
+                    <a href="cookie-policy.html">COOKIE POLICY</a>
                 </ul>
             </div>
         </div>
@@ -493,31 +694,29 @@
     </footer>
 
     <script>
-        // Footer year
-        document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-        // Mobile menu
-        const toggle = document.querySelector('.menu-toggle');
-        const menu = document.getElementById('mainMenu');
+    const toggle = document.querySelector('.menu-toggle');
+    const menu = document.getElementById('mainMenu');
 
-        function setMenu(open) {
-            menu.classList.toggle('is-open', open);
-            toggle.setAttribute('aria-expanded', String(open));
-        }
+    function setMenu(open){
+      menu.classList.toggle('is-open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+    }
 
-        toggle?.addEventListener('click', () => {
-            setMenu(!menu.classList.contains('is-open'));
-        });
+    toggle?.addEventListener('click', () => {
+      setMenu(!menu.classList.contains('is-open'));
+    });
 
-        menu?.addEventListener('click', (e) => {
-            const a = e.target.closest('a');
-            if (!a) return;
-            setMenu(false);
-        });
+    menu?.addEventListener('click', (e) => {
+      const a = e.target.closest('a');
+      if (!a) return;
+      setMenu(false);
+    });
 
-        window.addEventListener('resize', () => {
-            if (window.innerWidth > 720) setMenu(false);
-        });
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 720) setMenu(false);
+    });
     </script>
 </body>
 </html>
