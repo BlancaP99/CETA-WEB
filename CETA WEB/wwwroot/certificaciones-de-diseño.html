@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
@@ -42,16 +42,16 @@
             position: relative;
         }
 
-            /* Unified cockpit background */
-            body::before {
-                content: "";
-                position: fixed;
-                inset: 0;
-                background: linear-gradient(180deg, rgba(0,30,70,.35), rgba(0,20,50,.55)), url("IMAGENES/COCKPIT.webp") center/cover no-repeat fixed;
-                opacity: .40;
-                z-index: 0;
-                pointer-events: none;
-            }
+        /* Unified cockpit background */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0,30,70,.35), rgba(0,20,50,.55)), url("IMAGENES/COCKPIT.webp") center/cover no-repeat fixed;
+            opacity: .40;
+            z-index: 0;
+            pointer-events: none;
+        }
 
         .wrap {
             position: relative;
@@ -97,12 +97,12 @@
             padding: 10px;
         }
 
-            .menu-toggle .bar {
-                display: block;
-                height: 2px;
-                background: rgba(255,255,255,.9);
-                margin: 6px 0;
-            }
+        .menu-toggle .bar {
+            display: block;
+            height: 2px;
+            background: rgba(255,255,255,.9);
+            margin: 6px 0;
+        }
 
         .main-nav .menu {
             list-style: none;
@@ -112,17 +112,17 @@
             padding: 0;
         }
 
-            .main-nav .menu a {
-                color: #fff;
-                text-decoration: none;
-                font-size: 14px;
-                letter-spacing: .5px;
-                transition: color .25s;
-            }
+        .main-nav .menu a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: .5px;
+            transition: color .25s;
+        }
 
-                .main-nav .menu a:hover {
-                    color: var(--accent);
-                }
+        .main-nav .menu a:hover {
+            color: var(--accent);
+        }
 
         /* =================== HERO =================== */
         .hero {
@@ -133,15 +133,15 @@
             padding: 36px 0 14px;
         }
 
-            .hero h1 {
-                margin: 0;
-                text-transform: uppercase;
-                letter-spacing: 3px;
-                font-size: var(--fs-h1);
-                font-weight: 800;
-                text-shadow: 0 2px 0 rgba(0,0,0,.12);
-                filter: drop-shadow(0 6px 18px rgba(0,0,0,.25));
-            }
+        .hero h1 {
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: var(--fs-h1);
+            font-weight: 800;
+            text-shadow: 0 2px 0 rgba(0,0,0,.12);
+            filter: drop-shadow(0 6px 18px rgba(0,0,0,.25));
+        }
 
         /* ===== Dashed separator ===== */
         .separator {
@@ -172,14 +172,14 @@
             padding: 10px; /* mini margin between image and card border */
         }
 
-            /* CHANGED: no crop */
-            .cert img {
-                width: 100%;
-                height: 360px; /* can be “bigger” */
-                object-fit: contain; /* key: shows full certificate */
-                display: block;
-                background: rgba(0,0,0,.22);
-            }
+        /* CHANGED: no crop */
+        .cert img {
+            width: 100%;
+            height: 360px; /* can be “bigger” */
+            object-fit: contain; /* key: shows full certificate */
+            display: block;
+            background: rgba(0,0,0,.22);
+        }
 
         /* =================== FOOTER (UNIFIED) =================== */
         .site-footer {
@@ -215,9 +215,9 @@
             text-decoration: none;
         }
 
-            .footer-col a:hover {
-                text-decoration: underline;
-            }
+        .footer-col a:hover {
+            text-decoration: underline;
+        }
 
         .footer-col--center {
             text-align: center;
@@ -232,36 +232,36 @@
             flex-wrap: wrap;
         }
 
-            .newsletter-form input {
-                min-width: 280px;
-                height: 44px;
-                padding: 0 12px;
-                border-radius: 8px;
-                border: 1px solid rgba(255,255,255,.35);
-                background: rgba(255,255,255,.1);
-                color: #fff;
-                outline: none;
-            }
+        .newsletter-form input {
+            min-width: 280px;
+            height: 44px;
+            padding: 0 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,.35);
+            background: rgba(255,255,255,.1);
+            color: #fff;
+            outline: none;
+        }
 
-                .newsletter-form input::placeholder {
-                    color: rgba(255,255,255,.75);
-                }
+        .newsletter-form input::placeholder {
+            color: rgba(255,255,255,.75);
+        }
 
-            .newsletter-form button {
-                height: 44px;
-                padding: 0 16px;
-                border: 0;
-                border-radius: 8px;
-                background: #0b76c7;
-                color: #fff;
-                font-weight: 700;
-                letter-spacing: .5px;
-                cursor: pointer;
-            }
+        .newsletter-form button {
+            height: 44px;
+            padding: 0 16px;
+            border: 0;
+            border-radius: 8px;
+            background: #0b76c7;
+            color: #fff;
+            font-weight: 700;
+            letter-spacing: .5px;
+            cursor: pointer;
+        }
 
-                .newsletter-form button:hover {
-                    background: #0a68b0;
-                }
+        .newsletter-form button:hover {
+            background: #0a68b0;
+        }
 
         .footer-col--right {
             text-align: right;
@@ -282,15 +282,15 @@
             gap: 6px;
         }
 
-            .legal-links a {
-                color: var(--link);
-                text-decoration: none;
-                font-size: 14px;
-            }
+        .legal-links a {
+            color: var(--link);
+            text-decoration: none;
+            font-size: 14px;
+        }
 
-                .legal-links a:hover {
-                    text-decoration: underline;
-                }
+        .legal-links a:hover {
+            text-decoration: underline;
+        }
 
         .footer-bottom {
             text-align: center;
@@ -302,37 +302,23 @@
 
         /* =================== RESPONSIVE =================== */
         @media (max-width:1100px) {
-            .cert img {
-                height: 340px;
-            }
+            .cert img { height: 340px; }
 
-            .footer-grid {
-                grid-template-columns: 1fr;
-            }
+            .footer-grid { grid-template-columns: 1fr; }
 
-            .footer-col--right {
-                text-align: center;
-            }
+            .footer-col--right { text-align: center; }
 
-            .social-row {
-                justify-content: center;
-            }
+            .social-row { justify-content: center; }
         }
 
         @media (max-width:980px) {
-            .certs-row {
-                grid-template-columns: repeat(2, 1fr);
-            }
+            .certs-row { grid-template-columns: repeat(2, 1fr); }
 
-            .cert img {
-                height: 380px;
-            }
+            .cert img { height: 380px; }
         }
 
         @media (max-width:720px) {
-            .site-header {
-                padding-inline: 16px;
-            }
+            .site-header { padding-inline: 16px; }
 
             .header-inner {
                 display: grid;
@@ -346,9 +332,7 @@
                 justify-self: center;
             }
 
-            .header-separator {
-                display: none;
-            }
+            .header-separator { display: none; }
 
             .menu-toggle {
                 display: inline-block;
@@ -362,42 +346,36 @@
                 width: 100%;
             }
 
-                .main-nav .menu {
-                    display: none;
-                    margin-top: 12px;
-                    padding: 12px 12px;
-                    gap: 10px;
-                    flex-direction: column;
-                    border: 1px solid rgba(255,255,255,.18);
-                    border-radius: 10px;
-                    background: rgba(0,0,0,.30);
-                    backdrop-filter: blur(2px);
-                }
-
-                    .main-nav .menu.is-open {
-                        display: flex;
-                    }
-
-                    .main-nav .menu a {
-                        display: block;
-                        width: 100%;
-                        text-align: center;
-                        padding: 10px 10px;
-                        border-radius: 8px;
-                    }
-
-                        .main-nav .menu a:hover {
-                            background: rgba(213,37,34,.18);
-                            color: #fff;
-                        }
-
-            .certs-row {
-                grid-template-columns: 1fr;
+            .main-nav .menu {
+                display: none;
+                margin-top: 12px;
+                padding: 12px 12px;
+                gap: 10px;
+                flex-direction: column;
+                border: 1px solid rgba(255,255,255,.18);
+                border-radius: 10px;
+                background: rgba(0,0,0,.30);
+                backdrop-filter: blur(2px);
             }
 
-            .cert img {
-                height: 460px;
+            .main-nav .menu.is-open { display: flex; }
+
+            .main-nav .menu a {
+                display: block;
+                width: 100%;
+                text-align: center;
+                padding: 10px 10px;
+                border-radius: 8px;
             }
+
+            .main-nav .menu a:hover {
+                background: rgba(213,37,34,.18);
+                color: #fff;
+            }
+
+            .certs-row { grid-template-columns: 1fr; }
+
+            .cert img { height: 460px; }
             /* larger on mobile, still no crop */
         }
     </style>
@@ -456,15 +434,26 @@
                 <h4>CETA S.A.</h4>
                 <p>Compañía Española de Técnica Aeronáutica S.A.</p>
                 <p>C/ Cañas, 7 · Nave Entresuelo<br>28043 Madrid · Spain</p>
-                <p><a href="mailto:ceta@ceta.aero">ceta@ceta.aero</a></p>
+                <p><a href="mailto:ingenieria@ceta.aero">ingenieria@ceta.aero</a></p>
                 <p>Tel: +34 911 400 181 · Fax: +34 911 400 182</p>
             </div>
 
             <div class="footer-col footer-col--center">
                 <h4>Email</h4>
-                <form class="newsletter-form" action="#" method="post" id="newsletterForm" onsubmit="event.preventDefault(); alert('Thank you.'); this.reset();">
+
+                <!-- Formspree footer form (no redirect) -->
+                <form class="newsletter-form"
+                      action="https://formspree.io/f/xpqqwqqd"
+                      method="POST"
+                      id="newsletterForm">
                     <input id="newsletter-email" name="email" type="email" placeholder="Your email" required />
+                    <input type="hidden" name="_subject" value="Footer contact email" />
                     <button type="submit">SEND</button>
+
+                    <p id="newsletter-success"
+                       style="display:none; width:100%; margin-top:8px; color:#aee1ff; font-size:14px;">
+                        Thank you.
+                    </p>
                 </form>
             </div>
 
@@ -479,10 +468,11 @@
                         </svg>
                     </a>
                 </div>
+
                 <ul class="legal-links">
-                    <a href="politica-de-calidad.html">QUALITY POLICY</a>
-                    <a href="condiciones-generales-de-compra.html">GENERAL PURCHASING CONDITIONS</a>
-                    <a href="politica-de-cookies.html">COOKIE POLICY</a>
+                    <li><a href="politica-de-calidad.html">QUALITY POLICY</a></li>
+                    <li><a href="condiciones-generales-de-compra.html">GENERAL PURCHASING CONDITIONS</a></li>
+                    <li><a href="politica-de-cookies.html">COOKIE POLICY</a></li>
                 </ul>
             </div>
         </div>
@@ -518,6 +508,26 @@
         window.addEventListener('resize', () => {
             if (window.innerWidth > 720) setMenu(false);
         });
+
+        // Formspree footer form (no redirect)
+        document.getElementById('newsletterForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const form = e.target;
+            const data = new FormData(form);
+
+            const response = await fetch(form.action, {
+                method: form.method,
+                body: data,
+                headers: { 'Accept': 'application/json' }
+            });
+
+            if (response.ok) {
+                form.reset();
+                document.getElementById('newsletter-success').style.display = 'block';
+            }
+        });
     </script>
 </body>
 </html>
+
