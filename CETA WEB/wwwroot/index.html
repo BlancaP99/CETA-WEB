@@ -1,4 +1,4 @@
-﻿<!-- index.html (completo: sección de noticias con las 6 reales + botón VIEW ALL a noticias.html) -->
+<!-- index.html (completo: sección de noticias con las 6 reales + botón VIEW ALL a noticias.html) -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -225,6 +225,7 @@
                 <p>Tel: +34 911 400 181 · Fax: +34 911 400 182</p>
             </div>
 
+            <!-- DO NOT TOUCH THIS FOOTER FORM (per your previous instruction) -->
             <div class="footer-col footer-col--center">
                 <h4>Email</h4>
                 <form class="newsletter-form" action="#" method="post">
@@ -256,11 +257,14 @@
     </footer>
 
     <script>
+        // Footer year
         document.getElementById('year').textContent = new Date().getFullYear();
 
+        // Newsletter form (header/footer) - prevent redirect + show message
         document.querySelector('.newsletter-form')?.addEventListener('submit', e => {
             e.preventDefault();
             alert('Thank you. You have been registered with: ' + (document.getElementById('newsletter-email')?.value || 'your email'));
+            e.target.reset();
         });
 
         // ===== Mobile menu (hamburger) =====
@@ -273,8 +277,7 @@
         }
 
         toggle?.addEventListener('click', () => {
-            const isOpen = menu.classList.contains('is-open');
-            setMenu(!isOpen);
+            setMenu(!menu.classList.contains('is-open'));
         });
 
         // Close menu when clicking a link (mobile)
