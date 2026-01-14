@@ -31,16 +31,16 @@
             position: relative;
         }
 
-            /* Cockpit background (same as the rest) */
-            body::before {
-                content: "";
-                position: fixed;
-                inset: 0;
-                background: linear-gradient(180deg, rgba(0,30,70,.35), rgba(0,20,50,.55)), url("IMAGENES/COCKPIT.webp") center/cover no-repeat fixed;
-                opacity: .40;
-                z-index: 0;
-                pointer-events: none;
-            }
+        /* Cockpit background (same as the rest) */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0,30,70,.35), rgba(0,20,50,.55)), url("IMAGENES/COCKPIT.webp") center/cover no-repeat fixed;
+            opacity: .40;
+            z-index: 0;
+            pointer-events: none;
+        }
 
         .container {
             width: min(1200px, 92vw);
@@ -91,12 +91,12 @@
             padding: 10px;
         }
 
-            .menu-toggle .bar {
-                display: block;
-                height: 2px;
-                background: rgba(255,255,255,.9);
-                margin: 6px 0;
-            }
+        .menu-toggle .bar {
+            display: block;
+            height: 2px;
+            background: rgba(255,255,255,.9);
+            margin: 6px 0;
+        }
 
         .main-nav .menu {
             list-style: none;
@@ -106,17 +106,17 @@
             padding: 0;
         }
 
-            .main-nav .menu a {
-                color: #fff;
-                text-decoration: none;
-                font-size: 14px;
-                letter-spacing: .5px;
-                transition: color .25s;
-            }
+        .main-nav .menu a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: .5px;
+            transition: color .25s;
+        }
 
-                .main-nav .menu a:hover {
-                    color: #D52522;
-                }
+        .main-nav .menu a:hover {
+            color: #D52522;
+        }
 
         /* =================== HERO =================== */
         .hero-internal {
@@ -128,15 +128,15 @@
             padding: 36px 0 8px;
         }
 
-            .hero-internal h1 {
-                margin: 0 0 12px;
-                text-transform: uppercase;
-                letter-spacing: 3px;
-                font-size: clamp(26px, 3.9vw, 46px);
-                font-weight: 800;
-                text-shadow: 0 2px 0 rgba(0,0,0,.12);
-                filter: drop-shadow(0 6px 18px rgba(0,0,0,.25));
-            }
+        .hero-internal h1 {
+            margin: 0 0 12px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: clamp(26px, 3.9vw, 46px);
+            font-weight: 800;
+            text-shadow: 0 2px 0 rgba(0,0,0,.12);
+            filter: drop-shadow(0 6px 18px rgba(0,0,0,.25));
+        }
 
         /* =================== PAGE CONTENT WRAP =================== */
         .page-content {
@@ -172,14 +172,14 @@
             padding: 14px; /* gives breathing room so the full image can be seen */
         }
 
-            .hero-media img {
-                width: 100%;
-                height: auto; /* no forced height */
-                max-height: 520px; /* keeps it “medium/large” without cropping */
-                object-fit: contain; /* key: show full image */
-                display: block;
-                margin: 0 auto;
-            }
+        .hero-media img {
+            width: 100%;
+            height: auto; /* no forced height */
+            max-height: 520px; /* keeps it “medium/large” without cropping */
+            object-fit: contain; /* key: show full image */
+            display: block;
+            margin: 0 auto;
+        }
 
         /* =================== ACCORDION =================== */
         .accordion-wrap {
@@ -199,9 +199,9 @@
             overflow: hidden;
         }
 
-            .acc-item + .acc-item {
-                margin-top: 14px;
-            }
+        .acc-item + .acc-item {
+            margin-top: 14px;
+        }
 
         .acc-btn {
             width: 100%;
@@ -265,9 +265,9 @@
             font-size: 15px;
         }
 
-            .acc-panel .bullet li {
-                margin: 6px 0;
-            }
+        .acc-panel .bullet li {
+            margin: 6px 0;
+        }
 
         /* Inline image set (1,2,3) */
         .inline-photos {
@@ -277,15 +277,15 @@
             gap: 12px;
         }
 
-            .inline-photos img {
-                width: 100%;
-                height: 170px;
-                object-fit: cover;
-                display: block;
-                border: 1px solid rgba(255,255,255,.16);
-                border-radius: 10px;
-                background: rgba(0,0,0,.22);
-            }
+        .inline-photos img {
+            width: 100%;
+            height: 170px;
+            object-fit: cover;
+            display: block;
+            border: 1px solid rgba(255,255,255,.16);
+            border-radius: 10px;
+            background: rgba(0,0,0,.22);
+        }
 
         /* Dashed-box capability lists */
         .capability-box {
@@ -302,21 +302,22 @@
             gap: 14px;
         }
 
+        /* ✅ CHANGED: removed forced uppercase so it shows exactly as written */
         .capability-col {
             display: grid;
             gap: 6px;
             font-size: 14px;
             letter-spacing: .4px;
             color: rgba(255,255,255,.92);
-            text-transform: uppercase;
+            /* text-transform: uppercase;  <-- REMOVED */
         }
 
-            .capability-col .muted {
-                text-transform: none;
-                letter-spacing: .2px;
-                color: rgba(255,255,255,.82);
-                font-size: 13px;
-            }
+        .capability-col .muted {
+            text-transform: none;
+            letter-spacing: .2px;
+            color: rgba(255,255,255,.82);
+            font-size: 13px;
+        }
 
         /* Images 5/6 */
         .mission-photos {
@@ -326,15 +327,15 @@
             gap: 12px;
         }
 
-            .mission-photos img {
-                width: 100%;
-                height: 220px;
-                object-fit: cover;
-                display: block;
-                border: 1px solid rgba(255,255,255,.16);
-                border-radius: 10px;
-                background: rgba(0,0,0,.22);
-            }
+        .mission-photos img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+            border: 1px solid rgba(255,255,255,.16);
+            border-radius: 10px;
+            background: rgba(0,0,0,.22);
+        }
 
         /* =================== FOOTER =================== */
         .site-footer {
@@ -370,9 +371,9 @@
             text-decoration: none;
         }
 
-            .footer-col a:hover {
-                text-decoration: underline;
-            }
+        .footer-col a:hover {
+            text-decoration: underline;
+        }
 
         .footer-col--center {
             text-align: center;
@@ -386,36 +387,36 @@
             margin-top: 8px;
         }
 
-            .newsletter-form input {
-                min-width: 280px;
-                height: 44px;
-                padding: 0 12px;
-                border-radius: 8px;
-                border: 1px solid rgba(255,255,255,.35);
-                background: rgba(255,255,255,.1);
-                color: #fff;
-                outline: none;
-            }
+        .newsletter-form input {
+            min-width: 280px;
+            height: 44px;
+            padding: 0 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,.35);
+            background: rgba(255,255,255,.1);
+            color: #fff;
+            outline: none;
+        }
 
-                .newsletter-form input::placeholder {
-                    color: rgba(255,255,255,.75);
-                }
+        .newsletter-form input::placeholder {
+            color: rgba(255,255,255,.75);
+        }
 
-            .newsletter-form button {
-                height: 44px;
-                padding: 0 16px;
-                border: 0;
-                border-radius: 8px;
-                background: #0b76c7;
-                color: #fff;
-                font-weight: 700;
-                letter-spacing: .5px;
-                cursor: pointer;
-            }
+        .newsletter-form button {
+            height: 44px;
+            padding: 0 16px;
+            border: 0;
+            border-radius: 8px;
+            background: #0b76c7;
+            color: #fff;
+            font-weight: 700;
+            letter-spacing: .5px;
+            cursor: pointer;
+        }
 
-                .newsletter-form button:hover {
-                    background: #0a68b0;
-                }
+        .newsletter-form button:hover {
+            background: #0a68b0;
+        }
 
         .footer-col--right {
             text-align: right;
@@ -436,15 +437,15 @@
             gap: 6px;
         }
 
-            .legal-links a {
-                color: #aee1ff;
-                text-decoration: none;
-                font-size: 14px;
-            }
+        .legal-links a {
+            color: #aee1ff;
+            text-decoration: none;
+            font-size: 14px;
+        }
 
-                .legal-links a:hover {
-                    text-decoration: underline;
-                }
+        .legal-links a:hover {
+            text-decoration: underline;
+        }
 
         .footer-bottom {
             text-align: center;
@@ -519,34 +520,34 @@
                 width: 100%;
             }
 
-                .main-nav .menu {
-                    display: none;
-                    margin-top: 12px;
-                    padding: 12px 12px;
-                    gap: 10px;
-                    flex-direction: column;
-                    border: 1px solid rgba(255,255,255,.18);
-                    border-radius: 10px;
-                    background: rgba(0,0,0,.30);
-                    backdrop-filter: blur(2px);
-                }
+            .main-nav .menu {
+                display: none;
+                margin-top: 12px;
+                padding: 12px 12px;
+                gap: 10px;
+                flex-direction: column;
+                border: 1px solid rgba(255,255,255,.18);
+                border-radius: 10px;
+                background: rgba(0,0,0,.30);
+                backdrop-filter: blur(2px);
+            }
 
-                    .main-nav .menu.is-open {
-                        display: flex;
-                    }
+            .main-nav .menu.is-open {
+                display: flex;
+            }
 
-                    .main-nav .menu a {
-                        display: block;
-                        width: 100%;
-                        text-align: center;
-                        padding: 10px 10px;
-                        border-radius: 8px;
-                    }
+            .main-nav .menu a {
+                display: block;
+                width: 100%;
+                text-align: center;
+                padding: 10px 10px;
+                border-radius: 8px;
+            }
 
-                        .main-nav .menu a:hover {
-                            background: rgba(213,37,34,.18);
-                            color: #fff;
-                        }
+            .main-nav .menu a:hover {
+                background: rgba(213,37,34,.18);
+                color: #fff;
+            }
 
             .intro-wrap,
             .hero-media,
@@ -558,9 +559,9 @@
                 padding: 12px;
             }
 
-                .hero-media img {
-                    max-height: 420px;
-                }
+            .hero-media img {
+                max-height: 420px;
+            }
         }
     </style>
 </head>
@@ -608,7 +609,6 @@
         <div class="intro-wrap">
             <p class="intro-text">
                 Approved Design Organization PART-21J (EASA) DOA 21J.635 and Military Design Organization ES.PERAM21/1389/20 for the design and certification of technical upgrades and STCs on board airplanes and helicopters.<br><br>
-               
             </p>
         </div>
 
@@ -701,7 +701,8 @@
                     </p>
 
                     <div class="capability-box" aria-label="Mission systems integration">
-                        <div class="capability-col" style="text-transform: uppercase;">
+                        <!-- ✅ CHANGED: removed inline text-transform uppercase -->
+                        <div class="capability-col">
                             <div>Intelligence, surveillance and reconnaissance (ISR)</div>
                             <div>Data and image transmission</div>
                             <div>Electro-optical systems</div>
