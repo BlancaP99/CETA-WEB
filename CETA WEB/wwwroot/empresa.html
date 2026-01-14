@@ -752,10 +752,20 @@
 
       <div class="footer-col footer-col--center">
         <h4>Email</h4>
-        <form class="newsletter-form" action="#" method="post"
-              onsubmit="event.preventDefault(); alert('Thank you.'); this.reset();">
+
+        <!-- Formspree footer form (no redirect) -->
+        <form class="newsletter-form"
+              action="https://formspree.io/f/xpqqwqqd"
+              method="POST"
+              id="newsletterForm">
           <input id="newsletter-email" name="email" type="email" placeholder="Your email" required />
+          <input type="hidden" name="_subject" value="Footer contact email" />
           <button type="submit">SEND</button>
+
+          <p id="newsletter-success"
+             style="display:none; width:100%; margin-top:8px; color:#aee1ff; font-size:14px;">
+            Thank you.
+          </p>
         </form>
       </div>
 
@@ -774,7 +784,7 @@
         <ul class="legal-links">
           <li><a href="politica-de-calidad.html">QUALITY POLICY</a></li>
           <li><a href="condiciones-generales-de-compra.html">GENERAL PURCHASING CONDITIONS</a></li>
-          <li><a href="cookie-policy.html">COOKIE POLICY</a></li>
+          <li><a href="politica-de-cookies.html">COOKIE POLICY</a></li>
         </ul>
       </div>
     </div>
@@ -783,8 +793,10 @@
   </footer>
 
   <script>
+    // Footer year
     document.getElementById('year').textContent = new Date().getFullYear();
 
+    // Mobile menu
     const toggle = document.querySelector('.menu-toggle');
     const menu = document.getElementById('mainMenu');
 
@@ -805,6 +817,25 @@
 
     window.addEventListener('resize', () => {
       if (window.innerWidth > 720) setMenu(false);
+    });
+
+    // =================== Formspree footer form (no redirect) ===================
+    document.getElementById('newsletterForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const form = e.target;
+      const data = new FormData(form);
+
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        form.reset();
+        document.getElementById('newsletter-success').style.display = 'block';
+      }
     });
   </script>
 </body>
