@@ -135,12 +135,12 @@ body::before{
     background:rgba(0,0,0,.22);
 }
 
-/* ================= FOOTER (FIJADO A 16px) ================= */
+/* ================= FOOTER (MASTER) ================= */
 .site-footer{
     background:linear-gradient(180deg,rgba(0,20,50,.35),rgba(0,20,40,.6));
     border-top:1px solid rgba(255,255,255,.18);
-    margin-top:40px;
-    font-size:16px; /* 👈 CLAVE */
+    margin-top:44px;
+    font-size:16px;
 }
 
 .footer-grid{
@@ -148,7 +148,7 @@ body::before{
     grid-template-columns:2fr 2fr 1.5fr;
     gap:28px;
     padding:28px 0;
-    width:min(var(--max),92vw);
+    width:min(1200px,92vw);
     margin:0 auto;
 }
 
@@ -157,13 +157,15 @@ body::before{
     font-size:16px;
     letter-spacing:1px;
     text-transform:uppercase;
+    color:#eaf3ff;
 }
 
-.footer-col p{margin:6px 0;color:var(--ink-soft);}
-.footer-col a{color:var(--link);text-decoration:none;}
+.footer-col p{margin:6px 0;color:rgba(255,255,255,.92);}
+.footer-col a{color:#aee1ff;text-decoration:none;}
 .footer-col a:hover{text-decoration:underline;}
 
 .footer-col--center{text-align:center;}
+.footer-col--right{text-align:right;}
 
 .newsletter-form{
     display:inline-flex;
@@ -183,6 +185,8 @@ body::before{
     color:#fff;
 }
 
+.newsletter-form input::placeholder{color:rgba(255,255,255,.75);}
+
 .newsletter-form button{
     height:44px;
     padding:0 16px;
@@ -191,21 +195,47 @@ body::before{
     background:#0b76c7;
     color:#fff;
     font-weight:700;
+    letter-spacing:.5px;
     cursor:pointer;
 }
 
-.footer-col--right{text-align:right;}
+.newsletter-form button:hover{background:#0a68b0;}
+
+.social-row{
+    display:flex;
+    gap:12px;
+    justify-content:flex-end;
+    margin:6px 0 10px;
+}
+
+.legal-links{
+    list-style:none;
+    padding:0;
+    margin:8px 0 0;
+    display:grid;
+    gap:6px;
+}
+
+.legal-links a{
+    color:#aee1ff;
+    text-decoration:none;
+    font-size:14px;
+}
+
+.legal-links a:hover{text-decoration:underline;}
 
 .footer-bottom{
     text-align:center;
     padding:14px 0;
     border-top:1px solid rgba(255,255,255,.15);
+    color:rgba(255,255,255,.85);
     font-size:13px;
 }
 
-@media(max-width:1100px){
+@media(max-width:1020px){
     .footer-grid{grid-template-columns:1fr;}
     .footer-col--right{text-align:center;}
+    .social-row{justify-content:center;}
 }
 </style>
 </head>
@@ -215,7 +245,7 @@ body::before{
 
 <header class="site-header">
 <div class="header-inner">
-<a href="index.html"><img src="IMAGENES/LOGO_BLANCO.png" class="logo"></a>
+<a href="index.html"><img src="IMAGENES/LOGO_BLANCO.png" class="logo" alt="CETA"></a>
 <div class="header-separator"></div>
 <nav class="main-nav">
 <ul class="menu">
@@ -239,48 +269,92 @@ Compañía Española de Técnica Aeronáutica has quality assurance systems cert
 
 <section class="certs-section">
 <div class="certs-row">
-<div class="cert"><img src="CERTIFICATES/ISO1.jpeg"></div>
-<div class="cert"><img src="CERTIFICATES/ISO2.jpeg"></div>
+<div class="cert"><img src="CERTIFICATES/ISO1.jpeg" alt="ISO Certificate 1"></div>
+<div class="cert"><img src="CERTIFICATES/ISO2.jpeg" alt="ISO Certificate 2"></div>
 </div>
 </section>
 
 <footer class="site-footer">
-<div class="footer-grid">
+    <div class="footer-grid">
 
-<div class="footer-col">
-<h4>CETA S.A.</h4>
-<p>Compañía Española de Técnica Aeronáutica S.A.</p>
-<p>C/ Cañas, 7 · Nave Entresuelo<br>28043 Madrid · Spain</p>
-<p><a href="mailto:ingenieria@ceta.aero">ingenieria@ceta.aero</a></p>
-<p>Tel: +34 911 400 181 · Fax: +34 911 400 182</p>
-</div>
+        <div class="footer-col">
+            <h4>CETA S.A.</h4>
+            <p>Compañía Española de Técnica Aeronáutica S.A.</p>
+            <p>C/ Cañas, 7 · Nave Entresuelo<br>28043 Madrid · Spain</p>
+            <p><a href="mailto:ingenieria@ceta.aero">ingenieria@ceta.aero</a></p>
+            <p>Tel: +34 911 400 181 · Fax: +34 911 400 182</p>
+        </div>
 
-<div class="footer-col footer-col--center">
-<h4>Email</h4>
-<form class="newsletter-form" action="https://formspree.io/f/xpqqwqqd" method="POST" id="newsletterForm">
-<input type="email" name="email" placeholder="Your email" required>
-<button type="submit">SEND</button>
-</form>
-</div>
+        <div class="footer-col footer-col--center">
+            <h4>Email</h4>
 
-<div class="footer-col footer-col--right">
-<h4>Connect</h4>
-<a href="politica-de-calidad.html">QUALITY POLICY</a><br>
-<a href="condiciones-generales-de-compra.html">GENERAL PURCHASING CONDITIONS</a><br>
-<a href="politica-de-cookies.html">COOKIE POLICY</a>
-</div>
+            <form class="newsletter-form" action="https://formspree.io/f/xpqqwqqd" method="POST" id="newsletterForm">
+                <input type="email" name="email" placeholder="Your email" required>
+                <button type="submit">SEND</button>
+            </form>
 
-</div>
+            <p id="newsletterSuccess" style="display:none;margin-top:10px;">
+                Thank you. You have been registered.
+            </p>
+        </div>
 
-<div class="footer-bottom">
-© <span id="year"></span> CETA · All rights reserved
-</div>
+        <div class="footer-col footer-col--right">
+            <h4>Connect</h4>
+
+            <div class="social-row">
+                <a class="social-link" href="https://www.linkedin.com/company/cetasa/posts/?feedView=all" aria-label="LinkedIn" title="LinkedIn">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <rect width="24" height="24" rx="4" fill="rgba(255,255,255,0.15)" />
+                        <path d="M7.2 8.8a1.6 1.6 0 1 0 0-3.2 1.6 1.6 0 0 0 0 3.2Zm1 2H6.2v7.4h2V10.8Zm3.2 0H9.6v7.4h2v-4.2c0-1.1.8-1.8 1.7-1.8 1 0 1.5.6 1.5 1.8v4.2h2V13c0-2.2-1.3-3.2-3.2-3.2-1.1 0-1.9.5-2.2 1.1h-.1v-0.1Z"
+                              fill="rgba(200,230,255,0.95)" />
+                    </svg>
+                </a>
+            </div>
+
+            <ul class="legal-links">
+                <a href="politica-de-calidad.html">QUALITY POLICY</a>
+                <a href="condiciones-generales-de-compra.html">GENERAL PURCHASING CONDITIONS</a>
+                <a href="politica-de-cookies.html">COOKIE POLICY</a>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        © <span id="year"></span> CETA · All rights reserved
+    </div>
 </footer>
 
 </div>
 
 <script>
-document.getElementById('year').textContent=new Date().getFullYear();
+document.getElementById('year').textContent = new Date().getFullYear();
+
+const form = document.getElementById('newsletterForm');
+const success = document.getElementById('newsletterSuccess');
+
+form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    success.style.display = 'none';
+
+    try{
+        const res = await fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: { 'Accept': 'application/json' }
+        });
+
+        if(res.ok){
+            form.reset();
+            success.style.display = 'block';
+        }else{
+            alert('Error. Please try again.');
+        }
+    }catch(err){
+        alert('Error. Please try again.');
+    }
+});
 </script>
 </body>
 </html>
+
