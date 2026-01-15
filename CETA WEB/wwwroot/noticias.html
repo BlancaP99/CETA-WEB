@@ -700,23 +700,30 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer class="site-footer wrap">
+   <!-- FOOTER (same layout; ONLY requested changes: email + connect Formspree + no redirect + success message) -->
+    <footer class="site-footer">
         <div class="footer-grid">
             <div class="footer-col">
                 <h4>CETA S.A.</h4>
                 <p>Compañía Española de Técnica Aeronáutica S.A.</p>
                 <p>C/ Cañas, 7 · Nave Entresuelo<br>28043 Madrid · Spain</p>
-                <p><a href="mailto:ceta@ceta.aero">ceta@ceta.aero</a></p>
+                <p><a href="mailto:ingenieria@ceta.aero">ingenieria@ceta.aero</a></p>
                 <p>Tel: +34 911 400 181 · Fax: +34 911 400 182</p>
             </div>
 
             <div class="footer-col footer-col--center">
                 <h4>Email</h4>
-                <form class="newsletter-form" action="#" method="post" id="newsletterForm">
+
+                <!-- Keep same sizing/classes; connect to Formspree -->
+                <form class="newsletter-form" action="https://formspree.io/f/xpqqwqqd" method="POST" id="newsletterForm">
                     <input id="newsletter-email" name="email" type="email" placeholder="Your email" required />
                     <button type="submit">SEND</button>
                 </form>
+
+                <!-- Inline success text (hidden by default) -->
+                <p id="newsletterSuccess" style="display:none; margin:10px 0 0; color: rgba(255,255,255,.92); font-size: 14px;">
+                    Thank you. You have been registered.
+                </p>
             </div>
 
             <div class="footer-col footer-col--right">
@@ -742,7 +749,6 @@
             © <span id="year"></span> CETA · All rights reserved
         </div>
     </footer>
-
     <script>
         // Footer year
         document.getElementById('year').textContent = new Date().getFullYear();
