@@ -731,8 +731,8 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer class="site-footer wrap">
+   <!-- FOOTER (same layout; ONLY requested changes: email + connect Formspree + no redirect + success message) -->
+    <footer class="site-footer">
         <div class="footer-grid">
             <div class="footer-col">
                 <h4>CETA S.A.</h4>
@@ -745,25 +745,20 @@
             <div class="footer-col footer-col--center">
                 <h4>Email</h4>
 
-                <!-- Formspree footer form (no redirect) -->
-                <form class="newsletter-form"
-                      action="https://formspree.io/f/xpqqwqqd"
-                      method="POST"
-                      id="newsletterForm">
+                <!-- Keep same sizing/classes; connect to Formspree -->
+                <form class="newsletter-form" action="https://formspree.io/f/xpqqwqqd" method="POST" id="newsletterForm">
                     <input id="newsletter-email" name="email" type="email" placeholder="Your email" required />
-                    <input type="hidden" name="_subject" value="Footer contact email" />
                     <button type="submit">SEND</button>
-
-                    <p id="newsletter-success"
-                       style="display:none; width:100%; margin-top:8px; color:#aee1ff; font-size:14px;">
-                        Thank you.
-                    </p>
                 </form>
+
+                <!-- Inline success text (hidden by default) -->
+                <p id="newsletterSuccess" style="display:none; margin:10px 0 0; color: rgba(255,255,255,.92); font-size: 14px;">
+                    Thank you. You have been registered.
+                </p>
             </div>
 
             <div class="footer-col footer-col--right">
                 <h4>Connect</h4>
-
                 <div class="social-row">
                     <a class="social-link" href="https://www.linkedin.com/company/cetasa/posts/?feedView=all" aria-label="LinkedIn" title="LinkedIn">
                         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -773,11 +768,10 @@
                         </svg>
                     </a>
                 </div>
-
                 <ul class="legal-links">
-                    <li><a href="politica-de-calidad.html">QUALITY POLICY</a></li>
-                    <li><a href="condiciones-generales-de-compra.html">GENERAL PURCHASING CONDITIONS</a></li>
-                    <li><a href="politica-de-cookies.html">COOKIE POLICY</a></li>
+                    <a href="politica-de-calidad.html">QUALITY POLICY</a>
+                    <a href="condiciones-generales-de-compra.html">GENERAL PURCHASING CONDITIONS</a>
+                    <a href="politica-de-cookies.html">COOKIE POLICY</a>
                 </ul>
             </div>
         </div>
