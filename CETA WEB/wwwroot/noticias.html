@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
@@ -322,8 +322,12 @@
 
         .btn-more:active { transform: scale(.99); }
 
-      /* =================== FOOTER (MASTER) =================== */
+        /* =================== FOOTER (MASTER) =================== */
+        /* FIX: ensure footer sits ABOVE the cockpit overlay and does not look tinted */
         .site-footer {
+            position: relative;
+            z-index: 3;          /* above body::before (z-index:0) */
+            isolation: isolate;  /* its own stacking context */
             background: linear-gradient(180deg, rgba(0,20,50,.35), rgba(0,20,40,.6));
             border-top: 1px solid rgba(255,255,255,.18);
             margin-top: 44px;
@@ -336,6 +340,8 @@
             padding: 28px 0;
             width: min(1200px, 92vw);
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
 
         .footer-col h4 {
@@ -419,6 +425,8 @@
             border-top: 1px solid rgba(255,255,255,.15);
             color: rgba(255,255,255,.85);
             font-size: 13px;
+            position: relative;
+            z-index: 1;
         }
 
         /* =================== RESPONSIVE =================== */
@@ -670,26 +678,6 @@
                     </div>
                 </a>
 
-                <!-- ========== TEMPLATE TO ADD MORE (hidden until "SHOW MORE") ==========
-                <a class="news-item" href="LINK" target="_blank" rel="noopener noreferrer"
-                   data-title="..."
-                   data-tags="..."
-                   data-date="YYYY-MM-DD">
-                  <img class="news-thumb" src="NOTICIAS/IMAGE.xxx" alt="..." />
-                  <div class="news-body">
-                    <div class="news-title-row">
-                      <h3 class="news-title">Title</h3>
-                      <span class="news-plus" aria-hidden="true">+</span>
-                    </div>
-                    <div class="news-meta">
-                      <span class="tag">YYYY-MM-DD</span>
-                      <span class="tag">Tag 1</span>
-                      <span class="tag">Tag 2</span>
-                      <span class="tag">Tag 3</span>
-                    </div>
-                  </div>
-                </a>
-                ===================================================================== -->
             </div>
 
             <div class="more-wrap">
@@ -699,7 +687,7 @@
         </div>
     </section>
 
-   <!-- FOOTER (same layout; ONLY requested changes: email + connect Formspree + no redirect + success message) -->
+    <!-- FOOTER (same layout; connected to Formspree; no redirect; success message) -->
     <footer class="site-footer">
         <div class="footer-grid">
             <div class="footer-col">
@@ -713,13 +701,11 @@
             <div class="footer-col footer-col--center">
                 <h4>Email</h4>
 
-                <!-- Keep same sizing/classes; connect to Formspree -->
                 <form class="newsletter-form" action="https://formspree.io/f/xpqqwqqd" method="POST" id="newsletterForm">
                     <input id="newsletter-email" name="email" type="email" placeholder="Your email" required />
                     <button type="submit">SEND</button>
                 </form>
 
-                <!-- Inline success text (hidden by default) -->
                 <p id="newsletterSuccess" style="display:none; margin:10px 0 0; color: rgba(255,255,255,.92); font-size: 14px;">
                     Thank you. You have been registered.
                 </p>
@@ -748,16 +734,11 @@
             © <span id="year"></span> CETA · All rights reserved
         </div>
     </footer>
-    <script>
-        // Footer year
-        document.getElementById('year').textContent = new Date().getFullYear();
 
-        // Newsletter (placeholder)
-        document.getElementById('newsletterForm')?.addEventListener('submit', function (e) {
-            e.preventDefault();
-            const v = document.getElementById('newsletter-email')?.value || '';
-            alert('Thank you. You have been registered with: ' + v);
-            this.reset();
+    <script>
+        // Footer year (supports multiple spans safely)
+        document.querySelectorAll('#year').forEach(el => {
+            el.textContent = new Date().getFullYear();
         });
 
         // ===== Mobile menu (hamburger) =====
@@ -783,6 +764,29 @@
         // If back to desktop, reset state
         window.addEventListener('resize', () => {
             if (window.innerWidth > 720) setMenu(false);
+        });
+
+        // =================== Formspree footer form (no redirect) ===================
+        document.getElementById('newsletterForm')?.addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const form = e.target;
+            const data = new FormData(form);
+
+            try {
+                const response = await fetch(form.action, {
+                    method: form.method,
+                    body: data,
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (response.ok) {
+                    form.reset();
+                    document.getElementById('newsletterSuccess').style.display = 'block';
+                }
+            } catch (_) {
+                // silent fail (keeps same behavior style as the contact page)
+            }
         });
 
         // ===== Search + "SHOW MORE" (shows latest 6) =====
