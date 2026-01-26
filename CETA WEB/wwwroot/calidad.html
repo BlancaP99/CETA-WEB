@@ -104,44 +104,124 @@ body::before{
   text-shadow:0 2px 0 rgba(0,0,0,.12);
 }
 
-/* ================= INTRO / QUALITY TEXT ================= */
 .quality-intro{
   width:min(var(--max),92vw);
-  margin:18px auto 0;
-  padding:18px;
+  margin:14px auto 0;
+  padding:14px 16px;
   border:1px solid rgba(255,255,255,.18);
-  border-radius:10px;
   background:rgba(0,0,0,.22);
-  line-height:1.6;
-  color:var(--ink-soft);
+  border-radius:10px;
   font-size:16px;
+  color:var(--ink-soft);
+  line-height:1.6;
 }
 
-/* ================= CERTIFICATES ================= */
 .separator{
   width:min(var(--max),92vw);
-  margin:22px auto;
+  margin:18px auto;
   border:0;
   border-top:2px dashed rgba(255,255,255,.35);
 }
 
-.certs-section{padding:10px 0 60px;}
+/* ================= CERTIFICATES (4 IN A ROW + CLICKABLE) ================= */
+.certs-section{padding:10px 0 70px;}
+
 .certs-row{
   width:min(var(--max),92vw);
   margin:0 auto;
   display:grid;
-  grid-template-columns:repeat(2, minmax(0,1fr));
-  gap:16px;
+  grid-template-columns:repeat(4, minmax(0,1fr));
+  gap:12px;
 }
 
 .cert{
   background:rgba(255,255,255,.06);
   border:1px solid rgba(255,255,255,.12);
-  padding:12px;
+  padding:10px;
+  cursor: zoom-in;
+  text-decoration:none;
+  color:inherit;
+  display:block;
 }
+
+.cert:focus{outline:2px solid rgba(174,225,255,.55); outline-offset:2px;}
+
 .cert img{
   width:100%;
-  height:380px;
+  height:320px;
+  object-fit:contain;
+  display:block;
+  background:rgba(0,0,0,.22);
+}
+
+/* Hover cue */
+.cert:hover{
+  border-color: rgba(213,37,34,.55);
+}
+
+/* ================= MODAL (CLICK TO VIEW LARGE) ================= */
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.78);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  z-index:9999;
+}
+.modal.is-open{display:flex;}
+.modal-inner{
+  width:min(1200px, 96vw);
+  max-height:90vh;
+  border:1px solid rgba(255,255,255,.18);
+  background:rgba(0,0,0,.35);
+  border-radius:12px;
+  overflow:hidden;
+  position:relative;
+}
+.modal-toolbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  padding:10px 12px;
+  border-bottom:1px solid rgba(255,255,255,.14);
+}
+.modal-toolbar .hint{
+  font-size:13px;
+  color:rgba(255,255,255,.85);
+}
+.modal-toolbar .actions{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+.modal-toolbar a{
+  color:var(--link);
+  text-decoration:none;
+  font-size:13px;
+}
+.modal-toolbar a:hover{text-decoration:underline;}
+.modal-close{
+  width:40px;height:36px;
+  border:1px solid rgba(255,255,255,.25);
+  background:rgba(0,0,0,.28);
+  color:#fff;
+  border-radius:10px;
+  cursor:pointer;
+  font-size:18px;
+  line-height:1;
+}
+.modal-img-wrap{
+  padding:14px;
+  display:grid;
+  place-items:center;
+}
+.modal-img{
+  width:100%;
+  height:auto;
+  max-height: calc(90vh - 70px);
   object-fit:contain;
   display:block;
   background:rgba(0,0,0,.22);
@@ -225,11 +305,18 @@ body::before{
 }
 
 /* ================= RESPONSIVE ================= */
-@media(max-width:1020px){
+@media(max-width:1100px){
+  .cert img{height:300px;}
   .footer-grid{grid-template-columns:1fr;}
   .footer-col--right{text-align:center;}
   .social-row{justify-content:center;}
 }
+
+@media(max-width:980px){
+  .certs-row{grid-template-columns:repeat(2, minmax(0,1fr));}
+  .cert img{height:360px;}
+}
+
 @media(max-width:720px){
   .site-header{padding-inline:16px;}
   .header-inner{
@@ -240,7 +327,7 @@ body::before{
   }
   .logo-link{grid-column:2;justify-self:center;}
   .header-separator{display:none;}
-  .menu-toggle{display:inline-block;grid-column:3;justify-self:end;}
+  .menu-toggle{display:inline-block;grid-column:3;justify-self:end;margin-left:0;}
   .main-nav{grid-column:1/-1;width:100%;}
   .main-nav .menu{
     display:none;
@@ -251,10 +338,20 @@ body::before{
     border:1px solid rgba(255,255,255,.18);
     border-radius:10px;
     background:rgba(0,0,0,.30);
+    backdrop-filter: blur(2px);
   }
   .main-nav .menu.is-open{display:flex;}
-  .main-nav .menu a{text-align:center;padding:10px;border-radius:8px;}
+  .main-nav .menu a{
+    display:block;
+    width:100%;
+    text-align:center;
+    padding:10px;
+    border-radius:8px;
+  }
+  .main-nav .menu a:hover{background:rgba(213,37,34,.18);color:#fff;}
+
   .certs-row{grid-template-columns:1fr;}
+  .cert img{height:460px;}
 }
 </style>
 </head>
@@ -264,14 +361,19 @@ body::before{
 
 <header class="site-header">
   <div class="header-inner">
-    <a href="index.html" class="logo-link"><img src="IMAGENES/LOGO_BLANCO.png" class="logo" alt="CETA"></a>
-    <div class="header-separator"></div>
+    <a href="index.html" class="logo-link" aria-label="Home">
+      <img src="IMAGENES/LOGO_BLANCO.png" class="logo" alt="CETA">
+    </a>
 
-    <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mainMenu">
-      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    <div class="header-separator" aria-hidden="true"></div>
+
+    <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mainMenu">
+      <span class="bar" aria-hidden="true"></span>
+      <span class="bar" aria-hidden="true"></span>
+      <span class="bar" aria-hidden="true"></span>
     </button>
 
-    <nav class="main-nav">
+    <nav class="main-nav" aria-label="Primary menu">
       <ul class="menu" id="mainMenu">
         <li><a href="empresa.html">WHO WE ARE</a></li>
         <li><a href="ingenieria-aeronautica.html">AEROSPACE ENGINEERING SERVICES</a></li>
@@ -284,22 +386,36 @@ body::before{
 </header>
 
 <section class="hero">
-  <h1>QUALITY ASSURANCE</h1>
-</section>
+  <h1>DESIGN ORGANIZATION CERTIFICATES</h1>
 
-<section class="quality-intro">
-  Compañía Española de Técnica Aeronáutica (CETA) has implemented and maintains
-  quality assurance systems certified according to <strong>ISO 9001</strong> and
-  <strong>EN 9120</strong>, ensuring compliance with the highest international
-  standards for aerospace design, certification and engineering activities.
+  <div class="quality-intro">
+    Compañía Española de Técnica Aeronáutica has quality assurance systems certified according to
+    <strong>ISO9001</strong> and <strong>EN9120</strong>.
+  </div>
 </section>
 
 <hr class="separator">
 
 <section class="certs-section">
-  <div class="certs-row">
-    <div class="cert"><img src="CERTIFICATES/1.jpeg" alt="ISO Certificate 1"></div>
-    <div class="cert"><img src="CERTIFICATES/3.jpeg" alt="ISO Certificate 3"></div>
+  <div class="certs-row" aria-label="Certificates gallery">
+
+    <!-- Each item is clickable: opens modal AND has direct link (new tab) -->
+    <a class="cert" href="CERTIFICATES/1.jpeg" target="_blank" rel="noopener" data-modal-src="CERTIFICATES/EASA.jpeg" aria-label="Open Certificate 1">
+      <img src="CERTIFICATES/1.jpeg" alt="Certificate 1">
+    </a>
+
+    <a class="cert" href="CERTIFICATES/2.jpeg" target="_blank" rel="noopener" data-modal-src="CERTIFICATES/PERAM.jpeg" aria-label="Open Certificate 2">
+      <img src="CERTIFICATES/2.jpeg" alt="Certificate 2">
+    </a>
+
+    <a class="cert" href="CERTIFICATES/3.jpeg" target="_blank" rel="noopener" data-modal-src="CERTIFICATES/ISO_1.png" aria-label="Open Certificate 3">
+      <img src="CERTIFICATES/3.jpeg" alt="Certificate 3">
+    </a>
+
+    <a class="cert" href="CERTIFICATES/4.jpeg" target="_blank" rel="noopener" data-modal-src="CERTIFICATES/ISO_2.png" aria-label="Open Certificate 4">
+      <img src="CERTIFICATES/4.jpeg" alt="Certificate 4">
+    </a>
+
   </div>
 </section>
 
@@ -316,19 +432,26 @@ body::before{
     <div class="footer-col footer-col--center">
       <h4>Email</h4>
       <form class="newsletter-form" action="https://formspree.io/f/xpqqwqqd" method="POST" id="newsletterForm">
-        <input name="email" type="email" placeholder="Your email" required />
+        <input id="newsletter-email" name="email" type="email" placeholder="Your email" required />
         <button type="submit">SEND</button>
       </form>
-      <p id="newsletterSuccess" style="display:none;margin-top:10px;">Thank you. You have been registered.</p>
+      <p id="newsletterSuccess" style="display:none; margin:10px 0 0; color: rgba(255,255,255,.92); font-size: 14px;">
+        Thank you. You have been registered.
+      </p>
     </div>
 
     <div class="footer-col footer-col--right">
       <h4>Connect</h4>
       <div class="social-row">
-        <a href="https://www.linkedin.com/company/cetasa/posts/?feedView=all" aria-label="LinkedIn">
-          <!-- SVG intact -->
+        <a class="social-link" href="https://www.linkedin.com/company/cetasa/posts/?feedView=all" aria-label="LinkedIn" title="LinkedIn">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <rect width="24" height="24" rx="4" fill="rgba(255,255,255,0.15)" />
+            <path d="M7.2 8.8a1.6 1.6 0 1 0 0-3.2 1.6 1.6 0 0 0 0 3.2Zm1 2H6.2v7.4h2V10.8Zm3.2 0H9.6v7.4h2v-4.2c0-1.1.8-1.8 1.7-1.8 1 0 1.5.6 1.5 1.8v4.2h2V13c0-2.2-1.3-3.2-3.2-3.2-1.1 0-1.9.5-2.2 1.1h-.1v-0.1Z"
+              fill="rgba(200,230,255,0.95)" />
+          </svg>
         </a>
       </div>
+
       <ul class="legal-links">
         <li><a href="politica-de-calidad.html">QUALITY POLICY</a></li>
         <li><a href="condiciones-generales-de-compra.html">GENERAL PURCHASING CONDITIONS</a></li>
@@ -337,29 +460,102 @@ body::before{
     </div>
   </div>
 
-  <div class="footer-bottom">© <span id="year"></span> CETA · All rights reserved</div>
+  <div class="footer-bottom">
+    © <span id="year"></span> CETA · All rights reserved
+  </div>
 </footer>
 
+</div>
+
+<!-- Modal -->
+<div class="modal" id="imgModal" aria-hidden="true">
+  <div class="modal-inner" role="dialog" aria-modal="true" aria-label="Certificate preview">
+    <div class="modal-toolbar">
+      <div class="hint">Click outside, press ESC, or use Close.</div>
+      <div class="actions">
+        <a id="modalOpenNewTab" href="#" target="_blank" rel="noopener">Open in new tab</a>
+        <button class="modal-close" type="button" id="modalClose" aria-label="Close">✕</button>
+      </div>
+    </div>
+    <div class="modal-img-wrap">
+      <img class="modal-img" id="modalImg" alt="Certificate preview">
+    </div>
+  </div>
 </div>
 
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
 
-// mobile menu
+// Mobile menu
 const toggle = document.querySelector('.menu-toggle');
 const menu = document.getElementById('mainMenu');
-toggle?.addEventListener('click',()=>menu.classList.toggle('is-open'));
+function setMenu(open){
+  menu.classList.toggle('is-open', open);
+  toggle.setAttribute('aria-expanded', String(open));
+}
+toggle?.addEventListener('click', ()=> setMenu(!menu.classList.contains('is-open')));
+menu?.addEventListener('click', (e)=>{ if(e.target.closest('a')) setMenu(false); });
+window.addEventListener('resize', ()=>{ if(window.innerWidth>720) setMenu(false); });
 
-// formspree
-const form=document.getElementById('newsletterForm');
-const success=document.getElementById('newsletterSuccess');
-form?.addEventListener('submit',async e=>{
+// Formspree
+const form = document.getElementById('newsletterForm');
+const success = document.getElementById('newsletterSuccess');
+form?.addEventListener('submit', async (e) => {
   e.preventDefault();
-  const res=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{Accept:'application/json'}});
-  if(res.ok){form.reset();success.style.display='block';}
+  success.style.display = 'none';
+  try{
+    const res = await fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    });
+    if(res.ok){
+      form.reset();
+      success.style.display = 'block';
+    }else{
+      alert('Error. Please try again.');
+    }
+  }catch(err){
+    alert('Error. Please try again.');
+  }
 });
+
+// Modal zoom (keeps new-tab link also)
+const modal = document.getElementById('imgModal');
+const modalImg = document.getElementById('modalImg');
+const modalClose = document.getElementById('modalClose');
+const openNewTab = document.getElementById('modalOpenNewTab');
+
+function openModal(src){
+  modalImg.src = src;
+  openNewTab.href = src;
+  modal.classList.add('is-open');
+  modal.setAttribute('aria-hidden', 'false');
+}
+function closeModal(){
+  modal.classList.remove('is-open');
+  modal.setAttribute('aria-hidden', 'true');
+  modalImg.src = '';
+}
+
+document.querySelectorAll('[data-modal-src]').forEach(a=>{
+  a.addEventListener('click', (e)=>{
+    // allow both behaviors:
+    // - normal click opens new tab
+    // - Ctrl/Cmd click keeps default
+    // We open modal only on normal click:
+    if(e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
+    e.preventDefault();
+    openModal(a.getAttribute('data-modal-src'));
+  });
+});
+
+modalClose?.addEventListener('click', closeModal);
+modal?.addEventListener('click', (e)=>{ if(e.target === modal) closeModal(); });
+window.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeModal(); });
 </script>
 
 </body>
 </html>
+
 
