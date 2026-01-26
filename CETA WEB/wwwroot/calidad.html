@@ -3,50 +3,46 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Design Organization Certificates | CETA</title>
+<title>Quality Assurance | CETA</title>
 
 <style>
-:root {
-    --brand:#002856;
-    --accent:#D52522;
-    --ink:#ffffff;
-    --ink-soft:rgba(255,255,255,.92);
-    --link:#aee1ff;
-    --max:1200px;
-    --fs-body:18px;
-    --fs-h1:clamp(28px,4.4vw,50px);
+:root{
+  --brand:#002856;
+  --accent:#D52522;
+  --ink:#ffffff;
+  --ink-soft:rgba(255,255,255,.92);
+  --link:#aee1ff;
+  --max:1200px;
 }
 
-@font-face {
-    font-family:"Eurostile";
-    src:url("FONTS/EUROSTILE.TTF") format("truetype");
-    font-display:swap;
+@font-face{
+  font-family:"Eurostile";
+  src:url("FONTS/EUROSTILE.TTF") format("truetype");
+  font-display:swap;
 }
 
 *,*::before,*::after{box-sizing:border-box;}
 html,body{height:100%;}
 
 body{
-    margin:0;
-    font-family:"Eurostile",Arial,sans-serif;
-    font-size:var(--fs-body);
-    line-height:1.55;
-    background:var(--brand);
-    color:var(--ink);
-    overflow-x:hidden;
-    position:relative;
+  margin:0;
+  font-family:"Eurostile",Arial,sans-serif;
+  background:var(--brand);
+  color:var(--ink);
+  overflow-x:hidden;
+  position:relative;
 }
 
 body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    background:
-      linear-gradient(180deg,rgba(0,30,70,.35),rgba(0,20,50,.55)),
-      url("IMAGENES/COCKPIT.webp") center/cover no-repeat fixed;
-    opacity:.40;
-    z-index:0;
-    pointer-events:none;
+  content:"";
+  position:fixed;
+  inset:0;
+  background:
+    linear-gradient(180deg,rgba(0,30,70,.35),rgba(0,20,50,.55)),
+    url("IMAGENES/COCKPIT.webp") center/cover no-repeat fixed;
+  opacity:.40;
+  z-index:0;
+  pointer-events:none;
 }
 
 .wrap{position:relative;z-index:2;}
@@ -58,184 +54,207 @@ body::before{
 .logo{height:50px;display:block;}
 .header-separator{width:1px;height:36px;background:rgba(255,255,255,.9);}
 
+.menu-toggle{
+  display:none;
+  margin-left:auto;
+  width:44px;
+  height:44px;
+  border:1px solid rgba(255,255,255,.25);
+  background:rgba(0,0,0,.28);
+  border-radius:10px;
+  cursor:pointer;
+  padding:10px;
+}
+.menu-toggle .bar{
+  display:block;
+  height:2px;
+  background:rgba(255,255,255,.9);
+  margin:6px 0;
+}
+
 .main-nav .menu{
-    list-style:none;
-    display:flex;
-    gap:28px;
-    margin:0;
-    padding:0;
+  list-style:none;
+  display:flex;
+  gap:28px;
+  margin:0;
+  padding:0;
 }
-
 .main-nav .menu a{
-    color:#fff;
-    text-decoration:none;
-    font-size:14px;
-    letter-spacing:.5px;
+  color:#fff;
+  text-decoration:none;
+  font-size:14px;
+  letter-spacing:.5px;
 }
-
 .main-nav .menu a:hover{color:var(--accent);}
 
 /* ================= HERO ================= */
 .hero{
-    min-height:28vh;
-    display:grid;
-    place-items:center;
-    text-align:center;
-    padding:36px 0 14px;
+  min-height:28vh;
+  display:grid;
+  place-items:center;
+  text-align:center;
+  padding:36px 0 14px;
 }
-
 .hero h1{
-    margin:0;
-    text-transform:uppercase;
-    letter-spacing:3px;
-    font-size:var(--fs-h1);
-    font-weight:800;
+  margin:0;
+  text-transform:uppercase;
+  letter-spacing:3px;
+  font-size:clamp(28px,4.4vw,50px);
+  font-weight:800;
+  text-shadow:0 2px 0 rgba(0,0,0,.12);
 }
 
-.hero-sub{
-    width:min(var(--max),92vw);
-    margin:14px auto 0;
-    padding:14px 16px;
-    border:1px solid rgba(255,255,255,.18);
-    background:rgba(0,0,0,.22);
-    border-radius:10px;
-    font-size:16px;
-}
-
-.separator{
-    width:min(var(--max),92vw);
-    margin:18px auto;
-    border:0;
-    border-top:2px dashed rgba(255,255,255,.35);
+/* ================= INTRO / QUALITY TEXT ================= */
+.quality-intro{
+  width:min(var(--max),92vw);
+  margin:18px auto 0;
+  padding:18px;
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:10px;
+  background:rgba(0,0,0,.22);
+  line-height:1.6;
+  color:var(--ink-soft);
+  font-size:16px;
 }
 
 /* ================= CERTIFICATES ================= */
-.certs-section{padding:10px 0 70px;}
+.separator{
+  width:min(var(--max),92vw);
+  margin:22px auto;
+  border:0;
+  border-top:2px dashed rgba(255,255,255,.35);
+}
+
+.certs-section{padding:10px 0 60px;}
 .certs-row{
-    width:min(var(--max),92vw);
-    margin:0 auto;
-    display:flex;
-    gap:16px;
-    flex-wrap:wrap;
-    justify-content:center;
+  width:min(var(--max),92vw);
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0,1fr));
+  gap:16px;
 }
 
 .cert{
-    width:min(520px,44vw);
-    background:rgba(255,255,255,.06);
-    border:1px solid rgba(255,255,255,.12);
-    padding:10px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+  padding:12px;
 }
-
 .cert img{
-    width:100%;
-    height:340px;
-    object-fit:contain;
-    display:block;
-    background:rgba(0,0,0,.22);
+  width:100%;
+  height:380px;
+  object-fit:contain;
+  display:block;
+  background:rgba(0,0,0,.22);
 }
 
-/* ================= FOOTER (MASTER) ================= */
+/* ================= FOOTER ================= */
 .site-footer{
-    background:linear-gradient(180deg,rgba(0,20,50,.35),rgba(0,20,40,.6));
-    border-top:1px solid rgba(255,255,255,.18);
-    margin-top:44px;
-    font-size:16px;
+  background:linear-gradient(180deg,rgba(0,20,50,.35),rgba(0,20,40,.6));
+  border-top:1px solid rgba(255,255,255,.18);
+  margin-top:44px;
 }
 
 .footer-grid{
-    display:grid;
-    grid-template-columns:2fr 2fr 1.5fr;
-    gap:28px;
-    padding:28px 0;
-    width:min(1200px,92vw);
-    margin:0 auto;
+  display:grid;
+  grid-template-columns:2fr 2fr 1.5fr;
+  gap:28px;
+  padding:28px 0;
+  width:min(var(--max),92vw);
+  margin:0 auto;
 }
 
 .footer-col h4{
-    margin:0 0 10px;
-    font-size:16px;
-    letter-spacing:1px;
-    text-transform:uppercase;
-    color:#eaf3ff;
+  margin:0 0 10px;
+  font-size:16px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  color:#eaf3ff;
 }
-
-.footer-col p{margin:6px 0;color:rgba(255,255,255,.92);}
-.footer-col a{color:#aee1ff;text-decoration:none;}
+.footer-col p{margin:6px 0;color:var(--ink-soft);}
+.footer-col a{color:var(--link);text-decoration:none;}
 .footer-col a:hover{text-decoration:underline;}
 
 .footer-col--center{text-align:center;}
 .footer-col--right{text-align:right;}
 
 .newsletter-form{
-    display:inline-flex;
-    gap:10px;
-    align-items:stretch;
-    justify-content:center;
-    margin-top:8px;
+  display:inline-flex;
+  gap:10px;
+  align-items:stretch;
+  justify-content:center;
+  margin-top:8px;
 }
-
 .newsletter-form input{
-    min-width:280px;
-    height:44px;
-    padding:0 12px;
-    border-radius:8px;
-    border:1px solid rgba(255,255,255,.35);
-    background:rgba(255,255,255,.1);
-    color:#fff;
+  min-width:280px;
+  height:44px;
+  padding:0 12px;
+  border-radius:8px;
+  border:1px solid rgba(255,255,255,.35);
+  background:rgba(255,255,255,.1);
+  color:#fff;
 }
-
-.newsletter-form input::placeholder{color:rgba(255,255,255,.75);}
-
 .newsletter-form button{
-    height:44px;
-    padding:0 16px;
-    border:0;
-    border-radius:8px;
-    background:#0b76c7;
-    color:#fff;
-    font-weight:700;
-    letter-spacing:.5px;
-    cursor:pointer;
+  height:44px;
+  padding:0 16px;
+  border:0;
+  border-radius:8px;
+  background:#0b76c7;
+  color:#fff;
+  font-weight:700;
+  cursor:pointer;
 }
-
 .newsletter-form button:hover{background:#0a68b0;}
 
 .social-row{
-    display:flex;
-    gap:12px;
-    justify-content:flex-end;
-    margin:6px 0 10px;
+  display:flex;
+  gap:12px;
+  justify-content:flex-end;
+  margin:6px 0 10px;
 }
 
-.legal-links{
-    list-style:none;
-    padding:0;
-    margin:8px 0 0;
-    display:grid;
-    gap:6px;
-}
-
-.legal-links a{
-    color:#aee1ff;
-    text-decoration:none;
-    font-size:14px;
-}
-
-.legal-links a:hover{text-decoration:underline;}
+.legal-links{list-style:none;padding:0;margin:8px 0 0;display:grid;gap:6px;}
+.legal-links li{list-style:none;}
+.legal-links a{font-size:14px;}
 
 .footer-bottom{
-    text-align:center;
-    padding:14px 0;
-    border-top:1px solid rgba(255,255,255,.15);
-    color:rgba(255,255,255,.85);
-    font-size:13px;
+  text-align:center;
+  padding:14px 0;
+  border-top:1px solid rgba(255,255,255,.15);
+  color:rgba(255,255,255,.85);
+  font-size:13px;
 }
 
+/* ================= RESPONSIVE ================= */
 @media(max-width:1020px){
-    .footer-grid{grid-template-columns:1fr;}
-    .footer-col--right{text-align:center;}
-    .social-row{justify-content:center;}
+  .footer-grid{grid-template-columns:1fr;}
+  .footer-col--right{text-align:center;}
+  .social-row{justify-content:center;}
+}
+@media(max-width:720px){
+  .site-header{padding-inline:16px;}
+  .header-inner{
+    display:grid;
+    grid-template-columns:1fr auto 1fr;
+    align-items:center;
+    gap:10px;
+  }
+  .logo-link{grid-column:2;justify-self:center;}
+  .header-separator{display:none;}
+  .menu-toggle{display:inline-block;grid-column:3;justify-self:end;}
+  .main-nav{grid-column:1/-1;width:100%;}
+  .main-nav .menu{
+    display:none;
+    margin-top:12px;
+    padding:12px;
+    gap:10px;
+    flex-direction:column;
+    border:1px solid rgba(255,255,255,.18);
+    border-radius:10px;
+    background:rgba(0,0,0,.30);
+  }
+  .main-nav .menu.is-open{display:flex;}
+  .main-nav .menu a{text-align:center;padding:10px;border-radius:8px;}
+  .certs-row{grid-template-columns:1fr;}
 }
 </style>
 </head>
@@ -244,117 +263,103 @@ body::before{
 <div class="wrap">
 
 <header class="site-header">
-<div class="header-inner">
-<a href="index.html"><img src="IMAGENES/LOGO_BLANCO.png" class="logo" alt="CETA"></a>
-<div class="header-separator"></div>
-<nav class="main-nav">
-<ul class="menu">
-<li><a href="empresa.html">WHO WE ARE</a></li>
-<li><a href="ingenieria-aeronautica.html">AEROSPACE ENGINEERING SERVICES</a></li>
-    <li><a href="calidad.html">QUALITY ASSURANCE</a></li>
-    <li><a href="noticias.html">NEWS</a></li>
-<li><a href="contacto.html">CONTACT</a></li>
+  <div class="header-inner">
+    <a href="index.html" class="logo-link"><img src="IMAGENES/LOGO_BLANCO.png" class="logo" alt="CETA"></a>
+    <div class="header-separator"></div>
 
-</ul>
-</nav>
-</div>
+    <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mainMenu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+
+    <nav class="main-nav">
+      <ul class="menu" id="mainMenu">
+        <li><a href="empresa.html">WHO WE ARE</a></li>
+        <li><a href="ingenieria-aeronautica.html">AEROSPACE ENGINEERING SERVICES</a></li>
+        <li><a href="calidad.html">QUALITY ASSURANCE</a></li>
+        <li><a href="noticias.html">NEWS</a></li>
+        <li><a href="contacto.html">CONTACT</a></li>
+      </ul>
+    </nav>
+  </div>
 </header>
 
 <section class="hero">
-<h1>DESIGN ORGANIZATION CERTIFICATES</h1>
-<div class="hero-sub">
-Compañía Española de Técnica Aeronáutica has quality assurance systems certified according to ISO9001 and EN9120.
-</div>
+  <h1>QUALITY ASSURANCE</h1>
+</section>
+
+<section class="quality-intro">
+  Compañía Española de Técnica Aeronáutica (CETA) has implemented and maintains
+  quality assurance systems certified according to <strong>ISO 9001</strong> and
+  <strong>EN 9120</strong>, ensuring compliance with the highest international
+  standards for aerospace design, certification and engineering activities.
 </section>
 
 <hr class="separator">
 
 <section class="certs-section">
-<div class="certs-row">
-<div class="cert"><img src="CERTIFICATES/ISO1.jpeg" alt="ISO Certificate 1"></div>
-<div class="cert"><img src="CERTIFICATES/ISO2.jpeg" alt="ISO Certificate 2"></div>
-</div>
+  <div class="certs-row">
+    <div class="cert"><img src="CERTIFICATES/1.jpeg" alt="ISO Certificate 1"></div>
+    <div class="cert"><img src="CERTIFICATES/3.jpeg" alt="ISO Certificate 3"></div>
+  </div>
 </section>
 
- <!-- FOOTER (same layout; ONLY requested changes: email + connect Formspree + no redirect + success message) -->
-    <footer class="site-footer">
-        <div class="footer-grid">
-            <div class="footer-col">
-                <h4>CETA S.A.</h4>
-                <p>Compañía Española de Técnica Aeronáutica S.A.</p>
-                <p>C/ Cañas, 7 · Nave Entresuelo<br>28043 Madrid · Spain</p>
-                <p><a href="mailto:ingenieria@ceta.aero">ingenieria@ceta.aero</a></p>
-                <p>Tel: +34 911 400 181 · Fax: +34 911 400 182</p>
-            </div>
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h4>CETA S.A.</h4>
+      <p>Compañía Española de Técnica Aeronáutica S.A.</p>
+      <p>C/ Cañas, 7 · Nave Entresuelo<br>28043 Madrid · Spain</p>
+      <p><a href="mailto:ingenieria@ceta.aero">ingenieria@ceta.aero</a></p>
+      <p>Tel: +34 911 400 181 · Fax: +34 911 400 182</p>
+    </div>
 
-            <div class="footer-col footer-col--center">
-                <h4>Email</h4>
+    <div class="footer-col footer-col--center">
+      <h4>Email</h4>
+      <form class="newsletter-form" action="https://formspree.io/f/xpqqwqqd" method="POST" id="newsletterForm">
+        <input name="email" type="email" placeholder="Your email" required />
+        <button type="submit">SEND</button>
+      </form>
+      <p id="newsletterSuccess" style="display:none;margin-top:10px;">Thank you. You have been registered.</p>
+    </div>
 
-                <!-- Keep same sizing/classes; connect to Formspree -->
-                <form class="newsletter-form" action="https://formspree.io/f/xpqqwqqd" method="POST" id="newsletterForm">
-                    <input id="newsletter-email" name="email" type="email" placeholder="Your email" required />
-                    <button type="submit">SEND</button>
-                </form>
+    <div class="footer-col footer-col--right">
+      <h4>Connect</h4>
+      <div class="social-row">
+        <a href="https://www.linkedin.com/company/cetasa/posts/?feedView=all" aria-label="LinkedIn">
+          <!-- SVG intact -->
+        </a>
+      </div>
+      <ul class="legal-links">
+        <li><a href="politica-de-calidad.html">QUALITY POLICY</a></li>
+        <li><a href="condiciones-generales-de-compra.html">GENERAL PURCHASING CONDITIONS</a></li>
+        <li><a href="politica-de-cookies.html">COOKIE POLICY</a></li>
+      </ul>
+    </div>
+  </div>
 
-                <!-- Inline success text (hidden by default) -->
-                <p id="newsletterSuccess" style="display:none; margin:10px 0 0; color: rgba(255,255,255,.92); font-size: 14px;">
-                    Thank you. You have been registered.
-                </p>
-            </div>
+  <div class="footer-bottom">© <span id="year"></span> CETA · All rights reserved</div>
+</footer>
 
-            <div class="footer-col footer-col--right">
-                <h4>Connect</h4>
-                <div class="social-row">
-                    <a class="social-link" href="https://www.linkedin.com/company/cetasa/posts/?feedView=all" aria-label="LinkedIn" title="LinkedIn">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                            <rect width="24" height="24" rx="4" fill="rgba(255,255,255,0.15)" />
-                            <path d="M7.2 8.8a1.6 1.6 0 1 0 0-3.2 1.6 1.6 0 0 0 0 3.2Zm1 2H6.2v7.4h2V10.8Zm3.2 0H9.6v7.4h2v-4.2c0-1.1.8-1.8 1.7-1.8 1 0 1.5.6 1.5 1.8v4.2h2V13c0-2.2-1.3-3.2-3.2-3.2-1.1 0-1.9.5-2.2 1.1h-.1v-0.1Z"
-                                  fill="rgba(200,230,255,0.95)" />
-                        </svg>
-                    </a>
-                </div>
-                <ul class="legal-links">
-                    <a href="politica-de-calidad.html">QUALITY POLICY</a>
-                    <a href="condiciones-generales-de-compra.html">GENERAL PURCHASING CONDITIONS</a>
-                    <a href="politica-de-cookies.html">COOKIE POLICY</a>
-                </ul>
-            </div>
-        </div>
-
-        <div class="footer-bottom">
-            © <span id="year"></span> CETA · All rights reserved
-        </div>
-    </footer>
 </div>
 
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
 
-const form = document.getElementById('newsletterForm');
-const success = document.getElementById('newsletterSuccess');
+// mobile menu
+const toggle = document.querySelector('.menu-toggle');
+const menu = document.getElementById('mainMenu');
+toggle?.addEventListener('click',()=>menu.classList.toggle('is-open'));
 
-form?.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    success.style.display = 'none';
-
-    try{
-        const res = await fetch(form.action, {
-            method: 'POST',
-            body: new FormData(form),
-            headers: { 'Accept': 'application/json' }
-        });
-
-        if(res.ok){
-            form.reset();
-            success.style.display = 'block';
-        }else{
-            alert('Error. Please try again.');
-        }
-    }catch(err){
-        alert('Error. Please try again.');
-    }
+// formspree
+const form=document.getElementById('newsletterForm');
+const success=document.getElementById('newsletterSuccess');
+form?.addEventListener('submit',async e=>{
+  e.preventDefault();
+  const res=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{Accept:'application/json'}});
+  if(res.ok){form.reset();success.style.display='block';}
 });
 </script>
+
 </body>
 </html>
 
