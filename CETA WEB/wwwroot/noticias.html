@@ -1,998 +1,300 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>News | CETA</title>
-
-    <style>
-        :root {
-            --brand: #002856;
-            --accent: #D52522;
-            --ink: #ffffff;
-            --ink-soft: rgba(255,255,255,.92);
-            --link: #aee1ff;
-            --max: 1200px;
-            --fs-body: 18px;
-            --fs-h1: clamp(28px,4.4vw,50px);
-            --fs-h2: clamp(16px,2.4vw,20px);
-        }
-
-        @font-face {
-            font-family: "Eurostile";
-            src: url("FONTS/EUROSTILE.TTF") format("truetype");
-            font-display: swap;
-        }
-
-        *, *::before, *::after { box-sizing: border-box; }
-        html, body { height: 100%; }
-
-        body {
-            margin: 0;
-            font-family: "Eurostile",Arial,sans-serif;
-            font-size: var(--fs-body);
-            line-height: 1.55;
-            background: var(--brand);
-            color: var(--ink);
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        /* ===== BACKGROUND (unified) ===== */
-        body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            background: linear-gradient(180deg, rgba(0,30,70,.35), rgba(0,20,50,.55)), url("IMAGENES/COCKPIT.webp") center/cover no-repeat fixed;
-            opacity: .40;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        .wrap { position: relative; z-index: 2; }
-
-        .container {
-            width: min(var(--max),92vw);
-            margin: 0 auto;
-        }
-
-        /* =================== HEADER (UNIFIED + MOBILE HAMBURGER) =================== */
-        .site-header { padding: 18px 30px 8px; }
-
-        .header-inner {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .logo { height: 50px; display: block; }
-
-        .header-separator {
-            width: 1px;
-            height: 36px;
-            background: rgba(255,255,255,.9);
-        }
-
-        /* Hamburger button (hidden on desktop) */
-        .menu-toggle {
-            display: none;
-            margin-left: auto;
-            width: 44px;
-            height: 44px;
-            border: 1px solid rgba(255,255,255,.25);
-            background: rgba(0,0,0,.28);
-            border-radius: 10px;
-            cursor: pointer;
-            padding: 10px;
-        }
-
-        .menu-toggle .bar {
-            display: block;
-            height: 2px;
-            background: rgba(255,255,255,.9);
-            margin: 6px 0;
-        }
-
-        .main-nav .menu {
-            list-style: none;
-            display: flex;
-            gap: 28px;
-            margin: 0;
-            padding: 0;
-        }
-
-        .main-nav .menu a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 14px;
-            letter-spacing: .5px;
-            transition: color .25s;
-        }
-
-        .main-nav .menu a:hover { color: var(--accent); }
-
-        /* =================== HERO =================== */
-        .hero {
-            min-height: 32vh;
-            display: grid;
-            place-items: center;
-            text-align: center;
-            padding: 36px 0 8px;
-        }
-
-        .hero h1 {
-            margin: 0 0 10px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            font-size: var(--fs-h1);
-            font-weight: 800;
-            text-shadow: 0 2px 0 rgba(0,0,0,.12);
-            filter: drop-shadow(0 6px 18px rgba(0,0,0,.25));
-        }
-
-        /* Centered subtitle + dark blue panel */
-        .hero-panel {
-            width: min(1000px,92vw);
-            margin: 0 auto;
-            padding: 16px 18px;
-            border: 1px solid rgba(255,255,255,.18);
-            border-radius: 10px;
-            background: rgba(0,0,0,.28);
-            backdrop-filter: blur(2px);
-            color: rgba(255,255,255,.95);
-            text-align: center;
-            font-size: var(--fs-h2);
-            letter-spacing: .6px;
-        }
-
-        /* ===== Dashed separator ===== */
-        .separator {
-            width: min(var(--max),92vw);
-            margin: 22px auto 18px;
-            border: 0;
-            border-top: 2px dashed rgba(255,255,255,.35);
-        }
-
-        /* =================== DARK PANEL FOR SEARCH + GRID =================== */
-        .news-section { padding: 14px 0 70px; }
-
-        .news-panel {
-            width: min(var(--max),92vw);
-            margin: 0 auto;
-            padding: 16px 16px 18px;
-            border: 1px solid rgba(255,255,255,.18);
-            border-radius: 10px;
-            background: rgba(0,0,0,.28);
-            backdrop-filter: blur(2px);
-        }
-
-        /* ===== Tabs (Website / LinkedIn) ===== */
-        .news-tabs {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 12px;
-        }
-
-        .tab-btn {
-            height: 44px;
-            padding: 0 14px;
-            border-radius: 10px;
-            border: 1px solid rgba(255,255,255,.25);
-            background: rgba(0,0,0,.22);
-            color: #fff;
-            font-weight: 800;
-            letter-spacing: .6px;
-            cursor: pointer;
-            transition: background .2s, border-color .2s, transform .2s;
-            white-space: nowrap;
-        }
-
-        .tab-btn:hover {
-            background: rgba(213,37,34,.18);
-            border-color: rgba(255,255,255,.35);
-        }
-
-        .tab-btn.is-active {
-            background: rgba(213,37,34,.22);
-            border-color: rgba(255,255,255,.45);
-        }
-
-        .tab-btn:active { transform: scale(.99); }
-
-        /* ===== Search bar ===== */
-        .news-tools {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 10px;
-        }
-
-        .search-wrap {
-            width: min(720px,100%);
-            display: flex;
-            gap: 10px;
-            align-items: stretch;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .search-wrap input {
-            flex: 1;
-            min-width: 220px;
-            height: 46px;
-            padding: 0 14px;
-            border-radius: 10px;
-            border: 1px solid rgba(255,255,255,.35);
-            background: rgba(255,255,255,.10);
-            color: #fff;
-            outline: none;
-        }
-
-        .search-wrap input::placeholder { color: rgba(255,255,255,.75); }
-
-        .search-wrap button {
-            height: 46px;
-            padding: 0 16px;
-            border: 0;
-            border-radius: 10px;
-            background: #0b76c7;
-            color: #fff;
-            font-weight: 800;
-            letter-spacing: .5px;
-            cursor: pointer;
-            white-space: nowrap;
-        }
-
-        .search-wrap button:hover { background: #0a68b0; }
-
-        .results-meta {
-            margin: 6px 0 0;
-            text-align: center;
-            font-size: 14px;
-            color: rgba(255,255,255,.85);
-        }
-
-        /* ===== News grid (same as index) ===== */
-        .news-grid {
-            margin: 16px auto 0;
-            display: grid;
-            grid-template-columns: repeat(3,1fr);
-            gap: 22px;
-        }
-
-        .news-item {
-            display: block;
-            text-decoration: none;
-            color: inherit;
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.12);
-            border-radius: 0;
-            overflow: hidden;
-            transition: transform .2s, box-shadow .2s, border-color .2s;
-        }
-
-        .news-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 24px rgba(0,0,0,.25);
-            border-color: rgba(255,255,255,0.22);
-        }
-
-        .news-thumb {
-            width: 100%;
-            height: 190px;
-            object-fit: cover;
-            display: block;
-        }
-
-        .news-body {
-            padding: 12px 12px 14px;
-            display: grid;
-            gap: 8px;
-        }
-
-        .news-title-row {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            gap: 10px;
-        }
-
-        .news-title {
-            margin: 0;
-            font-size: 16px;
-            color: #fff;
-            letter-spacing: .3px;
-            line-height: 1.2;
-        }
-
-        .news-plus {
-            color: var(--accent);
-            font-weight: 900;
-            font-size: 24px;
-            line-height: 1;
-            margin-top: 1px;
-            flex: 0 0 auto;
-        }
-
-        .news-meta {
-            font-size: 13px;
-            color: rgba(255,255,255,.82);
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .news-meta .tag {
-            padding: 3px 8px;
-            border: 1px solid rgba(255,255,255,.22);
-            background: rgba(255,255,255,.06);
-            border-radius: 999px;
-        }
-
-        /* ===== SHOW MORE button ===== */
-        .more-wrap {
-            display: flex;
-            justify-content: center;
-            margin-top: 18px;
-        }
-
-        .btn-more {
-            height: 46px;
-            padding: 0 18px;
-            border-radius: 10px;
-            border: 1px solid rgba(255,255,255,.25);
-            background: rgba(0,0,0,.22);
-            color: #fff;
-            font-weight: 800;
-            letter-spacing: .6px;
-            cursor: pointer;
-            transition: background .2s, border-color .2s, transform .2s;
-        }
-
-        .btn-more:hover {
-            background: rgba(213,37,34,.18);
-            border-color: rgba(255,255,255,.35);
-        }
-
-        .btn-more:active { transform: scale(.99); }
-
-        /* ===== LinkedIn widget area ===== */
-        .linkedin-wrap {
-            margin-top: 14px;
-            padding-top: 2px;
-        }
-
-        .linkedin-note {
-            text-align: center;
-            font-size: 14px;
-            color: rgba(255,255,255,.85);
-            margin: 6px 0 10px;
-        }
-
-        /* Optional: keeps visual rhythm similar to cards */
-        .linkedin-embed-box {
-            border: 1px solid rgba(255,255,255,.12);
-            background: rgba(255,255,255,0.06);
-            padding: 10px;
-        }
-
-        /* =================== FOOTER (MASTER) =================== */
-        /* FIX: ensure footer sits ABOVE the cockpit overlay and does not look tinted */
-        .site-footer {
-            position: relative;
-            z-index: 3;
-            isolation: isolate;
-            background: linear-gradient(180deg, rgba(0,20,50,.35), rgba(0,20,40,.6));
-            border-top: 1px solid rgba(255,255,255,.18);
-            margin-top: 44px;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 2fr 1.5fr;
-            gap: 28px;
-            padding: 28px 0;
-            width: min(1200px, 92vw);
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        .footer-col h4 {
-            margin: 0 0 10px;
-            font-size: 16px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: #eaf3ff;
-        }
-
-        .footer-col p { margin: 6px 0; color: rgba(255,255,255,.92); }
-
-        .footer-col a { color: #aee1ff; text-decoration: none; }
-        .footer-col a:hover { text-decoration: underline; }
-
-        .footer-col--center { text-align: center; }
-
-        .newsletter-form {
-            display: inline-flex;
-            gap: 10px;
-            align-items: stretch;
-            justify-content: center;
-            margin-top: 8px;
-        }
-
-        .newsletter-form input {
-            min-width: 280px;
-            height: 44px;
-            padding: 0 12px;
-            border-radius: 8px;
-            border: 1px solid rgba(255,255,255,.35);
-            background: rgba(255,255,255,.1);
-            color: #fff;
-            outline: none;
-        }
-
-        .newsletter-form input::placeholder { color: rgba(255,255,255,.75); }
-
-        .newsletter-form button {
-            height: 44px;
-            padding: 0 16px;
-            border: 0;
-            border-radius: 8px;
-            background: #0b76c7;
-            color: #fff;
-            font-weight: 700;
-            letter-spacing: .5px;
-            cursor: pointer;
-        }
-
-        .newsletter-form button:hover { background: #0a68b0; }
-
-        .footer-col--right { text-align: right; }
-
-        .social-row {
-            display: flex;
-            gap: 12px;
-            justify-content: flex-end;
-            margin: 6px 0 10px;
-        }
-
-        .legal-links {
-            list-style: none;
-            padding: 0;
-            margin: 8px 0 0;
-            display: grid;
-            gap: 6px;
-        }
-
-        .legal-links a {
-            color: #aee1ff;
-            text-decoration: none;
-            font-size: 14px;
-        }
-
-        .legal-links a:hover { text-decoration: underline; }
-
-        .footer-bottom {
-            text-align: center;
-            padding: 14px 0;
-            border-top: 1px solid rgba(255,255,255,.15);
-            color: rgba(255,255,255,.85);
-            font-size: 13px;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* =================== RESPONSIVE =================== */
-        @media (max-width:980px) {
-            .news-grid { grid-template-columns: repeat(2,1fr); }
-
-            .footer-grid { grid-template-columns: 1fr; }
-            .footer-col--right { text-align: center; }
-            .social-row { justify-content: center; }
-        }
-
-        @media (max-width:720px) {
-            .site-header { padding-inline: 16px; }
-
-            /* Mobile header: centered logo + hamburger */
-            .header-inner {
-                display: grid;
-                grid-template-columns: 1fr auto 1fr;
-                align-items: center;
-                gap: 10px;
-            }
-
-            .logo-link { grid-column: 2; justify-self: center; }
-            .header-separator { display: none; }
-
-            .menu-toggle {
-                display: inline-block;
-                grid-column: 3;
-                justify-self: end;
-                margin-left: 0;
-            }
-
-            .main-nav { grid-column: 1 / -1; width: 100%; }
-
-            .main-nav .menu {
-                display: none;
-                margin-top: 12px;
-                padding: 12px 12px;
-                gap: 10px;
-                flex-direction: column;
-                border: 1px solid rgba(255,255,255,.18);
-                border-radius: 10px;
-                background: rgba(0,0,0,.30);
-                backdrop-filter: blur(2px);
-            }
-
-            .main-nav .menu.is-open { display: flex; }
-
-            .main-nav .menu a {
-                display: block;
-                width: 100%;
-                text-align: center;
-                padding: 10px 10px;
-                border-radius: 8px;
-            }
-
-            .main-nav .menu a:hover {
-                background: rgba(213,37,34,.18);
-                color: #fff;
-            }
-
-            .news-grid { grid-template-columns: 1fr; }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>News | CETA</title>
+
+  <style>
+    :root {
+      --brand: #002856;
+      --accent: #D52522;
+      --ink: #ffffff;
+      --ink-soft: rgba(255,255,255,.92);
+      --link: #aee1ff;
+      --max: 1200px;
+      --fs-body: 18px;
+      --fs-h1: clamp(28px,4.4vw,50px);
+      --fs-h2: clamp(16px,2.4vw,20px);
+    }
+
+    @font-face {
+      font-family: "Eurostile";
+      src: url("FONTS/EUROSTILE.TTF") format("truetype");
+      font-display: swap;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { height: 100%; }
+
+    body {
+      margin: 0;
+      font-family: "Eurostile", Arial, sans-serif;
+      font-size: var(--fs-body);
+      line-height: 1.55;
+      background: var(--brand);
+      color: var(--ink);
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* ===== BACKGROUND ===== */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(0,30,70,.35), rgba(0,20,50,.55)),
+        url("IMAGENES/COCKPIT.webp") center / cover no-repeat fixed;
+      opacity: .40;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .wrap { position: relative; z-index: 2; }
+
+    .container {
+      width: min(var(--max), 92vw);
+      margin: 0 auto;
+    }
+
+    /* =================== HEADER =================== */
+    .site-header { padding: 18px 30px 8px; }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo { height: 50px; display: block; }
+
+    .header-separator {
+      width: 1px;
+      height: 36px;
+      background: rgba(255,255,255,.9);
+    }
+
+    .menu-toggle {
+      display: none;
+      margin-left: auto;
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(255,255,255,.25);
+      background: rgba(0,0,0,.28);
+      border-radius: 10px;
+      cursor: pointer;
+      padding: 10px;
+    }
+
+    .menu-toggle .bar {
+      display: block;
+      height: 2px;
+      background: rgba(255,255,255,.9);
+      margin: 6px 0;
+    }
+
+    .main-nav .menu {
+      list-style: none;
+      display: flex;
+      gap: 28px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .main-nav .menu a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+      letter-spacing: .5px;
+    }
+
+    .main-nav .menu a:hover { color: var(--accent); }
+
+    /* =================== HERO =================== */
+    .hero {
+      min-height: 32vh;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 36px 0 8px;
+    }
+
+    .hero h1 {
+      margin: 0 0 10px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: var(--fs-h1);
+      font-weight: 800;
+      filter: drop-shadow(0 6px 18px rgba(0,0,0,.25));
+    }
+
+    .hero-panel {
+      width: min(1000px,92vw);
+      margin: 0 auto;
+      padding: 16px 18px;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 10px;
+      background: rgba(0,0,0,.28);
+      backdrop-filter: blur(2px);
+      color: rgba(255,255,255,.95);
+      text-align: center;
+      font-size: var(--fs-h2);
+      letter-spacing: .6px;
+    }
+
+    .separator {
+      width: min(var(--max),92vw);
+      margin: 22px auto 18px;
+      border: 0;
+      border-top: 2px dashed rgba(255,255,255,.35);
+    }
+
+    /* =================== LINKEDIN FEED PANEL =================== */
+    .news-section { padding: 10px 0 70px; }
+
+    .news-panel {
+      width: min(var(--max),92vw);
+      margin: 0 auto;
+      padding: 18px;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(0,0,0,.28);
+      backdrop-filter: blur(2px);
+    }
+
+    .linkedin-note {
+      text-align: center;
+      font-size: 14px;
+      color: rgba(255,255,255,.85);
+      margin: 6px 0 14px;
+    }
+
+    /* =================== FOOTER =================== */
+    .site-footer {
+      position: relative;
+      z-index: 3;
+      background: linear-gradient(180deg, rgba(0,20,50,.35), rgba(0,20,40,.6));
+      border-top: 1px solid rgba(255,255,255,.18);
+      margin-top: 44px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 2fr 1.5fr;
+      gap: 28px;
+      padding: 28px 0;
+      width: min(1200px, 92vw);
+      margin: 0 auto;
+    }
+
+    .footer-col h4 {
+      margin: 0 0 10px;
+      font-size: 16px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #eaf3ff;
+    }
+
+    .footer-col p { margin: 6px 0; }
+
+    .footer-col a { color: #aee1ff; text-decoration: none; }
+
+    .footer-bottom {
+      text-align: center;
+      padding: 14px 0;
+      border-top: 1px solid rgba(255,255,255,.15);
+      font-size: 13px;
+    }
+
+    /* =================== RESPONSIVE =================== */
+    @media (max-width: 720px) {
+      .site-header { padding-inline: 16px; }
+      .header-separator { display: none; }
+      .menu-toggle { display: inline-block; margin-left: auto; }
+      .main-nav .menu { display: none; }
+    }
+  </style>
+
+  <!-- ===== ELFSIGHT PLATFORM (LinkedIn Feed) ===== -->
+  <script src="https://elfsightcdn.com/platform.js" async></script>
 </head>
 
 <body>
-    <!-- HEADER -->
-    <header class="site-header wrap">
-        <div class="header-inner">
-            <a href="index.html" class="logo-link" aria-label="Home">
-                <img src="IMAGENES/LOGO_BLANCO.png" alt="CETA" class="logo" />
-            </a>
 
-            <div class="header-separator" aria-hidden="true"></div>
+<!-- HEADER -->
+<header class="site-header wrap">
+  <div class="header-inner">
+    <a href="index.html">
+      <img src="IMAGENES/LOGO_BLANCO.png" alt="CETA" class="logo" />
+    </a>
 
-            <!-- Hamburger button (mobile only) -->
-            <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mainMenu">
-                <span class="bar" aria-hidden="true"></span>
-                <span class="bar" aria-hidden="true"></span>
-                <span class="bar" aria-hidden="true"></span>
-            </button>
+    <div class="header-separator"></div>
 
-            <nav class="main-nav" aria-label="Primary menu">
-                <ul class="menu" id="mainMenu">
-                    <li><a href="empresa.html">WHO WE ARE</a></li>
-                    <li><a href="index.html">AEROSPACE ENGINEERING SERVICES</a></li>
-                    <li><a href="calidad.html">QUALITY ASSURANCE</a></li>
-                    <li><a href="noticias.html">NEWS</a></li>
-                    <li><a href="contacto.html">CONTACT</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <nav class="main-nav">
+      <ul class="menu">
+        <li><a href="empresa.html">WHO WE ARE</a></li>
+        <li><a href="index.html">AEROSPACE ENGINEERING SERVICES</a></li>
+        <li><a href="calidad.html">QUALITY ASSURANCE</a></li>
+        <li><a href="noticias.html">NEWS</a></li>
+        <li><a href="contacto.html">CONTACT</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
 
-    <!-- HERO -->
-    <section class="hero wrap">
-        <div class="container">
-            <h1>NEWS</h1>
-            <div class="hero-panel">Latest updates across the defence and aerospace domain.</div>
-        </div>
-    </section>
+<!-- HERO -->
+<section class="hero wrap">
+  <div class="container">
+    <h1>NEWS</h1>
+    <div class="hero-panel">
+      Latest updates across the defence and aerospace domain.
+    </div>
+  </div>
+</section>
 
-    <hr class="separator" />
+<hr class="separator" />
 
-    <!-- SEARCH + GRID (dark panel) -->
-    <section class="news-section wrap">
-        <div class="news-panel">
+<!-- LINKEDIN FEED -->
+<section class="news-section wrap">
+  <div class="news-panel">
 
-            <!-- Tabs -->
-            <div class="news-tabs" role="tablist" aria-label="News sources">
-                <button class="tab-btn is-active" id="tabWebsite" type="button" role="tab" aria-selected="true" aria-controls="panelWebsite">
-                    CETA WEBSITE NEWS
-                </button>
-                <button class="tab-btn" id="tabLinkedIn" type="button" role="tab" aria-selected="false" aria-controls="panelLinkedIn">
-                    LINKEDIN NEWS
-                </button>
-            </div>
+    <p class="linkedin-note">
+      This section auto-updates from the CETA LinkedIn Page.
+    </p>
 
-            <!-- Panel: Website news (your current grid + search) -->
-            <div id="panelWebsite" role="tabpanel" aria-labelledby="tabWebsite">
+    <!-- ELFSIGHT LINKEDIN FEED -->
+    <div class="elfsight-app-bda73500-7f22-4c8f-b711-f3e1fac03bbb"
+         data-elfsight-app-lazy></div>
 
-                <div class="news-tools" id="newsTools">
-                    <div class="search-wrap">
-                        <input id="newsSearch" type="search" placeholder="Search news (title, tags, date)..." autocomplete="off" />
-                        <button id="clearSearch" type="button">Clear</button>
-                    </div>
-                </div>
+    <p class="linkedin-note" style="margin-top:14px;">
+      View all posts on LinkedIn:
+      <a href="https://www.linkedin.com/company/cetasa/posts/?feedView=all" target="_blank" rel="noopener noreferrer">
+        linkedin.com/company/cetasa
+      </a>
+    </p>
 
-                <div class="results-meta" id="resultsMeta">Displaying 6 news items.</div>
+  </div>
+</section>
 
-                <div class="news-grid" id="newsGrid">
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h4>CETA S.A.</h4>
+      <p>Compañía Española de Técnica Aeronáutica S.A.</p>
+      <p>C/ Cañas, 7 · Nave Entresuelo<br>28043 Madrid · Spain</p>
+      <p><a href="mailto:ingenieria@ceta.aero">ingenieria@ceta.aero</a></p>
+    </div>
+  </div>
 
-                    <!-- NEWS 1 (most recent first) -->
-                    <a class="news-item"
-                       href="https://www.linkedin.com/posts/cetasa_circular-ceta-relojes-aviaci%C3%B3n-garmin-activity-7389586871003078656-U2P0?utm_source=share&utm_medium=member_desktop&rcm=ACoAADfSGtcB4euzogqAHM7yrKGI5Vah_62Ysyw"
-                       target="_blank" rel="noopener noreferrer"
-                       data-title="Garmin D2 Mach 2: aviation-grade smart watch"
-                       data-tags="garmin, d2 mach 2, watch, aviation, pilots, maps, amoled, health, led flashlight, garmin pilot, planesync"
-                       data-date="2025-12-17">
-                        <img class="news-thumb" src="NOTICIAS/RELOJ_GARMIN.webp" alt="Garmin D2 Mach 2 Watch" />
-                        <div class="news-body">
-                            <div class="news-title-row">
-                                <h3 class="news-title">Garmin D2 Mach 2: aviation-grade smart watch for pilots</h3>
-                                <span class="news-plus" aria-hidden="true">+</span>
-                            </div>
-                            <div class="news-meta">
-                                <span class="tag">2025-12-17</span>
-                                <span class="tag">Garmin</span>
-                                <span class="tag">Aviation</span>
-                                <span class="tag">Wearables</span>
-                            </div>
-                        </div>
-                    </a>
+  <div class="footer-bottom">
+    © <span id="year"></span> CETA · All rights reserved
+  </div>
+</footer>
 
-                    <!-- NEWS 2 -->
-                    <a class="news-item"
-                       href="https://www.linkedin.com/posts/cetasa_circular-ceta-equipos-flightcell-activity-7384528602295484416-sdbN?utm_source=share&utm_medium=member_desktop&rcm=ACoAADfSGtcB4euzogqAHM7yrKGI5Vah_62Ysyw"
-                       target="_blank" rel="noopener noreferrer"
-                       data-title="Flightcell: satellite communications, 5G and mission integration"
-                       data-tags="flightcell, dzmx, dzmx plus, iridium, 5g, communications, voice, data, gps tracking, wifi, bluetooth, smarthub, cockpit recording, svs, security"
-                       data-date="2025-12-10">
-                        <img class="news-thumb" src="NOTICIAS/COCKPIT.jpg" alt="Flightcell DZMx Systems" />
-                        <div class="news-body">
-                            <div class="news-title-row">
-                                <h3 class="news-title">Flightcell DZMx: satellite connectivity + 5G for aircraft</h3>
-                                <span class="news-plus" aria-hidden="true">+</span>
-                            </div>
-                            <div class="news-meta">
-                                <span class="tag">2025-12-10</span>
-                                <span class="tag">Comms</span>
-                                <span class="tag">Satellite</span>
-                                <span class="tag">Integration</span>
-                            </div>
-                        </div>
-                    </a>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
 
-                    <!-- NEWS 3 -->
-                    <a class="news-item"
-                       href="https://www.linkedin.com/posts/cetasa_circular-ceta-bolet%C3%ADn-de-servicio-easa-activity-7376525911208267776-J3i6?utm_source=share&utm_medium=member_desktop&rcm=ACoAADfSGtcB4euzogqAHM7yrKGI5Vah_62Ysyw"
-                       target="_blank" rel="noopener noreferrer"
-                       data-title="EASA SIB 2025-03: lithium battery and PED risks on board"
-                       data-tags="easa, sib 2025-03, lithium batteries, peds, safety, cabin, power banks, crew training, check-in, boarding, incidents, authority"
-                       data-date="2025-11-28">
-                        <img class="news-thumb" src="NOTICIAS/SISTEMASDZM.jpg" alt="Lithium batteries awareness on board" />
-                        <div class="news-body">
-                            <div class="news-title-row">
-                                <h3 class="news-title">EASA SIB 2025-03: lithium battery safety on board</h3>
-                                <span class="news-plus" aria-hidden="true">+</span>
-                            </div>
-                            <div class="news-meta">
-                                <span class="tag">2025-11-28</span>
-                                <span class="tag">EASA</span>
-                                <span class="tag">Safety</span>
-                                <span class="tag">Operations</span>
-                            </div>
-                        </div>
-                    </a>
-
-                    <!-- NEWS 4 -->
-                    <a class="news-item"
-                       href="https://www.linkedin.com/posts/cetasa_circular-ceta-garmin-12-pulgadas-txi-activity-7371452412445761536-q_nQ?utm_source=share&utm_medium=member_desktop&rcm=ACoAADfSGtcB4euzogqAHM7yrKGI5Vah_62Ysyw"
-                       target="_blank" rel="noopener noreferrer"
-                       data-title="Garmin TXi 12.1: larger display area with thinner bezels"
-                       data-tags="garmin, txi, 12.1, pfd, mfd, eis, maps, charts, terrain, obstacles, safetaxi, cameras, gtn xi, lpv, lnav, ils"
-                       data-date="2025-11-14">
-                        <img class="news-thumb" src="NOTICIAS/GARMIN.jpg" alt="Garmin TXi 12.1" />
-                        <div class="news-body">
-                            <div class="news-title-row">
-                                <h3 class="news-title">Garmin TXi 12.1”: more area, more visibility, more options</h3>
-                                <span class="news-plus" aria-hidden="true">+</span>
-                            </div>
-                            <div class="news-meta">
-                                <span class="tag">2025-11-14</span>
-                                <span class="tag">Avionics</span>
-                                <span class="tag">Garmin</span>
-                                <span class="tag">Cockpit</span>
-                            </div>
-                        </div>
-                    </a>
-
-                    <!-- NEWS 5 -->
-                    <a class="news-item"
-                       href="https://www.linkedin.com/posts/cetasa_circular-ceta-reemplazo-rn5-por-rn7-activity-7366379051776655360-Rk0j?utm_source=share&utm_medium=member_desktop&rcm=ACoAADfSGtcB4euzogqAHM7yrKGI5Vah_62Ysyw"
-                       target="_blank" rel="noopener noreferrer"
-                       data-title="HENSOLDT EuroNav 7 NextGen: RN5 replacement ahead of 2027 end-of-support"
-                       data-tags="hensoldt, euron av, euron av 5, rn5, euron av 7, rn7, nextgen, obsolescence, navigation, maps, do-160, interfaces, usb, ethernet, remote, wifi, 4g, lte"
-                       data-date="2025-10-30">
-                        <img class="news-thumb" src="NOTICIAS/EURONAV.jpeg" alt="HENSOLDT EuroNav 7 NextGen" />
-                        <div class="news-body">
-                            <div class="news-title-row">
-                                <h3 class="news-title">EuroNav 7 NextGen: RN5 replacement planning for 2027</h3>
-                                <span class="news-plus" aria-hidden="true">+</span>
-                            </div>
-                            <div class="news-meta">
-                                <span class="tag">2025-10-30</span>
-                                <span class="tag">Navigation</span>
-                                <span class="tag">HENSOLDT</span>
-                                <span class="tag">Obsolescence</span>
-                            </div>
-                        </div>
-                    </a>
-
-                    <!-- NEWS 6 -->
-                    <a class="news-item"
-                       href="https://www.linkedin.com/posts/cetasa_circular-ceta-aproximaciones-visuales-guiadasfgv-activity-7363842347811446784-E_WP?utm_source=share&utm_medium=member_desktop&rcm=ACoAADfSGtcB4euzogqAHM7yrKGI5Vah_62Ysyw"
-                       target="_blank" rel="noopener noreferrer"
-                       data-title="Guided Visual Approaches (FGV): lateral and vertical guidance in Garmin GTN/TXi"
-                       data-tags="fgv, guided visual approaches, garmin, hughes, gtn, txi, vertical guidance, lateral guidance, autopilot, rnav g, charts, onepak, database, safety"
-                       data-date="2025-10-12">
-                        <img class="news-thumb" src="NOTICIAS/noticia6.jpeg" alt="Guided Visual Approaches (FGV)" />
-                        <div class="news-body">
-                            <div class="news-title-row">
-                                <h3 class="news-title">FGV: guided visual approaches integrated in Garmin GTN/TXi</h3>
-                                <span class="news-plus" aria-hidden="true">+</span>
-                            </div>
-                            <div class="news-meta">
-                                <span class="tag">2025-10-12</span>
-                                <span class="tag">Procedures</span>
-                                <span class="tag">Garmin</span>
-                                <span class="tag">Safety</span>
-                            </div>
-                        </div>
-                    </a>
-
-                </div>
-
-                <div class="more-wrap">
-                    <button class="btn-more" id="btnMore" type="button">SHOW MORE</button>
-                </div>
-
-            </div>
-
-            <!-- Panel: LinkedIn feed (widget) -->
-            <div id="panelLinkedIn" role="tabpanel" aria-labelledby="tabLinkedIn" style="display:none;">
-                <div class="linkedin-wrap">
-                    <p class="linkedin-note">
-                        This section auto-updates from the CETA LinkedIn Page.
-                    </p>
-
-                    <div class="linkedin-embed-box">
-                        <!-- =========================================================
-                             PASTE YOUR WIDGET CODE HERE (Elfsight / SociableKIT / etc.)
-                             The provider will give you a <script> + <div> snippet.
-                             Example for Elfsight is typically like:
-                             <script src="https://static.elfsight.com/platform/platform.js" async></script>
-                             <div class="elfsight-app-XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"></div>
-                             ========================================================= -->
-                        <!-- PASTE HERE -->
-                    </div>
-
-                    <p class="linkedin-note" style="margin-top:10px;">
-                        View all posts on LinkedIn:
-                        <a href="https://www.linkedin.com/company/cetasa/posts/?feedView=all" target="_blank" rel="noopener noreferrer" style="color: var(--link);">
-                            linkedin.com/company/cetasa
-                        </a>
-                    </p>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- FOOTER (same layout; connected to Formspree; no redirect; success message) -->
-    <footer class="site-footer">
-        <div class="footer-grid">
-            <div class="footer-col">
-                <h4>CETA S.A.</h4>
-                <p>Compañía Española de Técnica Aeronáutica S.A.</p>
-                <p>C/ Cañas, 7 · Nave Entresuelo<br>28043 Madrid · Spain</p>
-                <p><a href="mailto:ingenieria@ceta.aero">ingenieria@ceta.aero</a></p>
-                <p>Tel: +34 911 400 181 · Fax: +34 911 400 182</p>
-            </div>
-
-            <div class="footer-col footer-col--center">
-                <h4>Email</h4>
-
-                <form class="newsletter-form" action="https://formspree.io/f/xpqqwqqd" method="POST" id="newsletterForm">
-                    <input id="newsletter-email" name="email" type="email" placeholder="Your email" required />
-                    <button type="submit">SEND</button>
-                </form>
-
-                <p id="newsletterSuccess" style="display:none; margin:10px 0 0; color: rgba(255,255,255,.92); font-size: 14px;">
-                    Thank you. You have been registered.
-                </p>
-            </div>
-
-            <div class="footer-col footer-col--right">
-                <h4>Connect</h4>
-                <div class="social-row">
-                    <a class="social-link" href="https://www.linkedin.com/company/cetasa/posts/?feedView=all" aria-label="LinkedIn" title="LinkedIn">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                            <rect width="24" height="24" rx="4" fill="rgba(255,255,255,0.15)" />
-                            <path d="M7.2 8.8a1.6 1.6 0 1 0 0-3.2 1.6 1.6 0 0 0 0 3.2Zm1 2H6.2v7.4h2V10.8Zm3.2 0H9.6v7.4h2v-4.2c0-1.1.8-1.8 1.7-1.8 1 0 1.5.6 1.5 1.8v4.2h2V13c0-2.2-1.3-3.2-3.2-3.2-1.1 0-1.9.5-2.2 1.1h-.1v-0.1Z"
-                                  fill="rgba(200,230,255,0.95)" />
-                        </svg>
-                    </a>
-                </div>
-                <ul class="legal-links">
-                    <a href="politica-de-calidad.html">QUALITY POLICY</a>
-                    <a href="condiciones-generales-de-compra.html">GENERAL PURCHASING CONDITIONS</a>
-                    <a href="politica-de-cookies.html">COOKIE POLICY</a>
-                </ul>
-            </div>
-        </div>
-
-        <div class="footer-bottom">
-            © <span id="year"></span> CETA · All rights reserved
-        </div>
-    </footer>
-
-    <script>
-        // Footer year (supports multiple spans safely)
-        document.querySelectorAll('#year').forEach(el => {
-            el.textContent = new Date().getFullYear();
-        });
-
-        // ===== Mobile menu (hamburger) =====
-        const toggle = document.querySelector('.menu-toggle');
-        const menu = document.getElementById('mainMenu');
-
-        function setMenu(open) {
-            menu.classList.toggle('is-open', open);
-            toggle.setAttribute('aria-expanded', String(open));
-        }
-
-        toggle?.addEventListener('click', () => {
-            setMenu(!menu.classList.contains('is-open'));
-        });
-
-        // Close menu when clicking a link (mobile)
-        menu?.addEventListener('click', (e) => {
-            const a = e.target.closest('a');
-            if (!a) return;
-            setMenu(false);
-        });
-
-        // If back to desktop, reset state
-        window.addEventListener('resize', () => {
-            if (window.innerWidth > 720) setMenu(false);
-        });
-
-        // =================== Formspree footer form (no redirect) ===================
-        document.getElementById('newsletterForm')?.addEventListener('submit', async function (e) {
-            e.preventDefault();
-
-            const form = e.target;
-            const data = new FormData(form);
-
-            try {
-                const response = await fetch(form.action, {
-                    method: form.method,
-                    body: data,
-                    headers: { 'Accept': 'application/json' }
-                });
-
-                if (response.ok) {
-                    form.reset();
-                    document.getElementById('newsletterSuccess').style.display = 'block';
-                }
-            } catch (_) {
-                // silent fail
-            }
-        });
-
-        // ===== Tabs logic (Website / LinkedIn) =====
-        const tabWebsite = document.getElementById('tabWebsite');
-        const tabLinkedIn = document.getElementById('tabLinkedIn');
-        const panelWebsite = document.getElementById('panelWebsite');
-        const panelLinkedIn = document.getElementById('panelLinkedIn');
-
-        function setTab(which) {
-            const isWebsite = which === 'website';
-
-            tabWebsite.classList.toggle('is-active', isWebsite);
-            tabLinkedIn.classList.toggle('is-active', !isWebsite);
-
-            tabWebsite.setAttribute('aria-selected', String(isWebsite));
-            tabLinkedIn.setAttribute('aria-selected', String(!isWebsite));
-
-            panelWebsite.style.display = isWebsite ? '' : 'none';
-            panelLinkedIn.style.display = isWebsite ? 'none' : '';
-
-            // If switching back to website, ensure meta/search state is correct
-            if (isWebsite) {
-                applyVisibility();
-            }
-        }
-
-        tabWebsite.addEventListener('click', () => setTab('website'));
-        tabLinkedIn.addEventListener('click', () => setTab('linkedin'));
-
-        // ===== Search + "SHOW MORE" (shows latest 6) =====
-        const input = document.getElementById('newsSearch');
-        const clearBtn = document.getElementById('clearSearch');
-        const grid = document.getElementById('newsGrid');
-        const meta = document.getElementById('resultsMeta');
-        const btnMore = document.getElementById('btnMore');
-
-        const INITIAL_VISIBLE = 6;
-        let showAll = false;
-
-        function normalize(str) {
-            return (str || '')
-                .toString()
-                .toLowerCase()
-                .normalize('NFD')
-                .replace(/[\u0300-\u036f]/g, '');
-        }
-
-        function getItems() {
-            return Array.from(grid.querySelectorAll('.news-item'));
-        }
-
-        function applyVisibility() {
-            const q = normalize(input.value.trim());
-            const items = getItems();
-
-            const matches = items.filter(a => {
-                const hay =
-                    normalize(a.dataset.title) + ' ' +
-                    normalize(a.dataset.tags) + ' ' +
-                    normalize(a.dataset.date) + ' ' +
-                    normalize(a.innerText);
-                return !q || hay.includes(q);
-            });
-
-            items.forEach(a => a.style.display = 'none');
-
-            // With active search: show all matches (no "show more")
-            if (q) {
-                matches.forEach(a => a.style.display = '');
-                meta.textContent = `Results: ${matches.length} item(s) for “${input.value.trim()}”.`;
-                btnMore.style.display = 'none';
-                return;
-            }
-
-            // Without search: show 6 latest, or all if showAll
-            const visibleNow = showAll ? matches : matches.slice(0, INITIAL_VISIBLE);
-            visibleNow.forEach(a => a.style.display = '');
-
-            meta.textContent = `Displaying ${visibleNow.length} of ${matches.length} news items.`;
-
-            if (matches.length > INITIAL_VISIBLE) {
-                btnMore.style.display = '';
-                btnMore.textContent = showAll ? 'SHOW LESS' : 'SHOW MORE';
-            } else {
-                btnMore.style.display = 'none';
-            }
-        }
-
-        input.addEventListener('input', () => {
-            showAll = false;
-            applyVisibility();
-        });
-
-        clearBtn.addEventListener('click', () => {
-            input.value = '';
-            showAll = false;
-            applyVisibility();
-            input.focus();
-        });
-
-        btnMore.addEventListener('click', () => {
-            showAll = !showAll;
-            applyVisibility();
-        });
-
-        // Initial state
-        applyVisibility();
-        setTab('website');
-    </script>
 </body>
 </html>
