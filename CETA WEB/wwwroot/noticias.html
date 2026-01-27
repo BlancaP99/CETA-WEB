@@ -166,6 +166,41 @@
             backdrop-filter: blur(2px);
         }
 
+        /* ===== Tabs (Website / LinkedIn) ===== */
+        .news-tabs {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+        }
+
+        .tab-btn {
+            height: 44px;
+            padding: 0 14px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,.25);
+            background: rgba(0,0,0,.22);
+            color: #fff;
+            font-weight: 800;
+            letter-spacing: .6px;
+            cursor: pointer;
+            transition: background .2s, border-color .2s, transform .2s;
+            white-space: nowrap;
+        }
+
+        .tab-btn:hover {
+            background: rgba(213,37,34,.18);
+            border-color: rgba(255,255,255,.35);
+        }
+
+        .tab-btn.is-active {
+            background: rgba(213,37,34,.22);
+            border-color: rgba(255,255,255,.45);
+        }
+
+        .tab-btn:active { transform: scale(.99); }
+
         /* ===== Search bar ===== */
         .news-tools {
             display: flex;
@@ -322,12 +357,32 @@
 
         .btn-more:active { transform: scale(.99); }
 
+        /* ===== LinkedIn widget area ===== */
+        .linkedin-wrap {
+            margin-top: 14px;
+            padding-top: 2px;
+        }
+
+        .linkedin-note {
+            text-align: center;
+            font-size: 14px;
+            color: rgba(255,255,255,.85);
+            margin: 6px 0 10px;
+        }
+
+        /* Optional: keeps visual rhythm similar to cards */
+        .linkedin-embed-box {
+            border: 1px solid rgba(255,255,255,.12);
+            background: rgba(255,255,255,0.06);
+            padding: 10px;
+        }
+
         /* =================== FOOTER (MASTER) =================== */
         /* FIX: ensure footer sits ABOVE the cockpit overlay and does not look tinted */
         .site-footer {
             position: relative;
-            z-index: 3;          /* above body::before (z-index:0) */
-            isolation: isolate;  /* its own stacking context */
+            z-index: 3;
+            isolation: isolate;
             background: linear-gradient(180deg, rgba(0,20,50,.35), rgba(0,20,40,.6));
             border-top: 1px solid rgba(255,255,255,.18);
             margin-top: 44px;
@@ -515,9 +570,8 @@
                     <li><a href="empresa.html">WHO WE ARE</a></li>
                     <li><a href="index.html">AEROSPACE ENGINEERING SERVICES</a></li>
                     <li><a href="calidad.html">QUALITY ASSURANCE</a></li>
-          <li><a href="noticias.html">NEWS</a></li>
+                    <li><a href="noticias.html">NEWS</a></li>
                     <li><a href="contacto.html">CONTACT</a></li>
-                    
                 </ul>
             </nav>
         </div>
@@ -537,153 +591,195 @@
     <section class="news-section wrap">
         <div class="news-panel">
 
-            <div class="news-tools">
-                <div class="search-wrap">
-                    <input id="newsSearch" type="search" placeholder="Search news (title, tags, date)..." autocomplete="off" />
-                    <button id="clearSearch" type="button">Clear</button>
+            <!-- Tabs -->
+            <div class="news-tabs" role="tablist" aria-label="News sources">
+                <button class="tab-btn is-active" id="tabWebsite" type="button" role="tab" aria-selected="true" aria-controls="panelWebsite">
+                    CETA WEBSITE NEWS
+                </button>
+                <button class="tab-btn" id="tabLinkedIn" type="button" role="tab" aria-selected="false" aria-controls="panelLinkedIn">
+                    LINKEDIN NEWS
+                </button>
+            </div>
+
+            <!-- Panel: Website news (your current grid + search) -->
+            <div id="panelWebsite" role="tabpanel" aria-labelledby="tabWebsite">
+
+                <div class="news-tools" id="newsTools">
+                    <div class="search-wrap">
+                        <input id="newsSearch" type="search" placeholder="Search news (title, tags, date)..." autocomplete="off" />
+                        <button id="clearSearch" type="button">Clear</button>
+                    </div>
                 </div>
+
+                <div class="results-meta" id="resultsMeta">Displaying 6 news items.</div>
+
+                <div class="news-grid" id="newsGrid">
+
+                    <!-- NEWS 1 (most recent first) -->
+                    <a class="news-item"
+                       href="https://www.linkedin.com/posts/cetasa_circular-ceta-relojes-aviaci%C3%B3n-garmin-activity-7389586871003078656-U2P0?utm_source=share&utm_medium=member_desktop&rcm=ACoAADfSGtcB4euzogqAHM7yrKGI5Vah_62Ysyw"
+                       target="_blank" rel="noopener noreferrer"
+                       data-title="Garmin D2 Mach 2: aviation-grade smart watch"
+                       data-tags="garmin, d2 mach 2, watch, aviation, pilots, maps, amoled, health, led flashlight, garmin pilot, planesync"
+                       data-date="2025-12-17">
+                        <img class="news-thumb" src="NOTICIAS/RELOJ_GARMIN.webp" alt="Garmin D2 Mach 2 Watch" />
+                        <div class="news-body">
+                            <div class="news-title-row">
+                                <h3 class="news-title">Garmin D2 Mach 2: aviation-grade smart watch for pilots</h3>
+                                <span class="news-plus" aria-hidden="true">+</span>
+                            </div>
+                            <div class="news-meta">
+                                <span class="tag">2025-12-17</span>
+                                <span class="tag">Garmin</span>
+                                <span class="tag">Aviation</span>
+                                <span class="tag">Wearables</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- NEWS 2 -->
+                    <a class="news-item"
+                       href="https://www.linkedin.com/posts/cetasa_circular-ceta-equipos-flightcell-activity-7384528602295484416-sdbN?utm_source=share&utm_medium=member_desktop&rcm=ACoAADfSGtcB4euzogqAHM7yrKGI5Vah_62Ysyw"
+                       target="_blank" rel="noopener noreferrer"
+                       data-title="Flightcell: satellite communications, 5G and mission integration"
+                       data-tags="flightcell, dzmx, dzmx plus, iridium, 5g, communications, voice, data, gps tracking, wifi, bluetooth, smarthub, cockpit recording, svs, security"
+                       data-date="2025-12-10">
+                        <img class="news-thumb" src="NOTICIAS/COCKPIT.jpg" alt="Flightcell DZMx Systems" />
+                        <div class="news-body">
+                            <div class="news-title-row">
+                                <h3 class="news-title">Flightcell DZMx: satellite connectivity + 5G for aircraft</h3>
+                                <span class="news-plus" aria-hidden="true">+</span>
+                            </div>
+                            <div class="news-meta">
+                                <span class="tag">2025-12-10</span>
+                                <span class="tag">Comms</span>
+                                <span class="tag">Satellite</span>
+                                <span class="tag">Integration</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- NEWS 3 -->
+                    <a class="news-item"
+                       href="https://www.linkedin.com/posts/cetasa_circular-ceta-bolet%C3%ADn-de-servicio-easa-activity-7376525911208267776-J3i6?utm_source=share&utm_medium=member_desktop&rcm=ACoAADfSGtcB4euzogqAHM7yrKGI5Vah_62Ysyw"
+                       target="_blank" rel="noopener noreferrer"
+                       data-title="EASA SIB 2025-03: lithium battery and PED risks on board"
+                       data-tags="easa, sib 2025-03, lithium batteries, peds, safety, cabin, power banks, crew training, check-in, boarding, incidents, authority"
+                       data-date="2025-11-28">
+                        <img class="news-thumb" src="NOTICIAS/SISTEMASDZM.jpg" alt="Lithium batteries awareness on board" />
+                        <div class="news-body">
+                            <div class="news-title-row">
+                                <h3 class="news-title">EASA SIB 2025-03: lithium battery safety on board</h3>
+                                <span class="news-plus" aria-hidden="true">+</span>
+                            </div>
+                            <div class="news-meta">
+                                <span class="tag">2025-11-28</span>
+                                <span class="tag">EASA</span>
+                                <span class="tag">Safety</span>
+                                <span class="tag">Operations</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- NEWS 4 -->
+                    <a class="news-item"
+                       href="https://www.linkedin.com/posts/cetasa_circular-ceta-garmin-12-pulgadas-txi-activity-7371452412445761536-q_nQ?utm_source=share&utm_medium=member_desktop&rcm=ACoAADfSGtcB4euzogqAHM7yrKGI5Vah_62Ysyw"
+                       target="_blank" rel="noopener noreferrer"
+                       data-title="Garmin TXi 12.1: larger display area with thinner bezels"
+                       data-tags="garmin, txi, 12.1, pfd, mfd, eis, maps, charts, terrain, obstacles, safetaxi, cameras, gtn xi, lpv, lnav, ils"
+                       data-date="2025-11-14">
+                        <img class="news-thumb" src="NOTICIAS/GARMIN.jpg" alt="Garmin TXi 12.1" />
+                        <div class="news-body">
+                            <div class="news-title-row">
+                                <h3 class="news-title">Garmin TXi 12.1”: more area, more visibility, more options</h3>
+                                <span class="news-plus" aria-hidden="true">+</span>
+                            </div>
+                            <div class="news-meta">
+                                <span class="tag">2025-11-14</span>
+                                <span class="tag">Avionics</span>
+                                <span class="tag">Garmin</span>
+                                <span class="tag">Cockpit</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- NEWS 5 -->
+                    <a class="news-item"
+                       href="https://www.linkedin.com/posts/cetasa_circular-ceta-reemplazo-rn5-por-rn7-activity-7366379051776655360-Rk0j?utm_source=share&utm_medium=member_desktop&rcm=ACoAADfSGtcB4euzogqAHM7yrKGI5Vah_62Ysyw"
+                       target="_blank" rel="noopener noreferrer"
+                       data-title="HENSOLDT EuroNav 7 NextGen: RN5 replacement ahead of 2027 end-of-support"
+                       data-tags="hensoldt, euron av, euron av 5, rn5, euron av 7, rn7, nextgen, obsolescence, navigation, maps, do-160, interfaces, usb, ethernet, remote, wifi, 4g, lte"
+                       data-date="2025-10-30">
+                        <img class="news-thumb" src="NOTICIAS/EURONAV.jpeg" alt="HENSOLDT EuroNav 7 NextGen" />
+                        <div class="news-body">
+                            <div class="news-title-row">
+                                <h3 class="news-title">EuroNav 7 NextGen: RN5 replacement planning for 2027</h3>
+                                <span class="news-plus" aria-hidden="true">+</span>
+                            </div>
+                            <div class="news-meta">
+                                <span class="tag">2025-10-30</span>
+                                <span class="tag">Navigation</span>
+                                <span class="tag">HENSOLDT</span>
+                                <span class="tag">Obsolescence</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- NEWS 6 -->
+                    <a class="news-item"
+                       href="https://www.linkedin.com/posts/cetasa_circular-ceta-aproximaciones-visuales-guiadasfgv-activity-7363842347811446784-E_WP?utm_source=share&utm_medium=member_desktop&rcm=ACoAADfSGtcB4euzogqAHM7yrKGI5Vah_62Ysyw"
+                       target="_blank" rel="noopener noreferrer"
+                       data-title="Guided Visual Approaches (FGV): lateral and vertical guidance in Garmin GTN/TXi"
+                       data-tags="fgv, guided visual approaches, garmin, hughes, gtn, txi, vertical guidance, lateral guidance, autopilot, rnav g, charts, onepak, database, safety"
+                       data-date="2025-10-12">
+                        <img class="news-thumb" src="NOTICIAS/noticia6.jpeg" alt="Guided Visual Approaches (FGV)" />
+                        <div class="news-body">
+                            <div class="news-title-row">
+                                <h3 class="news-title">FGV: guided visual approaches integrated in Garmin GTN/TXi</h3>
+                                <span class="news-plus" aria-hidden="true">+</span>
+                            </div>
+                            <div class="news-meta">
+                                <span class="tag">2025-10-12</span>
+                                <span class="tag">Procedures</span>
+                                <span class="tag">Garmin</span>
+                                <span class="tag">Safety</span>
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+
+                <div class="more-wrap">
+                    <button class="btn-more" id="btnMore" type="button">SHOW MORE</button>
+                </div>
+
             </div>
 
-            <div class="results-meta" id="resultsMeta">Displaying 6 news items.</div>
+            <!-- Panel: LinkedIn feed (widget) -->
+            <div id="panelLinkedIn" role="tabpanel" aria-labelledby="tabLinkedIn" style="display:none;">
+                <div class="linkedin-wrap">
+                    <p class="linkedin-note">
+                        This section auto-updates from the CETA LinkedIn Page.
+                    </p>
 
-            <div class="news-grid" id="newsGrid">
-
-                <!-- NEWS 1 (most recent first) -->
-                <a class="news-item"
-                   href="https://www.linkedin.com/posts/cetasa_circular-ceta-relojes-aviaci%C3%B3n-garmin-activity-7389586871003078656-U2P0?utm_source=share&utm_medium=member_desktop&rcm=ACoAADfSGtcB4euzogqAHM7yrKGI5Vah_62Ysyw"
-                   target="_blank" rel="noopener noreferrer"
-                   data-title="Garmin D2 Mach 2: aviation-grade smart watch"
-                   data-tags="garmin, d2 mach 2, watch, aviation, pilots, maps, amoled, health, led flashlight, garmin pilot, planesync"
-                   data-date="2025-12-17">
-                    <img class="news-thumb" src="NOTICIAS/RELOJ_GARMIN.webp" alt="Garmin D2 Mach 2 Watch" />
-                    <div class="news-body">
-                        <div class="news-title-row">
-                            <h3 class="news-title">Garmin D2 Mach 2: aviation-grade smart watch for pilots</h3>
-                            <span class="news-plus" aria-hidden="true">+</span>
-                        </div>
-                        <div class="news-meta">
-                            <span class="tag">2025-12-17</span>
-                            <span class="tag">Garmin</span>
-                            <span class="tag">Aviation</span>
-                            <span class="tag">Wearables</span>
-                        </div>
+                    <div class="linkedin-embed-box">
+                        <!-- =========================================================
+                             PASTE YOUR WIDGET CODE HERE (Elfsight / SociableKIT / etc.)
+                             The provider will give you a <script> + <div> snippet.
+                             Example for Elfsight is typically like:
+                             <script src="https://static.elfsight.com/platform/platform.js" async></script>
+                             <div class="elfsight-app-XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"></div>
+                             ========================================================= -->
+                        <!-- PASTE HERE -->
                     </div>
-                </a>
 
-                <!-- NEWS 2 -->
-                <a class="news-item"
-                   href="https://www.linkedin.com/posts/cetasa_circular-ceta-equipos-flightcell-activity-7384528602295484416-sdbN?utm_source=share&utm_medium=member_desktop&rcm=ACoAADfSGtcB4euzogqAHM7yrKGI5Vah_62Ysyw"
-                   target="_blank" rel="noopener noreferrer"
-                   data-title="Flightcell: satellite communications, 5G and mission integration"
-                   data-tags="flightcell, dzmx, dzmx plus, iridium, 5g, communications, voice, data, gps tracking, wifi, bluetooth, smarthub, cockpit recording, svs, security"
-                   data-date="2025-12-10">
-                    <img class="news-thumb" src="NOTICIAS/COCKPIT.jpg" alt="Flightcell DZMx Systems" />
-                    <div class="news-body">
-                        <div class="news-title-row">
-                            <h3 class="news-title">Flightcell DZMx: satellite connectivity + 5G for aircraft</h3>
-                            <span class="news-plus" aria-hidden="true">+</span>
-                        </div>
-                        <div class="news-meta">
-                            <span class="tag">2025-12-10</span>
-                            <span class="tag">Comms</span>
-                            <span class="tag">Satellite</span>
-                            <span class="tag">Integration</span>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- NEWS 3 -->
-                <a class="news-item"
-                   href="https://www.linkedin.com/posts/cetasa_circular-ceta-bolet%C3%ADn-de-servicio-easa-activity-7376525911208267776-J3i6?utm_source=share&utm_medium=member_desktop&rcm=ACoAADfSGtcB4euzogqAHM7yrKGI5Vah_62Ysyw"
-                   target="_blank" rel="noopener noreferrer"
-                   data-title="EASA SIB 2025-03: lithium battery and PED risks on board"
-                   data-tags="easa, sib 2025-03, lithium batteries, peds, safety, cabin, power banks, crew training, check-in, boarding, incidents, authority"
-                   data-date="2025-11-28">
-                    <img class="news-thumb" src="NOTICIAS/SISTEMASDZM.jpg" alt="Lithium batteries awareness on board" />
-                    <div class="news-body">
-                        <div class="news-title-row">
-                            <h3 class="news-title">EASA SIB 2025-03: lithium battery safety on board</h3>
-                            <span class="news-plus" aria-hidden="true">+</span>
-                        </div>
-                        <div class="news-meta">
-                            <span class="tag">2025-11-28</span>
-                            <span class="tag">EASA</span>
-                            <span class="tag">Safety</span>
-                            <span class="tag">Operations</span>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- NEWS 4 -->
-                <a class="news-item"
-                   href="https://www.linkedin.com/posts/cetasa_circular-ceta-garmin-12-pulgadas-txi-activity-7371452412445761536-q_nQ?utm_source=share&utm_medium=member_desktop&rcm=ACoAADfSGtcB4euzogqAHM7yrKGI5Vah_62Ysyw"
-                   target="_blank" rel="noopener noreferrer"
-                   data-title="Garmin TXi 12.1: larger display area with thinner bezels"
-                   data-tags="garmin, txi, 12.1, pfd, mfd, eis, maps, charts, terrain, obstacles, safetaxi, cameras, gtn xi, lpv, lnav, ils"
-                   data-date="2025-11-14">
-                    <img class="news-thumb" src="NOTICIAS/GARMIN.jpg" alt="Garmin TXi 12.1" />
-                    <div class="news-body">
-                        <div class="news-title-row">
-                            <h3 class="news-title">Garmin TXi 12.1”: more area, more visibility, more options</h3>
-                            <span class="news-plus" aria-hidden="true">+</span>
-                        </div>
-                        <div class="news-meta">
-                            <span class="tag">2025-11-14</span>
-                            <span class="tag">Avionics</span>
-                            <span class="tag">Garmin</span>
-                            <span class="tag">Cockpit</span>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- NEWS 5 -->
-                <a class="news-item"
-                   href="https://www.linkedin.com/posts/cetasa_circular-ceta-reemplazo-rn5-por-rn7-activity-7366379051776655360-Rk0j?utm_source=share&utm_medium=member_desktop&rcm=ACoAADfSGtcB4euzogqAHM7yrKGI5Vah_62Ysyw"
-                   target="_blank" rel="noopener noreferrer"
-                   data-title="HENSOLDT EuroNav 7 NextGen: RN5 replacement ahead of 2027 end-of-support"
-                   data-tags="hensoldt, euron av, euron av 5, rn5, euron av 7, rn7, nextgen, obsolescence, navigation, maps, do-160, interfaces, usb, ethernet, remote, wifi, 4g, lte"
-                   data-date="2025-10-30">
-                    <img class="news-thumb" src="NOTICIAS/EURONAV.jpeg" alt="HENSOLDT EuroNav 7 NextGen" />
-                    <div class="news-body">
-                        <div class="news-title-row">
-                            <h3 class="news-title">EuroNav 7 NextGen: RN5 replacement planning for 2027</h3>
-                            <span class="news-plus" aria-hidden="true">+</span>
-                        </div>
-                        <div class="news-meta">
-                            <span class="tag">2025-10-30</span>
-                            <span class="tag">Navigation</span>
-                            <span class="tag">HENSOLDT</span>
-                            <span class="tag">Obsolescence</span>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- NEWS 6 -->
-                <a class="news-item"
-                   href="https://www.linkedin.com/posts/cetasa_circular-ceta-aproximaciones-visuales-guiadasfgv-activity-7363842347811446784-E_WP?utm_source=share&utm_medium=member_desktop&rcm=ACoAADfSGtcB4euzogqAHM7yrKGI5Vah_62Ysyw"
-                   target="_blank" rel="noopener noreferrer"
-                   data-title="Guided Visual Approaches (FGV): lateral and vertical guidance in Garmin GTN/TXi"
-                   data-tags="fgv, guided visual approaches, garmin, hughes, gtn, txi, vertical guidance, lateral guidance, autopilot, rnav g, charts, onepak, database, safety"
-                   data-date="2025-10-12">
-                    <img class="news-thumb" src="NOTICIAS/noticia6.jpeg" alt="Guided Visual Approaches (FGV)" />
-                    <div class="news-body">
-                        <div class="news-title-row">
-                            <h3 class="news-title">FGV: guided visual approaches integrated in Garmin GTN/TXi</h3>
-                            <span class="news-plus" aria-hidden="true">+</span>
-                        </div>
-                        <div class="news-meta">
-                            <span class="tag">2025-10-12</span>
-                            <span class="tag">Procedures</span>
-                            <span class="tag">Garmin</span>
-                            <span class="tag">Safety</span>
-                        </div>
-                    </div>
-                </a>
-
-            </div>
-
-            <div class="more-wrap">
-                <button class="btn-more" id="btnMore" type="button">SHOW MORE</button>
+                    <p class="linkedin-note" style="margin-top:10px;">
+                        View all posts on LinkedIn:
+                        <a href="https://www.linkedin.com/company/cetasa/posts/?feedView=all" target="_blank" rel="noopener noreferrer" style="color: var(--link);">
+                            linkedin.com/company/cetasa
+                        </a>
+                    </p>
+                </div>
             </div>
 
         </div>
@@ -787,9 +883,36 @@
                     document.getElementById('newsletterSuccess').style.display = 'block';
                 }
             } catch (_) {
-                // silent fail (keeps same behavior style as the contact page)
+                // silent fail
             }
         });
+
+        // ===== Tabs logic (Website / LinkedIn) =====
+        const tabWebsite = document.getElementById('tabWebsite');
+        const tabLinkedIn = document.getElementById('tabLinkedIn');
+        const panelWebsite = document.getElementById('panelWebsite');
+        const panelLinkedIn = document.getElementById('panelLinkedIn');
+
+        function setTab(which) {
+            const isWebsite = which === 'website';
+
+            tabWebsite.classList.toggle('is-active', isWebsite);
+            tabLinkedIn.classList.toggle('is-active', !isWebsite);
+
+            tabWebsite.setAttribute('aria-selected', String(isWebsite));
+            tabLinkedIn.setAttribute('aria-selected', String(!isWebsite));
+
+            panelWebsite.style.display = isWebsite ? '' : 'none';
+            panelLinkedIn.style.display = isWebsite ? 'none' : '';
+
+            // If switching back to website, ensure meta/search state is correct
+            if (isWebsite) {
+                applyVisibility();
+            }
+        }
+
+        tabWebsite.addEventListener('click', () => setTab('website'));
+        tabLinkedIn.addEventListener('click', () => setTab('linkedin'));
 
         // ===== Search + "SHOW MORE" (shows latest 6) =====
         const input = document.getElementById('newsSearch');
@@ -869,6 +992,7 @@
 
         // Initial state
         applyVisibility();
+        setTab('website');
     </script>
 </body>
 </html>
