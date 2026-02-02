@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>General Sale’s Terms and Conditions | CETA</title>
+
+    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="32ae8fb9-0700-4415-92fd-a329c0ab975e" data-blockingmode="auto" type="text/javascript"></script>
+
+    <style>
+        :root {
+            --brand: #002856;
+            --accent: #D52522;
+            --ink: #ffffff;
+            --ink-soft: rgba(255,255,255,.92);
+            --link: #aee1ff;
+            --max: 1200px;
+            --fs-body: 18px;
+            --fs-h1: clamp(28px,4.4vw,50px);
+            --fs-h2: clamp(16px,2.4vw,20px);
+        }
+
+        @font-face {
+            font-family: "Eurostile";
+            src: url("FONTS/EUROSTILE.TTF") format("truetype");
+            font-display: swap;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Eurostile", Arial, sans-serif;
+            font-size: var(--fs-body);
+            line-height: 1.55;
+            background: var(--brand);
+            color: var(--ink);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Unified cockpit background */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0,30,70,.35), rgba(0,20,50,.55)), url("IMAGENES/COCKPIT.webp") center/cover no-repeat fixed;
+            opacity: .40;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .wrap {
+            position: relative;
+            z-index: 2;
+        }
+
+        .container {
+            width: min(var(--max),92vw);
+            margin: 0 auto;
+        }
+
+        /* =================== HEADER =================== */
+        .site-header {
+            padding: 18px 30px 8px;
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo {
+            height: 50px;
+            display: block;
+        }
+
+        .header-separator {
+            width: 1px;
+            height: 36px;
+            background: rgba(255,255,255,.9);
+        }
+
+        .menu-toggle {
+            display: none;
+            margin-left: auto;
+            width: 44px;
+            height: 44px;
+            border: 1px solid rgba(255,255,255,.25);
+            background: rgba(0,0,0,.28);
+            border-radius: 10px;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .menu-toggle .bar {
+            display: block;
+            height: 2px;
+            background: rgba(255,255,255,.9);
+            margin: 6px 0;
+        }
+
+        .main-nav .menu {
+            list-style: none;
+            display: flex;
+            gap: 28px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .main-nav .menu a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: .5px;
+            transition: color .25s;
+        }
+
+        .main-nav .menu a:hover {
+            color: var(--accent);
+        }
+
+        /* =================== HERO =================== */
+        .hero {
+            min-height: 28vh;
+            display: grid;
+            place-items: center;
+            text-align: center;
+            padding: 36px 0 14px;
+        }
+
+        .hero h1 {
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: var(--fs-h1);
+            font-weight: 800;
+            text-shadow: 0 2px 0 rgba(0,0,0,.12);
+            filter: drop-shadow(0 6px 18px rgba(0,0,0,.25));
+        }
+
+        .separator {
+            width: min(var(--max),92vw);
+            margin: 18px auto 18px;
+            border: 0;
+            border-top: 2px dashed rgba(255,255,255,.35);
+        }
+
+        /* =================== CONTENT =================== */
+        .gpc-section {
+            padding: 6px 0 64px;
+        }
+
+        .gpc-card {
+            width: min(980px,92vw);
+            margin: 0 auto;
+            background: rgba(0,0,0,.28);
+            border: 1px solid rgba(255,255,255,.18);
+            border-radius: 12px;
+            padding: 22px 18px;
+            backdrop-filter: blur(2px);
+        }
+
+        .gpc-title {
+            margin: 0 0 14px;
+            text-transform: uppercase;
+            letter-spacing: 1.6px;
+            font-weight: 900;
+            color: #eaf3ff;
+            font-size: clamp(18px, 2.2vw, 26px);
+            text-align: left;
+        }
+
+        .section-block {
+            padding: 14px 0;
+            border-top: 1px solid rgba(255,255,255,.12);
+        }
+
+        .section-block:first-of-type {
+            border-top: 0;
+            padding-top: 0;
+        }
+
+        .sec-head {
+            display: flex;
+            gap: 10px;
+            align-items: baseline;
+            flex-wrap: wrap;
+            margin: 0 0 10px;
+        }
+
+        .sec-num {
+            font-weight: 900;
+            letter-spacing: .8px;
+            color: #fff;
+            text-transform: uppercase;
+            font-size: 14px;
+            opacity: .95;
+            background: rgba(255,255,255,.10);
+            border: 1px solid rgba(255,255,255,.14);
+            padding: 6px 10px;
+            border-radius: 999px;
+        }
+
+        .sec-title {
+            margin: 0;
+            font-size: 18px;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: #ffffff;
+            font-weight: 900;
+        }
+
+        .gpc-card p {
+            margin: 0 0 10px;
+            color: rgba(255,255,255,.92);
+            font-size: 16px;
+            line-height: 1.7;
+            text-align: left;
+        }
+
+        .gpc-card ul {
+            margin: 8px 0 0 18px;
+            padding: 0;
+            display: grid;
+            gap: 8px;
+            color: rgba(255,255,255,.92);
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        .gpc-card li {
+            margin: 0;
+        }
+
+        /* =================== FOOTER =================== */
+        .site-footer {
+            background: linear-gradient(180deg, rgba(0,20,50,.35), rgba(0,20,40,.6));
+            border-top: 1px solid rgba(255,255,255,.18);
+            margin-top: 40px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 2fr 1.5fr;
+            gap: 28px;
+            padding: 28px 0;
+            width: min(var(--max),92vw);
+            margin: 0 auto;
+        }
+
+        .footer-col h4 {
+            margin: 0 0 10px;
+            font-size: 16px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #eaf3ff;
+        }
+
+        .footer-col p {
+            margin: 6px 0;
+            color: var(--ink-soft);
+        }
+
+        .footer-col a {
+            color: var(--link);
+            text-decoration: none;
+        }
+
+        .footer-col a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-col--center {
+            text-align: center;
+        }
+
+        .newsletter-form {
+            display: inline-flex;
+            gap: 10px;
+            align-items: stretch;
+            justify-content: center;
+            margin-top: 8px;
+            flex-wrap: wrap;
+        }
+
+        .newsletter-form input {
+            min-width: 280px;
+            height: 44px;
+            padding: 0 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,.35);
+            background: rgba(255,255,255,.1);
+            color: #fff;
+            outline: none;
+        }
+
+        .newsletter-form input::placeholder {
+            color: rgba(255,255,255,.75);
+        }
+
+        .newsletter-form button {
+            height: 44px;
+            padding: 0 16px;
+            border: 0;
+            border-radius: 8px;
+            background: #0b76c7;
+            color: #fff;
+            font-weight: 700;
+            letter-spacing: .5px;
+            cursor: pointer;
+        }
+
+        .newsletter-form button:hover {
+            background: #0a68b0;
+        }
+
+        .footer-col--right {
+            text-align: right;
+        }
+
+        .social-row {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+            margin: 6px 0 10px;
+        }
+
+        .legal-links {
+            list-style: none;
+            padding: 0;
+            margin: 8px 0 0;
+            display: grid;
+            gap: 6px;
+        }
+
+        .legal-links a {
+            color: var(--link);
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .legal-links a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 14px 0;
+            border-top: 1px solid rgba(255,255,255,.15);
+            color: rgba(255,255,255,.85);
+            font-size: 13px;
+        }
+
+        /* =================== RESPONSIVE =================== */
+        @media (max-width:1100px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-col--right {
+                text-align: center;
+            }
+
+            .social-row {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width:720px) {
+            .site-header {
+                padding-inline: 16px;
+            }
+
+            .header-inner {
+                display: grid;
+                grid-template-columns: 1fr auto 1fr;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .logo-link {
+                grid-column: 2;
+                justify-self: center;
+            }
+
+            .header-separator {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: inline-block;
+                grid-column: 3;
+                justify-self: end;
+                margin-left: 0;
+            }
+
+            .main-nav {
+                grid-column: 1 / -1;
+                width: 100%;
+            }
+
+            .main-nav .menu {
+                display: none;
+                margin-top: 12px;
+                padding: 12px 12px;
+                gap: 10px;
+                flex-direction: column;
+                border: 1px solid rgba(255,255,255,.18);
+                border-radius: 10px;
+                background: rgba(0,0,0,.30);
+                backdrop-filter: blur(2px);
+            }
+
+            .main-nav .menu.is-open {
+                display: flex;
+            }
+
+            .main-nav .menu a {
+                display: block;
+                width: 100%;
+                text-align: center;
+                padding: 10px 10px;
+                border-radius: 8px;
+            }
+
+            .main-nav .menu a:hover {
+                background: rgba(213,37,34,.18);
+                color: #fff;
+            }
+
+            .gpc-card {
+                padding: 18px 14px;
+            }
+
+            .gpc-card p, .gpc-card ul {
+                font-size: 15px;
+            }
+
+            .sec-title {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- HEADER -->
+    <header class="site-header wrap">
+        <div class="header-inner">
+            <a href="index.html" class="logo-link" aria-label="Home">
+                <img src="IMAGENES/LOGO_BLANCO.png" alt="CETA" class="logo" />
+            </a>
+
+            <div class="header-separator" aria-hidden="true"></div>
+
+            <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mainMenu">
+                <span class="bar" aria-hidden="true"></span>
+                <span class="bar" aria-hidden="true"></span>
+                <span class="bar" aria-hidden="true"></span>
+            </button>
+
+            <nav class="main-nav" aria-label="Primary menu">
+                <ul class="menu" id="mainMenu">
+                    <li><a href="empresa.html">WHO WE ARE</a></li>
+                    <li><a href="index.html">AEROSPACE ENGINEERING SERVICES</a></li>
+                     <li><a href="calidad.html">QUALITY ASSURANCE</a></li>
+                    <li><a href="noticias.html">NEWS</a></li>
+                    <li><a href="contacto.html">CONTACT</a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero wrap">
+        <div class="container">
+            <h1>GENERAL PURCHASING AND SALES CONDITIONS</h1>
+        </div>
+    </section>
+
+    <hr class="separator" />
+
+    <!-- CONTENT -->
+    <section class="gpc-section wrap">
+        <div class="gpc-card">
+            <h2 class="gpc-title">General Sale’s Terms and Conditions</h2>
+
+            <div class="section-block">
+                <div class="sec-head">
+                    <span class="sec-num">1</span>
+                    <h3 class="sec-title">Scope of Application</h3>
+                </div>
+
+                <p>These conditions refer to the sale of materials/equipment and repair services carried out by COMPAÑÍA ESPAÑOLA DE TÉCNICA AERONÁUTICA S.A., hereinafter referred to as CETA.</p>
+
+                <p>Acceptance by the Client of a quotation/offer, hereinafter referred to as Quotation, issued by CETA shall constitute a valid, binding, and effective contract between the Client as Buyer and CETA as Supplier, which shall be regulated by the content of the Quotation and by the terms and conditions contained herein, which shall be mandatory for both Parties.</p>
+
+                <p>For these purposes, the Client expressly acknowledges that no other terms and conditions shall apply, including those that may be contained in any document sent by the Client.</p>
+
+                <p>CETA does not accept any condition that contradicts those referenced in the Quotation and in these terms and conditions, unless agreed in writing.</p>
+
+                <p>In the event of any contradiction among the different documents establishing the contractual relationship between the Parties, the following order of precedence shall apply:</p>
+
+                <ul>
+                    <li>Any particular condition agreed by the Parties, written or referenced in the Quotation;</li>
+                    <li>Any written agreement previously executed by the Parties before the issuance of the Quotation;</li>
+                    <li>These General Terms and Conditions of Sale.</li>
+                </ul>
+            </div>
+
+            <div class="section-block">
+                <div class="sec-head">
+                    <span class="sec-num">2</span>
+                    <h3 class="sec-title">Acceptance of Quotation</h3>
+                </div>
+
+                <p>The Client shall confirm acceptance of the Quotation and the terms and conditions of sale reflected herein by means of a purchase order in its own format.</p>
+
+                <p>If the Customer does not have a purchase order format, acceptance shall be deemed by:</p>
+
+                <ul>
+                    <li>The signature of the Quotation, or</li>
+                    <li>Written confirmation indicating acceptance of the Quotation (e.g., via email).</li>
+                </ul>
+            </div>
+
+            <div class="section-block">
+                <div class="sec-head">
+                    <span class="sec-num">3</span>
+                    <h3 class="sec-title">Transport and Packaging</h3>
+                </div>
+
+                <p>The packaging of the products is provided by the original manufacturer/supplier.</p>
+                <p>Transport of the material from the original manufacturer/supplier to CETA’s facilities, including customs costs, shall be borne by CETA, except for returns of equipment after repair.</p>
+                <p>If equipment must be sent to the original manufacturer/supplier for repair, the shipping costs to CETA’s facilities shall be borne by the Client. While shipping costs between CETA and the supplier’s facilities (round trip), along with customs duties if the shipment is international, will be advanced by CETA and invoiced to the Client.</p>
+                <p>Transport of the material from CETA’s facilities to the final destination/Client’s facilities shall be borne by the Client.</p>
+            </div>
+
+            <div class="section-block">
+                <div class="sec-head">
+                    <span class="sec-num">4</span>
+                    <h3 class="sec-title">Delivery</h3>
+                </div>
+
+                <p>Deliveries will be made within the deadlines specified in the Quotation at CETA’s facilities.</p>
+                <p>In the event of changes or variations in the expected delivery dates, CETA shall inform the Client.</p>
+                <p>The materials/equipment shall be delivered with a delivery note and Certificate of Conformity (if applicable) indicating that the products delivered conform to the Quotation requirements and comply with CETA’s Quality Management System.</p>
+            </div>
+
+            <div class="section-block">
+                <div class="sec-head">
+                    <span class="sec-num">5</span>
+                    <h3 class="sec-title">Invoicing</h3>
+                </div>
+
+                <p>Invoices will be issued and sent to the Client in accordance with the Quotation. They will include CETA’s Quotation number and the Client’s purchase order number (if applicable).</p>
+                <p>Additionally, invoices shall include the following information: P/N or identification number of the item (article/material/product or service – if applicable), description of the item, serial number (if applicable), and invoiced units of each item.</p>
+            </div>
+
+            <div class="section-block">
+                <div class="sec-head">
+                    <span class="sec-num">6</span>
+                    <h3 class="sec-title">Payment Terms</h3>
+                </div>
+
+                <p>Payment must be made by the Client within 30 days of the invoice date by bank transfer.</p>
+            </div>
+
+            <div class="section-block">
+                <div class="sec-head">
+                    <span class="sec-num">7</span>
+                    <h3 class="sec-title">Returns and Refunds</h3>
+                </div>
+
+                <p>Returns of equipment/material quoted, whether total or partial, must be communicated to CETA within 20 business days from the date of collection at CETA’s facilities.</p>
+                <p>CETA will not accept any returns of quoted equipment/material unless they have been previously communicated and agreed.</p>
+                <p>If the Client returns equipment/material, transportation costs shall be borne by the Client, who will also be responsible for managing the shipment to CETA’s facilities.</p>
+                <p>All returns of equipment/material are subject to restocking fees imposed by the original manufacturer/supplier, which shall be borne by the Client. Generally, these fees correspond to a percentage of the order value, typically 20%–30%.</p>
+                <p>Once the return has been agreed and the equipment/material has been returned to the original manufacturer/supplier, the corresponding refund will be processed, deducting the applicable restocking fee.</p>
+            </div>
+
+            <div class="section-block">
+                <div class="sec-head">
+                    <span class="sec-num">8</span>
+                    <h3 class="sec-title">Warranty</h3>
+                </div>
+
+                <p>The equipment and services provided by CETA are covered by the following warranty periods (as established by the manufacturers/suppliers):</p>
+
+                <ul>
+                    <li><strong>Equipment/material (new from factory):</strong> 24 months from factory release date*</li>
+                    <li><strong>Repaired equipment/material:</strong> 6 months from the repair finalization date / dispatch from supplier facilities.</li>
+                    <li><strong>Factory repair services:</strong> 6 months from the repair finalization date.</li>
+                </ul>
+
+                <p><strong>*</strong> Some manufacturers require registration of the equipment to officially activate the warranty period. If not registered within 6 months from delivery to the Client, the warranty shall start from the date the equipment left the manufacturer/supplier facilities.</p>
+
+                <p>During the warranty period, in the event of failure, repair costs shall be covered, except for transportation costs to the supplier’s facilities for repair, which shall be borne by the Client.</p>
+            </div>
+
+            <h2 class="gpc-title" style="margin-top: 26px;">General Purchase Conditions</h2>
+
+            <div class="section-block">
+                <div class="sec-head">
+                    <span class="sec-num">9</span>
+                    <h3 class="sec-title">Scope of Application</h3>
+                </div>
+
+                <p>These conditions refer to the purchase of materials/equipment and repair services carried out by COMPAÑÍA ESPAÑOLA DE TÉCNICA AERONÁUTICA S.A., hereinafter referred to as CETA.</p>
+
+                <p>Acceptance by the Supplier of a Purchase Order, hereinafter referred to as Order, issued by CETA, shall constitute a valid, binding, and effective contract between CETA as Buyer and the Supplier, which shall be regulated by the content of the Order and by the terms and conditions contained herein, which shall be mandatory for both Parties.</p>
+
+                <p>For these purposes, the Supplier expressly acknowledges that no other terms and conditions shall apply, including quotations, acknowledgements, or acceptances of orders, delivery notes, or any other documents accompanying the products or services supplied.</p>
+
+                <p>CETA does not accept any condition that contradicts those outlined in the Order and these terms and conditions, unless agreed in writing.</p>
+
+                <p>In the event of any contradiction among the different documents establishing the contractual relationship between the Parties, the following order of precedence shall apply:</p>
+
+                <ul>
+                    <li>Any particular condition agreed by the Parties, written or referenced in the Order;</li>
+                    <li>Any written agreement previously executed by the Parties before the issuance of the Order;</li>
+                    <li>These General Terms and Conditions of Purchase.</li>
+                </ul>
+            </div>
+
+            <div class="section-block">
+                <div class="sec-head">
+                    <span class="sec-num">10</span>
+                    <h3 class="sec-title">Acceptance of Order</h3>
+                </div>
+
+                <p>The Supplier shall confirm receipt of the Order and its acceptance.</p>
+                <p>The Supplier shall be deemed to have accepted the Order and the terms and conditions contained herein if:</p>
+
+                <ul>
+                    <li>Supplier sends the Purchaser the acknowledgement of receipt of said Order, or</li>
+                    <li>Supplier ships the assets that constitute the contracted supply, and/or invoices them, even partially, or</li>
+                    <li>Supplier performs any other action that implies acceptance of the Order.</li>
+                </ul>
+            </div>
+
+            <div class="section-block">
+                <div class="sec-head">
+                    <span class="sec-num">11</span>
+                    <h3 class="sec-title">Transport and Packaging</h3>
+                </div>
+
+                <p>The packaging and transport insurance of the goods shall be borne by the Supplier, and no charges for these concepts will be admitted.</p>
+                <p>In the case of international transport at CETA’s expense, the shipper shall be designated by CETA and specified in the Purchase Order.</p>
+                <p>The packaging, labelling, identification, transport, shipment, and delivery of the supply shall be carried out in accordance with the conditions specified in the Order and/or any applicable law, regulation, or more restrictive standard, providing sufficient protection to ensure that the supply does not deteriorate during transport and storage.</p>
+                <p>Goods that do not meet any of the requirements established in this clause shall be considered defective and may give rise to a claim in accordance with point 8.</p>
+            </div>
+
+            <div class="section-block">
+                <div class="sec-head">
+                    <span class="sec-num">12</span>
+                    <h3 class="sec-title">Reception and Delivery Date</h3>
+                </div>
+
+                <p>Delivery shall be made within the deadlines specified in the Order.</p>
+                <p>The Parties acknowledge that compliance with the deadlines stated in the Order is an essential element of the contract.</p>
+                <p>The delivery date of the goods or services shall be that stipulated in the Order. Such delivery date, regardless of the INCOTERM© rules or any other provisions related to shipment and reception agreed upon by the Parties, shall refer to the date of arrival of the goods at the facilities designated by CETA.</p>
+                <p>The Supplier is required to notify CETA immediately of any eventuality that may suppose a risk of delay in the delivery of goods with respect to the agreed date.</p>
+
+                <p>In the event of a breach of the delivery deadline, unless such breach is due to force majeure or to an act or omission of the Buyer, CETA reserves the right, at its criterion, to:</p>
+
+                <ul>
+                    <li>Consider the Order, applying to the Supplier penalties on the value of the undelivered material in the same amount as those that the final customer may apply to CETA for said delay.</li>
+                    <li>Consider the Order cancelled, in which case it shall be sufficient for CETA to notify in writing.</li>
+                </ul>
+
+                <p>All supplies must be accompanied by a delivery note, and aeronautical items shall be delivered with their applicable certificate of conformity issued by the manufacturer or by the official distributor, or must guarantee product traceability from the manufacturer to CETA.</p>
+                <p>If FORM EASA 1 is required and delivered under EASA regulations, other documentation, such as FORM FAA 8130-3, may be accepted, unless an exception is specified in the purchase order.</p>
+                <p>CETA shall have 30 working days from the date of receipt of the materials at CETA’s facilities, except in cases of force majeure, to carry out the verification of the materials through Incoming Inspection and, if the purchase requirements are not met, to issue a rejection notice to the supplier, as specified in point 7.</p>
+            </div>
+
+            <div class="section-block">
+                <div class="sec-head">
+                    <span class="sec-num">13</span>
+                    <h3 class="sec-title">Invoicing</h3>
+                </div>
+
+                <p>Invoices shall be issued and sent to CETA.</p>
+                <p>Invoices must include CETA’s Order number, line items, and invoiced units of each line item.</p>
+            </div>
+
+            <div class="section-block">
+                <div class="sec-head">
+                    <span class="sec-num">14</span>
+                    <h3 class="sec-title">Payment Terms</h3>
+                </div>
+
+                <p>Payment shall be made within 30 days from the invoice date by bank transfer.</p>
+            </div>
+
+            <div class="section-block">
+                <div class="sec-head">
+                    <span class="sec-num">15</span>
+                    <h3 class="sec-title">Returns and Rejections</h3>
+                </div>
+
+                <p>Goods rejected by CETA’s Quality Control shall be returned at the supplier’s expense, and the Supplier shall be required to replace them within 20 days, unless instructed otherwise.</p>
+            </div>
+
+            <div class="section-block">
+                <div class="sec-head">
+                    <span class="sec-num">16</span>
+                    <h3 class="sec-title">Warranty / Civil Responsibility</h3>
+                </div>
+
+                <p>The Supplier guarantees that the goods delivered serve the agreed purpose and fully comply with all specifications and requirements demanded by the Purchaser in the Order.</p>
+                <p>The Supplier shall indemnify and hold CETA harmless from any claims that may arise due to the delivery of a defective product, as well as for infringement of patents, brands, or utility models, and shall defend at its own expense any litigation arising from this matter, provided that the products do not correspond to the characteristics assumed for the supplied reference.</p>
+            </div>
+
+            <div class="section-block">
+                <div class="sec-head">
+                    <span class="sec-num">17</span>
+                    <h3 class="sec-title">Quality Assurance Requirements</h3>
+                </div>
+
+                <p>The material to be supplied shall always be new and unused, unless otherwise specified in the Order.</p>
+                <p>When the material to be supplied has use limitations such as life-limited materials, the Supplier undertakes to provide CETA with manufacturing data and lifespan or expiry date, as well as information related to the applicable specification requirements. All such materials must still have at least 90% of lifetime at the date of receipt at CETA, unless otherwise specified.</p>
+                <p>When the supply involves inspection, testing, or measurement equipment, the Supplier shall provide a Calibration Certificate that is internationally traceable, including data such as Reference, type, Serial Number, acceptance procedure, calibration date, and recommended next calibration date.</p>
+            </div>
+
+        </div>
+    </section>
+
+   <!-- FOOTER (same layout; ONLY requested changes: email + connect Formspree + no redirect + success message) -->
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>CETA S.A.</h4>
+                <p>Compañía Española de Técnica Aeronáutica S.A.</p>
+                <p>C/ Cañas, 7 · Nave Entresuelo<br>28043 Madrid · Spain</p>
+                <p><a href="mailto:ingenieria@ceta.aero">ingenieria@ceta.aero</a></p>
+                <p>Tel: +34 911 400 181 · Fax: +34 911 400 182</p>
+            </div>
+
+            <div class="footer-col footer-col--center">
+                <h4>NEWSLETTER</h4>
+
+                <!-- Keep same sizing/classes; connect to Formspree -->
+                <form class="newsletter-form" action="https://formspree.io/f/xpqqwqqd" method="POST" id="newsletterForm">
+                    <input id="newsletter-email" name="email" type="email" placeholder="Your email" required />
+                    <button type="submit">SEND</button>
+                </form>
+
+                <!-- Inline success text (hidden by default) -->
+                <p id="newsletterSuccess" style="display:none; margin:10px 0 0; color: rgba(255,255,255,.92); font-size: 14px;">
+                    Thank you. You have been registered.
+                </p>
+            </div>
+
+            <div class="footer-col footer-col--right">
+                <h4>Connect</h4>
+                <div class="social-row">
+                    <a class="social-link" href="https://www.linkedin.com/company/cetasa/posts/?feedView=all" aria-label="LinkedIn" title="LinkedIn">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <rect width="24" height="24" rx="4" fill="rgba(255,255,255,0.15)" />
+                            <path d="M7.2 8.8a1.6 1.6 0 1 0 0-3.2 1.6 1.6 0 0 0 0 3.2Zm1 2H6.2v7.4h2V10.8Zm3.2 0H9.6v7.4h2v-4.2c0-1.1.8-1.8 1.7-1.8 1 0 1.5.6 1.5 1.8v4.2h2V13c0-2.2-1.3-3.2-3.2-3.2-1.1 0-1.9.5-2.2 1.1h-.1v-0.1Z"
+                                  fill="rgba(200,230,255,0.95)" />
+                        </svg>
+                    </a>
+                </div>
+                <ul class="legal-links">
+                    <a href="politica-de-calidad.html">QUALITY POLICY</a>
+                    <a href="condiciones-generales-de-compra.html">GENERAL PURCHASING AND SALES CONDITIONS</a>
+                    <a href="politica-de-cookies.html">COOKIE POLICY</a>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            © <span id="year"></span> CETA · All rights reserved
+        </div>
+    </footer>
+
+    <script>
+        // Footer year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Mobile menu
+        const toggle = document.querySelector('.menu-toggle');
+        const menu = document.getElementById('mainMenu');
+
+        function setMenu(open) {
+            menu.classList.toggle('is-open', open);
+            toggle.setAttribute('aria-expanded', String(open));
+        }
+
+        toggle?.addEventListener('click', () => {
+            setMenu(!menu.classList.contains('is-open'));
+        });
+
+        menu?.addEventListener('click', (e) => {
+            const a = e.target.closest('a');
+            if (!a) return;
+            setMenu(false);
+        });
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 720) setMenu(false);
+        });
+
+        // Formspree footer form (no redirect)
+        document.getElementById('newsletterForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const form = e.target;
+            const data = new FormData(form);
+
+            const response = await fetch(form.action, {
+                method: form.method,
+                body: data,
+                headers: { 'Accept': 'application/json' }
+            });
+
+            if (response.ok) {
+                form.reset();
+                document.getElementById('newsletter-success').style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
