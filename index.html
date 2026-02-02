@@ -1,18 +1,1148 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>CETA WEB</title>
-  <!-- Redirección inmediata a la web real dentro de CETA WEB/wwwroot -->
-  <meta http-equiv="refresh" content="0; url=./CETA%20WEB/wwwroot/index.html">
-  <link rel="canonical" href="./CETA%20WEB/wwwroot/index.html">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aerospace Design &amp; Engineering | CETA</title>
+
+  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="32ae8fb9-0700-4415-92fd-a329c0ab975e" data-blockingmode="auto" type="text/javascript"></script>
+  
+  <style>
+    /* =================== FONT =================== */
+    @font-face{
+      font-family:"Eurostile";
+      src:url("FONTS/EUROSTILE.TTF") format("truetype");
+      font-display:swap;
+    }
+
+    /* =================== BASE =================== */
+    *,*::before,*::after{box-sizing:border-box;}
+    html,body{height:100%;}
+    body{
+      margin:0;
+      font-family:"Eurostile", Arial, sans-serif;
+      background:#002856;
+      color:#fff;
+      overflow-x:hidden;
+      position:relative;
+    }
+
+    /* Cockpit background (same as index/company) */
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      background:
+        linear-gradient(180deg, rgba(0,30,70,.35), rgba(0,20,50,.55)),
+        url("IMAGENES/COCKPIT.webp") center/cover no-repeat fixed;
+      opacity:.40;
+      z-index:0;
+      pointer-events:none;
+    }
+
+    .container{width:min(1200px,92vw);margin:0 auto;}
+
+    /* Everything above the background */
+    .site-header,
+    .hero-internal,
+    .page-content,
+    .site-footer{
+      position:relative;
+      z-index:2;
+    }
+
+    /* =================== HEADER (UNIFIED + MOBILE HAMBURGER) =================== */
+    .site-header{padding:18px 30px 8px;}
+
+    .header-inner{
+      display:flex;
+      align-items:center;
+      gap:20px;
+    }
+
+    .logo{height:50px;display:block;}
+
+    .header-separator{
+      width:1px;
+      height:36px;
+      background:rgba(255,255,255,.9);
+    }
+
+    /* Hamburger button (hidden on desktop) */
+    .menu-toggle{
+      display:none;
+      margin-left:auto;
+      width:44px;
+      height:44px;
+      border:1px solid rgba(255,255,255,.25);
+      background:rgba(0,0,0,.28);
+      border-radius:10px;
+      cursor:pointer;
+      padding:10px;
+    }
+    .menu-toggle .bar{
+      display:block;
+      height:2px;
+      background:rgba(255,255,255,.9);
+      margin:6px 0;
+    }
+
+    .main-nav .menu{
+      list-style:none;
+      display:flex;
+      gap:28px;
+      margin:0;
+      padding:0;
+    }
+
+    .main-nav .menu a{
+      color:#fff;
+      text-decoration:none;
+      font-size:14px;
+      letter-spacing:.5px;
+      transition:color .25s;
+    }
+
+    .main-nav .menu a:hover{color:#D52522;}
+
+    /* =================== INTERNAL HERO =================== */
+    .hero-internal{
+      min-height:30vh;
+      display:grid;
+      justify-items:center;
+      align-content:center;
+      text-align:center;
+      padding:36px 0 8px;
+    }
+
+    .hero-internal h1{
+      margin:0 0 12px;
+      text-transform:uppercase;
+      letter-spacing:3px;
+      font-size:clamp(26px,3.9vw,46px);
+      font-weight:800;
+      text-shadow:0 2px 0 rgba(0,0,0,.12);
+      filter:drop-shadow(0 6px 18px rgba(0,0,0,.25));
+    }
+
+    /* =================== PAGE CONTENT WRAP =================== */
+    .page-content{padding:10px 0 44px;}
+
+    .intro-wrap{
+      width:min(1200px,92vw);
+      margin:0 auto;
+      padding:18px 18px;
+      border:1px solid rgba(255,255,255,.18);
+      border-radius:10px;
+      background:rgba(0,0,0,.22);
+      backdrop-filter:blur(2px);
+    }
+
+   .intro-text{
+  margin:0;
+  color:rgba(255,255,255,.92);
+  font-size:16px;
+  line-height:1.55;
+  letter-spacing:.2px;
+
+  /* NUEVO: siempre centrado */
+  text-align:center !important;
+}
+
+    /* ===== HERO MEDIA (4_ENG) – show full image (no crop) ===== */
+    .hero-media{
+      width:min(1200px,92vw);
+      margin:18px auto 0;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(0,0,0,.22);
+      border-radius:10px;
+      overflow:hidden;
+      padding:14px;
+    }
+    .hero-media img{
+      width:100%;
+      height:auto;
+      max-height:520px;
+      object-fit:contain;
+      display:block;
+      margin:0 auto;
+    }
+
+    /* =================== ACCORDION =================== */
+    .accordion-wrap{
+      width:min(1200px,92vw);
+      margin:18px auto 0;
+      padding:18px 18px;
+      border:1px solid rgba(255,255,255,.18);
+      border-radius:10px;
+      background:rgba(0,0,0,.28);
+      backdrop-filter:blur(2px);
+    }
+
+    .acc-item{
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.04);
+      border-radius:10px;
+      overflow:hidden;
+    }
+    .acc-item + .acc-item{margin-top:14px;}
+
+    .acc-btn{
+      width:100%;
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      padding:14px 14px;
+      background:transparent;
+      border:0;
+      color:#fff;
+      text-align:left;
+      cursor:pointer;
+    }
+
+    .acc-title{
+      margin:0;
+      font-size:16px;
+      font-weight:700;
+      letter-spacing:.5px;
+      text-transform:uppercase;
+      line-height:1.25;
+    }
+
+    .acc-plus{
+      color:#D52522;
+      font-weight:900;
+      font-size:26px;
+      line-height:1;
+      flex:0 0 auto;
+      margin-top:1px;
+      transition:transform .2s ease;
+    }
+
+    .acc-item.is-open .acc-plus{transform:rotate(45deg);}
+
+    .acc-panel{display:none;padding:0 14px 14px;}
+    .acc-item.is-open .acc-panel{display:block;}
+
+    .acc-panel p{
+      margin:10px 0 0;
+      color:rgba(255,255,255,.92);
+      line-height:1.55;
+      font-size:15px;
+    }
+
+    .acc-panel .bullet{
+      margin:10px 0 0;
+      padding-left:18px;
+      color:rgba(255,255,255,.92);
+      line-height:1.6;
+      font-size:15px;
+    }
+    .acc-panel .bullet li{margin:6px 0;}
+
+    /* Inline image set (1,2,3) */
+    .inline-photos{
+      margin-top:14px;
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:12px;
+    }
+    .inline-photos img{
+      width:100%;
+      height:170px;
+      object-fit:cover;
+      display:block;
+      border:1px solid rgba(255,255,255,.16);
+      border-radius:10px;
+      background:rgba(0,0,0,.22);
+    }
+
+    /* Dashed-box capability lists */
+    .capability-box{
+      margin-top:14px;
+      border:1px dashed rgba(255,255,255,.55);
+      border-radius:10px;
+      padding:14px;
+      background:rgba(0,0,0,.20);
+    }
+
+    .capability-grid{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0, 1fr));
+      gap:14px;
+    }
+
+    .capability-col{
+      display:grid;
+      gap:6px;
+      font-size:14px;
+      letter-spacing:.4px;
+      color:rgba(255,255,255,.92);
+    }
+
+    .capability-col .muted{
+      text-transform:none;
+      letter-spacing:.2px;
+      color:rgba(255,255,255,.82);
+      font-size:13px;
+    }
+
+    /* Images 5/6 */
+    .mission-photos{
+      margin-top:14px;
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0, 1fr));
+      gap:12px;
+    }
+    .mission-photos img{
+      width:100%;
+      height:220px;
+      object-fit:cover;
+      display:block;
+      border:1px solid rgba(255,255,255,.16);
+      border-radius:10px;
+      background:rgba(0,0,0,.22);
+    }
+
+    /* =================== EXPERIENCE (MOVED INSIDE ACCORDION) =================== */
+    .exp-grid{
+      margin-top:14px;
+      display:grid;
+      grid-template-columns:repeat(4, minmax(0, 1fr));
+      gap:14px;
+    }
+
+    .exp-card{
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.04);
+      border-radius:10px;
+      overflow:hidden;
+      padding:10px;
+    }
+
+    .exp-thumb{
+      width:100%;
+      height:120px;
+      display:block;
+      object-fit:contain;
+      background:rgba(0,0,0,.22);
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:10px;
+    }
+
+    .exp-body{
+      padding:10px 6px 2px;
+      display:grid;
+      gap:6px;
+    }
+
+    .exp-title{
+      margin:0;
+      font-size:14px;
+      font-weight:900;
+      letter-spacing:.6px;
+      text-transform:uppercase;
+      line-height:1.2;
+    }
+
+    .exp-desc{
+      margin:0;
+      font-size:13px;
+      color:rgba(255,255,255,.88);
+      line-height:1.45;
+    }
+
+    /* Project rows (text + right photos) */
+    .projects-section{
+      margin-top:14px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(0,0,0,.20);
+      border-radius:10px;
+      padding:14px;
+    }
+
+    .proj-row{
+      display:grid;
+      grid-template-columns:1.35fr 1fr;
+      gap:16px;
+      align-items:start;
+      padding:16px 0;
+      border-top:1px solid rgba(255,255,255,.12);
+    }
+    .proj-row:first-of-type{border-top:0;padding-top:0;}
+    .proj-row:last-of-type{padding-bottom:0;}
+
+    .proj-h{
+      margin:0 0 10px;
+      font-size:16px;
+      font-weight:900;
+      letter-spacing:.6px;
+      text-transform:uppercase;
+      line-height:1.25;
+    }
+
+    .proj-list{
+      margin:0;
+      padding-left:18px;
+      color:rgba(255,255,255,.92);
+      line-height:1.6;
+      font-size:14px;
+    }
+    .proj-list li{margin:6px 0;}
+
+    .proj-photos{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:10px;
+      align-content:start;
+    }
+    .proj-photos.two{grid-template-columns:repeat(2, minmax(0, 1fr));}
+
+    .proj-photo{
+      width:100%;
+      height:170px;
+      object-fit:contain;
+      display:block;
+      border:1px solid rgba(255,255,255,.16);
+      border-radius:10px;
+      background:rgba(0,0,0,.22);
+      padding:8px;
+    }
+
+    /* Bottom images (inside experience panel) */
+    .bottom-photos{
+      margin-top:14px;
+      display:grid;
+      gap:12px;
+    }
+
+    .bottom-photos img{
+      width:100%;
+      height:auto;
+      max-height:680px;
+      object-fit:contain;
+      display:block;
+      border:1px solid rgba(255,255,255,.18);
+      border-radius:10px;
+      background:rgba(0,0,0,.22);
+      padding:12px;
+    }
+
+    /* =================== FOOTER (MASTER) =================== */
+    .site-footer{
+      background:linear-gradient(180deg, rgba(0,20,50,.35), rgba(0,20,40,.6));
+      border-top:1px solid rgba(255,255,255,.18);
+      margin-top:44px;
+    }
+
+    .footer-grid{
+      display:grid;
+      grid-template-columns:2fr 2fr 1.5fr;
+      gap:28px;
+      padding:28px 0;
+      width:min(1200px,92vw);
+      margin:0 auto;
+    }
+
+    .footer-col h4{
+      margin:0 0 10px;
+      font-size:16px;
+      letter-spacing:1px;
+      text-transform:uppercase;
+      color:#eaf3ff;
+    }
+
+    .footer-col p{margin:6px 0;color:rgba(255,255,255,.92);}
+    .footer-col a{color:#aee1ff;text-decoration:none;}
+    .footer-col a:hover{text-decoration:underline;}
+
+    .footer-col--center{text-align:center;}
+
+    .newsletter-form{
+      display:inline-flex;
+      gap:10px;
+      align-items:stretch;
+      justify-content:center;
+      margin-top:8px;
+      flex-wrap:wrap;
+    }
+
+    .newsletter-form input{
+      min-width:280px;
+      height:44px;
+      padding:0 12px;
+      border-radius:8px;
+      border:1px solid rgba(255,255,255,.35);
+      background:rgba(255,255,255,.1);
+      color:#fff;
+      outline:none;
+    }
+    .newsletter-form input::placeholder{color:rgba(255,255,255,.75);}
+
+    .newsletter-form button{
+      height:44px;
+      padding:0 16px;
+      border:0;
+      border-radius:8px;
+      background:#0b76c7;
+      color:#fff;
+      font-weight:700;
+      letter-spacing:.5px;
+      cursor:pointer;
+    }
+    .newsletter-form button:hover{background:#0a68b0;}
+
+    .footer-col--right{text-align:right;}
+
+    .social-row{
+      display:flex;
+      gap:12px;
+      justify-content:flex-end;
+      margin:6px 0 10px;
+    }
+
+    .legal-links{
+      list-style:none;
+      padding:0;
+      margin:8px 0 0;
+      display:grid;
+      gap:6px;
+    }
+
+    /* FIX: <ul> must contain <li> */
+    .legal-links li{list-style:none;margin:0;padding:0;}
+    .legal-links a{
+      color:#aee1ff;
+      text-decoration:none;
+      font-size:14px;
+    }
+    .legal-links a:hover{text-decoration:underline;}
+
+    .footer-bottom{
+      text-align:center;
+      padding:14px 0;
+      border-top:1px solid rgba(255,255,255,.15);
+      color:rgba(255,255,255,.85);
+      font-size:13px;
+    }
+
+    /* =================== RESPONSIVE =================== */
+    @media (max-width:1100px){
+      .exp-grid{grid-template-columns:repeat(3, minmax(0, 1fr));}
+    }
+
+    @media (max-width:1020px){
+      .footer-grid{grid-template-columns:1fr;}
+      .footer-col--right{text-align:center;}
+      .social-row{justify-content:center;}
+      .inline-photos{grid-template-columns:1fr;}
+      .mission-photos{grid-template-columns:1fr;}
+      .capability-grid{grid-template-columns:1fr;}
+      .hero-media img{max-height:460px;}
+      .proj-row{grid-template-columns:1fr;}
+      .proj-photos, .proj-photos.two{grid-template-columns:repeat(3, minmax(0, 1fr));}
+    }
+
+    @media (max-width:720px){
+      .site-header{padding-inline:16px;}
+
+      /* Mobile header: centered logo + hamburger */
+      .header-inner{
+        display:grid;
+        grid-template-columns:1fr auto 1fr;
+        align-items:center;
+        gap:10px;
+      }
+
+      .logo-link{grid-column:2;justify-self:center;}
+      .header-separator{display:none;}
+
+      .menu-toggle{
+        display:inline-block;
+        grid-column:3;
+        justify-self:end;
+        margin-left:0;
+      }
+
+      .main-nav{grid-column:1 / -1;width:100%;}
+      .main-nav .menu{
+        display:none;
+        margin-top:12px;
+        padding:12px 12px;
+        gap:10px;
+        flex-direction:column;
+        border:1px solid rgba(255,255,255,.18);
+        border-radius:10px;
+        background:rgba(0,0,0,.30);
+        backdrop-filter:blur(2px);
+      }
+      .main-nav .menu.is-open{display:flex;}
+
+      .main-nav .menu a{
+        display:block;
+        width:100%;
+        text-align:center;
+        padding:10px 10px;
+        border-radius:8px;
+      }
+      .main-nav .menu a:hover{
+        background:rgba(213,37,34,.18);
+        color:#fff;
+      }
+
+      .intro-wrap,
+      .hero-media,
+      .accordion-wrap{padding:14px 12px;}
+
+      .hero-media{padding:12px;}
+      .hero-media img{max-height:420px;}
+
+      .exp-grid{grid-template-columns:repeat(2, minmax(0, 1fr));}
+      .proj-photos, .proj-photos.two{grid-template-columns:repeat(2, minmax(0, 1fr));}
+      .proj-photo{height:150px;padding:8px;}
+      .bottom-photos img{padding:10px;}
+    }
+
+    @media (max-width:520px){
+      .exp-grid{grid-template-columns:1fr;}
+    }
+  </style>
 </head>
+
 <body>
-  <p>
-    Redirigiendo a la web…
-    <a href="./CETA%20WEB/wwwroot/index.html">
-      Haz clic aquí si no se redirige automáticamente.
-    </a>
-  </p>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo-link" aria-label="Home">
+        <img src="IMAGENES/LOGO_BLANCO.png" alt="CETA" class="logo" />
+      </a>
+
+      <div class="header-separator" aria-hidden="true"></div>
+
+      <!-- Hamburger button (mobile only) -->
+      <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mainMenu">
+        <span class="bar" aria-hidden="true"></span>
+        <span class="bar" aria-hidden="true"></span>
+        <span class="bar" aria-hidden="true"></span>
+      </button>
+
+      <nav class="main-nav" aria-label="Primary menu">
+        <ul class="menu" id="mainMenu">
+          <li><a href="empresa.html">WHO WE ARE</a></li>
+          <li><a href="index.html">AEROSPACE ENGINEERING SERVICES</a></li>
+          <li><a href="calidad.html">QUALITY ASSURANCE</a></li>
+          <li><a href="noticias.html">NEWS</a></li>
+          <li><a href="contacto.html">CONTACT</a></li>
+          
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero-internal">
+    <div class="container">
+      <h1>AEROSPACE DESIGN & CERTIFICATION ENGINEERING SERVICES</h1>
+    </div>
+  </section>
+
+  <!-- CONTENT (REPLACED 4 OPTIONS WITH FULL DESIGN & CERTIFICATION CONTENT + EXPERIENCE ACC ITEM) -->
+  <main class="page-content">
+
+    <!-- Intro paragraph (under title) -->
+    <div class="intro-wrap">
+      <p class="intro-text">
+        CETA is an aerospace engineering corporation with over 65 years of experience, delivering intelligent, cost-effective solutions addressing avionics and mission systems obsolescence in fixed- and rotary-wing aircrafts.<br><br>
+      </p>
+    </div>
+
+    <!-- Large/medium image: 4_ENG (FULL, NO CROP) -->
+    <div class="hero-media" aria-label="Design and Certification visual">
+      <img src="DESIGN&CERTIFICATION/4_ENG_3.png" alt="Design and Certification" />
+    </div>
+
+    <!-- Accordion options -->
+    <section class="accordion-wrap" aria-label="Aerospace design & engineering details">
+
+      <!-- 1 -->
+      <article class="acc-item">
+        <button class="acc-btn" type="button" aria-expanded="false">
+          <h3 class="acc-title">DESIGN ENGINEERING AND SYSTEMS INTEGRATION</h3>
+          <span class="acc-plus" aria-hidden="true">+</span>
+        </button>
+
+        <div class="acc-panel" role="region">
+          <p>
+            Design engineering, systems integration services and airworthiness certification (EASA and DGAM) for all types of operators, manufacturers (OEMs), maintenance organizations (MOA/MRO), and other design organizations (DOA/MDOA).
+          </p>
+
+          <ul class="bullet">
+            <li>Mechanical and structural design in compliance with airworthiness standards.</li>
+            <li>Avionics, electronics and systems upgrade and integration.</li>
+            <li>Aviation certification planning.</li>
+            <li>Safety analysis for weight and balance centering, system safety, HIRF and lightning protection.</li>
+            <li>Structural analysis (static, dynamic, fatigue, fracture).</li>
+            <li>Equipment qualification reports (environmental, functional E-TSO/TSO).</li>
+            <li>Electrical load analysis.</li>
+            <li>Testing procedure development (ground and flight).</li>
+            <li>Aircraft documentation, supplements.</li>
+          </ul>
+
+          <div class="inline-photos" aria-label="Engineering and integration references">
+            <img src="DESIGN&CERTIFICATION/1.jpg" alt="Engineering reference 1" />
+            <img src="DESIGN&CERTIFICATION/2.jpeg" alt="Engineering reference 2" />
+            <img src="DESIGN&CERTIFICATION/3.png" alt="Engineering reference 3" />
+          </div>
+        </div>
+      </article>
+
+      <!-- 2 -->
+      <article class="acc-item">
+        <button class="acc-btn" type="button" aria-expanded="false">
+          <h3 class="acc-title">AVIONICS UPGRADES</h3>
+          <span class="acc-plus" aria-hidden="true">+</span>
+        </button>
+
+        <div class="acc-panel" role="region">
+          <p>
+            We provide aircraft configuration analysis, avionics and mission systems evaluation, considering regulatory, airworthiness certification, integration and budgetary criteria.
+          </p>
+
+          <div class="capability-box" aria-label="Avionics upgrades scope">
+            <div class="capability-grid">
+              <div class="capability-col">
+                <div>Transponder mode S / IFF</div>
+                <div>ADS-B Automatic dependent surveillance - Broadcast</div>
+                <div>LPV localiser performance with vertical guidance</div>
+                <div>TAWS - Terrain awareness and warning systems</div>
+                <div>AWR - Airborne weather radar and predictive systems</div>
+                <div>TCAS - Traffic collision avoidance systems</div>
+                
+                
+              </div>
+
+              <div class="capability-col">
+                <div>Integrated navigation management systems</div>
+                <div>Multi-band communication and antenna coupling</div>
+                <div>Flight control</div>
+                <div>Digital audio systems</div>
+                <div>Military and civil identification</div>
+                <div>Autopiloting systems</div>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 3 -->
+      <article class="acc-item">
+        <button class="acc-btn" type="button" aria-expanded="false">
+          <h3 class="acc-title">MISSION SYSTEMS</h3>
+          <span class="acc-plus" aria-hidden="true">+</span>
+        </button>
+
+        <div class="acc-panel" role="region">
+          <p>
+            We integrate all types of mission system solutions on board fixed-wing and rotary-wing aircraft.
+          </p>
+
+          <div class="capability-box" aria-label="Mission systems integration">
+            <div class="capability-col">
+              <div>Intelligence, surveillance and reconnaissance (ISR)</div>
+              <div>Data and image transmission</div>
+              <div>Electro-optical systems</div>
+              <div>Tactical communications</div>
+              <div>Ballistic protection</div>
+              <div>Electronic warfare</div>
+              <div>Medical evacuation / Medicalization</div>
+              <div>CSAR operations (Combat Search and Rescue)</div>
+              <div>Lifeseeker units</div>
+            </div>
+          </div>
+
+          <div class="mission-photos" aria-label="Mission systems references">
+            <img src="INGENIERIA/LIFESEEKER.jpeg" alt="Mission systems reference 1" />
+            <img src="INGENIERIA/HELICOPTERO.png" alt="Mission systems reference 2" />
+          </div>
+        </div>
+      </article>
+
+      <!-- 4 (NEW): EXPERIENCE (FULL CONTENT MOVED INSIDE) -->
+      <article class="acc-item">
+        <button class="acc-btn" type="button" aria-expanded="false">
+          <h3 class="acc-title">EXPERIENCE</h3>
+          <span class="acc-plus" aria-hidden="true">+</span>
+        </button>
+
+        <div class="acc-panel" role="region">
+
+          <!-- EXPERIENCE GRID (12) -->
+          <div class="exp-grid" aria-label="Experience overview">
+            <article class="exp-card">
+              <img class="exp-thumb" src="PEOPLE&SKILLS/1.png" alt="Experience 1" />
+              <div class="exp-body">
+                <h3 class="exp-title">BEECH 200 DGP</h3>
+                <p class="exp-desc">Installation – Certification<br>Transponder Mode S</p>
+              </div>
+            </article>
+
+            <article class="exp-card">
+              <img class="exp-thumb" src="PEOPLE&SKILLS/2.png" alt="Experience 2" />
+              <div class="exp-body">
+                <h3 class="exp-title">CESSNA CITATION DGP</h3>
+                <p class="exp-desc">Installation – Certification<br>LNAV + LPV capabilities</p>
+              </div>
+            </article>
+
+            <article class="exp-card">
+              <img class="exp-thumb" src="PEOPLE&SKILLS/3.png" alt="Experience 3" />
+              <div class="exp-body">
+                <h3 class="exp-title">BELL 249</h3>
+                <p class="exp-desc">Certification<br>Lifeseeker</p>
+              </div>
+            </article>
+
+            <article class="exp-card">
+              <img class="exp-thumb" src="PEOPLE&SKILLS/4.png" alt="Experience 4" />
+              <div class="exp-body">
+                <h3 class="exp-title">EC120 DGP</h3>
+                <p class="exp-desc">Installation – Certification<br>COM/NAV 8.33 kHz</p>
+              </div>
+            </article>
+
+            <article class="exp-card">
+              <img class="exp-thumb" src="PEOPLE&SKILLS/5.png" alt="Experience 5" />
+              <div class="exp-body">
+                <h3 class="exp-title">EC 135</h3>
+                <p class="exp-desc">Installation – Certification<br>Lifeseeker video transmission system</p>
+              </div>
+            </article>
+
+            <article class="exp-card">
+              <img class="exp-thumb" src="PEOPLE&SKILLS/6.png" alt="Experience 6" />
+              <div class="exp-body">
+                <h3 class="exp-title">BEECH 1900D</h3>
+                <p class="exp-desc">Certification<br>ADS-B</p>
+              </div>
+            </article>
+
+            <article class="exp-card">
+              <img class="exp-thumb" src="PEOPLE&SKILLS/7.png" alt="Experience 7" />
+              <div class="exp-body">
+                <h3 class="exp-title">CN235 SPANISH AIR FORCE</h3>
+                <p class="exp-desc">Installation – Certification<br>GPS/COM/NAV<br>PBN RNAV 5</p>
+              </div>
+            </article>
+
+            <article class="exp-card">
+              <img class="exp-thumb" src="PEOPLE&SKILLS/8.png" alt="Experience 8" />
+              <div class="exp-body">
+                <h3 class="exp-title">C295 SPANISH AIR FORCE</h3>
+                <p class="exp-desc">Installation – Certification<br>IFF Mode 5</p>
+              </div>
+            </article>
+
+            <article class="exp-card">
+              <img class="exp-thumb" src="PEOPLE&SKILLS/9.png" alt="Experience 9" />
+              <div class="exp-body">
+                <h3 class="exp-title">S76 SPANISH AIR FORCE</h3>
+                <p class="exp-desc">Installation – Certification<br>GPS/COM/NAV<br>Weather Radar<br>PBN Capabilities</p>
+              </div>
+            </article>
+
+            <article class="exp-card">
+              <img class="exp-thumb" src="PEOPLE&SKILLS/10.png" alt="Experience 10" />
+              <div class="exp-body">
+                <h3 class="exp-title">C212 SPANISH AIR FORCE</h3>
+                <p class="exp-desc">Installation – Certification<br>Avionic upgrade</p>
+              </div>
+            </article>
+
+            <article class="exp-card">
+              <img class="exp-thumb" src="PEOPLE&SKILLS/11.png" alt="Experience 11" />
+              <div class="exp-body">
+                <h3 class="exp-title">AB212 SPANISH ARMY</h3>
+                <p class="exp-desc">Life support system</p>
+              </div>
+            </article>
+
+            <article class="exp-card">
+              <img class="exp-thumb" src="PEOPLE&SKILLS/12.png" alt="Experience 12" />
+              <div class="exp-body">
+                <h3 class="exp-title">SH60B SPANISH NAVY</h3>
+                <p class="exp-desc">Ballistic protection system</p>
+              </div>
+            </article>
+          </div>
+
+          <!-- Projects -->
+          <section class="projects-section" aria-label="Selected programmes">
+            <div class="proj-row">
+              <div>
+                <h3 class="proj-h">SPANISH AIR FORCE C-212 AVIONICS MODERNIZATION – GLASS COCKPIT</h3>
+                <ul class="proj-list">
+                  <li>Primary flight display + ND</li>
+                  <li>EICAS</li>
+                  <li>GPS / COMM / NAV</li>
+                  <li>AHRS</li>
+                  <li>Moving map</li>
+                  <li>Weather radar</li>
+                  <li>STAND-BY instruments</li>
+                  <li>PBN capabilities</li>
+                </ul>
+              </div>
+              <div class="proj-photos two" aria-label="C-212 avionics modernization photos">
+                <img class="proj-photo" src="PEOPLE&SKILLS/FILA1_1.jpeg" alt="C-212 modernization 1" />
+                <img class="proj-photo" src="PEOPLE&SKILLS/FILA1_2.jpeg" alt="C-212 modernization 2" />
+              </div>
+            </div>
+
+            <div class="proj-row">
+              <div>
+                <h3 class="proj-h">SPANISH AIR FORCE S-76 AVIONICS MODERNIZATION</h3>
+                <ul class="proj-list">
+                  <li>GTN 750 Xi navigator</li>
+                  <li>All PBN capabilities</li>
+                  <li>Digital COMM/NAV/GPS</li>
+                  <li>Moving map</li>
+                </ul>
+              </div>
+              <div class="proj-photos" aria-label="S-76 avionics modernization photos">
+                <img class="proj-photo" src="PEOPLE&SKILLS/FILA2_1.jpeg" alt="S-76 modernization 1" />
+                <img class="proj-photo" src="PEOPLE&SKILLS/FILA2_2.jpeg" alt="S-76 modernization 2" />
+                <img class="proj-photo" src="PEOPLE&SKILLS/FILA2_3.jpeg" alt="S-76 modernization 3" />
+              </div>
+            </div>
+
+            <div class="proj-row">
+              <div>
+                <h3 class="proj-h">SPANISH NATIONAL POLICE CESSNA CITATION II LPV UPGRADE</h3>
+                <ul class="proj-list">
+                  <li>LP/LPV monitor</li>
+                  <li>PBN approaches</li>
+                  <li>LNAV + vertical guidance</li>
+                  <li>LPV capabilities</li>
+                </ul>
+              </div>
+              <div class="proj-photos" aria-label="Cessna Citation II LPV upgrade photos">
+                <img class="proj-photo" src="PEOPLE&SKILLS/FILA3_1.jpeg" alt="Citation II LPV 1" />
+                <img class="proj-photo" src="PEOPLE&SKILLS/FILA3_2.jpeg" alt="Citation II LPV 2" />
+                <img class="proj-photo" src="PEOPLE&SKILLS/FILA3_3.jpeg" alt="Citation II LPV 3" />
+              </div>
+            </div>
+
+            <div class="proj-row">
+              <div>
+                <h3 class="proj-h">SPANISH AIR FORCE CN-235 GPS INSTALLATION</h3>
+                <ul class="proj-list">
+                  <li>GTN 625 Xi</li>
+                  <li>GPS / moving map</li>
+                  <li>PBN RNAV 5 capabilities</li>
+                </ul>
+              </div>
+              <div class="proj-photos two" aria-label="CN-235 GPS installation photos">
+                <img class="proj-photo" src="PEOPLE&SKILLS/FILA4_1.jpg" alt="CN-235 GPS 1" />
+                <img class="proj-photo" src="PEOPLE&SKILLS/FILA4_2.jpg" alt="CN-235 GPS 2" />
+              </div>
+            </div>
+
+            <div class="proj-row">
+              <div>
+                <h3 class="proj-h">SPANISH NAVY H500 AVIONICS MODERNIZATION</h3>
+                <ul class="proj-list">
+                  <li>Primary flight display</li>
+                  <li>Attitude &amp; heading reference sensor</li>
+                  <li>Digital COMM/NAV/GPS</li>
+                  <li>Moving map</li>
+                </ul>
+              </div>
+              <div class="proj-photos" aria-label="H500 avionics modernization photos">
+                <img class="proj-photo" src="PEOPLE&SKILLS/FILA5_1.jpeg" alt="H500 modernization 1" />
+                <img class="proj-photo" src="PEOPLE&SKILLS/FILA5_2.jpeg" alt="H500 modernization 2" />
+                <img class="proj-photo" src="PEOPLE&SKILLS/FILA5_3.jpeg" alt="H500 modernization 3" />
+              </div>
+            </div>
+
+            <div class="proj-row">
+              <div>
+                <h3 class="proj-h">SPANISH AIR FORCE C-101 AVIONICS MODERNIZATION</h3>
+                <ul class="proj-list">
+                  <li>Electronic flight instrument system</li>
+                  <li>Attitude &amp; heading reference system</li>
+                  <li>Air data computer</li>
+                  <li>Digital VOR/ILS NAV</li>
+                  <li>GPS</li>
+                  <li>System digital VHF COMM</li>
+                  <li>COMM audio system</li>
+                </ul>
+              </div>
+              <div class="proj-photos" aria-label="C-101 avionics modernization photos">
+                <img class="proj-photo" src="PEOPLE&SKILLS/FILA6_1.jpeg" alt="C-101 modernization 1" />
+                <img class="proj-photo" src="PEOPLE&SKILLS/FILA6_2.jpeg" alt="C-101 modernization 2" />
+                <img class="proj-photo" src="PEOPLE&SKILLS/FILA6_3.jpeg" alt="C-101 modernization 3" />
+              </div>
+            </div>
+
+            <div class="proj-row">
+              <div>
+                <h3 class="proj-h">SPANISH NAVY SEA KING &amp; AB-212 LIFE SUPPORT SYSTEM INSTALLATION</h3>
+                <ul class="proj-list">
+                  <li>Life Support System installation and integration programme.</li>
+                </ul>
+              </div>
+              <div class="proj-photos" aria-label="Sea King & AB-212 photos">
+                <img class="proj-photo" src="PEOPLE&SKILLS/FILA7_1.jpeg" alt="Sea King / AB-212 1" />
+                <img class="proj-photo" src="PEOPLE&SKILLS/FILA7_2.jpeg" alt="Sea King / AB-212 2" />
+                <img class="proj-photo" src="PEOPLE&SKILLS/FILA7_3.jpeg" alt="Sea King / AB-212 3" />
+              </div>
+            </div>
+
+            <div class="proj-row">
+              <div>
+                <h3 class="proj-h">SPANISH ARMY SUPER PUMA MACHINE GUN BASE PLATE ASSY</h3>
+                <ul class="proj-list">
+                  <li>Machine gun base plate assembly integration programme.</li>
+                </ul>
+              </div>
+              <div class="proj-photos" aria-label="Super Puma photos">
+                <img class="proj-photo" src="PEOPLE&SKILLS/FILA8_1.jpeg" alt="Super Puma 1" />
+                <img class="proj-photo" src="PEOPLE&SKILLS/FILA8_2.jpeg" alt="Super Puma 2" />
+                <img class="proj-photo" src="PEOPLE&SKILLS/FILA8_3.jpeg" alt="Super Puma 3" />
+              </div>
+            </div>
+          </section>
+
+          <div class="bottom-photos" aria-label="Additional experience visuals">
+            <img src="PEOPLE&SKILLS/experiencia_1.jpeg" alt="Experience visual 1" />
+            <img src="PEOPLE&SKILLS/experiencia_2.jpeg" alt="Experience visual 2" />
+          </div>
+
+        </div>
+      </article>
+
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>CETA S.A.</h4>
+        <p>Compañía Española de Técnica Aeronáutica S.A.</p>
+        <p>C/ Cañas, 7 · Nave Entresuelo<br>28043 Madrid · Spain</p>
+        <p><a href="mailto:ingenieria@ceta.aero">ingenieria@ceta.aero</a></p>
+        <p>Tel: +34 911 400 181 · Fax: +34 911 400 182</p>
+      </div>
+
+      <div class="footer-col footer-col--center">
+        <h4>NEWSLETTER</h4>
+
+        <form class="newsletter-form" action="https://formspree.io/f/xpqqwqqd" method="POST" id="newsletterForm">
+          <input id="newsletter-email" name="email" type="email" placeholder="Your email" required />
+          <button type="submit">SEND</button>
+        </form>
+
+        <p id="newsletterSuccess" style="display:none; margin:10px 0 0; color: rgba(255,255,255,.92); font-size: 14px;">
+          Thank you. You have been registered.
+        </p>
+      </div>
+
+      <div class="footer-col footer-col--right">
+        <h4>Connect</h4>
+        <div class="social-row">
+          <a class="social-link" href="https://www.linkedin.com/company/cetasa/posts/?feedView=all" aria-label="LinkedIn" title="LinkedIn">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <rect width="24" height="24" rx="4" fill="rgba(255,255,255,0.15)" />
+              <path d="M7.2 8.8a1.6 1.6 0 1 0 0-3.2 1.6 1.6 0 0 0 0 3.2Zm1 2H6.2v7.4h2V10.8Zm3.2 0H9.6v7.4h2v-4.2c0-1.1.8-1.8 1.7-1.8 1 0 1.5.6 1.5 1.8v4.2h2V13c0-2.2-1.3-3.2-3.2-3.2-1.1 0-1.9.5-2.2 1.1h-.1v-0.1Z"
+                    fill="rgba(200,230,255,0.95)" />
+            </svg>
+          </a>
+        </div>
+
+        <ul class="legal-links">
+          <li><a href="politica-de-calidad.html">QUALITY POLICY</a></li>
+          <li><a href="condiciones-generales-de-compra.html">GENERAL PURCHASING AND SALES CONDITIONS</a></li>
+          <li><a href="politica-de-cookies.html">COOKIE POLICY</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      © <span id="year"></span> CETA · All rights reserved
+    </div>
+  </footer>
+
+  <script>
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // ===== Mobile menu (hamburger) =====
+    const toggle = document.querySelector('.menu-toggle');
+    const menu = document.getElementById('mainMenu');
+
+    function setMenu(open){
+      menu.classList.toggle('is-open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+    }
+
+    toggle?.addEventListener('click', () => {
+      setMenu(!menu.classList.contains('is-open'));
+    });
+
+    // Close menu when clicking a link (mobile)
+    menu?.addEventListener('click', (e) => {
+      const a = e.target.closest('a');
+      if (!a) return;
+      setMenu(false);
+    });
+
+    // If back to desktop, reset state
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 720) setMenu(false);
+    });
+
+    // ===== Accordion =====
+    document.querySelectorAll('.acc-item').forEach(item => {
+      const btn = item.querySelector('.acc-btn');
+      const panel = item.querySelector('.acc-panel');
+      if (!btn || !panel) return;
+
+      btn.addEventListener('click', () => {
+        const open = item.classList.contains('is-open');
+        item.classList.toggle('is-open', !open);
+        btn.setAttribute('aria-expanded', String(!open));
+      });
+    });
+
+    // ===== Newsletter: Formspree submit (no redirect) + success message =====
+    const form = document.getElementById('newsletterForm');
+    const success = document.getElementById('newsletterSuccess');
+
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      success.style.display = 'none';
+
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (res.ok) {
+          form.reset();
+          success.style.display = 'block';
+        } else {
+          alert('Sorry, there was a problem. Please try again.');
+        }
+      } catch (err) {
+        alert('Sorry, there was a problem. Please try again.');
+      }
+    });
+  </script>
 </body>
 </html>
