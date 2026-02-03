@@ -138,16 +138,14 @@
       backdrop-filter:blur(2px);
     }
 
-   .intro-text{
-  margin:0;
-  color:rgba(255,255,255,.92);
-  font-size:16px;
-  line-height:1.55;
-  letter-spacing:.2px;
-
-  /* NUEVO: siempre centrado */
-  text-align:center !important;
-}
+    .intro-text{
+      margin:0;
+      color:rgba(255,255,255,.92);
+      font-size:16px;
+      line-height:1.55;
+      letter-spacing:.2px;
+      text-align:center !important;
+    }
 
     /* ===== HERO MEDIA (4_ENG) – show full image (no crop) ===== */
     .hero-media{
@@ -598,6 +596,10 @@
       .hero-media{padding:12px;}
       .hero-media img{max-height:420px;}
 
+      /* ✅ MOBILE-ONLY SWAP: use 4_ENG_4 on mobile */
+      .hero-media img.hero-img--desktop{display:none;}
+      .hero-media img.hero-img--mobile{display:block;}
+
       .exp-grid{grid-template-columns:repeat(2, minmax(0, 1fr));}
       .proj-photos, .proj-photos.two{grid-template-columns:repeat(2, minmax(0, 1fr));}
       .proj-photo{height:150px;padding:8px;}
@@ -607,6 +609,9 @@
     @media (max-width:520px){
       .exp-grid{grid-template-columns:1fr;}
     }
+
+    /* Defaults for the swapped hero images (desktop first) */
+    .hero-media img.hero-img--mobile{display:none;}
   </style>
 </head>
 
@@ -635,7 +640,6 @@
           <li><a href="calidad.html">QUALITY ASSURANCE</a></li>
           <li><a href="noticias.html">NEWS</a></li>
           <li><a href="contacto.html">CONTACT</a></li>
-          
         </ul>
       </nav>
     </div>
@@ -648,7 +652,7 @@
     </div>
   </section>
 
-  <!-- CONTENT (REPLACED 4 OPTIONS WITH FULL DESIGN & CERTIFICATION CONTENT + EXPERIENCE ACC ITEM) -->
+  <!-- CONTENT -->
   <main class="page-content">
 
     <!-- Intro paragraph (under title) -->
@@ -658,9 +662,10 @@
       </p>
     </div>
 
-    <!-- Large/medium image: 4_ENG (FULL, NO CROP) -->
+    <!-- Large/medium image: desktop uses 4_ENG_3, mobile uses 4_ENG_4 -->
     <div class="hero-media" aria-label="Design and Certification visual">
-      <img src="DESIGN&CERTIFICATION/4_ENG_3.png" alt="Design and Certification" />
+      <img class="hero-img--desktop" src="DESIGN&CERTIFICATION/4_ENG_3.png" alt="Design and Certification" />
+      <img class="hero-img--mobile"  src="DESIGN&CERTIFICATION/4_ENG_4.png" alt="Design and Certification" />
     </div>
 
     <!-- Accordion options -->
@@ -719,8 +724,6 @@
                 <div>TAWS - Terrain awareness and warning systems</div>
                 <div>AWR - Airborne weather radar and predictive systems</div>
                 <div>TCAS - Traffic collision avoidance systems</div>
-                
-                
               </div>
 
               <div class="capability-col">
@@ -730,7 +733,6 @@
                 <div>Digital audio systems</div>
                 <div>Military and civil identification</div>
                 <div>Autopiloting systems</div>
-                
               </div>
             </div>
           </div>
@@ -770,7 +772,7 @@
         </div>
       </article>
 
-      <!-- 4 (NEW): EXPERIENCE (FULL CONTENT MOVED INSIDE) -->
+      <!-- 4 (NEW): EXPERIENCE -->
       <article class="acc-item">
         <button class="acc-btn" type="button" aria-expanded="false">
           <h3 class="acc-title">EXPERIENCE</h3>
@@ -779,7 +781,6 @@
 
         <div class="acc-panel" role="region">
 
-          <!-- EXPERIENCE GRID (12) -->
           <div class="exp-grid" aria-label="Experience overview">
             <article class="exp-card">
               <img class="exp-thumb" src="PEOPLE&SKILLS/1.png" alt="Experience 1" />
@@ -878,7 +879,6 @@
             </article>
           </div>
 
-          <!-- Projects -->
           <section class="projects-section" aria-label="Selected programmes">
             <div class="proj-row">
               <div>
