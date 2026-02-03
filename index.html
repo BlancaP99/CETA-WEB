@@ -596,10 +596,6 @@
       .hero-media{padding:12px;}
       .hero-media img{max-height:420px;}
 
-      /* ✅ MOBILE-ONLY SWAP: use 4_ENG_4 on mobile */
-      .hero-media img.hero-img--desktop{display:none;}
-      .hero-media img.hero-img--mobile{display:block;}
-
       .exp-grid{grid-template-columns:repeat(2, minmax(0, 1fr));}
       .proj-photos, .proj-photos.two{grid-template-columns:repeat(2, minmax(0, 1fr));}
       .proj-photo{height:150px;padding:8px;}
@@ -609,9 +605,6 @@
     @media (max-width:520px){
       .exp-grid{grid-template-columns:1fr;}
     }
-
-    /* Defaults for the swapped hero images (desktop first) */
-    .hero-media img.hero-img--mobile{display:none;}
   </style>
 </head>
 
@@ -662,10 +655,12 @@
       </p>
     </div>
 
-    <!-- Large/medium image: desktop uses 4_ENG_3, mobile uses 4_ENG_4 -->
+    <!-- Large/medium image: DESKTOP uses 4_ENG_3, MOBILE uses 4_ENG_4 (ROBUST) -->
     <div class="hero-media" aria-label="Design and Certification visual">
-      <img class="hero-img--desktop" src="DESIGN&CERTIFICATION/4_ENG_3.png" alt="Design and Certification" />
-      <img class="hero-img--mobile"  src="DESIGN&CERTIFICATION/4_ENG_4.png" alt="Design and Certification" />
+      <picture>
+        <source media="(max-width: 720px)" srcset="DESIGN&CERTIFICATION/4_ENG_4.png">
+        <img src="DESIGN&CERTIFICATION/4_ENG_3.png" alt="Design and Certification" />
+      </picture>
     </div>
 
     <!-- Accordion options -->
@@ -879,6 +874,7 @@
             </article>
           </div>
 
+          <!-- Projects -->
           <section class="projects-section" aria-label="Selected programmes">
             <div class="proj-row">
               <div>
