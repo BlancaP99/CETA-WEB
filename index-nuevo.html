@@ -1,0 +1,292 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Since 2007, CETA has supplied Unmanned Aerial Systems (UAS) to Spanish Armed Forces and Law Enforcement Agencies.">
+  <title>Unmanned Aircraft Systems | CETA</title>
+  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="32ae8fb9-0700-4415-92fd-a329c0ab975e" data-blockingmode="auto" type="text/javascript"></script>
+  <style>
+    :root { --brand:#002856; --accent:#D52522; --ink:#fff; --ink-soft:rgba(255,255,255,.92); --link:#aee1ff; --max:1200px; }
+    @font-face { font-family:"Eurostile"; src:url("FONTS/EUROSTILE.TTF") format("truetype"); font-display:swap; }
+    *, *::before, *::after { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; font-family:"Eurostile",Arial,sans-serif; background:var(--brand); color:var(--ink); overflow-x:hidden; line-height:1.55; }
+    a { color:inherit; }
+    button, input { font:inherit; }
+    .container { width:min(var(--max),92vw); margin-inline:auto; }
+    /* Full-page cinematic background. Missing future images automatically fall back to the existing cockpit. */
+    .background { position:fixed; inset:0; z-index:-1; overflow:hidden; background:var(--brand); pointer-events:none; }
+    .background__fallback { position:absolute; inset:0; background:url("IMAGENES/COCKPIT.webp") center / cover no-repeat; opacity:.42; }
+    .background__slide { position:absolute; inset:0; background-position:center; background-size:cover; opacity:0; transform:scale(1.035); transition:opacity 1.8s ease,transform 8s linear; }
+    .background__slide.is-active { opacity:.58; transform:scale(1); }
+    .background__wash { position:absolute; inset:0; background:linear-gradient(90deg,rgba(0,20,45,.79) 0%,rgba(0,30,65,.78) 50%,rgba(0,20,45,.79) 100%),linear-gradient(0deg,rgba(0,17,41,.7),transparent 35%,rgba(0,15,40,.25)); }
+    .page { position:relative; z-index:1; }
+    /* Header matches existing CETA pages */
+    .site-header { padding:18px 30px 8px; }
+    .header-inner { display:flex; align-items:center; gap:20px; }
+    .logo { height:50px; display:block; }
+    .header-separator { width:1px; height:36px; background:rgba(255,255,255,.9); }
+    .main-nav .menu { list-style:none; display:flex; gap:28px; margin:0; padding:0; }
+    .main-nav .menu a { color:white; text-decoration:none; font-size:14px; letter-spacing:.5px; transition:color .25s; }
+    .main-nav .menu a:hover, .main-nav .menu a[aria-current="page"] { color:#ffb1af; }
+    .menu-toggle { display:none; margin-left:auto; width:44px; height:44px; border:1px solid rgba(255,255,255,.25); background:rgba(0,0,0,.28); border-radius:10px; cursor:pointer; padding:10px; }
+    .menu-toggle .bar { display:block; height:2px; background:rgba(255,255,255,.9); margin:6px 0; }
+    /* Landing content */
+    main { min-height:calc(100svh - 92px); display:flex; align-items:center; }
+    .hero { width:100%; padding:clamp(62px,10vh,140px) 0 clamp(80px,12vh,150px); }
+    .hero__inner { max-width:1040px; margin-inline:auto; text-align:center; }
+    .hero__eyebrow { display:flex; align-items:center; gap:12px; text-transform:uppercase; letter-spacing:3px; font-size:12px; font-weight:700; color:rgba(255,255,255,.74); margin:0 auto 20px; justify-content:center; }
+    .hero__eyebrow::before { content:""; display:block; width:38px; height:2px; background:var(--accent); }
+    .hero h1 { margin:0 auto 31px; max-width:920px; font-size:clamp(40px,6.2vw,82px); font-weight:800; line-height:1.05; letter-spacing:1px; text-transform:uppercase; text-shadow:0 4px 24px rgba(0,0,0,.20); }
+    .hero__rule { width:70px; height:3px; background:var(--accent); margin:0 auto 32px; }
+    .hero__copy { max-width:805px; margin-inline:auto; text-align:center; }
+    .hero__copy p { margin:0 0 20px; color:rgba(255,255,255,.94); font-size:clamp(16px,1.55vw,19px); line-height:1.75; }
+    .hero__contact { margin:34px auto 0; max-width:800px; text-align:center; font-size:15px; line-height:1.7; color:rgba(255,255,255,.88); }
+    .hero__contact a { color:#fff; text-decoration:underline; text-decoration-color:var(--accent); text-underline-offset:5px; }
+    .hero__contact a:hover { color:#ffcbca; }
+    .hero__contact-link { display:inline-flex; align-items:center; gap:8px; margin-top:16px; padding:12px 20px; border:1px solid rgba(255,255,255,.5); text-decoration:none !important; text-transform:uppercase; font-size:13px; font-weight:bold; letter-spacing:1px; transition:background .2s,border-color .2s; }
+    .hero__contact-link:hover { background:var(--accent); border-color:var(--accent); color:white !important; }
+    /* Footer: layout/style retained from the supplied pages */
+    .site-footer { position:relative; z-index:2; background:linear-gradient(180deg,rgba(0,20,50,.78),rgba(0,20,40,.91)); border-top:1px solid rgba(255,255,255,.18); }
+    .footer-grid { display:grid; grid-template-columns:2fr 2fr 1.5fr; gap:28px; padding:28px 0; width:min(var(--max),92vw); margin:0 auto; }
+    .footer-col h4 { margin:0 0 10px; font-size:16px; letter-spacing:1px; text-transform:uppercase; color:#eaf3ff; }
+    .footer-col p { margin:6px 0; color:var(--ink-soft); }
+    .footer-col a { color:var(--link); text-decoration:none; }
+    .footer-col a:hover { text-decoration:underline; }
+    .footer-col--center { text-align:center; }
+    .footer-col--right { text-align:right; }
+    .newsletter-form { display:inline-flex; gap:10px; align-items:stretch; justify-content:center; margin-top:8px; flex-wrap:wrap; }
+    .newsletter-form input { min-width:220px; height:44px; padding:0 12px; border-radius:8px; border:1px solid rgba(255,255,255,.35); background:rgba(255,255,255,.1); color:#fff; }
+    .newsletter-form input::placeholder { color:rgba(255,255,255,.75); }
+    .newsletter-form button { height:44px; padding:0 16px; border:0; border-radius:8px; background:#0b76c7; color:#fff; font-weight:700; letter-spacing:.5px; cursor:pointer; }
+    .newsletter-form button:hover { background:#0a68b0; }
+    .social-row { display:flex; gap:12px; justify-content:flex-end; margin:6px 0 10px; }
+    .legal-links { list-style:none; padding:0; margin:8px 0 0; display:grid; gap:6px; }
+    .legal-links a { font-size:14px; }
+    .footer-bottom { text-align:center; padding:14px 0; border-top:1px solid rgba(255,255,255,.15); color:rgba(255,255,255,.85); font-size:13px; }
+    .form-status { display:none; margin:10px 0 0; color:white; font-size:14px; }
+    .form-status.is-visible { display:block; }
+    @media(max-width:1100px) { .footer-grid { grid-template-columns:1fr; } .footer-col--right { text-align:center; } .social-row { justify-content:center; } }
+    @media(max-width:720px) {
+      .site-header { padding-inline:16px; }
+      .header-inner { display:grid; grid-template-columns:1fr auto 1fr; gap:10px; align-items:center; }
+      .logo-link { grid-column:2; justify-self:center; }
+      .header-separator { display:none; }
+      .menu-toggle { display:inline-block; grid-column:3; justify-self:end; margin-left:0; }
+      .main-nav { grid-column:1 / -1; width:100%; }
+      .main-nav .menu { display:none; margin-top:12px; padding:12px; gap:10px; flex-direction:column; border:1px solid rgba(255,255,255,.18); border-radius:10px; background:rgba(0,0,0,.60); }
+      .main-nav .menu.is-open { display:flex; }
+      .main-nav .menu a { display:block; width:100%; text-align:center; padding:10px; border-radius:8px; }
+      .main-nav .menu a:hover { background:rgba(213,37,34,.18); color:white; }
+      .hero { padding:75px 0 90px; }
+      .hero h1 { font-size:clamp(35px,10vw,52px); }
+      .hero__copy p { font-size:16px; }
+      .background__wash { background:linear-gradient(90deg,rgba(0,20,45,.88),rgba(0,25,55,.78)); }
+    }
+    @media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } .background__slide { transition:none; transform:none; } }
+  </style>
+</head>
+<body>
+  <div class="background" aria-hidden="true">
+    <div class="background__fallback"></div>
+    <div class="background__slide" id="bgSlideA"></div>
+    <div class="background__slide" id="bgSlideB"></div>
+    <div class="background__wash"></div>
+  </div>
+  <div class="page">
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="logo-link" href="index.html" aria-label="CETA home"><img src="IMAGENES/LOGO_BLANCO.png" class="logo" alt="CETA"></a>
+        <div class="header-separator" aria-hidden="true"></div>
+        <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mainMenu"><span class="bar"></span><span class="bar"></span><span class="bar"></span></button>
+        <nav class="main-nav" aria-label="Primary menu">
+          <ul class="menu" id="mainMenu">
+            <li><a href="index.html" aria-current="page">UNMANNED AERIAL SYSTEMS</a></li>
+            <li><a href="empresa.html">WHO WE ARE</a></li>
+            <li><a href="calidad.html">QUALITY ASSURANCE</a></li>
+            <li><a href="contacto.html">CONTACT</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main id="content">
+      <section class="hero container" aria-labelledby="heroTitle">
+        <div class="hero__inner">
+          <div class="hero__eyebrow">CETA · Since 1961</div>
+          <h1 id="heroTitle">Unmanned Aircraft Systems</h1>
+          <div class="hero__rule" aria-hidden="true"></div>
+          <div class="hero__copy">
+            <p>Since 2007, CETA has supplied Unmanned Aerial Systems (UAS) to the Spanish Armed Forces and Law Enforcement Agencies, providing state-of-the-art systems and products featuring the latest technological advances.</p>
+            <p>CETA offers one of the most comprehensive UAS portfolios on the market, ranging from small FPV platforms to long-range tactical systems with extended endurance.</p>
+            <p>CETA’s aerial uncrewed systems, backed with millions of flight hours experience, operate in the most complex environments in air, land and sea.</p>
+          </div>
+          <div class="hero__contact">
+            Please contact us if you would like to receive additional information about CETA and its products and services at <a href="mailto:ceta@ceta.aero">ceta@ceta.aero</a>.
+            <div><a class="hero__contact-link" href="contacto.html">Contact us <span aria-hidden="true">→</span></a></div>
+          </div>
+        </div>
+      </section>
+    </main>
+<footer class="site-footer">
+  <div class="footer-grid">
+
+    <div class="footer-col">
+      <h4>CETA S.A.</h4>
+      <p>Compañía Española de Técnica Aeronáutica S.A.</p>
+      <p>C/ Cañas, 7 · Nave Entresuelo<br>28043 Madrid · Spain</p>
+      <p>
+        <a href="mailto:ingenieria@ceta.aero">
+          ingenieria@ceta.aero
+        </a>
+      </p>
+      <p>Tel: +34 911 400 181 · Fax: +34 911 400 182</p>
+    </div>
+
+    <div class="footer-col footer-col--center">
+      <h4>NEWSLETTER</h4>
+
+      <form class="newsletter-form"
+            action="https://formspree.io/f/xpqqwqqd"
+            method="POST"
+            id="newsletterForm">
+
+        <input
+          id="newsletter-email"
+          name="email"
+          type="email"
+          placeholder="Your email"
+          required
+        />
+
+        <button type="submit">SEND</button>
+      </form>
+
+      <p id="newsletterSuccess"
+         style="display:none; margin:10px 0 0; color:rgba(255,255,255,.92); font-size:14px;">
+        Thank you. You have been registered.
+      </p>
+    </div>
+
+    <div class="footer-col footer-col--right">
+      <h4>Connect</h4>
+
+      <div class="social-row">
+        <a class="social-link"
+           href="https://www.linkedin.com/company/cetasa/posts/?feedView=all"
+           aria-label="LinkedIn"
+           title="LinkedIn">
+
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <rect width="24" height="24" rx="4" fill="rgba(255,255,255,0.15)" />
+            <path d="M7.2 8.8a1.6 1.6 0 1 0 0-3.2 1.6 1.6 0 0 0 0 3.2Zm1 2H6.2v7.4h2V10.8Zm3.2 0H9.6v7.4h2v-4.2c0-1.1.8-1.8 1.7-1.8 1 0 1.5.6 1.5 1.8v4.2h2V13c0-2.2-1.3-3.2-3.2-3.2-1.1 0-1.9.5-2.2 1.1h-.1v-0.1Z"
+              fill="rgba(200,230,255,0.95)" />
+          </svg>
+
+        </a>
+      </div>
+
+      <ul class="legal-links">
+        <li>
+          <a href="politica-de-calidad.html">QUALITY POLICY</a>
+        </li>
+        <li>
+          <a href="condiciones-generales-de-compra.html">
+            GENERAL PURCHASING AND SALES CONDITIONS
+          </a>
+        </li>
+        <li>
+          <a href="politica-de-cookies.html">COOKIE POLICY</a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    © <span id="year"></span> CETA · All rights reserved
+  </div>
+</footer>
+  </div>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const toggle = document.querySelector('.menu-toggle');
+    const menu = document.getElementById('mainMenu');
+    function setMenu(open) {
+      menu.classList.toggle('is-open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    }
+    toggle.addEventListener('click', () => setMenu(!menu.classList.contains('is-open')));
+    menu.addEventListener('click', event => { if (event.target.closest('a')) setMenu(false); });
+    document.addEventListener('keydown', event => { if (event.key === 'Escape') setMenu(false); });
+    window.addEventListener('resize', () => { if (window.innerWidth > 720) setMenu(false); });
+
+    // BACKGROUND SLIDES: after uploading your chosen images to GitHub,
+    // use these exact paths, or change the filenames here. Supports 3 or 4 slides.
+    // Images that have not been uploaded yet are skipped automatically.
+    const backgroundImages = [
+      'IMAGENES/CETA_FONDO_01.webp',
+      'IMAGENES/CETA_FONDO_02.webp',
+      'IMAGENES/CETA_FONDO_03.webp',
+      'IMAGENES/CETA_FONDO_04.webp'
+    ];
+    const slideDuration = 6500; // milliseconds per image
+    const slideElements = [document.getElementById('bgSlideA'), document.getElementById('bgSlideB')];
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function loadImage(src) {
+      return new Promise(resolve => {
+        const img = new Image();
+        img.onload = () => resolve(src);
+        img.onerror = () => resolve(null);
+        img.src = src;
+      });
+    }
+    async function startBackgroundSlideshow() {
+      const validImages = (await Promise.all(backgroundImages.map(loadImage))).filter(Boolean);
+      if (!validImages.length) return; // Existing cockpit remains visible.
+      let current = 0;
+      let front = 0;
+      slideElements[front].style.backgroundImage = `url("${validImages[current]}")`;
+      slideElements[front].classList.add('is-active');
+      if (validImages.length === 1 || reducedMotion) return;
+      window.setInterval(() => {
+        current = (current + 1) % validImages.length;
+        const back = 1 - front;
+        slideElements[back].style.backgroundImage = `url("${validImages[current]}")`;
+        slideElements[back].classList.add('is-active');
+        slideElements[front].classList.remove('is-active');
+        front = back;
+      }, slideDuration);
+    }
+    startBackgroundSlideshow();
+
+    // Existing newsletter integration: Formspree without page redirect.
+    const newsletterForm = document.getElementById('newsletterForm');
+    const newsletterSuccess = document.getElementById('newsletterSuccess');
+    const newsletterStatus = document.createElement('p');
+    newsletterStatus.className = 'form-status';
+    newsletterStatus.setAttribute('role','status');
+    newsletterForm.insertAdjacentElement('afterend', newsletterStatus);
+    newsletterForm.addEventListener('submit', async event => {
+      event.preventDefault();
+      newsletterSuccess.style.display = 'none';
+      newsletterStatus.classList.remove('is-visible');
+      const button = newsletterForm.querySelector('button[type="submit"]');
+      button.disabled = true;
+      try {
+        const response = await fetch(newsletterForm.action, {
+          method:'POST', body:new FormData(newsletterForm), headers:{'Accept':'application/json'}
+        });
+        if (!response.ok) throw new Error('Form submission failed');
+        newsletterForm.reset();
+        newsletterSuccess.style.display = 'block';
+      } catch (error) {
+        newsletterStatus.textContent = 'Something went wrong. Please try again.';
+        newsletterStatus.classList.add('is-visible');
+      } finally { button.disabled = false; }
+    });
+  </script>
+</body>
+</html>
