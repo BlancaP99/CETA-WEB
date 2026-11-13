@@ -98,15 +98,15 @@
       background:
         linear-gradient(
           90deg,
-          rgba(0,20,45,.79) 0%,
-          rgba(0,30,65,.78) 50%,
-          rgba(0,20,45,.79) 100%
+          rgba(0,20,45,.74) 0%,
+          rgba(0,30,65,.73) 50%,
+          rgba(0,20,45,.74) 100%
         ),
         linear-gradient(
           0deg,
-          rgba(0,17,41,.7),
+          rgba(0,17,41,.65),
           transparent 35%,
-          rgba(0,15,40,.25)
+          rgba(0,15,40,.22)
         );
     }
 
@@ -155,8 +155,12 @@
     }
 
     .main-nav .menu a:hover,
+    .main-nav .menu a[aria-current="page"]:hover {
+      color: var(--accent);
+    }
+
     .main-nav .menu a[aria-current="page"] {
-      color: #ffb1af;
+      color: #ffffff;
     }
 
     .menu-toggle {
@@ -198,7 +202,7 @@
       text-align: center;
     }
 
-    /* SINCE 1961 - CENTERED, WITHOUT RED LINE */
+    /* SINCE 1961 */
 
     .hero__eyebrow {
       display: block;
@@ -211,11 +215,7 @@
       text-align: center;
     }
 
-    .hero__eyebrow::before {
-      display: none;
-    }
-
-    /* TITLE - NO SHADOW OR OUTLINE */
+    /* TITLE WITHOUT SHADOW OR OUTLINE */
 
     .hero h1 {
       margin: 0 auto 31px;
@@ -268,8 +268,10 @@
     }
 
     .hero__contact a:hover {
-      color: #ffcbca;
+      color: var(--accent);
     }
+
+    /* CONTACT US BUTTON */
 
     .hero__contact-link {
       display: inline-flex;
@@ -278,6 +280,7 @@
       margin-top: 16px;
       padding: 12px 20px;
       border: 1px solid rgba(255,255,255,.5);
+      border-radius: 12px;
       text-decoration: none !important;
       text-transform: uppercase;
       font-size: 13px;
@@ -493,9 +496,10 @@
         border-radius: 8px;
       }
 
-      .main-nav .menu a:hover {
-        background: rgba(213,37,34,.18);
-        color: #ffffff;
+      .main-nav .menu a:hover,
+      .main-nav .menu a[aria-current="page"]:hover {
+        background: rgba(213,37,34,.12);
+        color: var(--accent);
       }
 
       .hero {
@@ -513,8 +517,8 @@
       .background__wash {
         background: linear-gradient(
           90deg,
-          rgba(0,20,45,.88),
-          rgba(0,25,55,.78)
+          rgba(0,20,45,.84),
+          rgba(0,25,55,.76)
         );
       }
     }
@@ -529,51 +533,6 @@
         transform: none;
       }
     }
-
-    
-/* CONTACT US - Rounded corners */
-.hero__contact-link {
-  border-radius: 12px;
-}
-
-/* Background - Slightly more visible image */
-.background__wash {
-  background:
-    linear-gradient(
-      90deg,
-      rgba(0,20,45,.74) 0%,
-      rgba(0,30,65,.73) 50%,
-      rgba(0,20,45,.74) 100%
-    ),
-    linear-gradient(
-      0deg,
-      rgba(0,17,41,.65),
-      transparent 35%,
-      rgba(0,15,40,.22)
-    );
-}
-
-
-/* HEADER - Corporate red hover */
-.main-nav .menu a:hover {
-  color: #D52522;
-}
-
-/* Active menu item */
-.main-nav .menu a[aria-current="page"] {
-  color: #ffffff;
-}
-
-/* Mobile menu hover */
-@media (max-width: 720px) {
-  .main-nav .menu a:hover {
-    color: #D52522;
-    background: rgba(213,37,34,.12);
-  }
-}
-
-
-    
   </style>
 </head>
 
