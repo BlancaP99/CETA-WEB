@@ -1,684 +1,1244 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Contact | CETA</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact | CETA</title>
 
-  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="32ae8fb9-0700-4415-92fd-a329c0ab975e" data-blockingmode="auto" type="text/javascript"></script>
-  
-  <style>
-    :root{
-      --brand:#002856;
-      --accent:#D52522;
-      --ink:#ffffff;
-      --ink-soft:rgba(255,255,255,.92);
-      --link:#aee1ff;
-      --max:1200px;
-      --fs-body:18px;
-      --fs-h1:clamp(28px,4.4vw,50px);
-      --fs-h2:clamp(16px,2.4vw,20px);
-    }
+<script id="Cookiebot"
+  src="https://consent.cookiebot.com/uc.js"
+  data-cbid="32ae8fb9-0700-4415-92fd-a329c0ab975e"
+  data-blockingmode="auto"
+  type="text/javascript"></script>
 
-    @font-face{
-      font-family:"Eurostile";
-      src:url("FONTS/EUROSTILE.TTF") format("truetype");
-      font-display:swap;
-    }
+<style>
 
-    *,*::before,*::after{box-sizing:border-box}
-    html,body{height:100%}
+/* ================= VARIABLES ================= */
 
-    body{
-      margin:0;
-      font-family:"Eurostile",Arial,sans-serif;
-      font-size:var(--fs-body);
-      line-height:1.55;
-      background:var(--brand);
-      color:var(--ink);
-      overflow-x:hidden;
-      position:relative;
-    }
+:root {
+  --brand:#002856;
+  --accent:#D52522;
+  --ink:#ffffff;
+  --ink-soft:rgba(255,255,255,.92);
+  --link:#aee1ff;
+  --max:1200px;
+  --fs-body:18px;
+  --fs-h1:clamp(28px,4.4vw,50px);
+  --fs-h2:clamp(16px,2.4vw,20px);
+}
 
-    /* Unified cockpit background */
-    body::before{
-      content:"";
-      position:fixed;
-      inset:0;
-      background:linear-gradient(180deg, rgba(0,30,70,.35), rgba(0,20,50,.55)),
-                 url("IMAGENES/COCKPIT.webp") center/cover no-repeat fixed;
-      opacity:.40;
-      z-index:0;
-      pointer-events:none;
-    }
+@font-face {
+  font-family:"Eurostile";
+  src:url("FONTS/EUROSTILE.TTF") format("truetype");
+  font-display:swap;
+}
 
-    .wrap{position:relative;z-index:2}
-    .container{width:min(var(--max),92vw);margin:0 auto}
+*,*::before,*::after {
+  box-sizing:border-box;
+}
 
-    /* =================== HEADER (UNIFIED + MOBILE HAMBURGER) =================== */
-    .site-header{padding:18px 30px 8px}
+html,body {
+  min-height:100%;
+}
 
-    .header-inner{
-      display:flex;
-      align-items:center;
-      gap:20px;
-    }
+body {
+  margin:0;
+  font-family:"Eurostile",Arial,sans-serif;
+  font-size:var(--fs-body);
+  line-height:1.55;
+  background:var(--brand);
+  color:var(--ink);
+  overflow-x:hidden;
+  position:relative;
+}
 
-    .logo{height:50px;display:block}
+/* ================= ANIMATED BACKGROUND ================= */
 
-    .header-separator{
-      width:1px;
-      height:36px;
-      background:rgba(255,255,255,.9);
-    }
+.background {
+  position:fixed;
+  inset:0;
+  width:100%;
+  height:100%;
+  height:100dvh;
+  z-index:0;
+  overflow:hidden;
+  background:var(--brand);
+  pointer-events:none;
+  isolation:isolate;
+}
 
-    .menu-toggle{
-      display:none;
-      margin-left:auto;
-      width:44px;
-      height:44px;
-      border:1px solid rgba(255,255,255,.25);
-      background:rgba(0,0,0,.28);
-      border-radius:10px;
-      cursor:pointer;
-      padding:10px;
-    }
-    .menu-toggle .bar{
-      display:block;
-      height:2px;
-      background:rgba(255,255,255,.9);
-      margin:6px 0;
-    }
+.background__fallback {
+  position:absolute;
+  inset:0;
+  background:url("IMAGENES/COCKPIT.webp") center/cover no-repeat;
+  opacity:.42;
+  z-index:0;
+}
 
-    .main-nav .menu{
-      list-style:none;
-      display:flex;
-      gap:28px;
-      margin:0;
-      padding:0;
-    }
+.background__slide {
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  background-position:center center;
+  background-repeat:no-repeat;
+  background-size:cover;
+  opacity:0;
+  z-index:1;
+  transform:scale(1.04);
+  transition:opacity 2s ease-in-out,transform 9s linear;
+}
 
-    .main-nav .menu a{
-      color:#fff;
-      text-decoration:none;
-      font-size:14px;
-      letter-spacing:.5px;
-      transition:color .25s;
-    }
-    .main-nav .menu a:hover{color:var(--accent)}
+.background__slide.is-active {
+  opacity:1;
+  transform:scale(1);
+}
 
-    /* =================== HERO =================== */
-    .hero{
-      min-height:28vh;
-      display:grid;
-      place-items:center;
-      text-align:center;
-      padding:36px 0 10px;
-    }
+.background__wash {
+  position:absolute;
+  inset:0;
+  z-index:5;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0,20,45,.74) 0%,
+      rgba(0,30,65,.73) 50%,
+      rgba(0,20,45,.74) 100%
+    ),
+    linear-gradient(
+      0deg,
+      rgba(0,17,41,.65),
+      transparent 35%,
+      rgba(0,15,40,.22)
+    );
+}
 
-    .hero h1{
-      margin:0;
-      text-transform:uppercase;
-      letter-spacing:3px;
-      font-size:var(--fs-h1);
-      font-weight:800;
-      text-shadow:0 2px 0 rgba(0,0,0,.12);
-      filter:drop-shadow(0 6px 18px rgba(0,0,0,.25));
-    }
+.wrap {
+  position:relative;
+  z-index:2;
+}
 
-    .hero-panel{
-      width:min(760px,92vw);
-      margin:12px auto 0;
-      padding:14px 16px;
-      border:1px solid rgba(255,255,255,.18);
-      border-radius:10px;
-      background:rgba(0,0,0,.22);
-      backdrop-filter:blur(2px);
-      color:rgba(255,255,255,.95);
-      text-align:center;
-      font-size:var(--fs-h2);
-      letter-spacing:.6px;
-    }
+.container {
+  width:min(var(--max),92vw);
+  margin:0 auto;
+}
 
-    .separator{
-      width:min(var(--max),92vw);
-      margin:14px auto 18px;
-      border:0;
-      border-top:2px dashed rgba(255,255,255,.35);
-    }
+/* ================= HEADER ================= */
 
-    /* =================== CONTACT FORM =================== */
-    .section{padding:10px 0 54px}
+.site-header {
+  position:relative;
+  z-index:2;
+  padding:18px 30px 8px;
+}
 
-    .contact-wrap{
-      width:min(760px,92vw);
-      margin:0 auto;
-      text-align:center;
-    }
+.header-inner {
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
 
-    .contact-card{
-      margin:0 auto;
-      background:rgba(0,0,0,.28);
-      border:1px solid rgba(255,255,255,.18);
-      border-radius:12px;
-      padding:22px 18px;
-      backdrop-filter:blur(2px);
-    }
+.logo {
+  height:50px;
+  display:block;
+}
 
-    .form-grid{
-      display:grid;
-      gap:14px;
-      margin-top:6px;
-    }
+.header-separator {
+  width:1px;
+  height:36px;
+  background:rgba(255,255,255,.9);
+}
 
-    .field{
-      display:grid;
-      gap:8px;
-      text-align:left;
-    }
+.menu-toggle {
+  display:none;
+  margin-left:auto;
+  width:44px;
+  height:44px;
+  border:1px solid rgba(255,255,255,.25);
+  background:rgba(0,0,0,.28);
+  border-radius:10px;
+  cursor:pointer;
+  padding:10px;
+}
 
-    label{
-      font-size:14px;
-      letter-spacing:.7px;
-      text-transform:uppercase;
-      color:rgba(255,255,255,.92);
-    }
+.menu-toggle .bar {
+  display:block;
+  height:2px;
+  background:rgba(255,255,255,.9);
+  margin:6px 0;
+}
 
-    input,textarea{
-      width:100%;
-      font-family:inherit;
-      font-size:16px;
-      color:#fff;
-      background:rgba(255,255,255,.12);
-      border:1px solid rgba(255,255,255,.30);
-      border-radius:10px;
-      padding:12px 12px;
-      outline:none;
-      transition:border-color .2s, background .2s, box-shadow .2s;
-    }
+.main-nav .menu {
+  list-style:none;
+  display:flex;
+  gap:28px;
+  margin:0;
+  padding:0;
+}
 
-    input::placeholder,textarea::placeholder{color:rgba(255,255,255,.70)}
-    input:focus,textarea:focus{
-      border-color:rgba(213,37,34,.85);
-      background:rgba(255,255,255,.14);
-      box-shadow:0 0 0 3px rgba(213,37,34,.20);
-    }
+.main-nav .menu a {
+  color:#ffffff;
+  text-decoration:none;
+  font-size:14px;
+  letter-spacing:.5px;
+  transition:color .25s;
+}
 
-    textarea{min-height:160px;resize:vertical}
+.main-nav .menu a[aria-current="page"] {
+  color:#ffffff;
+}
 
-    .two-col{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:14px;
-    }
+.main-nav .menu a:hover,
+.main-nav .menu a[aria-current="page"]:hover {
+  color:var(--accent);
+}
 
-    .actions{
-      display:grid;
-      place-items:center;
-      margin-top:6px;
-    }
+/* ================= HERO ================= */
 
-    .btn{
-      appearance:none;
-      border:0;
-      cursor:pointer;
-      font-family:inherit;
-      height:46px;
-      padding:0 22px;
-      border-radius:10px;
-      background:#0b76c7;
-      color:#fff;
-      font-weight:800;
-      letter-spacing:.8px;
-      text-transform:uppercase;
-      transition:transform .12s, background .2s, opacity .2s;
-    }
-    .btn:hover{background:#0a68b0}
-    .btn:active{transform:translateY(1px)}
-    .btn[disabled]{opacity:.7;cursor:not-allowed}
+.hero {
+  min-height:28vh;
+  display:grid;
+  place-items:center;
+  text-align:center;
+  padding:36px 0 10px;
+}
 
-    .note{
-      margin:14px 0 0;
-      font-size:14px;
-      color:rgba(255,255,255,.82);
-    }
+.hero h1 {
+  margin:0;
+  text-transform:uppercase;
+  letter-spacing:3px;
+  font-size:var(--fs-h1);
+  font-weight:800;
+  text-shadow:0 2px 0 rgba(0,0,0,.12);
+  filter:drop-shadow(0 6px 18px rgba(0,0,0,.25));
+}
 
-    /* Success / error message */
-    .form-status{
-      display:none;
-      margin:14px auto 0;
-      padding:12px 12px;
-      border-radius:10px;
-      border:1px solid rgba(255,255,255,.22);
-      background:rgba(0,0,0,.22);
-      color:rgba(255,255,255,.95);
-      text-align:center;
-      font-size:14px;
-      letter-spacing:.4px;
-    }
-    .form-status.is-show{display:block}
-    .form-status.is-error{
-      border-color:rgba(213,37,34,.55);
-      box-shadow:0 0 0 3px rgba(213,37,34,.14);
-    }
+.hero-panel {
+  width:min(760px,92vw);
+  margin:12px auto 0;
+  padding:14px 16px;
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:10px;
+  background:rgba(0,0,0,.22);
+  backdrop-filter:blur(2px);
+  color:rgba(255,255,255,.95);
+  text-align:center;
+  font-size:var(--fs-h2);
+  letter-spacing:.6px;
+}
 
-    /* =================== FOOTER (MASTER) =================== */
-    /* FIX: ensure footer is above the cockpit overlay and doesn't look "washed" by it */
-    .site-footer{
-      position:relative;
-      z-index:3;             /* above body::before (z-index:0) */
-      isolation:isolate;     /* creates its own stacking context */
-      background: linear-gradient(180deg, rgba(0,20,50,.35), rgba(0,20,40,.6));
-      border-top: 1px solid rgba(255,255,255,.18);
-      margin-top: 44px;
-    }
+.separator {
+  width:min(var(--max),92vw);
+  margin:14px auto 18px;
+  border:0;
+  border-top:2px dashed rgba(255,255,255,.35);
+}
 
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 2fr 2fr 1.5fr;
-      gap: 28px;
-      padding: 28px 0;
-      width: min(1200px, 92vw);
-      margin: 0 auto;
-      position:relative;
-      z-index:1; /* keep content safely above any internal layers */
-    }
+/* ================= CONTACT FORM ================= */
 
-    .footer-col h4 {
-      margin: 0 0 10px;
-      font-size: 16px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: #eaf3ff;
-    }
+.section {
+  padding:10px 0 54px;
+}
 
-    .footer-col p { margin: 6px 0; color: rgba(255,255,255,.92); }
+.contact-wrap {
+  width:min(760px,92vw);
+  margin:0 auto;
+  text-align:center;
+}
 
-    .footer-col a { color: #aee1ff; text-decoration: none; }
-    .footer-col a:hover { text-decoration: underline; }
+.contact-card {
+  margin:0 auto;
+  background:rgba(0,0,0,.28);
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:12px;
+  padding:22px 18px;
+  backdrop-filter:blur(2px);
+}
 
-    .footer-col--center { text-align: center; }
+.form-grid {
+  display:grid;
+  gap:14px;
+  margin-top:6px;
+}
 
-    .newsletter-form {
-      display: inline-flex;
-      gap: 10px;
-      align-items: stretch;
-      justify-content: center;
-      margin-top: 8px;
-    }
+.field {
+  display:grid;
+  gap:8px;
+  text-align:left;
+}
 
-    .newsletter-form input {
-      min-width: 280px;
-      height: 44px;
-      padding: 0 12px;
-      border-radius: 8px;
-      border: 1px solid rgba(255,255,255,.35);
-      background: rgba(255,255,255,.1);
-      color: #fff;
-      outline: none;
-    }
+label {
+  font-size:14px;
+  letter-spacing:.7px;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.92);
+}
 
-    .newsletter-form input::placeholder { color: rgba(255,255,255,.75); }
+input,textarea {
+  width:100%;
+  font-family:inherit;
+  font-size:16px;
+  color:#fff;
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.30);
+  border-radius:10px;
+  padding:12px 12px;
+  outline:none;
+  transition:
+    border-color .2s,
+    background .2s,
+    box-shadow .2s;
+}
 
-    .newsletter-form button {
-      height: 44px;
-      padding: 0 16px;
-      border: 0;
-      border-radius: 8px;
-      background: #0b76c7;
-      color: #fff;
-      font-weight: 700;
-      letter-spacing: .5px;
-      cursor: pointer;
-    }
+input::placeholder,
+textarea::placeholder {
+  color:rgba(255,255,255,.70);
+}
 
-    .newsletter-form button:hover { background: #0a68b0; }
+input:focus,
+textarea:focus {
+  border-color:rgba(213,37,34,.85);
+  background:rgba(255,255,255,.14);
+  box-shadow:0 0 0 3px rgba(213,37,34,.20);
+}
 
-    .footer-col--right { text-align: right; }
+textarea {
+  min-height:160px;
+  resize:vertical;
+}
 
-    .social-row {
-      display: flex;
-      gap: 12px;
-      justify-content: flex-end;
-      margin: 6px 0 10px;
-    }
+.two-col {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
 
-    .legal-links {
-      list-style: none;
-      padding: 0;
-      margin: 8px 0 0;
-      display: grid;
-      gap: 6px;
-    }
+.actions {
+  display:grid;
+  place-items:center;
+  margin-top:6px;
+}
 
-    .legal-links a {
-      color: #aee1ff;
-      text-decoration: none;
-      font-size: 14px;
-    }
+.btn {
+  appearance:none;
+  border:0;
+  cursor:pointer;
+  font-family:inherit;
+  height:46px;
+  padding:0 22px;
+  border-radius:10px;
+  background:#0b76c7;
+  color:#fff;
+  font-weight:800;
+  letter-spacing:.8px;
+  text-transform:uppercase;
+  transition:
+    transform .12s,
+    background .2s,
+    opacity .2s;
+}
 
-    .legal-links a:hover { text-decoration: underline; }
+.btn:hover {
+  background:#0a68b0;
+}
 
-    .footer-bottom {
-      text-align: center;
-      padding: 14px 0;
-      border-top: 1px solid rgba(255,255,255,.15);
-      color: rgba(255,255,255,.85);
-      font-size: 13px;
-      position:relative;
-      z-index:1;
-    }
+.btn:active {
+  transform:translateY(1px);
+}
 
-    /* =================== RESPONSIVE =================== */
-    @media (max-width:1100px){
-      .footer-grid{grid-template-columns:1fr}
-      .footer-col--right{text-align:center}
-      .social-row{justify-content:center}
-    }
+.btn[disabled] {
+  opacity:.7;
+  cursor:not-allowed;
+}
 
-    @media (max-width:720px){
-      .site-header{padding-inline:16px}
+.note {
+  margin:14px 0 0;
+  font-size:14px;
+  color:rgba(255,255,255,.82);
+}
 
-      .header-inner{
-        display:grid;
-        grid-template-columns:1fr auto 1fr;
-        align-items:center;
-        gap:10px;
-      }
+/* ================= FORM STATUS ================= */
 
-      .logo-link{grid-column:2;justify-self:center}
-      .header-separator{display:none}
+.form-status {
+  display:none;
+  margin:14px auto 0;
+  padding:12px 12px;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,.22);
+  background:rgba(0,0,0,.22);
+  color:rgba(255,255,255,.95);
+  text-align:center;
+  font-size:14px;
+  letter-spacing:.4px;
+}
 
-      .menu-toggle{
-        display:inline-block;
-        grid-column:3;
-        justify-self:end;
-        margin-left:0;
-      }
+.form-status.is-show {
+  display:block;
+}
 
-      .main-nav{grid-column:1 / -1;width:100%}
+.form-status.is-error {
+  border-color:rgba(213,37,34,.55);
+  box-shadow:0 0 0 3px rgba(213,37,34,.14);
+}
 
-      .main-nav .menu{
-        display:none;
-        margin-top:12px;
-        padding:12px 12px;
-        gap:10px;
-        flex-direction:column;
-        border:1px solid rgba(255,255,255,.18);
-        border-radius:10px;
-        background:rgba(0,0,0,.30);
-        backdrop-filter:blur(2px);
-      }
+/* ================= FOOTER ================= */
 
-      .main-nav .menu.is-open{display:flex}
+.site-footer {
+  position:relative;
+  z-index:3;
+  isolation:isolate;
+  background:linear-gradient(
+    180deg,
+    rgba(0,20,50,.35),
+    rgba(0,20,40,.6)
+  );
+  border-top:1px solid rgba(255,255,255,.18);
+  margin-top:44px;
+}
 
-      .main-nav .menu a{
-        display:block;
-        width:100%;
-        text-align:center;
-        padding:10px 10px;
-        border-radius:8px;
-      }
+.footer-grid {
+  display:grid;
+  grid-template-columns:2fr 2fr 1.5fr;
+  gap:28px;
+  padding:28px 0;
+  width:min(1200px,92vw);
+  margin:0 auto;
+  position:relative;
+  z-index:1;
+}
 
-      .main-nav .menu a:hover{
-        background:rgba(213,37,34,.18);
-        color:#fff;
-      }
+.footer-col h4 {
+  margin:0 0 10px;
+  font-size:16px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  color:#eaf3ff;
+}
 
-      .two-col{grid-template-columns:1fr}
-      .contact-card{padding:18px 14px}
-    }
-  </style>
+.footer-col p {
+  margin:6px 0;
+  color:rgba(255,255,255,.92);
+}
+
+.footer-col a {
+  color:#aee1ff;
+  text-decoration:none;
+}
+
+.footer-col a:hover {
+  text-decoration:underline;
+}
+
+.footer-col--center {
+  text-align:center;
+}
+
+.newsletter-form {
+  display:inline-flex;
+  gap:10px;
+  align-items:stretch;
+  justify-content:center;
+  margin-top:8px;
+}
+
+.newsletter-form input {
+  min-width:280px;
+  height:44px;
+  padding:0 12px;
+  border-radius:8px;
+  border:1px solid rgba(255,255,255,.35);
+  background:rgba(255,255,255,.1);
+  color:#fff;
+  outline:none;
+}
+
+.newsletter-form input::placeholder {
+  color:rgba(255,255,255,.75);
+}
+
+.newsletter-form button {
+  height:44px;
+  padding:0 16px;
+  border:0;
+  border-radius:8px;
+  background:#0b76c7;
+  color:#fff;
+  font-weight:700;
+  letter-spacing:.5px;
+  cursor:pointer;
+}
+
+.newsletter-form button:hover {
+  background:#0a68b0;
+}
+
+.footer-col--right {
+  text-align:right;
+}
+
+.social-row {
+  display:flex;
+  gap:12px;
+  justify-content:flex-end;
+  margin:6px 0 10px;
+}
+
+.legal-links {
+  list-style:none;
+  padding:0;
+  margin:8px 0 0;
+  display:grid;
+  gap:6px;
+}
+
+.legal-links a {
+  color:#aee1ff;
+  text-decoration:none;
+  font-size:14px;
+}
+
+.legal-links a:hover {
+  text-decoration:underline;
+}
+
+.footer-bottom {
+  text-align:center;
+  padding:14px 0;
+  border-top:1px solid rgba(255,255,255,.15);
+  color:rgba(255,255,255,.85);
+  font-size:13px;
+  position:relative;
+  z-index:1;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:1100px) {
+
+  .footer-grid {
+    grid-template-columns:1fr;
+  }
+
+  .footer-col--right {
+    text-align:center;
+  }
+
+  .social-row {
+    justify-content:center;
+  }
+
+}
+
+@media(max-width:720px) {
+
+  .background__wash {
+    background:linear-gradient(
+      90deg,
+      rgba(0,20,45,.84),
+      rgba(0,25,55,.76)
+    );
+  }
+
+  .site-header {
+    padding-inline:16px;
+  }
+
+  .header-inner {
+    display:grid;
+    grid-template-columns:1fr auto 1fr;
+    align-items:center;
+    gap:10px;
+  }
+
+  .logo-link {
+    grid-column:2;
+    justify-self:center;
+  }
+
+  .header-separator {
+    display:none;
+  }
+
+  .menu-toggle {
+    display:inline-block;
+    grid-column:3;
+    justify-self:end;
+    margin-left:0;
+  }
+
+  .main-nav {
+    grid-column:1/-1;
+    width:100%;
+  }
+
+  .main-nav .menu {
+    display:none;
+    margin-top:12px;
+    padding:12px;
+    gap:10px;
+    flex-direction:column;
+    border:1px solid rgba(255,255,255,.18);
+    border-radius:10px;
+    background:rgba(0,0,0,.30);
+    backdrop-filter:blur(2px);
+  }
+
+  .main-nav .menu.is-open {
+    display:flex;
+  }
+
+  .main-nav .menu a {
+    display:block;
+    width:100%;
+    text-align:center;
+    padding:10px;
+    border-radius:8px;
+  }
+
+  .main-nav .menu a:hover,
+  .main-nav .menu a[aria-current="page"]:hover {
+    background:rgba(213,37,34,.12);
+    color:var(--accent);
+  }
+
+  .two-col {
+    grid-template-columns:1fr;
+  }
+
+  .contact-card {
+    padding:18px 14px;
+  }
+
+  .newsletter-form {
+    flex-wrap:wrap;
+  }
+
+  .newsletter-form input {
+    min-width:0;
+    width:100%;
+  }
+
+}
+
+@media(prefers-reduced-motion:reduce) {
+  .background__slide {
+    transition:none;
+    transform:none;
+  }
+}
+
+</style>
 </head>
 
 <body>
-  <!-- HEADER -->
-  <header class="site-header">
-      <div class="header-inner">
 
-        <a class="logo-link" href="index.html" aria-label="CETA home">
-          <img src="IMAGENES/LOGO_BLANCO.png"
-               class="logo"
-               alt="CETA">
-        </a>
+<!-- ================= ANIMATED BACKGROUND ================= -->
 
-        <div class="header-separator" aria-hidden="true"></div>
+<div class="background" aria-hidden="true">
+  <div class="background__fallback"></div>
+  <div class="background__slide" id="bgSlideA"></div>
+  <div class="background__slide" id="bgSlideB"></div>
+  <div class="background__wash"></div>
+</div>
 
-        <button class="menu-toggle"
-                type="button"
-                aria-label="Open menu"
-                aria-expanded="false"
-                aria-controls="mainMenu">
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
-        </button>
+<!-- ================= HEADER ================= -->
 
-        <nav class="main-nav" aria-label="Primary menu">
-          <ul class="menu" id="mainMenu">
-            <li>
-              <a href="index.html" aria-current="page">
-                UNMANNED AERIAL SYSTEMS
-              </a>
-            </li>
-            <li><a href="empresa.html">WHO WE ARE</a></li>
-            <li><a href="calidad.html">QUALITY ASSURANCE</a></li>
-            <li><a href="contacto.html">CONTACT</a></li>
-          </ul>
-        </nav>
+<header class="site-header">
+  <div class="header-inner">
 
-      </div>
-    </header>
+    <a class="logo-link"
+       href="index.html"
+       aria-label="CETA home">
 
-  <!-- HERO -->
-  <section class="hero wrap">
-    <div class="container">
-      <h1>CONTACT</h1>
-      <div class="hero-panel">Send us a message and we will get back to you as soon as possible.</div>
+      <img src="IMAGENES/LOGO_BLANCO.png"
+           class="logo"
+           alt="CETA">
+
+    </a>
+
+    <div class="header-separator" aria-hidden="true"></div>
+
+    <button class="menu-toggle"
+            type="button"
+            aria-label="Open menu"
+            aria-expanded="false"
+            aria-controls="mainMenu">
+
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+
+    </button>
+
+    <nav class="main-nav" aria-label="Primary menu">
+
+      <ul class="menu" id="mainMenu">
+
+        <li>
+          <a href="index.html">
+            UNMANNED AERIAL SYSTEMS
+          </a>
+        </li>
+
+        <li>
+          <a href="empresa.html">
+            WHO WE ARE
+          </a>
+        </li>
+
+        <li>
+          <a href="calidad.html">
+            QUALITY ASSURANCE
+          </a>
+        </li>
+
+        <li>
+          <a href="contacto.html" aria-current="page">
+            CONTACT
+          </a>
+        </li>
+
+      </ul>
+
+    </nav>
+
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+
+<section class="hero wrap">
+
+  <div class="container">
+
+    <h1>CONTACT</h1>
+
+    <div class="hero-panel">
+      Send us a message and we will get back to you as soon as possible.
     </div>
-  </section>
 
-  <hr class="separator" />
+  </div>
 
-  <!-- FORM -->
-  <section class="section wrap">
-    <div class="contact-wrap">
-      <div class="contact-card">
+</section>
 
-        <!-- Linked to Formspree (no redirect) -->
-        <form id="contactForm" action="https://formspree.io/f/xeeeqpkz" method="POST" novalidate>
-          <div class="form-grid">
+<hr class="separator">
 
-            <div class="two-col">
-              <div class="field">
-                <label for="name">Name</label>
-                <input id="name" name="name" type="text" placeholder="Your name" required />
-              </div>
-              <div class="field">
-                <label for="email">Email</label>
-                <input id="email" name="email" type="email" placeholder="you@domain.com" required />
-              </div>
-            </div>
+<!-- ================= CONTACT FORM ================= -->
 
-            <div class="two-col">
-              <div class="field">
-                <label for="phone">Phone</label>
-                <input id="phone" name="phone" type="tel" placeholder="+34 ..." />
-              </div>
-              <div class="field">
-                <label for="company">Company</label>
-                <input id="company" name="company" type="text" placeholder="Company name" />
-              </div>
+<section class="section wrap">
+
+  <div class="contact-wrap">
+
+    <div class="contact-card">
+
+      <form id="contactForm"
+            action="https://formspree.io/f/xeeeqpkz"
+            method="POST"
+            novalidate>
+
+        <div class="form-grid">
+
+          <!-- NAME AND EMAIL -->
+
+          <div class="two-col">
+
+            <div class="field">
+
+              <label for="name">Name</label>
+
+              <input id="name"
+                     name="name"
+                     type="text"
+                     placeholder="Your name"
+                     required>
+
             </div>
 
             <div class="field">
-              <label for="subject">Subject</label>
-              <input id="subject" name="subject" type="text" placeholder="Write the subject" required />
-            </div>
 
-            <div class="field">
-              <label for="message">Message</label>
-              <textarea id="message" name="message" placeholder="Tell us how we can help" required></textarea>
-            </div>
+              <label for="email">Email</label>
 
-            <!-- Form status message (success/error) -->
-            <div id="formStatus" class="form-status" role="status" aria-live="polite"></div>
+              <input id="email"
+                     name="email"
+                     type="email"
+                     placeholder="you@domain.com"
+                     required>
 
-            <div class="actions">
-              <button class="btn" id="sendBtn" type="submit">SEND</button>
             </div>
 
           </div>
-        </form>
 
-        <p class="note">We will reply as soon as possible.</p>
-      </div>
-    </div>
-  </section>
+          <!-- PHONE AND COMPANY -->
 
-  <!-- FOOTER -->
-  <footer class="site-footer">
-    <div class="footer-grid">
-      <div class="footer-col">
-        <h4>CETA S.A.</h4>
-        <p>Compañía Española de Técnica Aeronáutica S.A.</p>
-        <p>C/ Cañas, 7 · Nave Entresuelo<br>28043 Madrid · Spain</p>
-        <p><a href="mailto:ingenieria@ceta.aero">ingenieria@ceta.aero</a></p>
-        <p>Tel: +34 911 400 181 · Fax: +34 911 400 182</p>
-      </div>
+          <div class="two-col">
 
-      <div class="footer-col footer-col--center">
-        <h4>NEWSLETTER</h4>
+            <div class="field">
 
-        <form class="newsletter-form" action="https://formspree.io/f/xpqqwqqd" method="POST" id="newsletterForm">
-          <input id="newsletter-email" name="email" type="email" placeholder="Your email" required />
-          <button type="submit">SEND</button>
-        </form>
+              <label for="phone">Phone</label>
 
-        <p id="newsletterSuccess" style="display:none; margin:10px 0 0; color: rgba(255,255,255,.92); font-size: 14px;">
-          Thank you. You have been registered.
-        </p>
-      </div>
+              <input id="phone"
+                     name="phone"
+                     type="tel"
+                     placeholder="+34 ...">
 
-      <div class="footer-col footer-col--right">
-        <h4>Connect</h4>
-        <div class="social-row">
-          <a class="social-link" href="https://www.linkedin.com/company/cetasa/posts/?feedView=all" aria-label="LinkedIn" title="LinkedIn">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <rect width="24" height="24" rx="4" fill="rgba(255,255,255,0.15)" />
-              <path d="M7.2 8.8a1.6 1.6 0 1 0 0-3.2 1.6 1.6 0 0 0 0 3.2Zm1 2H6.2v7.4h2V10.8Zm3.2 0H9.6v7.4h2v-4.2c0-1.1.8-1.8 1.7-1.8 1 0 1.5.6 1.5 1.8v4.2h2V13c0-2.2-1.3-3.2-3.2-3.2-1.1 0-1.9.5-2.2 1.1h-.1v-0.1Z"
-                    fill="rgba(200,230,255,0.95)" />
-            </svg>
-          </a>
+            </div>
+
+            <div class="field">
+
+              <label for="company">Company</label>
+
+              <input id="company"
+                     name="company"
+                     type="text"
+                     placeholder="Company name">
+
+            </div>
+
+          </div>
+
+          <!-- SUBJECT -->
+
+          <div class="field">
+
+            <label for="subject">Subject</label>
+
+            <input id="subject"
+                   name="subject"
+                   type="text"
+                   placeholder="Write the subject"
+                   required>
+
+          </div>
+
+          <!-- MESSAGE -->
+
+          <div class="field">
+
+            <label for="message">Message</label>
+
+            <textarea id="message"
+                      name="message"
+                      placeholder="Tell us how we can help"
+                      required></textarea>
+
+          </div>
+
+          <!-- STATUS -->
+
+          <div id="formStatus"
+               class="form-status"
+               role="status"
+               aria-live="polite">
+          </div>
+
+          <!-- SUBMIT -->
+
+          <div class="actions">
+
+            <button class="btn"
+                    id="sendBtn"
+                    type="submit">
+              SEND
+            </button>
+
+          </div>
+
         </div>
-        <ul class="legal-links">
-          <a href="politica-de-calidad.html">QUALITY POLICY</a>
-          <a href="condiciones-generales-de-compra.html">GENERAL PURCHASING AND SALES CONDITIONS</a>
-          <a href="politica-de-cookies.html">COOKIE POLICY</a>
-        </ul>
+
+      </form>
+
+      <p class="note">
+        We will reply as soon as possible.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="site-footer">
+
+  <div class="footer-grid">
+
+    <div class="footer-col">
+
+      <h4>CETA S.A.</h4>
+
+      <p>
+        Compañía Española de Técnica Aeronáutica S.A.
+      </p>
+
+      <p>
+        C/ Cañas, 7 · Nave Entresuelo<br>
+        28043 Madrid · Spain
+      </p>
+
+      <p>
+        <a href="mailto:ingenieria@ceta.aero">
+          ingenieria@ceta.aero
+        </a>
+      </p>
+
+      <p>
+        Tel: +34 911 400 181 · Fax: +34 911 400 182
+      </p>
+
+    </div>
+
+    <div class="footer-col footer-col--center">
+
+      <h4>NEWSLETTER</h4>
+
+      <form class="newsletter-form"
+            action="https://formspree.io/f/xpqqwqqd"
+            method="POST"
+            id="newsletterForm">
+
+        <input id="newsletter-email"
+               name="email"
+               type="email"
+               placeholder="Your email"
+               required>
+
+        <button type="submit">SEND</button>
+
+      </form>
+
+      <p id="newsletterSuccess"
+         style="display:none; margin:10px 0 0; color:rgba(255,255,255,.92); font-size:14px;">
+
+        Thank you. You have been registered.
+
+      </p>
+
+    </div>
+
+    <div class="footer-col footer-col--right">
+
+      <h4>Connect</h4>
+
+      <div class="social-row">
+
+        <a class="social-link"
+           href="https://www.linkedin.com/company/cetasa/posts/?feedView=all"
+           aria-label="LinkedIn"
+           title="LinkedIn">
+
+          <svg width="28"
+               height="28"
+               viewBox="0 0 24 24"
+               fill="none"
+               aria-hidden="true">
+
+            <rect width="24"
+                  height="24"
+                  rx="4"
+                  fill="rgba(255,255,255,0.15)"/>
+
+            <path
+              d="M7.2 8.8a1.6 1.6 0 1 0 0-3.2 1.6 1.6 0 0 0 0 3.2Zm1 2H6.2v7.4h2V10.8Zm3.2 0H9.6v7.4h2v-4.2c0-1.1.8-1.8 1.7-1.8 1 0 1.5.6 1.5 1.8v4.2h2V13c0-2.2-1.3-3.2-3.2-3.2-1.1 0-1.9.5-2.2 1.1h-.1v-0.1Z"
+              fill="rgba(200,230,255,0.95)"/>
+
+          </svg>
+
+        </a>
+
       </div>
+
+      <ul class="legal-links">
+
+        <li>
+          <a href="politica-de-calidad.html">
+            QUALITY POLICY
+          </a>
+        </li>
+
+        <li>
+          <a href="condiciones-generales-de-compra.html">
+            GENERAL PURCHASING AND SALES CONDITIONS
+          </a>
+        </li>
+
+        <li>
+          <a href="politica-de-cookies.html">
+            COOKIE POLICY
+          </a>
+        </li>
+
+      </ul>
+
     </div>
 
-    <div class="footer-bottom">
-      © <span id="year"></span> CETA · All rights reserved
-    </div>
-  </footer>
+  </div>
 
-  <script>
-    // Footer year
-    document.getElementById('year').textContent = new Date().getFullYear();
+  <div class="footer-bottom">
+    © <span id="year"></span> CETA · All rights reserved
+  </div>
 
-    // Mobile menu
-    const toggle = document.querySelector('.menu-toggle');
-    const menu = document.getElementById('mainMenu');
+</footer>
 
-    function setMenu(open) {
-      menu.classList.toggle('is-open', open);
-      toggle.setAttribute('aria-expanded', String(open));
-    }
+<!-- ================= JAVASCRIPT ================= -->
 
-    toggle?.addEventListener('click', () => {
-      setMenu(!menu.classList.contains('is-open'));
+<script>
+
+/* ================= FOOTER YEAR ================= */
+
+document.getElementById('year').textContent =
+  new Date().getFullYear();
+
+/* ================= MOBILE MENU ================= */
+
+const toggle=document.querySelector('.menu-toggle');
+const menu=document.getElementById('mainMenu');
+
+function setMenu(open) {
+
+  menu.classList.toggle('is-open',open);
+
+  toggle.setAttribute(
+    'aria-expanded',
+    String(open)
+  );
+
+  toggle.setAttribute(
+    'aria-label',
+    open ? 'Close menu' : 'Open menu'
+  );
+
+}
+
+toggle?.addEventListener('click',() => {
+  setMenu(!menu.classList.contains('is-open'));
+});
+
+menu?.addEventListener('click',(event) => {
+  if(event.target.closest('a')) setMenu(false);
+});
+
+window.addEventListener('resize',() => {
+  if(window.innerWidth>720) setMenu(false);
+});
+
+document.addEventListener('keydown',(event) => {
+  if(event.key==='Escape') setMenu(false);
+});
+
+/* ================= BACKGROUND SLIDESHOW ================= */
+
+const backgroundImages=[
+  'IMAGENES/dronfondo-1.png',
+  'IMAGENES/dronfondo-2.png',
+  'IMAGENES/dronfondo-3.png'
+];
+
+const slideElements=[
+  document.getElementById('bgSlideA'),
+  document.getElementById('bgSlideB')
+];
+
+const slideDuration=7000;
+const fadeDuration=2000;
+
+const reducedMotion=window.matchMedia(
+  '(prefers-reduced-motion: reduce)'
+).matches;
+
+function loadBackgroundImage(src) {
+
+  return new Promise(resolve => {
+
+    const img=new Image();
+
+    img.onload=() => resolve(src);
+    img.onerror=() => resolve(null);
+
+    img.src=src;
+
+  });
+
+}
+
+async function startBackgroundSlideshow() {
+
+  const validImages=(
+    await Promise.all(
+      backgroundImages.map(loadBackgroundImage)
+    )
+  ).filter(Boolean);
+
+  if(!validImages.length) return;
+
+  let currentIndex=0;
+  let frontIndex=0;
+
+  slideElements[0].style.backgroundImage=
+    `url("${validImages[0]}")`;
+
+  slideElements[0].style.zIndex='2';
+  slideElements[0].classList.add('is-active');
+
+  if(validImages.length===1 || reducedMotion) return;
+
+  window.setInterval(() => {
+
+    currentIndex=(currentIndex+1)%validImages.length;
+
+    const nextIndex=1-frontIndex;
+    const currentSlide=slideElements[frontIndex];
+    const nextSlide=slideElements[nextIndex];
+
+    nextSlide.style.transition='none';
+    nextSlide.classList.remove('is-active');
+
+    nextSlide.style.backgroundImage=
+      `url("${validImages[currentIndex]}")`;
+
+    nextSlide.style.zIndex='3';
+    currentSlide.style.zIndex='2';
+
+    void nextSlide.offsetWidth;
+
+    nextSlide.style.transition=
+      `opacity ${fadeDuration}ms ease-in-out, transform 9s linear`;
+
+    nextSlide.classList.add('is-active');
+
+    window.setTimeout(() => {
+
+      currentSlide.classList.remove('is-active');
+      currentSlide.style.zIndex='1';
+      nextSlide.style.zIndex='2';
+
+    },fadeDuration);
+
+    frontIndex=nextIndex;
+
+  },slideDuration);
+
+}
+
+startBackgroundSlideshow();
+
+/* ================= CONTACT FORM ================= */
+
+const contactForm=document.getElementById('contactForm');
+const formStatus=document.getElementById('formStatus');
+const sendBtn=document.getElementById('sendBtn');
+
+contactForm.addEventListener('submit',async(event) => {
+
+  event.preventDefault();
+
+  if(!contactForm.checkValidity()) {
+    contactForm.reportValidity();
+    return;
+  }
+
+  sendBtn.disabled=true;
+
+  formStatus.classList.remove('is-error');
+  formStatus.classList.add('is-show');
+  formStatus.textContent='Sending...';
+
+  try {
+
+    const formData=new FormData(contactForm);
+
+    const response=await fetch(contactForm.action,{
+      method:'POST',
+      body:formData,
+      headers:{'Accept':'application/json'}
     });
 
-    menu?.addEventListener('click', (e) => {
-      const a = e.target.closest('a');
-      if (!a) return;
-      setMenu(false);
-    });
+    if(response.ok) {
 
-    window.addEventListener('resize', () => {
-      if (window.innerWidth > 720) setMenu(false);
-    });
-
-    // =================== Formspree contact form (no redirect) ===================
-    const contactForm = document.getElementById('contactForm');
-    const formStatus = document.getElementById('formStatus');
-    const sendBtn = document.getElementById('sendBtn');
-
-    contactForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      if (!contactForm.checkValidity()) {
-        contactForm.reportValidity();
-        return;
-      }
-
-      sendBtn.disabled = true;
       formStatus.classList.remove('is-error');
-      formStatus.classList.add('is-show');
-      formStatus.textContent = 'Sending...';
+
+      formStatus.textContent=
+        'Message sent successfully. Thank you!';
+
+      contactForm.reset();
+
+    } else {
+
+      let message='Something went wrong. Please try again.';
 
       try {
-        const formData = new FormData(contactForm);
 
-        const res = await fetch(contactForm.action, {
-          method: 'POST',
-          body: formData,
-          headers: { 'Accept': 'application/json' }
-        });
+        const data=await response.json();
 
-        if (res.ok) {
-          formStatus.classList.remove('is-error');
-          formStatus.textContent = 'Message sent successfully. Thank you!';
-          contactForm.reset();
-        } else {
-          let msg = 'Something went wrong. Please try again.';
-          try {
-            const data = await res.json();
-            if (data && data.errors && data.errors.length) {
-              msg = data.errors.map(e => e.message).join(' ');
-            }
-          } catch (_) {}
-          formStatus.classList.add('is-error');
-          formStatus.textContent = msg;
+        if(data && data.errors && data.errors.length) {
+          message=data.errors.map(error => error.message).join(' ');
         }
-      } catch (err) {
-        formStatus.classList.add('is-error');
-        formStatus.textContent = 'Network error. Please try again.';
-      } finally {
-        sendBtn.disabled = false;
-      }
+
+      } catch(error) {}
+
+      formStatus.classList.add('is-error');
+      formStatus.textContent=message;
+
+    }
+
+  } catch(error) {
+
+    formStatus.classList.add('is-error');
+    formStatus.textContent='Network error. Please try again.';
+
+  } finally {
+
+    sendBtn.disabled=false;
+
+  }
+
+});
+
+/* ================= NEWSLETTER ================= */
+
+const newsletterForm=document.getElementById('newsletterForm');
+const newsletterSuccess=document.getElementById('newsletterSuccess');
+
+newsletterForm.addEventListener('submit',async(event) => {
+
+  event.preventDefault();
+
+  newsletterSuccess.style.display='none';
+
+  const button=newsletterForm.querySelector(
+    'button[type="submit"]'
+  );
+
+  button.disabled=true;
+
+  try {
+
+    const response=await fetch(newsletterForm.action,{
+      method:'POST',
+      body:new FormData(newsletterForm),
+      headers:{'Accept':'application/json'}
     });
 
-    // =================== Formspree footer form (no redirect) ===================
-    document.getElementById('newsletterForm').addEventListener('submit', async function (e) {
-      e.preventDefault();
+    if(!response.ok) {
+      throw new Error('Submission failed');
+    }
 
-      const form = e.target;
-      const data = new FormData(form);
+    newsletterForm.reset();
+    newsletterSuccess.style.display='block';
 
-      const response = await fetch(form.action, {
-        method: form.method,
-        body: data,
-        headers: { 'Accept': 'application/json' }
-      });
+  } catch(error) {
 
-      if (response.ok) {
-        form.reset();
-        document.getElementById('newsletterSuccess').style.display = 'block';
-      }
-    });
-  </script>
+    alert('Error. Please try again.');
+
+  } finally {
+
+    button.disabled=false;
+
+  }
+
+});
+
+</script>
+
 </body>
 </html>
