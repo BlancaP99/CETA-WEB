@@ -52,13 +52,6 @@ body {
   pointer-events:none;
   isolation:isolate;
 }
-.background__fallback {
-  position:absolute;
-  inset:0;
-  z-index:0;
-  background:url("IMAGENES/COCKPIT.webp") center/cover no-repeat;
-  opacity:.42;
-}
 .background__slide {
   position:absolute;
   inset:0;
@@ -70,7 +63,7 @@ body {
   background-repeat:no-repeat;
   opacity:0;
   transform:scale(1.04);
-  transition:opacity 2s ease-in-out,transform 9s linear;
+  transition:opacity 1.5s ease-in-out,transform 7s linear;
 }
 .background__slide.is-active {
   opacity:1;
@@ -337,6 +330,8 @@ body {
 
 /* =============== GALLERY =============== */
 .gallery-section {padding:12px 0 60px}
+.present-section {padding:14px 0 60px}
+.present-section .gallery {margin-top:20px}
 .gallery {
   width:min(1100px,92vw);
   margin:0 auto;
@@ -456,6 +451,10 @@ body {
   .gallery {grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:720px) {
+  /* Extra breathing room on small screens */
+  .container {width:calc(100% - 48px)}
+  .empresa-text,.pf-title,.pf-card,.gallery {width:calc(100% - 48px)}
+
   .background__wash {
     background:linear-gradient(
       90deg,
@@ -518,7 +517,6 @@ body {
 
 <!-- =============== ANIMATED BACKGROUND =============== -->
 <div class="background" aria-hidden="true">
-  <div class="background__fallback"></div>
   <div class="background__slide" id="bgSlideA"></div>
   <div class="background__slide" id="bgSlideB"></div>
   <div class="background__wash"></div>
@@ -561,7 +559,40 @@ body {
 
 <hr class="separator">
 
-<!-- =============== INTRO TEXT =============== -->
+<!-- =============== PRESENT AND FUTURE: PRIMARY SECTION =============== -->
+<section class="present-section wrap" aria-labelledby="pfHeading">
+  <h2 class="pf-title" id="pfHeading">PRESENT AND FUTURE</h2>
+  <div class="pf-card">
+    <p>Today, CETA is ISO 9001 &amp; 9120 certified specialized in aerospace consultancy and engineering services delivering solutions to Unmanned Aircraft Systems (UAS or RPAS)</p>
+  </div>
+  <div class="gallery" aria-label="CETA company and UAS imagery">
+    <div class="g-item"><img src="EMPRESA_IMG/41.png" alt="CETA company image 41" loading="lazy"></div>
+    <div class="g-item"><img src="EMPRESA_IMG/43.png" alt="CETA company image 43" loading="lazy"></div>
+    <div class="g-item"><img src="EMPRESA_IMG/44.png" alt="CETA company image 44" loading="lazy"></div>
+    <div class="g-item"><img src="EMPRESA_IMG/45.png" alt="CETA company image 45" loading="lazy"></div>
+    <div class="g-item"><img src="EMPRESA_IMG/47.png" alt="CETA company image 47" loading="lazy"></div>
+    <div class="g-item"><img src="EMPRESA_IMG/48.png" alt="CETA company image 48" loading="lazy"></div>
+    <div class="g-item"><img src="EMPRESA_IMG/49.png" alt="CETA company image 49" loading="lazy"></div>
+    <div class="g-item"><img src="EMPRESA_IMG/50.png" alt="CETA company image 50" loading="lazy"></div>
+    <div class="g-item"><img src="EMPRESA_IMG/51.png" alt="CETA company image 51" loading="lazy"></div>
+    <div class="g-item"><img src="EMPRESA_IMG/52.png" alt="CETA company image 52" loading="lazy"></div>
+    <div class="g-item"><img src="EMPRESA_IMG/53.png" alt="CETA company image 53" loading="lazy"></div>
+    <div class="g-item"><img src="EMPRESA_IMG/54.png" alt="CETA company image 54" loading="lazy"></div>
+    <div class="g-item"><img src="EMPRESA_IMG/55.png" alt="CETA company image 55" loading="lazy"></div>
+    <div class="g-item"><img src="EMPRESA_IMG/56.png" alt="CETA company image 56" loading="lazy"></div>
+    <div class="g-item"><img src="EMPRESA_IMG/57.png" alt="CETA company image 57" loading="lazy"></div>
+    <div class="g-item"><img src="EMPRESA_IMG/58.png" alt="CETA company image 58" loading="lazy"></div>
+    <div class="g-item"><img src="EMPRESA_IMG/59.png" alt="CETA company image 59" loading="lazy"></div>
+    <div class="g-item"><img src="EMPRESA_IMG/60.png" alt="CETA company image 60" loading="lazy"></div>
+    <div class="g-item"><img src="EMPRESA_IMG/61.png" alt="CETA company image 61" loading="lazy"></div>
+    <div class="g-item"><img src="EMPRESA_IMG/62.png" alt="CETA company image 62" loading="lazy"></div>
+  </div>
+</section>
+
+<!--
+  ARCHIVED COMPANY HISTORY — intentionally disabled.
+  To restore the history, move this section outside of the HTML comment.
+
 <section class="empresa-section wrap">
   <div class="empresa-text">
     <p class="lead">
@@ -573,12 +604,12 @@ body {
   </div>
 </section>
 
-<!-- =============== KEY MILESTONES =============== -->
+
 <section class="timeline-wrap wrap" aria-label="Key milestones timeline">
   <div class="km-title">KEY MILESTONES</div>
   <div class="timeline">
 
-    <!-- 1960s -->
+    
     <article class="t-item">
       <div class="t-inner">
         <div class="t-year">
@@ -611,7 +642,7 @@ body {
       </div>
     </article>
 
-    <!-- 1970s -->
+    
     <article class="t-item">
       <div class="t-inner">
         <div class="t-year">
@@ -632,7 +663,7 @@ body {
       </div>
     </article>
 
-    <!-- 1980s -->
+    
     <article class="t-item">
       <div class="t-inner">
         <div class="t-year">
@@ -655,7 +686,7 @@ body {
       </div>
     </article>
 
-    <!-- 1990s -->
+    
     <article class="t-item">
       <div class="t-inner">
         <div class="t-year">
@@ -690,7 +721,7 @@ body {
       </div>
     </article>
 
-    <!-- 2000s -->
+    
     <article class="t-item">
       <div class="t-inner">
         <div class="t-year">
@@ -731,7 +762,7 @@ body {
 
   </div>
 
-  <!-- =============== PRESENT AND FUTURE =============== -->
+  
   <div class="pf-title">PRESENT AND FUTURE</div>
   <div class="pf-card">
     <p>
@@ -745,7 +776,7 @@ body {
 
 <hr class="separator">
 
-<!-- =============== ADDITIONAL GALLERY =============== -->
+
 <section class="gallery-section wrap" aria-label="Additional company image gallery">
   <div class="gallery">
     <div class="g-item"><img src="EMPRESA_IMG/47.png" alt="Company 47"></div>
@@ -766,6 +797,10 @@ body {
     <div class="g-item"><img src="EMPRESA_IMG/62.png" alt="Company 62"></div>
   </div>
 </section>
+
+
+END ARCHIVED COMPANY HISTORY
+-->
 
 <!-- =============== FOOTER =============== -->
 <footer class="site-footer">
@@ -850,7 +885,15 @@ document.addEventListener('keydown',event=>{
 const backgroundImages=[
   'IMAGENES/dronfondo-1.png',
   'IMAGENES/dronfondo-2.png',
-  'IMAGENES/dronfondo-3.png'
+  'IMAGENES/dronfondo-3.png',
+  'IMAGENES/dronfondo-4.png',
+  'IMAGENES/dronfondo-5.png',
+  'IMAGENES/dronfondo-6.png',
+  'IMAGENES/dronfondo-7.png',
+  'IMAGENES/dronfondo-8.png',
+  'IMAGENES/dronfondo-9.jpg',
+  'IMAGENES/dronfondo-10.jpg',
+  'IMAGENES/dronfondo-11.jpg'
 ];
 
 const slideElements=[
@@ -858,8 +901,8 @@ const slideElements=[
   document.getElementById('bgSlideB')
 ];
 
-const slideDuration=7000;
-const fadeDuration=2000;
+const slideDuration=5500;
+const fadeDuration=1500;
 const reducedMotion=window.matchMedia(
   '(prefers-reduced-motion: reduce)'
 ).matches;
@@ -907,7 +950,7 @@ async function startBackgroundSlideshow() {
     void nextSlide.offsetWidth;
 
     nextSlide.style.transition=
-      `opacity ${fadeDuration}ms ease-in-out,transform 9s linear`;
+      `opacity ${fadeDuration}ms ease-in-out,transform 7s linear`;
     nextSlide.classList.add('is-active');
 
     window.setTimeout(()=>{
