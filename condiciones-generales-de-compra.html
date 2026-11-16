@@ -70,7 +70,7 @@ body {
 .background__fallback {
   position:absolute;
   inset:0;
-  background:url("IMAGENES/COCKPIT.webp") center/cover no-repeat;
+  background:var(--brand);
   opacity:.42;
   z-index:0;
 }
@@ -86,7 +86,7 @@ body {
   opacity:0;
   z-index:1;
   transform:scale(1.04);
-  transition:opacity 2s ease-in-out,transform 9s linear;
+  transition:opacity 1.5s ease-in-out,transform 7s linear;
 }
 
 .background__slide.is-active {
@@ -523,7 +523,13 @@ body {
   }
 
   .gpc-card {
-    padding:18px 14px;
+    width:calc(100% - 48px);
+    padding:20px 18px;
+  }
+
+  .hero .container,
+  .separator {
+    width:calc(100% - 48px);
   }
 
   .gpc-card p,
@@ -1143,7 +1149,15 @@ document.addEventListener('keydown',(event) => {
 const backgroundImages=[
   'IMAGENES/dronfondo-1.png',
   'IMAGENES/dronfondo-2.png',
-  'IMAGENES/dronfondo-3.png'
+  'IMAGENES/dronfondo-3.png',
+  'IMAGENES/dronfondo-4.png',
+  'IMAGENES/dronfondo-5.png',
+  'IMAGENES/dronfondo-6.png',
+  'IMAGENES/dronfondo-7.png',
+  'IMAGENES/dronfondo-8.png',
+  'IMAGENES/dronfondo-9.jpg',
+  'IMAGENES/dronfondo-10.jpg',
+  'IMAGENES/dronfondo-11.jpg'
 ];
 
 const slideElements=[
@@ -1151,8 +1165,8 @@ const slideElements=[
   document.getElementById('bgSlideB')
 ];
 
-const slideDuration=7000;
-const fadeDuration=2000;
+const slideDuration=5500;
+const fadeDuration=1500;
 
 const reducedMotion=window.matchMedia(
   '(prefers-reduced-motion: reduce)'
@@ -1208,7 +1222,7 @@ async function startBackgroundSlideshow() {
     void nextSlide.offsetWidth;
 
     nextSlide.style.transition=
-      `opacity ${fadeDuration}ms ease-in-out, transform 9s linear`;
+      `opacity ${fadeDuration}ms ease-in-out, transform 7s linear`;
 
     nextSlide.classList.add('is-active');
 
