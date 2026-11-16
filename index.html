@@ -67,15 +67,10 @@
     /* ================= BACKGROUND ================= */
 
     /*
-      THREE IMAGE BACKGROUND
+      DRONE IMAGE BACKGROUND
 
-      Images:
-      IMAGENES/dronfondo-1.png
-      IMAGENES/dronfondo-2.png
-      IMAGENES/dronfondo-3.png
-
-      Each image fills the entire screen.
-      Smooth crossfade transitions.
+      All dronfondo images (1–11) are included.
+      Each image fills the screen with smooth crossfades.
       Continuous infinite loop.
     */
 
@@ -90,17 +85,6 @@
       background: var(--brand);
       pointer-events: none;
       isolation: isolate;
-    }
-
-    .background__fallback {
-      position: absolute;
-      inset: 0;
-      background-image: url("IMAGENES/COCKPIT.webp");
-      background-position: center center;
-      background-repeat: no-repeat;
-      background-size: cover;
-      opacity: .42;
-      z-index: 0;
     }
 
     .background__slide {
@@ -561,6 +545,10 @@
         font-size: clamp(35px,10vw,52px);
       }
 
+      .hero__inner {
+        padding-inline: 16px;
+      }
+
       .hero__copy p {
         font-size: 16px;
       }
@@ -596,8 +584,6 @@
   <!-- ================= BACKGROUND ================= -->
 
   <div class="background" aria-hidden="true">
-
-    <div class="background__fallback"></div>
 
     <div
       class="background__slide"
@@ -713,14 +699,14 @@
           <div class="hero__copy">
 
             <p>
-              CETA has supplied Unmanned Aerial Systems
+              Since 2007, CETA has supplied Unmanned Aerial Systems
               (UAS) to the Spanish Armed Forces and Law Enforcement
               Agencies, providing state-of-the-art systems and products
               featuring the latest technological advances.
             </p>
 
             <p>
-              We offers one of the most comprehensive UAS
+              We offer one of the most comprehensive UAS
               portfolios on the market, ranging from small FPV
               platforms to long-range tactical systems with
               extended endurance.
@@ -967,15 +953,10 @@
        BACKGROUND IMAGE SLIDESHOW
        ==================================================
 
-       Images already uploaded to GitHub:
-
-       IMAGENES/dronfondo-1.png
-       IMAGENES/dronfondo-2.png
-       IMAGENES/dronfondo-3.png
-
+       Background images: dronfondo-1 through dronfondo-11
        - Automatic looping
-       - 7 seconds per image
-       - 2 second crossfade
+       - 5.5 seconds per image
+       - 1.5 second crossfade
        - Full viewport coverage
        - Image preload
        - Blue overlay stays fixed
@@ -983,15 +964,21 @@
     ================================================== */
 
     const backgroundImages = [
-
       'IMAGENES/dronfondo-1.png',
       'IMAGENES/dronfondo-2.png',
-      'IMAGENES/dronfondo-3.png'
-
+      'IMAGENES/dronfondo-3.png',
+      'IMAGENES/dronfondo-4.png',
+      'IMAGENES/dronfondo-5.png',
+      'IMAGENES/dronfondo-6.png',
+      'IMAGENES/dronfondo-7.png',
+      'IMAGENES/dronfondo-8.png',
+      'IMAGENES/dronfondo-9.jpg',
+      'IMAGENES/dronfondo-10.jpg',
+      'IMAGENES/dronfondo-11.jpg'
     ];
 
-    const slideDuration = 7000;
-    const fadeDuration = 2000;
+    const slideDuration = 5500;
+    const fadeDuration = 1500;
 
     const slideElements = [
 
@@ -1084,7 +1071,7 @@
         // Animate the next image over the current one.
 
         nextSlide.style.transition =
-          `opacity ${fadeDuration}ms ease-in-out, transform 9s linear`;
+          `opacity ${fadeDuration}ms ease-in-out, transform 7s linear`;
 
         nextSlide.classList.add('is-active');
 
