@@ -95,15 +95,15 @@ body {
   background:
     linear-gradient(
       90deg,
-      rgba(0,20,45,.74) 0%,
-      rgba(0,30,65,.73) 50%,
-      rgba(0,20,45,.74) 100%
+      rgba(0,20,45,.60) 0%,
+      rgba(0,30,65,.60) 50%,
+      rgba(0,20,45,.60) 100%
     ),
     linear-gradient(
       0deg,
-      rgba(0,17,41,.65),
+      rgba(0,17,41,.45),
       transparent 35%,
-      rgba(0,15,40,.22)
+      rgba(0,15,40,.15)
     );
 }
 
@@ -494,8 +494,8 @@ body {
   .background__wash {
     background:linear-gradient(
       90deg,
-      rgba(0,20,45,.84),
-      rgba(0,25,55,.76)
+      rgba(0,20,45,.65),
+      rgba(0,25,55,.62)
     );
   }
 
@@ -950,97 +950,135 @@ form?.addEventListener('submit',async(event) => {
 /* ================= BACKGROUND SLIDESHOW ================= */
 
 const backgroundImages = [
-  'IMAGENES/dronfondo-1.png',
-  'IMAGENES/dronfondo-2.png',
-  'IMAGENES/dronfondo-3.png',
-  'IMAGENES/dronfondo-4.png',
-  'IMAGENES/dronfondo-5.png',
-  'IMAGENES/dronfondo-6.png',
-  'IMAGENES/dronfondo-7.png',
-  'IMAGENES/dronfondo-8.png',
-  'IMAGENES/dronfondo-9.jpg',
-  'IMAGENES/dronfondo-10.jpg',
-  'IMAGENES/dronfondo-11.jpg'
-];
+      'IMAGENES/dronfondo-1.png',
+      'IMAGENES/dronfondo-2.png',
+      'IMAGENES/dronfondo-3.png',
+      'IMAGENES/dronfondo-4.png',
+      'IMAGENES/dronfondo-5.png',
+      'IMAGENES/dronfondo-6.png',
+      'IMAGENES/dronfondo-7.png',
+      'IMAGENES/dronfondo-8.png',
+      'IMAGENES/dronfondo-9.jpg',
+      'IMAGENES/dronfondo-10.jpg',
+      'IMAGENES/dronfondo-11.jpg'
+    ];
 
-const slideElements = [
-  document.getElementById('bgSlideA'),
-  document.getElementById('bgSlideB')
-];
+    const slideDuration = 5500;
+    const fadeDuration = 1500;
 
-const slideDuration=5500;
-const fadeDuration=1500;
+    const slideElements = [
 
-const reducedMotion=window.matchMedia(
-  '(prefers-reduced-motion: reduce)'
-).matches;
+      document.getElementById('bgSlideA'),
+      document.getElementById('bgSlideB')
 
-function loadBackgroundImage(src) {
-  return new Promise(resolve => {
-    const img=new Image();
-    img.onload=() => resolve(src);
-    img.onerror=() => resolve(null);
-    img.src=src;
-  });
-}
+    ];
 
-async function startBackgroundSlideshow() {
+    const reducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches;
 
-  const validImages=(
-    await Promise.all(
-      backgroundImages.map(loadBackgroundImage)
-    )
-  ).filter(Boolean);
+    function loadImage(src) {
 
-  if(!validImages.length) return;
+      return new Promise(resolve => {
 
-  let currentIndex=0;
-  let frontIndex=0;
+        const img = new Image();
 
-  slideElements[0].style.backgroundImage=
-    `url("${validImages[0]}")`;
+        img.onload = () => resolve(src);
 
-  slideElements[0].style.zIndex='2';
-  slideElements[0].classList.add('is-active');
+        img.onerror = () => resolve(null);
 
-  if(validImages.length===1 || reducedMotion) return;
+        img.src = src;
 
-  window.setInterval(() => {
+      });
 
-    currentIndex=(currentIndex+1)%validImages.length;
+    }
 
-    const nextIndex=1-frontIndex;
-    const currentSlide=slideElements[frontIndex];
-    const nextSlide=slideElements[nextIndex];
+    /*
+      Store the beginning of the sequence for the current browser tab.
+      Every HTML page must use this same code, image list and duration.
+      This preserves the slideshow position across page navigations.
+    */
+    const slideshowStorageKey = 'ceta-background-start-v1';
 
-    nextSlide.style.transition='none';
-    nextSlide.classList.remove('is-active');
+    function getSlideshowStart() {
+      let start = null;
+      try {
+        start = Number(sessionStorage.getItem(slideshowStorageKey));
+      } catch (_) {
+        // The slideshow will still run if browser storage is unavailable.
+      }
+      if (!Number.isFinite(start) || start <= 0 || start > Date.now()) {
+        start = Date.now();
+        try {
+          sessionStorage.setItem(slideshowStorageKey, String(start));
+        } catch (_) {}
+      }
+      return start;
+    }
 
-    nextSlide.style.backgroundImage=
-      `url("${validImages[currentIndex]}")`;
+    async function startBackgroundSlideshow() {
+      const validImages = (
+        await Promise.all(backgroundImages.map(loadImage))
+      ).filter(Boolean);
 
-    nextSlide.style.zIndex='3';
-    currentSlide.style.zIndex='2';
+      if (!validImages.length) return;
 
-    void nextSlide.offsetWidth;
+      const startTime = getSlideshowStart();
+      let lastPair = '';
 
-    nextSlide.style.transition=
-      `opacity ${fadeDuration}ms ease-in-out, transform 7s linear`;
+      // We calculate each frame from the original start time, rather
+      // than restarting a timer whenever a new HTML page is loaded.
+      function renderBackground() {
+        const elapsed = Math.max(0, Date.now() - startTime);
+        const index = reducedMotion || validImages.length === 1
+          ? 0
+          : Math.floor(elapsed / slideDuration) % validImages.length;
+        const phase = elapsed % slideDuration;
+        const isFading = !reducedMotion && elapsed >= slideDuration && phase < fadeDuration;
+        const prevIndex = (index - 1 + validImages.length) % validImages.length;
+        const pairKey = `${index}:${isFading ? prevIndex : 'static'}`;
 
-    nextSlide.classList.add('is-active');
+        if (pairKey !== lastPair) {
+          slideElements.forEach(el => {
+            el.style.transition = 'none';
+            el.style.transform = 'scale(1)';
+            el.style.opacity = '0';
+            el.classList.remove('is-active');
+          });
+          if (isFading) {
+            slideElements[0].style.backgroundImage = `url("${validImages[prevIndex]}")`;
+            slideElements[1].style.backgroundImage = `url("${validImages[index]}")`;
+          } else {
+            slideElements[1].style.backgroundImage = `url("${validImages[index]}")`;
+          }
+          slideElements[0].style.zIndex = '1';
+          slideElements[1].style.zIndex = '2';
+          lastPair = pairKey;
+        }
 
-    window.setTimeout(() => {
-      currentSlide.classList.remove('is-active');
-      currentSlide.style.zIndex='1';
-      nextSlide.style.zIndex='2';
-    },fadeDuration);
+        if (isFading) {
+          slideElements[0].style.opacity = '1';
+          slideElements[1].style.opacity = String(Math.min(1, phase / fadeDuration));
+        } else {
+          slideElements[0].style.opacity = '0';
+          slideElements[1].style.opacity = '1';
+        }
 
-    frontIndex=nextIndex;
+        if (!reducedMotion && validImages.length > 1) {
+          // Preserve the original subtle slow zoom on each photograph.
+          const progress = phase / slideDuration;
+          slideElements[1].style.transform = `scale(${(1.04 - 0.04 * progress).toFixed(5)})`;
+        }
 
-  },slideDuration);
-}
+        if (!reducedMotion && validImages.length > 1) {
+          window.requestAnimationFrame(renderBackground);
+        }
+      }
 
-startBackgroundSlideshow();
+      renderBackground();
+    }
+
+    startBackgroundSlideshow();
 
 /* ================= CERTIFICATE MODAL ================= */
 
